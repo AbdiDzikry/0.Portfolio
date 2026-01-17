@@ -80,8 +80,9 @@ const Dashboard = () => {
                                     LinkedIn
                                 </a>
                                 <a
-                                    href="/profile/CV_Sulthan_Abdi_Dzikry_2025.pdf"
-                                    download="CV_Sulthan_Abdi_Dzikry_2025.pdf"
+                                    href="/profile/CV_Sulthan_Abdi_Dzikry_ATS.html"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="px-4 py-2 border border-stone-300 dark:border-accent-green/30 text-text-primary rounded-full text-xs font-medium hover:bg-accent-green/10 transition-all hover:scale-110 active:scale-95 backdrop-blur-md whitespace-nowrap flex items-center gap-2"
                                 >
                                     <Download size={14} />

@@ -39,6 +39,15 @@ export default {
       backgroundImage: {
         'glow-blue': 'radial-gradient(circle at center, rgba(0, 240, 255, 0.15), transparent 70%)',
         'card-gradient': 'linear-gradient(145deg, #111111 0%, #0a0a0a 100%)',
+      },
+      keyframes: {
+        shine: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' }
+        }
+      },
+      animation: {
+        shine: 'shine 1s ease-in-out forwards',
       }
     },
   },
