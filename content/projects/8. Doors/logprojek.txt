@@ -1,0 +1,82 @@
+Proses Input Data Pemesanan Ruangan Meeting decorations
+
+Doors Lama:
+Input Jenis Meeting
+Input Type Rapat Normal
+Set Tanggal Mulai
+Set Waktu Mulai
+Set Tanggal Selesai
+Set Waktu Selesai
+Topik Meeting 
+
+Doors Baru:
+
+Input Topik Meeting
+Set Tanggal Meeting
+Set Durasi Meeting
+Input Jam Mulai Meeting
+Input Menit Mulai Meeting 
+
+*Aplikasi Doors Baru Memotong Proses Dalam Memesan Ruangan Sebanyak 2 Langkah 
+
+===========
+
+Proses Input Data Partisipan Meeting
+
+Lama:
+Add Menu Partisipan
+Input Nama
+Add Partisipan 
+klik tombol OK
+
+baru:
+Input Nama 
+Add Partisipan
+
+*Aplikasi Doors Baru Memotong 2 Proses Langkah Dalam Menambah Partisipan Meeting
+
+===========
+
+Proses Input Data Pantry Ruangan Meeting
+
+Lama:
+Tambah Pilihan Pantry
+Add Pantry
+Isi Jumlah Pantry
+Menekan tombol OK 
+
+baru:
+Klik Pilihan Pantry
+Pilih Pantry
+Isi jumlah
+
+*Aplikasi Doors Baru Memotong 1 Proses Langkah Dalam Menambah Pantry untuk Meeting
+
+=============
+
+New feature!
+
+Available Room: Available Room, Merupakan fitur yang bertujuan untuk melihat daftar ruangan meeting yang tersedia/terpakai dengan menggunakan visualisasi Gantt Chart yang berangkat dari masalah pengguna ingin melihat secara keseluruhan jadwal tersedia dari beberapa ruangan meeting dalam satu tampilan
+
+My Analytic: My Analytic merupakan fitur untuk mengukur statistik jumlah meeting yang dilakukan oleh pengguna tersebut untuk mengetahui seberapa sering pengguna tersebut menggunakan fasilitas ruangan meeting serta maintenance dan juga KPI dari karyawan tersebut
+
+Absensi: Absensi merupakan fitur untuk melakukan absensi dengan menggunakan Pin NPK Karyawan gunannya untuk mendata daftar hadir partisipan.
+
+Report PDF & Excel: Fitur Report digunakan untuk memudahkan pengguna dalam mencatat kehadiran aktivitas meeting untuk dilaporkan ke atasan
+
+*new feature ini berangkat dari masalah user tolong nanti anda sesuaikan lagi di portfolio saya bagaimana
+
+https://doors2.dharmap.com/ ini link website live nya
+
+
+
+===================
+ 
+
+ highlight ini
+
+Projek doors ini sudah menghandle lebih dari 1000 user dengan ruangan terbatas hanya 14 unit ruang meeting lalu juga 
+
+dan juga sudah menghandle 623 completed meeting 374 meeting ter schedule
+
+dengan durasi meeting pada lebih dari 2 jam sudah dialksanakan sebanyak 752 meeting dan berjalan dengan lancar tanpa bentrokan 

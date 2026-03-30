@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, User, Briefcase, FileText, Globe, Sun, Moon, FlaskConical, MessageSquare } from 'lucide-react'; // Icons
+import { Home, User, Briefcase, FileText, Sun, Moon, MessageSquare } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
@@ -8,102 +8,66 @@ import { translations } from '../utils/translations';
 const NavbarVertical = ({ onChatToggle }) => {
     const { theme, toggleTheme } = useTheme();
     const { language, toggleLanguage } = useLanguage();
-    // No scroll hide logic needed for side navbar usually, it stays visible
-
     const t = translations[language];
 
     return (
         <motion.nav
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="fixed right-6 top-6 z-50 hidden md:flex max-h-[90vh] overflow-y-auto py-2 no-scrollbar" // Reverted to top-6 per request
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="fixed right-8 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-8 py-8 px-2" 
         >
-            <div className="bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-full py-3 px-2 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] flex flex-col items-center gap-3 transition-all duration-300 hover:bg-white/20 dark:hover:bg-black/30">
+            {/* Floating Pill Container - Forced White */}
+            <div className="bg-white border border-zinc-200 rounded-full py-8 px-2 shadow-[0_20px_50px_rgba(0,0,0,0.1)] flex flex-col items-center gap-6">
+                <NavIcon to="/" icon={<Home size={18} />} label={t.nav.home} />
+                <NavIcon to="/profile" icon={<User size={18} />} label={t.nav.profile} />
+                <NavIcon to="/projects" icon={<Briefcase size={18} />} label={t.nav.projects} />
+                <NavIcon to="/case-studies" icon={<FileText size={18} />} label={t.nav.caseStudies} />
+                
+                <div className="w-4 h-[1px] bg-zinc-100 my-1" />
 
-                {/* Logo / Brand (simplified to initial or dot) */}
-                <NavLink to="/" className="w-10 h-10 flex items-center justify-center rounded-full bg-accent-green/10 text-accent-green font-bold text-lg mb-2 hover:scale-110 transition-transform">
-                    S.
-                </NavLink>
+                <button
+                    onClick={onChatToggle}
+                    className="w-10 h-10 flex items-center justify-center text-zinc-500 hover:text-black transition-colors"
+                >
+                    <MessageSquare size={18} />
+                </button>
+                
+                <button
+                    onClick={toggleLanguage}
+                    className="text-[10px] font-bold font-mono text-zinc-500 hover:text-black transition-colors uppercase"
+                >
+                    {language}
+                </button>
 
-                {/* Navigation Links (Icons) */}
-                <div className="flex flex-col gap-4 w-full">
-                    <NavIcon to="/" icon={<Home size={20} />} label={t.nav.home} />
-                    <NavIcon to="/profile" icon={<User size={20} />} label={t.nav.profile} />
-                    <NavIcon to="/projects" icon={<Briefcase size={20} />} label={t.nav.projects} />
-                    <NavIcon to="/case-studies" icon={<FileText size={20} />} label={t.nav.caseStudies} />
-                    <button
-                        onClick={onChatToggle}
-                        className="relative w-10 h-10 flex items-center justify-center rounded-full group text-text-primary/60 hover:text-text-primary transition-colors"
-                    >
-                        <MessageSquare size={20} />
-                        <span className="absolute right-14 top-1/2 -translate-y-1/2 text-xs font-medium bg-white/80 dark:bg-black/80 backdrop-blur-md text-text-primary px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-2 group-hover:translate-x-0 whitespace-nowrap shadow-sm border border-white/20 pointer-events-none">
-                            Chat Ningsih
-                        </span>
-                    </button>
-                </div>
-
-                {/* Divider */}
-                <div className="w-8 h-[1px] bg-white/20 dark:bg-white/10 my-1" />
-
-                {/* Actions */}
-                <div className="flex flex-col gap-4">
-                    <button
-                        onClick={toggleLanguage}
-                        className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors text-text-primary/70 hover:text-text-primary relative group"
-                    >
-                        <Globe size={18} />
-                        <span className="absolute right-12 top-1/2 -translate-y-1/2 text-[10px] bg-black/80 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                            {language === 'en' ? 'ID' : 'EN'}
-                        </span>
-                    </button>
-
-                    <button
-                        onClick={toggleTheme}
-                        className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors text-text-primary/70 hover:text-text-primary"
-                    >
-                        {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-                    </button>
-
-                    <NavLink
-                        to="/lab"
-                        className={({ isActive }) => `w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors text-text-primary/70 hover:text-text-primary relative group ${isActive ? 'bg-white/10 text-text-primary' : ''}`}
-                    >
-                        <FlaskConical size={18} />
-                        <span className="absolute right-12 top-1/2 -translate-y-1/2 text-[10px] bg-black/80 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                            {t.nav.lab}
-                        </span>
-                    </NavLink>
-                </div>
+                <button
+                    onClick={toggleTheme}
+                    className="w-10 h-10 flex items-center justify-center text-zinc-500 hover:text-black transition-colors"
+                >
+                    {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
             </div>
         </motion.nav>
     );
 };
 
-// Nav Icon Component with Liquid Animation
 const NavIcon = ({ to, icon, label }) => (
-    <NavLink to={to} className="relative w-10 h-10 flex items-center justify-center rounded-full group">
+    <NavLink to={to} className="relative group">
         {({ isActive }) => (
-            <>
-                {/* Liquid Active Bubble */}
-                {isActive && (
-                    <motion.div
-                        layoutId="active-nav-bubble"
-                        className="absolute inset-0 bg-accent-green rounded-full shadow-lg shadow-accent-green/30"
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    />
-                )}
-
-                {/* Icon (z-10 to sit on top of bubble) */}
-                <span className={`relative z-10 transition-colors duration-300 ${isActive ? 'text-white' : 'text-text-primary/60 group-hover:text-text-primary'}`}>
+            <div className="flex items-center justify-center w-10 h-10 relative">
+                <span className={`transition-all duration-500 ${isActive ? 'text-black scale-110' : 'text-zinc-400 hover:text-black'}`}>
                     {icon}
                 </span>
-
-                {/* Tooltip on Left */}
-                <span className="absolute right-14 top-1/2 -translate-y-1/2 text-xs font-medium bg-white/80 dark:bg-black/80 backdrop-blur-md text-text-primary px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 translate-x-2 group-hover:translate-x-0 whitespace-nowrap shadow-sm border border-white/20 pointer-events-none">
+                {isActive && (
+                    <motion.div 
+                        layoutId="nav-dot"
+                        className="absolute -right-2 w-1 h-1 rounded-full bg-accent-pink"
+                    />
+                )}
+                <span className="absolute right-12 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-bold uppercase tracking-widest text-black whitespace-nowrap pointer-events-none bg-white px-2 py-1 rounded shadow-sm border border-zinc-100">
                     {label}
                 </span>
-            </>
+            </div>
         )}
     </NavLink>
 );

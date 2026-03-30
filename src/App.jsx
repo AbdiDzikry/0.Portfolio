@@ -13,7 +13,8 @@ import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import CaseStudies from './pages/CaseStudies';
 import Lab from './pages/Lab';
-import CatCursor from './components/CatCursor';
+import { AnimatePresence } from 'framer-motion';
+import PageTransition from './components/PageTransition';
 
 function AppContent() {
   const location = useLocation();
@@ -21,21 +22,19 @@ function AppContent() {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
-    <div className={`${isStoneBg ? 'bg-stone-200' : 'bg-white'} dark:bg-bg-primary min-h-screen text-text-primary transition-colors duration-300 font-sans flex flex-col md:pr-28 relative cursor-none`}>
-      <CatCursor />
-      <div className="md:hidden">
-        <Navbar />
-      </div>
-      <NavbarVertical onChatToggle={() => setIsChatOpen(!isChatOpen)} />
+    <div className="bg-white dark:bg-bg-primary min-h-screen text-text-primary transition-colors duration-300 font-sans flex flex-col relative">
+      <Navbar onChatToggle={() => setIsChatOpen(!isChatOpen)} />
       <div className="flex-grow">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:id" element={<ProjectDetail />} />
-          <Route path="/case-studies" element={<CaseStudies />} />
-          <Route path="/lab" element={<Lab />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+            <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
+            <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
+            <Route path="/projects/:id" element={<PageTransition><ProjectDetail /></PageTransition>} />
+            <Route path="/case-studies" element={<PageTransition><CaseStudies /></PageTransition>} />
+            <Route path="/lab" element={<PageTransition><Lab /></PageTransition>} />
+          </Routes>
+        </AnimatePresence>
       </div>
       <Footer />
       <ChatWidget isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} onToggle={() => setIsChatOpen(!isChatOpen)} />

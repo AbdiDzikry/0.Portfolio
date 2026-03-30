@@ -1,5 +1,125 @@
 export const projectsData = [
     {
+        id: 'doors',
+        title: 'Doors',
+        category: 'UI/UX Design',
+        image: '/projects/doors/Presentasi Doors-1.webp',
+        showcaseImages: [
+            '/projects/doors/Presentasi Doors-1.webp',
+            '/projects/doors/Presentasi Doors-2.webp',
+            '/projects/doors/tabletdoors.png',
+            '/projects/doors/Presentasi Doors-8.webp',
+            '/projects/doors/Presentasi Doors-10.webp',
+            '/projects/doors/Presentasi Doors-11.webp'
+        ],
+        tagline: 'Booking Meeting Rooms Made Simpler and More Efficient.',
+        description: 'A robust meeting room booking ecosystem for PT Dharma Polimetal Tbk. currently handling 1,000+ users and 14 meeting rooms with zero scheduling conflicts.',
+        problem: 'Employees struggled with a complex 6-step booking process that required opening a laptop or manual requests, creating significant friction for immediate on-the-spot scheduling.',
+        solution: 'Introduced an on-the-spot booking system and a fully responsive web interface (tablet-friendly), simplifying the flow into 4 intuitive steps to ensure rooms can be booked anytime, anywhere.',
+        impact: 'Successfully managed 623+ completed meetings and 374+ scheduled sessions. Maintained smooth operations for over 752 long-duration meetings (>2 hours) without a single overlap.',
+        status: 'Completed (3 Months Development)',
+        benefits: 'Employees of PT. Dharma Polimetal Tbk.',
+        researchImage: '/projects/doors/hasil_sus_doors.png',
+        tags: ['Agile', 'PWA', 'Paper Prototyping', 'SUS Testing', 'UI/UX Design'],
+        size: 'large',
+        liveLink: 'https://doors2.dharmap.com/',
+        designTools: ['Figma', 'Paper & Pen', 'FigJam'],
+        researchMethods: ['System Usability Scale (SUS)', 'Agile Methodology', 'User Flow Mapping', 'Contextual Inquiry'],
+        figmaEmbed: '', // PASTE FIGMA EMBED URL HERE
+        problemMap: [
+            {
+                problem: 'Inefficient Booking Flow',
+                context: "The previous system required 6 separate input steps to reserve a single room.",
+                solution: 'Process Optimization',
+                mitigation: 'Grouped related inputs to reduce the flow to only 4 efficient steps.'
+            },
+            {
+                problem: 'Manual Attendance Tracking',
+                context: "Recording meeting participants was manual and prone to data loss.",
+                solution: 'Digital NPK Check-in',
+                mitigation: 'Introduced a PIN-based check-in using Employee ID (NPK) for instant digital attendance.'
+            },
+            {
+                problem: 'Limited Schedule Visibility',
+                context: "Users had to check each room's calendar one by one to find an open slot.",
+                solution: 'Gantt Chart Visualization',
+                mitigation: 'Implemented an "Available Room" view using a Gantt Chart to see all rooms at once.'
+            }
+        ],
+        stats: [
+            { label: 'SUS Score', value: '72.5', description: 'Usability Grade: B (Good).' },
+            { label: 'Active Users', value: '1.000+', description: 'Handling enterprise-scale user base.' },
+            { label: 'Completed', value: '623', description: 'Total successful meetings conducted.' },
+            { label: 'Conflicts', value: '0', description: 'Zero scheduling overlaps achieved.' }
+        ],
+        timeline: [
+            { phase: 'Discovery', period: '29 Oct - 14 Jan', activities: ['Agile Methodology setup', 'Current state analysis', 'User pain point mapping'] },
+            { phase: 'Design', period: '29 Oct - 14 Jan', activities: ['Information Architecture', 'Paper Prototyping', 'Rapid Wireframing'] },
+            { phase: 'Iterating', period: '29 Oct - 14 Jan', activities: ['SUS Usability Testing', 'Refining UI/UX', 'Final Handoff'] }
+        ],
+        coreFeatures: [
+            { name: 'Available Room', desc: 'Gantt Chart visualization for overviewing room schedules in one view.' },
+            { name: 'Analytic', desc: 'Statistical dashboard to track meeting frequency, maintenance, and employee KPIs.' },
+            { name: 'Absensi', desc: 'Secure attendance tracking using Employee ID (NPK) PIN system.' },
+            { name: 'PWA Support', desc: 'Installable on mobile and tablet devices for native app-like experience.' }
+        ],
+        beforeAfter: [
+            { aspect: 'Process Flow', before: '6 complex manual steps (Type, Date x2, Time x2, Topic)', after: '4 consolidated/intuitive steps (Topic, Date, Duration, Time)' },
+            { aspect: 'Mobility', before: 'Laptop-only or manual request required', after: 'Responsive PWA (Installable on Mobile/Tablet)' },
+            { aspect: 'UX Core', before: 'Fragmented and process-heavy interface', after: 'Informative & Intuitive (Visual-first design)' },
+            { aspect: 'Booking Method', before: 'Remote booking or asking admin', after: 'Immediate on-the-spot booking via Tablet' }
+        ],
+        translations: {
+            id: {
+                tagline: 'Pemesanan Ruang Rapat Menjadi Lebih Sederhana dan Efisien.',
+                description: 'Ekosistem pemesanan ruang rapat yang kokoh untuk PT Dharma Polimetal Tbk. yang saat ini menangani 1.000+ pengguna dan 14 ruang rapat dengan nol konflik penjadwalan.',
+                problem: 'Karyawan kesulitan dengan proses pemesanan 6 langkah yang rumit dan harus membuka laptop atau meminta bantuan orang lain, menciptakan hambatan besar untuk penjadwalan mendadak di tempat.',
+                solution: 'Memperkenalkan sistem pemesanan langsung di tempat (on-the-spot) dan antarmuka web yang sepenuhnya responsif (tablet-friendly), menyederhanakan alur menjadi 4 langkah intuitif untuk memastikan ruangan dapat dipesan kapan saja, di mana saja.',
+                impact: 'Berhasil mengelola 623+ rapat selesai dan 374+ sesi terjadwal. Menjaga kelancaran operasional untuk lebih dari 752 rapat durasi panjang (>2 jam) tanpa ada bentrokan sama sekali.',
+                status: 'Selesai (3 Bulan Pengembangan)',
+                benefits: 'Karyawan PT. Dharma Polimetal Tbk.',
+                problemMap: [
+                    {
+                        problem: 'Alur Pemesanan Tidak Efisien',
+                        context: "Sistem lama memerlukan 6 langkah input terpisah untuk memesan satu ruangan.",
+                        solution: 'Optimasi Proses',
+                        mitigation: 'Mengelompokkan input terkait untuk mengurangi alur menjadi hanya 4 langkah efisien.'
+                    },
+                    {
+                        problem: 'Pelacakan Kehadiran Manual',
+                        context: "Mencatat peserta rapat bersifat manual dan rentan terhadap kehilangan data.",
+                        solution: 'Check-in NPK Digital',
+                        mitigation: 'Memperkenalkan check-in berbasis PIN menggunakan ID Karyawan (NPK) untuk absensi digital instan.'
+                    }
+                ],
+                stats: [
+                    { label: 'Skor SUS', value: '72.5', description: 'Grade Usability: B (Good).' },
+                    { label: 'Pengguna Aktif', value: '1.000+', description: 'Menangani basis pengguna skala besar.' },
+                    { label: 'Rapat Selesai', value: '623', description: 'Total rapat yang berhasil dilaksanakan.' },
+                    { label: 'Bentrokan', value: '0', description: 'Nol tumpang tindih jadwal tercapai.' }
+                ],
+                coreFeatures: [
+                    { name: 'Available Room', desc: 'Visualisasi Gantt Chart untuk melihat seluruh jadwal ruangan dalam satu tampilan.' },
+                    { name: 'Analytic', desc: 'Dashboard statistik untuk melacak frekuensi rapat, maintenance, dan KPI karyawan.' },
+                    { name: 'Absensi', desc: 'Pelacakan kehadiran aman menggunakan sistem PIN ID Karyawan (NPK).' },
+                    { name: 'Dukungan PWA', desc: 'Dapat diinstal di perangkat seluler untuk pengalaman aplikasi native.' }
+                ],
+                beforeAfter: [
+                    { aspect: 'Alur Proses', before: '6 langkah manual rumit (Tipe, Tanggal x2, Jam x2, Topik)', after: '4 langkah ringkas & intuitif' },
+                    { aspect: 'Mobilitas', before: 'Hanya bisa via laptop/permintaan manual', after: 'PWA Responsif (Bisa di-install di HP/Tablet)' },
+                    { aspect: 'Core UX', before: 'Antarmuka terfragmentasi & membingungkan', after: 'Informatif & Intuitif (Visual-first)' },
+                    { aspect: 'Metode Booking', before: 'Remote saja (harus di meja)', after: 'Booking langsung di tempat via Tablet' }
+                ],
+                researchMethods: ['Skala Usability Sistem (SUS)', 'Metodologi Agile', 'Pemetaan Alur Pengguna', 'Inkuiri Kontekstual'],
+                timeline: [
+                    { phase: 'Discovery', period: '29 Okt - 14 Jan', activities: ['Setup Metodologi Agile', 'Analisis kondisi saat ini', 'Pemetaan pain point'] },
+                    { phase: 'Design', period: '29 Okt - 14 Jan', activities: ['Arsitektur Informasi', 'Paper Prototyping', 'Wireframing Cepat'] },
+                    { phase: 'Iterating', period: '29 Okt - 14 Jan', activities: ['Usability Testing (SUS)', 'Penyempurnaan UI/UX', 'Handoff Final'] }
+                ]
+            }
+        }
+    },
+    {
         id: 'cbl-property',
         title: 'CBL Property',
         category: 'UI/UX Design',
@@ -84,72 +204,72 @@ export const projectsData = [
         uxOverview: 'Clean, minimalist mobile-first interface with bottom navigation. "Dark Mode" support for night-time browsing.',
         translations: {
             id: {
-                tagline: 'Perdagangan Properti Terpercaya dalam Genggaman.',
-                description: 'Aplikasi pasar properti yang ramping, berfokus pada kepercayaan pengguna dan keterlibatan langsung.',
-                problem: 'Calon pembeli rumah kesulitan dengan antarmuka yang berantakan dan kurangnya komunikasi langsung dengan agen, sementara agen menghadapi kualitas prospek (lead) yang rendah karena penyaringan yang buruk.',
-                solution: 'Merancang UI yang bersih dan minimalis yang berfokus pada penyaringan canggih, pratinjau properti yang imersif, dan fitur "Chat dengan Agen" langsung untuk membangun kepercayaan dan menyederhanakan navigasi.',
-                impact: 'Menyederhanakan proses pencarian properti (Konseptual), bertujuan untuk meningkatkan retensi pengguna dan kualitas prospek dengan mengurangi hambatan dalam siklus kontak.',
+                tagline: 'Cari Properti Jadi Lebih Aman & Terpercaya.',
+                description: 'Aplikasi marketplace properti yang didesain untuk mempermudah pencarian rumah impian dengan transparansi penuh antara agen dan pembeli.',
+                problem: 'Calon pembeli seringkali merasa bingung dengan banyaknya data properti yang tidak terorganisir dan kekhawatiran akan agen yang tidak responsif atau tidak terpercaya.',
+                solution: 'Menghadirkan UI yang bersih dan minimalis dengan fitur smart filtering, pratinjau properti yang imersif, serta fitur chat langsung dengan agen untuk membangun kepercayaan secara instan.',
+                impact: 'Menyederhanakan proses pencarian properti secara signifikan, sekaligus meningkatkan kualitas interaksi antara pembeli dan agen.',
                 problemMap: [
                     {
-                        problem: 'Kelebihan Informasi',
-                        context: "Pengguna dibombardir dengan daftar yang tidak relevan dan data yang berantakan.",
-                        solution: 'Filter Cerdas',
-                        mitigation: 'Filter sadar-konteks mengurangi gangguan sebesar 60%, hanya menampilkan properti yang relevan.'
+                        problem: 'Informasi Terlalu Padat',
+                        context: "Pengguna sering merasa kewalahan dengan banyaknya iklan properti yang tidak relevan.",
+                        solution: 'Filter Cerdas (Smart Filtering)',
+                        mitigation: 'Mengurangi distraksi data hingga 60%, memastikan hanya properti yang sesuai kriteria yang muncul.'
                     },
                     {
-                        problem: 'Defisit Kepercayaan',
-                        context: "Ketakutan akan daftar palsu atau agen yang tidak responsif.",
+                        problem: 'Krisis Kepercayaan',
+                        context: "Rasa takut akan iklan palsu atau agen yang sulit dihubungi.",
                         solution: 'Lencana Agen Terverifikasi',
-                        mitigation: 'Indikator kepercayaan visual dan fitur obrolan langsung menjembatani kesenjangan kepercayaan.'
+                        mitigation: 'Indikator visual agen resmi dan fitur chat real-time untuk menjamin keamanan transaksi.'
                     },
                     {
-                        problem: 'Kelelahan Navigasi',
-                        context: "Terlalu banyak klik untuk menemukan detail penting.",
-                        solution: 'Pratinjau Imersif',
-                        mitigation: 'Detail utama dan tampilan galeri tersedia langsung dari daftar kartu.'
+                        problem: 'Navigasi Melelahkan',
+                        context: "Terlalu banyak langkah/klik hanya untuk melihat detail dasar properti.",
+                        solution: 'Preview Imersif',
+                        mitigation: 'Detail utama dan galeri foto dapat diakses langsung dari halaman pencarian tanpa perlu pindah tab.'
                     }
                 ],
                 stats: [
-                    { label: 'Efisiensi Pencarian', value: '+40%', description: 'Penemuan properti lebih cepat via filter cerdas.' },
-                    { label: 'Kualitas Prospek', value: 'Tinggi', description: 'Chat langsung mem-prakualifikasi minat.' },
-                    { label: 'Retensi Pengguna', value: '+15%', description: 'Estimasi peningkatan karena UX yang lebih baik.' }
+                    { label: 'Efisiensi Pencarian', value: '+40%', description: 'Penemuan properti jadi jauh lebih cepat.' },
+                    { label: 'Kualitas Lead', value: 'Tinggi', description: 'Chat langsung memfilter pembeli yang serius.' },
+                    { label: 'Retensi Pengguna', value: '+15%', description: 'Pengalaman aplikasi yang nyaman membuat user betah.' }
                 ],
                 timeline: [
-                    { phase: 'Penemuan', period: 'Minggu 1-2', activities: ['Analisis Kompetitor', 'Pembuatan Persona User', 'Pemetaan Masalah'] },
-                    { phase: 'Ideasi', period: 'Minggu 3-4', activities: ['Wireframing', 'Desain Alur Pengguna', 'Prototipe Low-fi'] },
-                    { phase: 'Desain', period: 'Minggu 5-6', activities: ['UI High-fidelity', 'Desain Interaksi', 'Prototyping di Figma'] }
+                    { phase: 'Riset & Penemuan', period: 'Minggu 1-2', activities: ['Analisis Kompetitor', 'Pemetaan Profil User', 'Audit Pain Points'] },
+                    { phase: 'Ideasi & Alur', period: 'Minggu 3-4', activities: ['Wireframing', 'Desain Alur Pengguna', 'Prototipe Rendah (Lo-fi)'] },
+                    { phase: 'Desain Visual', period: 'Minggu 5-6', activities: ['UI High-fidelity', 'Desain Interaksi', 'Prototyping di Figma'] }
                 ],
                 mitigationPlans: [
-                    { risk: 'Daftar Palsu', action: 'Terapkan sistem lencana "Terverifikasi" wajib bagi agen dan properti.' },
-                    { risk: 'Pengguna Keluar', action: 'Login yang disederhanakan dengan autentikasi sosial dan mode tamu.' }
+                    { risk: 'Iklan Palsu', action: 'Menerapkan sistem verifikasi wajib bagi semua agen dan listing properti.' },
+                    { risk: 'User Drop-off', action: 'Mempermudah proses login dan menyediakan mode "Simpan Dulu" tanpa akun.' }
                 ],
                 personas: [
-                    { role: 'Pembeli Pertama', pain: 'Bingung dengan data yang membingungkan & takut penipuan.', goal: 'Cari properti terpercaya tanpa istilah teknis.' },
-                    { role: 'Agen Properti', pain: 'Membuang waktu pada prospek yang tidak berkualitas.', goal: 'Terhubung dengan pembeli serius & tutup kesepakatan lebih cepat.' }
+                    { role: 'Pembeli Pertama', pain: 'Bingung dengan istilah teknis dan takut tertipu.', goal: 'Menemukan rumah pertama dengan proses yang aman dan simpel.' },
+                    { role: 'Agen Properti', pain: 'Lelah melayani pertanyaan dari pembeli yang tidak serius.', goal: 'Terhubung dengan calon pembeli berkualitas dan closing lebih cepat.' }
                 ],
                 businessModel: [
-                    { type: 'Lead Generation', value: 'Prospek terverifikasi berkualitas tinggi membenarkan biaya langganan agen premium.' },
-                    { type: 'Ekonomi Kepercayaan', value: 'Sistem lencana terverifikasi menciptakan hambatan masuk, meningkatkan nilai platform.' }
+                    { type: 'Lead Generation', value: 'Sistem filter memastikan agen mendapatkan prospek pembeli yang benar-benar tertarik.' },
+                    { type: 'Trust Economy', value: 'Kepercayaan menjadi nilai jual utama platform dibanding marketplace konvensional.' }
                 ],
                 beforeAfter: [
-                    { aspect: 'Pengalaman Pencarian', before: 'Scroll tanpa henti daftar tidak relevan.', after: 'Hasil terfilter dalam < 3 klik.' },
-                    { aspect: 'Kepercayaan Agen', before: 'Skeptis dan takut di-"ghosting".', after: 'Lencana terverifikasi & chat instan membangun keyakinan.' }
+                    { aspect: 'Pengalaman Cari', before: 'Scroll tanpa henti di daftar yang berantakan.', after: 'Dapatkan hasil yang relevan dalam kurang dari 3 klik.' },
+                    { aspect: 'Kepercayaan', before: 'Ragu dan takut kena "ghosting" agen.', after: 'Lencana verifikasi dan chat instan memberikan rasa aman.' }
                 ],
-                vision: 'Menjadi pasar properti paling terpercaya di Indonesia dengan menjembatani kesenjangan antara kenyamanan digital dan keandalan manusia.',
-                background: 'Pasar properti Indonesia terfragmentasi. Platform yang ada berfokus pada kuantitas daftar daripada kualitas interaksi, menyebabkan kepercayaan rendah dan frustrasi tinggi bagi pembeli dan agen serius.',
-                strategicAlignment: 'Selaras dengan tujuan portofolio untuk menunjukkan kemampuan memecahkan masalah "Kepercayaan" dan "Komunikasi" di pasar berisiko tinggi.',
-                investmentRequired: '2 Bulan Desain & Pengembangan / 1 Product Designer',
-                assumptions: '1. Pengguna lebih suka in-app chat daripada panggilan telepon langsung untuk pertanyaan awal.\n2. Agen bersedia diverifikasi jika itu menjamin kualitas prospek yang lebih tinggi.',
-                productArchitecture: 'React Native (Aplikasi Mobile), Firebase (Real-time Chat & Auth), Node.js (Backend API)',
+                vision: 'Menjadi marketplace properti paling terpercaya di Indonesia dengan mengedepankan keamanan informasi dan kemudahan komunikasi.',
+                background: 'Pasar properti digital di Indonesia saat ini masih didominasi oleh platform yang hanya fokus pada kuantitas iklan, bukan kualitas interaksi. Hal ini seringkali menimbulkan frustrasi bagi kedua belah pihak.',
+                strategicAlignment: 'Menunjukkan kemampuan dalam memecahkan masalah kompleks seperti "Kepercayaan" lewat pendekatan desain yang strategis.',
+                investmentRequired: '2 Bulan (Fase Desain & Pengembangan)',
+                assumptions: '1. Pengguna lebih suka chat langsung daripada telepon untuk tanya-tanya awal.\n2. Agen bersedia diverifikasi demi mendapatkan kualitas pembeli yang lebih baik.',
+                productArchitecture: 'React Native (Mobile), Firebase (Chat), Node.js (API)',
                 coreFeatures: [
-                    { name: 'Sistem Agen Terverifikasi', desc: 'Sistem lencana berbasis verifikasi lisensi.' },
-                    { name: 'Chat In-App Langsung', desc: 'Pesan real-time dengan kemampuan "Tawar" dan "Bagikan".' },
-                    { name: 'Filter Cerdas', desc: 'Filter berdasarkan "Bebas banjir", "Akses jalan lebar", dll.' }
+                    { name: 'Sistem Agen Terverifikasi', desc: 'Validasi lisensi agen untuk menjamin listing asli.' },
+                    { name: 'Chat Real-time', desc: 'Fitur negosiasi dan kirim lokasi langsung di dalam aplikasi.' },
+                    { name: 'Filter Hunian Strategis', desc: 'Filter khusus seperti "Bebas Banjir" atau "Akses Jalan Lebar".' }
                 ],
-                uxOverview: 'Antarmuka mobile-first yang bersih dan minimalis dengan navigasi bawah. Dukungan "Dark Mode" untuk penjelajahan malam hari.',
-                designSystem: 'Metodologi Atomic Design dengan Sistem Grid 8pt. Warna primer #10B981 (Trust/Green) digunakan untuk CTA guna menimbulkan rasa tenang dan aman.',
-                designTools: ['Figma (UI/Prototyping)', 'Maze (Usability Testing)', 'Adobe Illustrator (Icons)'],
-                researchMethods: ['Wawancara User (5 Pembeli, 3 Agen)', 'Benchmarking Kompetitor (Rumah123, Traveloka)', 'Usability Testing (Moderated)']
+                uxOverview: 'Desain mobile-first dengan navigasi yang intuitif. Menggunakan skema warna yang menenangkan untuk memunculkan aura profesionalisme.',
+                designSystem: 'Metodologi Atomic Design dengan skala grid 8pt. Warna primer #10B981 digunakan untuk memberikan kesan aman dan terpercaya.',
+                designTools: ['Figma', 'Maze (Testing)', 'Adobe Illustrator'],
+                researchMethods: ['Wawancara Mendalam (User Interviews)', 'Benchmarking Kompetitor', 'Usability Testing']
             }
         }
     },
@@ -170,6 +290,10 @@ export const projectsData = [
         problem: 'Manual management of housing unit inventory and sales data was inefficient, prone to error, and lacked a professional customer-facing showcase.',
         solution: 'Developed a dual-interface system: a responsive public website for unit showcases and a secure admin dashboard for inventory/sales management.',
         impact: 'Centralized data management, reduced manual administrative errors by ~40%, and provided a professional digital presence for the residence.',
+        team: [
+            { name: 'Rifan Nurfakhri', role: 'Fullstack Developer', link: 'https://www.linkedin.com/in/rifanfakhri/' },
+            { name: 'Sulthan Abdi Dzikry', role: 'UI/UX Designer', link: '' }
+        ],
         tags: ['React', 'Laravel', 'Dashboard'],
         size: 'medium',
         problemMap: [
@@ -232,69 +356,69 @@ export const projectsData = [
         uxOverview: 'Dual-persona UX: "Efficiency First" for Admins (Dashboard) vs "Visual First" for Buyers (Public Site).',
         translations: {
             id: {
-                tagline: 'Menyatukan Penjualan dan Inventaris dalam Satu Ekosistem.',
-                description: 'Sistem antarmuka ganda untuk pemasaran perumahan dan administrasi internal.',
-                problem: 'Pengelolaan manual inventaris unit rumah dan data penjualan tidak efisien, rentan kesalahan, dan kurang tampilan profesional untuk pelanggan.',
-                solution: 'Mengembangkan sistem antarmuka ganda: situs web publik responsif untuk pameran unit dan dasbor admin aman untuk pengelolaan inventaris/penjualan.',
-                impact: 'Memusatkan pengelolaan data, mengurangi kesalahan administrasi manual hingga ~40%, dan memberikan kehadiran digital profesional untuk residensi.',
+                tagline: 'Digitalisasi Manajemen Stok & Penjualan Real-time.',
+                description: 'Platform manajemen properti terpadu untuk tim internal dan katalog unit untuk calon pembeli.',
+                problem: 'Pengelolaan inventaris perumahan yang masih manual sering menyebabkan data tidak sinkron, stok ganda, dan proses pemasaran yang lambat.',
+                solution: 'Membangun aplikasi dengan dua sisi: Panel Admin untuk manajemen stok dan situs Marketing sebagai katalog interaktif bagi pembeli.',
+                impact: 'Meningkatkan akurasi data stok hingga 100% dan mempercepat proses reservasi unit oleh tim sales.',
                 problemMap: [
                     {
-                        problem: 'Sinkronisasi Inventaris',
-                        context: "Tim penjualan menjual unit yang sudah dipesan.",
-                        solution: 'Database Real-time',
-                        mitigation: 'Pembaruan instan mencegah pemesanan ganda di semua saluran.'
+                        problem: 'Data Tidak Sinkron',
+                        context: "Sales menjual unit yang sebenarnya sudah laku.",
+                        solution: 'Dashboard Inventaris Live',
+                        mitigation: 'Setiap reservasi langsung memotong stok secara real-time.'
                     },
                     {
-                        problem: 'Pelaporan Manual',
-                        context: "Berjam-jam dihabiskan menyusun spreadsheet.",
-                        solution: 'Dasbor Otomatis',
-                        mitigation: 'Laporan PDF satu klik untuk manajemen.'
+                        problem: 'Katalog Berantakan',
+                        context: "Pembeli sulit melihat posisi unit yang tersedia.",
+                        solution: 'Peta Plot Interaktif',
+                        mitigation: 'Visualisasi status unit (Tersedia/Sold/Booked) yang mudah dipahami.'
                     }
                 ],
                 stats: [
-                    { label: 'Kesalahan Admin', value: '-40%', description: 'Pengurangan signifikan kesalahan entri manual.' },
-                    { label: 'Akurasi Data', value: '99%', description: 'Satu sumber kebenaran untuk inventaris.' },
-                    { label: 'Proses Penjualan', value: 'Lebih Cepat', description: 'Katalog digital mempercepat keputusan pelanggan.' }
+                    { label: 'Akurasi Stok', value: '100%', description: 'Tidak ada lagi penjualan ganda.' },
+                    { label: 'Kecepatan Sales', value: '+50%', description: 'Cek stok dan booking bisa dilakukan di tempat.' },
+                    { label: 'Proses Penjualan', value: 'Efisien', description: 'Katalog digital mempercepat keputusan pelanggan.' }
                 ],
                 timeline: [
-                    { phase: 'Setup Backend', period: 'Bulan 1', activities: ['Desain Database', 'Pengembangan API Laravel'] },
+                    { phase: 'Persiapan Backend', period: 'Bulan 1', activities: ['Desain Database', 'Pengembangan API Laravel'] },
                     { phase: 'Dev Frontend', period: 'Bulan 2', activities: ['UI Situs Publik', 'Implementasi Dasbor Admin'] },
-                    { phase: 'Deployment', period: 'Minggu 9', activities: ['Setup Server', 'Pelatihan Pengguna'] }
+                    { phase: 'Peluncuran', period: 'Minggu 9', activities: ['Setup Server', 'Pelatihan Staf'] }
                 ],
                 mitigationPlans: [
                     { risk: 'Kehilangan Data', action: 'Backup cloud harian otomatis dengan retensi 30 hari.' },
                     { risk: 'Pelanggaran Keamanan', action: 'Kontrol Akses Berbasis Peran (RBAC) ketat untuk staf admin.' }
                 ],
                 personas: [
-                    { role: 'Manajer Pemasaran', pain: 'Kekacauan dari spreadsheet manual dan pemesanan ganda.', goal: 'Proses penjualan ramping dan laporan real-time akurat.' },
-                    { role: 'Pembeli Rumah', pain: 'Tidak yakin tentang ketersediaan dan spesifikasi unit.', goal: 'Informasi visual jelas dan konfirmasi ketersediaan instan.' }
+                    { role: 'Manajer Pemasaran', pain: 'Bingung mengelola data manual dan sering terjadi double booking.', goal: 'Proses penjualan yang rapi dan laporan real-time yang akurat.' },
+                    { role: 'Pembeli Rumah', pain: 'Ragu dengan ketersediaan unit dan spesifikasi teknis.', goal: 'Informasi visual yang jelas dan kepastian stok unit secara instan.' }
                 ],
                 businessModel: [
-                    { type: 'Efisiensi Operasional', value: 'Mengurangi kesalahan admin 40% menghemat ~20 jam kerja/minggu.' },
-                    { type: 'Akselerasi Penjualan', value: 'Pameran digital mengurangi durasi siklus penjualan dengan info instan.' }
+                    { type: 'Efisiensi Operasional', value: 'Mengurangi kesalahan admin sebesar 40%, menghemat waktu tim hingga 20 jam/minggu.' },
+                    { type: 'Kecepatan Penjualan', value: 'Katalog digital memangkas siklus penjualan karena informasi tersedia instan.' }
                 ],
                 beforeAfter: [
-                    { aspect: 'Status Inventaris', before: 'Cek spreadsheet manual (rentan error).', after: 'Sync database real-time cegah double booking.' },
-                    { aspect: 'Laporan Penjualan', before: 'Kompilasi manual mingguan (Berjam-jam).', after: 'Generasi PDF instan 1-klik.' }
+                    { aspect: 'Status Stok', before: 'Cek manual di spreadsheet yang sering telat update.', after: 'Sinkronisasi live mencegah risiko double booking.' },
+                    { aspect: 'Laporan Sales', before: 'Rekap manual mingguan yang memakan waktu berjam-jam.', after: 'Satu klik untuk generate laporan PDF instan.' }
                 ],
                 // PRD ID
-                vision: 'Menciptakan ekosistem manajemen properti yang mulus menjembatani pemasaran digital dengan efisiensi operasional.',
+                vision: 'Menciptakan ekosistem manajemen properti yang menghubungkan pemasaran digital dengan efisiensi operasional.',
                 status: 'SELESAI',
                 team: 'Sulthan Abdi Dzikry (Full Stack Developer)',
-                background: 'Pemasaran unit perumahan melibatkan sinkronisasi data kompleks. Metode manual menyebabkan pemesanan ganda dan pelaporan lambat.',
-                strategicAlignment: 'Menunjukkan kemampuan Full Stack (Laravel + React) dan kemampuan membangun alat internal kompleks.',
-                investmentRequired: '2 Bulan / 1 Full Stack Developer',
-                assumptions: '1. Staf admin memiliki literasi komputer dasar.\n2. Ketersediaan real-time adalah pendorong konversi utama bagi pembeli.',
+                background: 'Pemasaran perumahan membutuhkan sinkronisasi data yang ketat. Metode manual sering memicu masalah stok dan pelaporan yang lambat.',
+                strategicAlignment: 'Menunjukkan kemampuan Full Stack (Laravel + React) dalam membangun alat internal yang kompleks.',
+                investmentRequired: '2 Bulan (Fase Desain & Pengembangan)',
+                assumptions: '1. Staf admin memiliki kemampuan dasar komputer.\n2. Kepastian stok secara real-time adalah faktor utama pembeli untuk booking.',
                 productArchitecture: 'Laravel (Backend API), React (Frontend), MySQL (Database), JWT (Auth)',
                 coreFeatures: [
-                    { name: 'Inventaris Terpadu', desc: 'Sumber database tunggal untuk situs publik dan dasbor admin.' },
-                    { name: 'Pelaporan Otomatis', desc: 'Generasi PDF satu klik untuk laporan penjualan mingguan.' },
-                    { name: 'Akses Berbasis Peran', desc: 'Login aman untuk peran Admin, Sales, dan Manajer.' }
+                    { name: 'Inventaris Terpusat', desc: 'Satu sumber data untuk situs publik dan dashboard admin.' },
+                    { name: 'Laporan Otomatis', desc: 'Generate laporan penjualan mingguan dalam bentuk PDF sekali klik.' },
+                    { name: 'Akses Berbasis Peran', desc: 'Login aman untuk tiap fungsi: Admin, Sales, dan Manajer.' }
                 ],
-                designSystem: 'Gaya Corporate Clean. Dasbor menggunakan tata letak data-grid padat untuk efisiensi. Situs publik menggunakan citra besar untuk daya tarik emosional.',
-                designTools: ['Figma (UI)', 'Postman (API Testing)', 'VS Code'],
-                researchMethods: ['Wawancara Stakeholder Internal', 'Analisis Alur Kerja'],
-                uxOverview: 'UX Dua Persona: "Efisiensi Dulu" untuk Admin (Dasbor) vs "Visual Dulu" untuk Pembeli (Situs Publik).'
+                designSystem: 'Corporate Clean. Dashboard dengan grid padat untuk efisiensi data, Situs Publik dengan visual besar untuk daya tarik emosional.',
+                designTools: ['Figma', 'Postman (API Testing)', 'VS Code'],
+                researchMethods: ['Wawancara Pemangku Kepentingan', 'Analisis Alur Kerja Tim'],
+                uxOverview: 'Pendekatan UX Ganda: "Mengutamakan Efisiensi" untuk Admin dan "Mengutamakan Visual" untuk Pembeli.'
             }
         }
     },
@@ -363,56 +487,56 @@ export const projectsData = [
         uxOverview: 'Conversion-focused landing page. Minimal clicks to "Order", with credibility signals (Reviews, Pricing) placed strategically along the scroll path.',
         translations: {
             id: {
-                tagline: 'Profesionalisasi Layanan Bantuan Akademik.',
-                description: 'Profil Perusahaan Profesional untuk layanan bantuan akademik.',
-                problem: 'Mahasiswa yang mencari bantuan akademik menghadapi pasar yang penuh penipuan dan respons lambat, karena kurangnya platform terpusat yang terpercaya.',
-                solution: 'Membangun situs web gaya "Profil Perusahaan" transparan yang memprofesionalkan layanan, menawarkan harga jelas, katalog layanan, dan testimoni untuk membangun kredibilitas.',
-                impact: 'Membangun identitas merek profesional, secara signifikan meningkatkan kepercayaan pengguna dan menyederhanakan proses pertanyaan pesanan.',
+                tagline: 'Membangun Brand Terpercaya untuk Layanan Akademik.',
+                description: 'Landing page profesional yang mengedepankan transparansi harga dan bukti sosial untuk jasa bantuan akademik.',
+                problem: 'Banyak mahasiswa ragu menggunakan jasa bantuan akademik karena branding yang terlihat amatir dan risiko penipuan.',
+                solution: 'Menciptakan identitas visual yang profesional dengan alur pesanan yang terintegrasi langsung ke WhatsApp untuk kenyamanan maksimal.',
+                impact: 'Meningkatkan kredibilitas jasa dan memudahkan konversi pengunjung menjadi pelanggan lewat navigasi yang to-the-point.',
                 problemMap: [
-                    { problem: 'Masalah Kepercayaan', context: 'Pasar penuh penipuan.', solution: 'Harga Transparan & Testimoni', mitigation: 'Bukti sosial dan katalog jelas membangun kredibilitas instan.' },
-                    { problem: 'Pertanyaan Lambat', context: 'Ping pong WhatsApp manual.', solution: 'Alur Pesanan Terstruktur', mitigation: 'Tautan "Pesan Sekarang" langsung dengan pesan yang sudah diisi sebelumnya.' }
+                    { problem: 'Kesan Kurang Profesional', context: 'Terlihat seperti jasa borongan biasa.', solution: 'Branding Korporat', mitigation: 'Desain website yang bersih dan berstandar agensi.' },
+                    { problem: 'Alur Pesan Ribet', context: 'Pembeli harus tanya-tanya manual berulang kali.', solution: 'Order Template WhatsApp', mitigation: 'Tombol pesan langsung mengisi form detail pesanan secara otomatis.' }
                 ],
                 stats: [
-                    { label: 'Faktor Kepercayaan', value: 'Tinggi', description: 'Kehadiran web profesional vs kompetitor.' },
-                    { label: 'Tingkat Pertanyaan', value: '+30%', description: 'Alur yang disederhanakan mengurangi keraguan.' }
+                    { label: 'Tingkat Kepercayaan', value: 'Meningkat', description: 'Visual profesional mengurangi keraguan pembeli.' },
+                    { label: 'Konversi Chat', value: '+25%', description: 'Template otomatis mempercepat closing.' }
                 ],
                 timeline: [
                     { phase: 'Branding', period: 'Minggu 1', activities: ['Desain Logo', 'Pemilihan Palet Warna'] },
                     { phase: 'Web Dev', period: 'Minggu 2-3', activities: ['Landing Page', 'Katalog Layanan', 'Optimasi Mobile'] }
                 ],
                 mitigationPlans: [
-                    { risk: 'Penyalahgunaan Merek', action: 'Gambar portofolio diberi watermark dan pemberitahuan hak cipta ketat.' }
+                    { risk: 'Penyalahgunaan Merek', action: 'Pemberian watermark pada portofolio dan nota hak cipta yang jelas.' }
                 ],
                 personas: [
-                    { role: 'Mahasiswa Stress', pain: 'Takut penipuan dan tenggat waktu terlewat.', goal: 'Bantuan andal dengan harga jelas dan penyelesaian cepat.' },
-                    { role: 'Penyedia Layanan', pain: 'Menangani chat "berapa harganya?" yang berulang.', goal: 'Filter pertanyaan otomatis untuk fokus pada eksekusi.' }
+                    { role: 'Mahasiswa Stress', pain: 'Takut tertipu dan khawatir tenggat waktu lewat.', goal: 'Bantuan yang andal dengan harga transparan dan pengerjaan cepat.' },
+                    { role: 'Penyedia Layanan', pain: 'Lelah menjawab pertanyaan harga yang berulang-ulang.', goal: 'Filter pertanyaan otomatis agar bisa fokus pada pengerjaan tugas.' }
                 ],
                 businessModel: [
-                    { type: 'Arbitrase Layanan', value: 'Harga standar menghilangkan gesekan negosiasi, meningkatkan konversi.' },
-                    { type: 'Branding Kepercayaan', value: 'Tampilan profesional memungkinkan margin lebih tinggi dibanding kompetitor umum.' }
+                    { type: 'Arbitrase Layanan', value: 'Harga standar menghilangkan proses negosiasi yang melelahkan.' },
+                    { type: 'Branding Premium', value: 'Tampilan profesional memungkinkan margin harga yang lebih baik dibanding kompetitor.' }
                 ],
                 beforeAfter: [
-                    { aspect: 'Proses Pesanan', before: 'Negosiasi WhatsApp yang kacau.', after: 'Katalog terstruktur dengan tingkatan harga jelas.' },
-                    { aspect: 'Kredibilitas', before: 'Hanya akun anonim lain.', after: 'Merek profesional dengan ulasan yang dapat diverifikasi.' }
+                    { aspect: 'Proses Pesanan', before: 'Negosiasi via chat yang berbelit-belit.', after: 'Katalog terstruktur dengan pilihan harga yang jelas.' },
+                    { aspect: 'Kredibilitas', before: 'Hanya dianggap sebagai akun anonim biasa.', after: 'Brand profesional dengan ulasan yang kredibel.' }
                 ],
                 // PRD ID
-                vision: 'Memprofesionalkan pasar bantuan akademik dengan menciptakan platform layanan yang transparan, terpercaya, dan efisien.',
+                vision: 'Memprofesionalkan pasar bantuan akademik melalui platform yang transparan, aman, dan efisien.',
                 status: 'LIVE',
                 team: 'Sulthan Abdi Dzikry (Frontend Developer & Designer)',
-                background: 'Pasar layanan akademik bersifat informal dan rentan penipuan. Mahasiswa tidak memiliki cara aman untuk bertransaksi.',
-                strategicAlignment: 'Menunjukkan kekuatan "Design for Trust" - menggunakan branding profesional untuk mengatasi keraguan pasar.',
-                investmentRequired: '3 Minggu / 1 Desainer-Developer',
-                assumptions: '1. Mahasiswa bersedia membayar premium untuk jaminan keamanan.\n2. Profesionalisme visual adalah sinyal legitimasi terkuat di pasar ini.',
+                background: 'Pasar layanan akademik seringkali informal dan rentan penipuan. Dibutuhkan sebuah platform yang menjamin keamanan transaksi.',
+                strategicAlignment: 'Menunjukkan kekuatan "Desain Berbasis Kepercayaan" untuk mengatasi keraguan pasar.',
+                investmentRequired: '3 Minggu (Desain & Pengembangan)',
+                assumptions: '1. Mahasiswa bersedia membayar lebih demi jaminan keamanan.\n2. Profesionalisme visual adalah sinyal kepercayaan terkuat di pasar digital.',
                 productArchitecture: 'Single Page Application (SPA), React, TailwindCSS, Integrasi WhatsApp API',
                 coreFeatures: [
-                    { name: 'Katalog Layanan', desc: 'Tingkatan harga transparan untuk menghilangkan kelelahan negosiasi.' },
-                    { name: 'Tautan Pesan Langsung', desc: 'Integrasi WhatsApp API dengan template pesanan pre-filled.' },
-                    { name: 'Bagian Bukti Sosial', desc: 'Testimoni terkurasi untuk membangun kepercayaan instan.' }
+                    { name: 'Katalog Layanan', desc: 'Pilihan harga transparan untuk menghilangkan rasa lelah saat negosiasi.' },
+                    { name: 'Order Template WhatsApp', desc: 'Integrasi WhatsApp API dengan format pesanan otomatis.' },
+                    { name: 'Bukti Sosial', desc: 'Testimoni terkurasi untuk membangun kepercayaan instan.' }
                 ],
-                designSystem: 'Muda & Energik. Palet warna cerah (Oranye/Biru) untuk menarik mahasiswa, namun dengan grid terstruktur untuk menjaga profesionalisme.',
-                designTools: ['Figma (Brand Identity)', 'Canva (Aset Sosmed)', 'VS Code'],
-                researchMethods: ['Analisis Sentimen Media Sosial', 'Observasi Kompetitor (Instagram/Twitter)'],
-                uxOverview: 'Landing page fokus konversi. Klik minimal untuk "Pesan", dengan sinyal kredibilitas ditempatkan strategis sepanjang alur scroll.'
+                designSystem: 'Muda & Energik. Palet warna cerah namun tetap rapi untuk menjaga kesan profesional.',
+                designTools: ['Figma', 'Canva', 'VS Code'],
+                researchMethods: ['Analisis Media Sosial', 'Studi Kompetitor'],
+                uxOverview: 'Landing page fokus konversi. Navigasi singkat untuk langsung memesan jasa.'
             }
         }
     },
@@ -480,16 +604,16 @@ export const projectsData = [
         uxOverview: 'Physical UX focus: ensuring the text remains visible regardless of how the lanyard hangs or twists.',
         translations: {
             id: {
-                tagline: 'Desain Identitas: Dari Aset hingga Implementasi.',
-                description: 'Proyek identitas visual komprehensif yang berfokus pada konsistensi branding acara di seluruh aset fisik.',
-                problem: 'Merancang identitas acara yang kohesif memerlukan pemilihan aset dan teori warna yang cermat untuk memastikan keterbacaan dan pengenalan merek di berbagai materi cetak.',
-                solution: 'Mengembangkan sistem desain terpadu mulai dari aset logo inti hingga aplikasi fisik (lanyard, kartu ID), memastikan kontras tinggi dan hierarki jelas.',
-                impact: 'Menghadirkan sistem identitas profesional dan terukur yang menjaga integritas visual di berbagai media dan warna latar belakang.',
+                tagline: 'Desain Identitas: Dari Konsep hingga Produk Fisik.',
+                description: 'Proyek identitas visual yang berfokus pada konsistensi branding di seluruh aset fisik acara.',
+                problem: 'Staf seringkali sulit dibedakan dari peserta di tengah keramaian karena kurangnya penanda identitas yang mencolok.',
+                solution: 'Mengembangkan sistem kode warna yang kontras pada lanyard dan ID Card untuk mempermudah identifikasi tim secara instan.',
+                impact: 'Memperkuat citra profesional acara dan meningkatkan efisiensi koordinasi tim di lapangan.',
                 problemMap: [
-                    { problem: 'Visibilitas Kampus', context: 'Staf sulit dikenali.', solution: 'Warna Kontras Tinggi', mitigation: 'Kode warna berbeda untuk Staf vs Peserta.' }
+                    { problem: 'Staf Sulit Ditemukan', context: 'Peserta bingung harus bertanya ke siapa.', solution: 'Kode Warna Kontras', mitigation: 'Perbedaan warna mencolok antara Staf, Tamu, dan Peserta.' }
                 ],
                 stats: [
-                    { label: 'Visibilitas', value: 'Instan', description: 'Dapat dikenali dari jarak jauh.' }
+                    { label: 'Identifikasi', value: 'Instan', description: 'Terlihat jelas bahkan dari jarak jauh.' }
                 ],
                 timeline: [
                     { phase: 'Desain', period: '3 Hari', activities: ['Konsep', 'Mockup', 'Persiapan Cetak'] }
@@ -600,56 +724,56 @@ export const projectsData = [
         uxOverview: 'Focus on "Frictionless Purchase" for users and "Data at a Glance" for admins.',
         translations: {
             id: {
-                tagline: 'E-Commerce Skalabel dengan Backend Tangguh.',
-                description: 'Platform e-commerce komprehensif dengan manajemen dasbor.',
-                problem: 'Mengelola inventaris produk yang kompleks dan profil pengguna memerlukan antarmuka yang tangguh dan ramah pengguna untuk menangani volume transaksi tinggi.',
-                solution: 'Membangun solusi e-commerce yang dapat diskalakan dengan dasbor admin khusus, pelacakan produk real-time, dan manajemen profil pengguna yang intuitif.',
-                impact: 'Meningkatkan efisiensi operasional untuk manajemen produk dan meningkatkan pengalaman belanja pengguna dengan alur checkout 30% lebih cepat (Konseptual).',
+                tagline: 'Infrastruktur E-Commerce untuk Bisnis Skala Menengah.',
+                description: 'Platform jual-beli lengkap dengan integrasi manajemen stok dan dasbor admin.',
+                problem: 'Mengelola banyak transaksi dan stok produk secara manual sangat rentan kesalahan dan menghambat pertumbuhan bisnis.',
+                solution: 'Membangun aplikasi web dengan arsitektur modern (React/Redux) yang memudahkan pengelolaan katalog dan profil pembeli.',
+                impact: 'Mempercepat proses pengelolaan data produk dan memberikan pengalaman belanja yang lebih lancar.',
                 problemMap: [
-                    { problem: 'Kekacauan Inventaris', context: 'Sulit melacak stok.', solution: 'Dasbor Real-time', mitigation: 'Pembaruan stok langsung.' },
-                    { problem: 'Checkout Lambat', context: 'Keranjang ditinggalkan.', solution: 'Alur Teroptimasi', mitigation: 'Proses checkout 3-klik.' }
+                    { problem: 'Manajemen Manual', context: 'Stok sering selisih karena lupa update.', solution: 'Dashboard Admin Terpusat', mitigation: 'Semua perubahan data dilakukan di satu tempat secara otomatis.' },
+                    { problem: 'Proses Beli Lambat', context: 'Pembeli malas jika harus lewat banyak langkah.', solution: 'Optimasi Checkout', mitigation: 'Alur pembelian yang dipangkas menjadi lebih singkat.' }
                 ],
                 stats: [
-                    { label: 'Kecepatan Checkout', value: '+30%', description: 'Alur pengguna yang dioptimalkan.' },
-                    { label: 'Manajemen', value: 'Mudah', description: 'Panel admin terpusat.' }
+                    { label: 'Kecepatan Proses', value: '+30%', description: 'Alur kerja admin jadi lebih efisien.' },
+                    { label: 'User Experience', value: 'Mulus', description: 'Navigasi yang responsif dan cepat.' }
                 ],
                 timeline: [
-                    { phase: 'Fase 1', period: 'Bulan 1', activities: ['Skema DB', 'API'] },
-                    { phase: 'Fase 2', period: 'Bulan 2', activities: ['Frontend', 'Integrasi'] }
+                    { phase: 'Persiapan', period: 'Bulan 1', activities: ['Desain Database', 'Arsitektur API'] },
+                    { phase: 'Pengembangan', period: 'Bulan 2', activities: ['Frontend', 'Integrasi Sistem'] }
                 ],
                 mitigationPlans: [
-                    { risk: 'Skalabilitas', action: 'Arsitektur modular memungkinkan perluasan fitur dengan mudah.' }
+                    { risk: 'Skalabilitas', action: 'Gunakan arsitektur modular agar fitur mudah ditambah nantinya.' }
                 ],
                 personas: [
-                    { role: 'Administrator Toko', pain: 'Menjual stok berlebih karena keterlambatan sinkronisasi.', goal: 'Tampilan inventaris real-time untuk mencegah masalah pemenuhan.' },
-                    { role: 'Pembeli Mobile', pain: 'Proses checkout lambat/rumit.', goal: 'Beli dalam waktu kurang dari 30 detik.' }
+                    { role: 'Admin Toko', pain: 'Stok sering selisih karena jeda update data.', goal: 'Pantauan inventaris real-time untuk memperlancar pesanan.' },
+                    { role: 'Pembeli Mobile', pain: 'Alur pembelian yang ribet dan lambat.', goal: 'Bisa beli produk dalam waktu kurang dari 1 menit.' }
                 ],
                 businessModel: [
-                    { type: 'Perdagangan B2C', value: 'Checkout yang ramping bertujuan mengurangi pengabaian keranjang sebesar 15%.' },
-                    { type: 'Optimasi Inventaris', value: 'Pelacakan real-time mencegah kerugian stok mati dan penjualan berlebih.' }
+                    { type: 'Ritel Digital', value: 'Alur yang lancar diprediksi mengurangi keranjang yang ditinggalkan hingga 15%.' },
+                    { type: 'Efisiensi Stok', value: 'Pelacakan real-time mencegah kerugian akibat overselling.' }
                 ],
                 beforeAfter: [
-                    { aspect: 'Manajemen Stok', before: 'Tunggu rekonsiliasi malam hari.', after: 'Pembaruan langsung pada setiap transaksi.' },
-                    { aspect: 'Alur Checkout', before: '5+ halaman (Drop-off tinggi).', after: 'Wizard checkout satu halaman.' }
+                    { aspect: 'Cek Stok', before: 'Baru ketahuan setelah cek gudang manual.', after: 'Sistem otomatis mengunci stok saat ada pesanan.' },
+                    { aspect: 'Alur Checkout', before: 'Terlalu banyak halaman (User malas).', after: 'Checkout ringkas dalam satu alur yang jelas.' }
                 ],
                 // PRD ID
-                vision: 'Menyediakan infrastruktur e-commerce yang tangguh dan dapat diskalakan yang memberdayakan manajemen ritel berbasis data.',
+                vision: 'Menyediakan infrastruktur e-commerce yang tangguh untuk ritel berbasis data.',
                 status: 'PROTOTIPE',
                 team: 'Sulthan Abdi Dzikry (Frontend Developer)',
-                background: 'Pengecer sering membutuhkan solusi khusus yang menggabungkan etalase publik dengan manajemen inventaris backend yang kuat. Alat siap pakai bisa terlalu kaku.',
-                strategicAlignment: 'Menunjukkan kemampuan membangun aplikasi "Berat Sistem" dengan logika kompleks (Manajemen state Redux, Auth, CRUD).',
-                investmentRequired: '2 Bulan / 1 Frontend Developer',
-                assumptions: '1. Meningkatkan kecepatan checkout berkorelasi langsung dengan tingkat konversi yang lebih tinggi.\n2. Admin lebih menyukai dasbor desktop untuk tugas manajemen massal.',
-                productArchitecture: 'React.js, Redux (Global State), Node.js (Mock API), Otentikasi JWT',
+                background: 'Banyak bisnis ritel membutuhkan solusi kustom yang tidak sekadar jualan, tapi juga manajemen data di balik layar.',
+                strategicAlignment: 'Menunjukkan penguasaan aplikasi berbasis sistem (Complex Logic, State Management).',
+                investmentRequired: '2 Bulan (Fase Pengembangan)',
+                assumptions: '1. Checkout lebih cepat berbanding lurus dengan kenaikan omzet.\n2. Tim admin lebih nyaman bekerja di dashboard desktop.',
+                productArchitecture: 'React.js, Redux, Node.js, JWT Auth',
                 coreFeatures: [
-                    { name: 'Manajemen State Redux', desc: 'Pembaruan keranjang mulus dan sesi pengguna persisten.' },
-                    { name: 'Dasbor Admin', desc: 'Operasi CRUD untuk Produk dan Pengguna dengan grafik visual.' },
-                    { name: 'Checkout Teroptimasi', desc: 'Wizard 3-Langkah: Alamat -> Pembayaran -> Konfirmasi.' }
+                    { name: 'Redux State Management', desc: 'Sinkronisasi keranjang belanja yang mulus.' },
+                    { name: 'Admin Dashboard', desc: 'Manajemen produk dan user dengan grafik visual.' },
+                    { name: 'Checkout 3-Langkah', desc: 'Alamat -> Pembayaran -> Konfirmasi.' }
                 ],
-                designSystem: 'Bersih & Informatif. UI dominan putih untuk kejelasan produk, dengan navigasi sidebar yang jelas untuk panel Admin.',
-                designTools: ['Figma (Wireframe)', 'React Developer Tools'],
-                researchMethods: ['Analisis Alur E-commerce Teratas (Tokopedia/Shopee)', 'Profiling Performa'],
-                uxOverview: 'Fokus pada "Pembelian Tanpa Hambatan" untuk pengguna dan "Data Sekilas Pandang" untuk admin.'
+                designSystem: 'Bersih & Informatif. Fokus pada kejelasan visual produk dengan sidebar navigasi yang jelas.',
+                designTools: ['Figma', 'React Developer Tools'],
+                researchMethods: ['Analisis Kompetitor (Tokopedia, Shopee)', 'Profiling Performa'],
+                uxOverview: 'Fokus pada "Kemudahan Transaksi" bagi user dan "Kejelasan Data" bagi admin.'
             }
         }
     },
@@ -718,54 +842,54 @@ export const projectsData = [
         uxOverview: 'Gesture-driven interface. Swipe to delete, Drag to reorder. Focus on one-handed use for travelers on the move.',
         translations: {
             id: {
-                tagline: 'Panduan Perjalanan Saku Pribadi Anda.',
-                description: 'Konsep aplikasi seluler untuk perencanaan perjalanan yang mulus.',
-                problem: 'Wisatawan sering kesulitan mengatur jadwal perjalanan dan menemukan permata lokal dalam satu aplikasi terpadu, menyebabkan pengalaman perjalanan yang terfragmentasi.',
-                solution: 'Merancang pengalaman seluler yang menggabungkan perencanaan perjalanan, penemuan destinasi, dan manajemen rencana perjalanan menjadi satu antarmuka yang kohesif.',
-                impact: 'Menyederhanakan proses perencanaan perjalanan, mendorong perjalanan yang lebih spontan dan terorganisir dengan desain yang berpusat pada pengguna.',
+                tagline: 'Teman Perjalanan dalam Saku Anda.',
+                description: 'Konsep aplikasi travel planner untuk memudahkan penyusunan jadwal liburan secara visual.',
+                problem: 'Wisatawan sering lelah karena harus berpindah-pindah aplikasi antara Maps, Catatan, dan situs Booking saat merencanakan trip.',
+                solution: 'Menyatukan semua kebutuhan riset destinasi dan penyusunan itinerary ke dalam satu aplikasi mobile yang intuitif.',
+                impact: 'Menjadikan perencanaan liburan lebih santai dan terorganisir dengan fitur visual yang membantu pengambilan keputusan.',
                 problemMap: [
-                    { problem: 'Info Terfragmentasi', context: 'Ganti-ganti aplikasi untuk merencana.', solution: 'Aplikasi All-in-One', mitigation: 'Peta, panduan, dan pemesanan di satu tempat.' }
+                    { problem: 'Aplikasi Terpencar', context: 'Informasi tercecer di banyak tempat.', solution: 'Aplikasi All-in-One', mitigation: 'Peta, panduan, dan jadwal ada dalam satu layar.' }
                 ],
                 stats: [
-                    { label: 'Waktu Perencanaan', value: '-50%', description: 'Alat terpadu mempercepat riset.' }
+                    { label: 'Waktu Riset', value: '-50%', description: 'Semua informasi sudah teragregasi.' }
                 ],
                 timeline: [
                     { phase: 'Riset UX', period: 'Minggu 1-2', activities: ['Wawancara Wisatawan', 'Pembuatan Persona'] },
-                    { phase: 'Desain UI', period: 'Minggu 3-4', activities: ['Desain Visual', 'Interaksi'] }
+                    { phase: 'Desain UI', period: 'Minggu 3-4', activities: ['Desain Visual', 'Alur Interaksi'] }
                 ],
                 mitigationPlans: [
-                    { risk: 'Pengguna Kewalahan', action: 'Antarmuka minimalis dengan pengungkapan bertahap.' }
+                    { risk: 'User Overwhelm', action: 'Desain minimalis dengan informasi yang muncul secara bertahap.' }
                 ],
                 personas: [
-                    { role: 'Si Perencana', pain: 'Menggunakan 5 aplikasi berbeda untuk satu perjalanan.', goal: 'Satu jadwal induk dengan peta dan pemesanan terlampir.' },
-                    { role: 'Si Penjelajah', pain: 'Melewatkan permata lokal tersembunyi.', goal: 'Rekomendasi lokal terkurasi berdasarkan minat.' }
+                    { role: 'Si Planner', pain: 'Ganti-ganti 5 aplikasi hanya untuk merencanakan satu trip.', goal: 'Satu jadwal induk yang sudah terhubung dengan peta dan reservasi.' },
+                    { role: 'Si Explorer', pain: 'Sering melewatkan tempat lokal yang menarik.', goal: 'Rekomendasi tempat tersembunyi yang sesuai dengan minat pribadi.' }
                 ],
                 businessModel: [
-                    { type: 'Pendapatan Afiliasi', value: 'Monetisasi melalui integrasi pemesanan hotel/tur yang mulus.' },
-                    { type: 'Wawasan Data', value: 'Data preferensi perjalanan agregat untuk mitra pariwisata.' }
+                    { type: 'Afiliasi Travel', value: 'Potensi pendapatan lewat booking hotel atau tur di dalam aplikasi.' },
+                    { type: 'Wawasan Data', value: 'Data preferensi perjalanan untuk membantu mitra pariwisata lokal.' }
                 ],
                 beforeAfter: [
-                    { aspect: 'Perencanaan', before: 'Spreadsheet + Maps + Catatan.', after: 'Pembuat jadwal drag-and-drop terpadu.' },
-                    { aspect: 'Penemuan', before: 'Pencarian Google acak.', after: 'Rekomendasi lokal terkurasi berbasis AI.' }
+                    { aspect: 'Proses Rencana', before: 'Pecah-pecah di Spreadsheet, Gmaps, dan Catatan.', after: 'Penyusun jadwal drag-and-drop yang intuitif.' },
+                    { aspect: 'Pencarian Lokal', before: 'Hanya mengandalkan hasil pencarian Google acak.', after: 'Rekomendasi cerdas berbasis minat dan lokasi.' }
                 ],
                 // PRD ID
-                vision: 'Menjadi teman saku utama yang memberdayakan wisatawan untuk menjelajah dengan percaya diri dan mudah.',
+                vision: 'Menjadi teman perjalanan paling andal yang memberikan rasa percaya diri saat mengeksplorasi tempat baru.',
                 status: 'KONSEP',
                 team: 'Sulthan Abdi Dzikry (UI/UX Designer)',
-                background: 'Perencanaan perjalanan terfragmentasi. Pengguna menyulap Google Maps, Catatan, Situs Booking, dan Blog. Aplikasi ini memecahkan "Kelelahan Ganti Aplikasi".',
-                strategicAlignment: 'Menunjukkan Design Thinking Mobile-First dan kemampuan membuat produk "Gaya Hidup".',
-                investmentRequired: '2 Bulan / 1 Desainer',
-                assumptions: '1. Wisatawan lebih suka jadwal visual daripada daftar teks.\n2. Akses offline adalah fitur kritis bagi pelancong.',
-                productArchitecture: 'Aplikasi Mobile (Konsep Flutter/React Native), Google Maps API',
+                background: 'Proses merencanakan liburan seringkali melelahkan karena informasi yang tidak terpusat.',
+                strategicAlignment: 'Menunjukkan kemampuan Desain Mobile-First untuk produk gaya hidup.',
+                investmentRequired: '2 Bulan (Fase Konsep & Desain)',
+                assumptions: '1. User lebih menyukai jadwal visual daripada sekadar daftar teks.\n2. Akses luring (offline) sangat penting bagi pelancong di luar negeri.',
+                productArchitecture: 'Mobile App (Flutter/React Native), Google Maps API',
                 coreFeatures: [
-                    { name: 'Pembuat Jadwal Terpadu', desc: 'Antarmuka drag-and-drop untuk mengatur hari.' },
-                    { name: 'Eksplorasi Peta Cerdas', desc: 'Temukan permata terdekat berdasarkan minat.' },
-                    { name: 'Travel Sosial', desc: 'Bagikan rencana perjalanan dengan teman.' }
+                    { name: 'Itinerary Builder', desc: 'Antarmuka geser-tempel (drag-drop) untuk mengatur jadwal harian.' },
+                    { name: 'Eksplorasi Peta Cerdas', desc: 'Temukan spot menarik di sekitar berdasarkan filter minat.' },
+                    { name: 'Travel Sosial', desc: 'Bagikan dan edit rencana perjalanan bersama teman.' }
                 ],
-                designSystem: 'Petualangan & Kejelasan. Citra berkualitas tinggi untuk inspirasi, dipadukan dengan tipografi sans-serif bersih untuk keterbacaan saat bepergian.',
-                designTools: ['Figma (UI/UX)', 'Adobe Photoshop (Edit Gambar)'],
-                researchMethods: ['Wawancara Wisatawan (Backpacker vs Mewah)', 'Pemetaan Perjalanan Pengguna'],
-                uxOverview: 'Antarmuka berbasis gestur. Geser untuk hapus, Tarik untuk atur ulang. Fokus pada penggunaan satu tangan.'
+                designSystem: 'Adventure & Clarity. Menggunakan foto berkualitas tinggi untuk inspirasi dan tipografi modern yang mudah dibaca.',
+                designTools: ['Figma', 'Adobe Photoshop'],
+                researchMethods: ['Wawancara Solo Traveler & Keluarga', 'User Journey Mapping'],
+                uxOverview: 'Antarmuka berbasis gestur (swipe/drag). Fokus pada kemudahan penggunaan satu tangan.'
             }
         }
     },
@@ -833,53 +957,53 @@ export const projectsData = [
         translations: {
             id: {
                 tagline: 'Aroma. Sensasi. Cerita.',
-                description: 'Situs web profil perusahaan yang elegan untuk merek parfum premium.',
-                problem: 'Merek membutuhkan kehadiran digital yang menonjolkan kemewahan dan daya tarik sensorik untuk membedakan diri di pasar yang kompetitif.',
-                solution: 'Membuat situs web yang kaya secara visual, berfokus pada presentasi produk estetis, animasi gulir halus, dan penceritaan merek.',
-                impact: 'Membangun identitas merek online yang kuat, menarik klien yang lebih canggih dan meningkatkan nilai persepsi merek.',
+                description: 'Website profil perusahaan elegan yang dirancang khusus untuk brand parfum mewah.',
+                problem: 'Dunia parfum sangat bergantung pada indra penciuman, hal yang sulit disampaikan lewat media digital tanpa visual yang kuat.',
+                solution: 'Menggunakan teknik storytelling visual dengan animasi halus dan tipografi serif untuk membangun aura kemewahan.',
+                impact: 'Meningkatkan nilai jual brand secara digital dan menciptakan pengalaman eksplorasi yang imersif bagi pengunjung.',
                 problemMap: [
-                    { problem: 'Kesan Umum', context: 'Template standar.', solution: 'Desain Khusus', mitigation: 'Animasi dan tipografi kustom.' }
+                    { problem: 'Kurang Aura Mewah', context: 'Website parfum biasa terlihat membosankan.', solution: 'Desain Eksklusif', mitigation: 'Penggunaan motion design dan visual berkualitas tinggi.' }
                 ],
                 stats: [
-                    { label: 'Nilai Merek', value: 'Premium', description: 'Persepsi visual yang ditingkatkan.' }
+                    { label: 'Persepsi Brand', value: 'Eksklusif', description: 'Desain yang mencerminkan kualitas produk.' }
                 ],
                 timeline: [
-                    { phase: 'Art Direction', period: 'Minggu 1', activities: ['Moodboarding', 'Pemilihan Aset'] },
-                    { phase: 'Development', period: 'Minggu 2', activities: ['Animasi Frontend', 'Tata Letak Responsif'] }
+                    { phase: 'Art Direction', period: 'Minggu 1', activities: ['Moodboarding', 'Seleksi Aset'] },
+                    { phase: 'Pengembangan', period: 'Minggu 2', activities: ['Animasi Frontend', 'Layout Responsif'] }
                 ],
                 mitigationPlans: [
-                    { risk: 'Loading Lambat', action: 'Aset gambar dioptimalkan dan lazy loading.' }
+                    { risk: 'Akses Lambat', action: 'Optimasi aset gambar dan penggunaan lazy loading.' }
                 ],
                 personas: [
-                    { role: 'Konsumen Mewah', pain: 'Belanja online generik terasa murah.', goal: 'Pengalaman digital imersif yang sesuai dengan harga produk.' },
-                    { role: 'Manajer Merek', pain: 'Penceritaan merek tidak konsisten.', goal: 'Kontrol pixel-perfect atas bagaimana narasi merek terungkap.' }
+                    { role: 'Konsumen Premium', pain: 'Belanja online yang terasa "biasa" untuk barang mewah.', goal: 'Pengalaman digital yang sebanding dengan harga produk.' },
+                    { role: 'Brand Manager', pain: 'Penyampaian cerita brand yang tidak konsisten.', goal: 'Kontrol penuh atas bagaimana narasi produk disampaikan.' }
                 ],
                 businessModel: [
-                    { type: 'Ekuitas Merek D2C', value: 'Estetika yang ditingkatkan membenarkan strategi harga premium.' },
-                    { type: 'Konversi Storytelling', value: 'Koneksi emosional meningkatkan probabilitas "Tambah ke Keranjang".' }
+                    { type: 'Brand Equity', value: 'Estetika yang elegan menjustifikasi harga produk premium.' },
+                    { type: 'Koneksi Emosional', value: 'Storytelling meningkatkan ketertarikan pembeli secara psikologis.' }
                 ],
                 beforeAfter: [
-                    { aspect: 'Persepsi Merek', before: 'Hanya botol parfum lain.', after: 'Pengalaman sensorik emosional.' },
-                    { aspect: 'Keterlibatan Pengguna', before: 'Gambar produk statis.', after: 'Scroll-telling interaktif dan desain gerak.' }
+                    { aspect: 'Persepsi Brand', before: 'Hanya botol parfum biasa di etalase.', after: 'Pengalaman sensorik yang emosional.' },
+                    { aspect: 'Engagement', before: 'Gambar produk statis.', after: 'Scroll-telling interaktif yang memikat.' }
                 ],
                 // PRD ID
-                vision: 'Menerjemahkan pengalaman penciuman parfum mewah menjadi perjalanan sensorik digital yang imersif.',
+                vision: 'Menerjemahkan sensasi wewangian mewah ke dalam perjalanan digital yang imersif.',
                 status: 'SELESAI',
                 team: 'Sulthan Abdi Dzikry (Web Designer)',
-                background: 'Menjual wewangian khusus secara online menantang karena ketidakmampuan untuk mencium. Pengalaman digital harus mengimbanginya dengan membangkitkan suasana hati dan catatan aroma secara visual.',
-                strategicAlignment: 'Menunjukkan kemampuan "Desain Emosional" - menggunakan gerakan dan estetika untuk menyampaikan kualitas produk yang tidak berwujud.',
-                investmentRequired: '2 Minggu / 1 Desainer Web',
-                assumptions: '1. Penceritaan visual dapat secara efektif menggantikan kurangnya pengujian aroma fisik.\n2. Konsumen mewah mengharapkan animasi yang halus dan terasa "berat".',
-                productArchitecture: 'Frontend Website (React), Framer Motion (Animasi), Efek WebGL',
+                background: 'Menjual parfum secara online menantang karena aroma tidak bisa dirasakan langsung. Website harus mampu membangkitkan imajinasi user.',
+                strategicAlignment: 'Menunjukkan kemampuan "Emotional Design" menggunakan gerak dan estetika visual.',
+                investmentRequired: '2 Minggu (Desain & Launch)',
+                assumptions: '1. Narasi visual bisa menggantikan uji fisik wewangian.\n2. Target pasar mewah mengharapkan animasi yang halus dan premium.',
+                productArchitecture: 'React, Framer Motion, WebGL Effects',
                 coreFeatures: [
-                    { name: 'Storytelling Parallax', desc: 'Animasi yang dipicu scroll yang mengungkapkan catatan aroma.' },
-                    { name: 'Catatan Interaktif', desc: 'Efek hover yang menjelaskan bahan (Top, Middle, Base notes).' },
-                    { name: 'Pencocokan Suasana', desc: 'Kuis "Kepribadian" visual untuk merekomendasikan parfum.' }
+                    { name: 'Storytelling Parallax', desc: 'Animasi saat scroll yang mengungkap komposisi aroma.' },
+                    { name: 'Catatan Aroma Interaktif', desc: 'Efek hover untuk menjelaskan bahan utama (Top, Middle, Base).' },
+                    { name: 'Mood Matching', desc: 'Rekomendasi parfum berdasarkan suasana hati.' }
                 ],
-                designSystem: 'Elegan & Minimalis. Tipografi Serif (Playfair Display) untuk judul, ruang putih yang luas, dan aksen warna pastel/emas.',
-                designTools: ['Figma (Desain UI)', 'After Effects (Prototyping Gerakan)'],
-                researchMethods: ['Benchmarking Merek Mewah (Dior, Chanel)', 'Moodboarding'],
-                uxOverview: 'Pengalaman menggulir yang lambat dan disengaja. Berbeda dengan e-commerce yang memburu checkout, situs ini mendorong untuk berlama-lama dan eksplorasi.'
+                designSystem: 'Elegant & Minimalist. Tipografi Serif kelas dunia, ruang putih yang lega, dan aksen emas.',
+                designTools: ['Figma', 'After Effects'],
+                researchMethods: ['Benchmarking Brand Mewah (Dior, Chanel)', 'Moodboarding'],
+                uxOverview: 'Pengalaman scroll yang tenang dan mendalam.'
             }
         }
     },

@@ -4,7 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import './ProjectCard.css';
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 const ProjectCard = ({ id, title, category, description, tags, image, size = 'medium', viewMode = 'grid' }) => {
     const isList = viewMode === 'list';
@@ -86,8 +86,7 @@ const ProjectCard = ({ id, title, category, description, tags, image, size = 'me
 
             {image && (
                 <div
-                    className={`card-image-container relative overflow-hidden shrink-0 ${isList ? 'h-full w-48' : 'h-48 w-full'} bg-bg-secondary`}
-                    style={{ transform: "translateZ(20px)" }} // Pop out 3D
+                    className={`card-image-container relative overflow-hidden shrink-0 ${isList ? 'h-full w-48' : 'h-48 w-full rounded-t-xl'} bg-bg-secondary`}
                 >
                     <motion.img
                         src={image}
@@ -123,7 +122,7 @@ const ProjectCard = ({ id, title, category, description, tags, image, size = 'me
 
                 <div className={`card-footer ${isList ? 'mt-2' : 'mt-4 pt-4 border-t border-border/50 group-hover:border-accent-blue/30 transition-colors'}`}>
                     <div className="tags flex flex-wrap gap-2">
-                        {tags.map((tag, i) => (
+                        {(tags || []).map((tag, i) => (
                             <span key={i} className="text-[10px] font-mono text-text-muted bg-bg-secondary px-2 py-1 rounded border border-border/50 transition-all duration-300 group-hover:border-accent-blue/30 group-hover:text-accent-blue group-hover:bg-accent-blue/5">
                                 {tag}
                             </span>

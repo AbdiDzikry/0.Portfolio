@@ -2,9 +2,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-    ArrowLeft, FileText, Download, Target, Users, Calendar,
-    CheckCircle2, AlertTriangle, Layers, PenTool, Smartphone,
-    Lightbulb, Activity, Zap, ShieldCheck, BarChart3
+    ArrowLeft, Download, ChevronRight, Lightbulb, Target,
+    Wrench, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink
 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
@@ -12,6 +11,33 @@ import { translations } from '../utils/translations';
 import { generatePrdPdf } from '../utils/generatePrdPdf';
 import SEO from '../components/SEO';
 
+/* ─────────── helpers ─────────── */
+const Tag = ({ children }) => (
+    <span className="px-2.5 py-1 rounded-full border border-border text-[10px] font-bold font-mono uppercase tracking-wider text-text-muted bg-bg-secondary">
+        {children}
+    </span>
+);
+
+const SectionBlock = ({ label, icon: Icon, children }) => (
+    <div>
+        <div className="flex items-center gap-2 mb-3">
+            {Icon && <Icon size={14} className="text-accent-pink flex-shrink-0" />}
+            <span className="text-[10px] font-black font-mono uppercase tracking-[0.2em] text-text-muted">{label}</span>
+        </div>
+        {children}
+    </div>
+);
+
+const StepBadge = ({ num, label }) => (
+    <div className="flex items-center gap-3">
+        <div className="w-7 h-7 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-black flex items-center justify-center flex-shrink-0">
+            {num}
+        </div>
+        <span className="text-xs font-bold text-text-muted uppercase tracking-widest">{label}</span>
+    </div>
+);
+
+/* ─────────── main ─────────── */
 const ProjectDetail = () => {
     const { id } = useParams();
     const { language } = useLanguage();
@@ -22,321 +48,420 @@ const ProjectDetail = () => {
         : rawProject;
 
     const t = translations[language].projectDetail;
-
     const [selectedImage, setSelectedImage] = useState(0);
 
-    useEffect(() => {
-        if (!project || !project.showcaseImages || project.showcaseImages.length <= 1) return;
-        const interval = setInterval(() => {
-            setSelectedImage((prev) => (prev + 1) % project.showcaseImages.length);
-        }, 3000);
-        return () => clearInterval(interval);
-    }, [project]);
+    // Auto-slideshow disabled on detail page to prevent performance lag with many large images
 
     if (!project) {
         return (
-            <div className="min-h-screen flex items-center justify-center text-text-primary">
+            <div className="min-h-screen flex items-center justify-center text-text-primary gap-4">
                 <h2>{t.notFound}</h2>
-                <Link to="/projects" className="ml-4 text-accent-blue underline">{t.back}</Link>
+                <Link to="/projects" className="text-accent-pink underline">← {t.back}</Link>
             </div>
         );
     }
 
     const showcaseImages = project.showcaseImages || [project.image];
-
-    // Helper for visual cards
-    const InfoCard = ({ icon: Icon, label, value, className = "" }) => (
-        <div className={`p-5 rounded-2xl bg-bg-card border border-border/50 hover:border-accent-blue/30 transition-all hover:shadow-lg ${className}`}>
-            <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 rounded-lg bg-accent-blue/10 text-accent-blue">
-                    <Icon size={18} />
-                </div>
-                <h4 className="text-xs font-mono uppercase tracking-wider text-text-muted">{label}</h4>
-            </div>
-            <div className="text-text-primary font-medium leading-relaxed">
-                {value}
-            </div>
-        </div>
-    );
-
-    const SectionTitle = ({ children }) => (
-        <h3 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
-            <span className="w-1 h-6 bg-accent-pink rounded-full"></span>
-            {children}
-        </h3>
-    );
+    const isUiUx = project.category?.toLowerCase().includes('ui') || project.category?.toLowerCase().includes('design');
 
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="bg-bg-primary min-h-screen pt-32 pb-20 px-6 md:px-12 lg:px-20 transition-colors duration-300"
+            className="bg-bg-primary min-h-screen pt-28 pb-24 px-6 md:px-12 lg:px-16 transition-colors"
         >
-            <SEO
-                title={project.title}
-                description={project.description}
-                ogImage={project.image}
-            />
-            <div className="max-w-5xl mx-auto">
-                <Link to="/projects" className="inline-flex items-center gap-2 text-text-muted hover:text-accent-blue transition-colors mb-8 group">
-                    <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-                    <span className="text-sm font-mono">{t.back}</span>
+            <SEO title={project.title} description={project.description} ogImage={project.image} />
+
+            <div className="max-w-6xl mx-auto">
+
+                {/* ── Back ── */}
+                <Link
+                    to="/projects"
+                    className="inline-flex items-center gap-1.5 text-text-muted hover:text-text-primary transition-colors mb-8 group text-xs font-mono"
+                >
+                    <ArrowLeft size={13} className="group-hover:-translate-x-0.5 transition-transform" />
+                    {t.allProjects}
                 </Link>
 
-                <header className="mb-12">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                        <span className="px-3 py-1 rounded-full border border-accent-pink/30 text-accent-pink text-xs font-mono uppercase tracking-widest bg-accent-pink/5">
-                            {project.category}
-                        </span>
-                        {project.size === 'large' && (
-                            <span className="px-3 py-1 rounded-full border border-accent-blue/30 text-accent-blue text-xs font-mono uppercase tracking-widest bg-accent-blue/5">
-                                {t.featured}
-                            </span>
-                        )}
-                    </div>
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-text-primary mb-6 leading-tight">
-                        {project.title}
-                    </h1>
-                    <p className="text-xl text-text-secondary leading-relaxed max-w-2xl">
-                        {project.description}
-                    </p>
-                </header>
+                {/* ══════════════════════════════════════════
+                    HERO SECTION — Left: Meta | Right: Image
+                ══════════════════════════════════════════ */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 items-start">
 
-                <div className="mb-16">
-                    <div className="w-full h-[300px] md:h-[500px] rounded-3xl overflow-hidden mb-4 shadow-2xl border border-border/50 bg-bg-card relative group">
-                        <div
-                            className="absolute inset-0 bg-cover bg-center blur-2xl scale-110 opacity-40 dark:opacity-20"
-                            style={{ backgroundImage: `url(${showcaseImages[selectedImage]})` }}
-                        />
-                        <img
-                            src={showcaseImages[selectedImage]}
-                            alt={`${project.title} - Image ${selectedImage + 1}`}
-                            className="w-full h-full object-contain relative z-10 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/20 to-transparent pointer-events-none z-20"></div>
-                    </div>
-                    {showcaseImages.length > 1 && (
-                        <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
-                            {showcaseImages.map((img, idx) => (
-                                <button
-                                    key={idx}
-                                    onClick={() => setSelectedImage(idx)}
-                                    className={`relative h-24 rounded-xl overflow-hidden border-2 transition-all ${selectedImage === idx
-                                        ? 'border-accent-blue shadow-lg scale-105'
-                                        : 'border-border/30 hover:border-accent-blue/50 opacity-60 hover:opacity-100'
-                                        }`}
-                                >
-                                    <img src={img} alt={`Thumb ${idx}`} className="w-full h-full object-cover" />
-                                </button>
-                            ))}
-                        </div>
-                    )}
-                </div>
-
-                <div className="mb-16 border-y border-border/50 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-                    <div>
-                        <h3 className="text-text-muted text-xs font-mono uppercase tracking-widest mb-2">{t.role}</h3>
-                        <p className="text-text-primary font-medium">Product Designer</p>
-                    </div>
-                    <div>
-                        <h3 className="text-text-muted text-xs font-mono uppercase tracking-widest mb-2">{t.timeline}</h3>
-                        <p className="text-text-primary font-medium">2024 - Present</p>
-                    </div>
-                    <div className="col-span-2">
-                        <h3 className="text-text-muted text-xs font-mono uppercase tracking-widest mb-2">{t.tech}</h3>
-                        <div className="flex flex-wrap gap-2">
-                            {project.tags.map(tag => (
-                                <span key={tag} className="text-text-primary text-sm font-medium bg-bg-secondary px-2 py-1 rounded">
-                                    {tag}
+                    {/* Left: Title + Meta */}
+                    <div className="flex flex-col justify-between h-full">
+                        <div>
+                            <div className="flex flex-wrap gap-2 mb-5">
+                                <span className="px-3 py-1 rounded-full border border-accent-pink/30 text-accent-pink text-[10px] font-black font-mono uppercase tracking-widest bg-accent-pink/5">
+                                    {project.category}
                                 </span>
-                            ))}
+                                {project.status && (
+                                    <span className="px-3 py-1 rounded-full border border-emerald-400/30 text-emerald-600 text-[10px] font-black font-mono uppercase tracking-widest bg-emerald-400/5">
+                                        {project.status}
+                                    </span>
+                                )}
+                            </div>
+
+                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] text-text-primary mb-4">
+                                {project.title}
+                            </h1>
+
+                            {project.tagline && (
+                                <p className="text-base text-accent-pink font-medium mb-4 italic">
+                                    "{project.tagline}"
+                                </p>
+                            )}
+
+                            <p className="text-sm text-text-secondary leading-relaxed max-w-lg">
+                                {project.description}
+                            </p>
                         </div>
-                    </div>
-                </div>
 
-                {/* VISUAL PRD SECTION - PROFESSIONAL REDESIGN */}
-                <div className="space-y-8">
-                    {/* PRD Header - Professional & Clean */}
-                    <div className="bg-bg-card border border-border rounded-xl p-8 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-accent-blue/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
-
-                        <div className="relative z-10">
-                            <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-8 border-b border-border pb-8">
+                        {/* Meta row */}
+                        {/* Meta row */}
+                        <div className="flex flex-col gap-6 mt-8 pt-6 border-t border-border/50">
+                            {/* Row 1: Timeline */}
+                            {project.timeline && (
                                 <div>
-                                    <div className="flex items-center gap-3 mb-3">
-                                        <span className="font-mono text-xs text-text-muted uppercase tracking-widest">
-                                            {t.ref}: {project.id.toUpperCase()}-V1.0
-                                        </span>
-                                        <div className={`px-2.5 py-0.5 rounded text-[10px] font-bold border uppercase tracking-wide ${project.status === 'ON TRACK' || project.status === 'LIVE' || project.status === 'COMPLETED'
-                                            ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20'
-                                            : 'bg-amber-500/10 text-amber-600 border-amber-500/20'}`}>
-                                            {project.status || 'DRAFT'}
-                                        </div>
+                                    <div className="text-[9px] font-mono font-bold uppercase tracking-widest text-text-muted mb-1 flex items-center gap-1">
+                                        <Clock size={10} /> {t.timeline}
                                     </div>
-                                    <h2 className="text-2xl md:text-3xl font-display font-bold text-text-primary mb-2">
-                                        {t.prdTitle}
-                                    </h2>
-                                    <p className="text-text-secondary max-w-2xl leading-relaxed">
-                                        <span className="font-semibold text-text-primary">{t.lblVision}:</span> {project.vision || "N/A"}
+                                    <p className="text-sm font-bold text-text-primary">
+                                        {project.timeline[0]?.period} — {project.timeline[project.timeline.length - 1]?.period}
                                     </p>
                                 </div>
-                                <button
-                                    onClick={() => generatePrdPdf(project)}
-                                    className="px-5 py-2.5 rounded-lg bg-text-primary text-bg-primary hover:bg-text-secondary transition-colors flex items-center gap-2 shadow-sm whitespace-nowrap"
-                                >
-                                    <Download size={16} />
-                                    <span className="font-medium text-sm">{t.download}</span>
-                                </button>
-                            </div>
+                            )}
 
-                            {/* Executive Summary Grid */}
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div>
-                                    <div className="text-xs font-mono text-text-muted uppercase mb-1">{t.lblTeam}</div>
-                                    <div className="font-medium text-text-primary">{project.team}</div>
-                                </div>
-                                <div>
-                                    <div className="text-xs font-mono text-text-muted uppercase mb-1">{t.lblTiming}</div>
-                                    <div className="font-medium text-text-primary">
-                                        {project.timeline ? `${project.timeline[0]?.period} - ${project.timeline[project.timeline.length - 1]?.period}` : "TBD"}
+                            {/* Row 2: Status & Benefits & Team */}
+                            <div className="flex flex-col gap-4">
+                                {(project.translations?.[language]?.benefits || project.benefits) && (
+                                    <div>
+                                        <div className="text-[9px] font-mono font-bold uppercase tracking-widest text-text-muted mb-1 flex items-center gap-1">
+                                            <Users size={10} /> {t.lblBenefits}
+                                        </div>
+                                        <p className="text-sm font-bold text-text-primary underline decoration-accent-pink/30 decoration-2 underline-offset-4 tracking-tight">
+                                            {project.translations?.[language]?.benefits || project.benefits}
+                                        </p>
                                     </div>
+                                )}
+
+                                <div className="flex justify-between items-start gap-4">
+                                    {project.status && (
+                                        <div className="flex-1">
+                                            <div className="text-[9px] font-mono font-bold uppercase tracking-widest text-text-muted mb-1">
+                                                {t.lblStatus}
+                                            </div>
+                                            <p className="text-xs font-bold text-accent-pink mt-0.5">
+                                                {project.translations?.[language]?.status || project.status}
+                                            </p>
+                                        </div>
+                                    )}
+                                    {project.team && (
+                                        <div className="flex-1 text-right">
+                                            <div className="text-[9px] font-mono font-bold uppercase tracking-widest text-text-muted mb-1 flex items-center gap-1 justify-end">
+                                                <Users size={10} /> {t.teamTitle}
+                                            </div>
+                                            <div className="flex flex-col gap-1 mt-1 items-end">
+                                                {Array.isArray(project.team) ? project.team.map((member, i) => (
+                                                    <div key={i} className="text-xs flex flex-col items-end">
+                                                        {member.link ? (
+                                                            <a href={member.link} target="_blank" rel="noopener noreferrer" className="font-bold text-text-primary hover:text-accent-pink transition-colors underline decoration-border underline-offset-2">
+                                                                {member.name}
+                                                            </a>
+                                                        ) : (
+                                                            <span className="font-bold text-text-primary">{member.name}</span>
+                                                        )}
+                                                        {member.role && <span className="text-[10px] text-text-muted italic">({member.role})</span>}
+                                                    </div>
+                                                )) : (
+                                                    <p className="text-xs font-bold text-text-primary">{project.team}</p>
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
-                                <div>
-                                    <div className="text-xs font-mono text-text-muted uppercase mb-1">{t.lblInvestment}</div>
-                                    <div className="font-medium text-text-primary">{project.investmentRequired || "N/A"}</div>
-                                </div>
+                            </div>
+                        </div>
+
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-2 mt-4">
+                            {project.tags?.map(tag => <Tag key={tag}>{tag}</Tag>)}
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex flex-wrap gap-3 mt-6">
+                            {/* Download PRD */}
+                            <button
+                                onClick={() => generatePrdPdf(project)}
+                                className="flex items-center gap-2 px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black rounded-full text-xs font-bold hover:opacity-80 transition-all shadow-md"
+                            >
+                                <Download size={13} /> {t.downloadPrd}
+                            </button>
+
+                            {/* Live Link */}
+                            {project.liveLink && (
+                                <a
+                                    href={project.liveLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 px-5 py-2.5 bg-accent-pink text-white rounded-full text-xs font-bold hover:bg-accent-pink/80 transition-all shadow-md"
+                                >
+                                    <ExternalLink size={13} /> {t.livePreview}
+                                </a>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Right: Image Showcase */}
+                    <div className="flex flex-col gap-3">
+                        <div className="relative rounded-3xl overflow-hidden bg-bg-card border border-border/50 aspect-video flex items-center justify-center p-4">
+                            {/* Reduced GPU strain: removed blur-2xl background layer */}
+                            <AnimatePresence mode="popLayout" initial={false}>
+                                <motion.img
+                                    key={selectedImage}
+                                    src={showcaseImages[selectedImage]}
+                                    alt={project.title}
+                                    className="relative z-10 w-full h-full object-contain shadow-xl rounded-xl"
+                                    initial={{ opacity: 0, scale: 0.98 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 1.02 }}
+                                    transition={{ duration: 0.3 }}
+                                />
+                            </AnimatePresence>
+                        </div>
+
+                        {/* Thumbnails */}
+                        {showcaseImages.length > 1 && (
+                            <div className="flex gap-2 overflow-x-auto pb-1">
+                                {showcaseImages.map((img, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => setSelectedImage(idx)}
+                                        className={`flex-shrink-0 h-14 w-20 rounded-xl overflow-hidden border-2 transition-all ${selectedImage === idx
+                                            ? 'border-accent-pink scale-105 shadow-md'
+                                            : 'border-border/30 opacity-50 hover:opacity-80'}`}
+                                    >
+                                        <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                {/* ══════════════════════════════════════════
+                    CASE STUDY NARRATIVE
+                ══════════════════════════════════════════ */}
+                <div className="space-y-6">
+
+                    {/* ── STEP 1 & 2: Problem + Thinking — side by side ── */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                        {/* Problem */}
+                        <div className="bg-bg-card border border-border rounded-2xl p-6">
+                            <StepBadge num="01" label={t.probTitle} />
+                            <div className="mt-4 pl-10">
+                                <p className="text-sm text-text-secondary leading-relaxed">
+                                    {project.background || project.problem}
+                                </p>
+
+                                {/* Pain points */}
+                                {project.personas && (
+                                    <div className="mt-5 space-y-3">
+                                        {project.personas.map((p, i) => (
+                                            <div key={i} className="flex gap-3">
+                                                <div className="w-1 flex-shrink-0 rounded-full bg-red-400/60" />
+                                                <div>
+                                                    <p className="text-[10px] font-black uppercase tracking-widest text-text-muted">{p.role}</p>
+                                                    <p className="text-xs text-text-secondary mt-0.5">{p.pain}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Design Thinking */}
+                        <div className="bg-bg-card border border-border rounded-2xl p-6">
+                            <StepBadge num="02" label={isUiUx ? t.thinkingTitle : t.techTitle} />
+                            <div className="mt-4 pl-10">
+                                <p className="text-sm text-text-secondary leading-relaxed">
+                                    {project.strategicAlignment || project.solution}
+                                </p>
+
+                                {/* Process timeline */}
+                                {project.timeline && (
+                                    <div className="mt-5 space-y-2">
+                                        {project.timeline.map((t, i) => (
+                                            <div key={i} className="flex items-start gap-3">
+                                                <span className="text-[9px] font-mono text-text-muted pt-0.5 w-20 flex-shrink-0">{t.period}</span>
+                                                <div className="flex items-start gap-1.5 flex-1">
+                                                    <ChevronRight size={11} className="text-accent-pink mt-0.5 flex-shrink-0" />
+                                                    <div>
+                                                        <span className="text-[10px] font-black text-text-primary">{t.phase}</span>
+                                                        <span className="text-[9px] text-text-muted ml-2">{t.activities?.join(', ')}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
 
-                    {/* Context & Strategic Fit - Grid Layout */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="bg-bg-card border border-border rounded-xl p-6 hover:border-accent-blue/30 transition-colors">
-                            <SectionTitle icon={Target}>{t.lblBackground}</SectionTitle>
-                            <p className="text-text-secondary leading-relaxed text-sm mt-3">
-                                {project.background || project.problem}
-                            </p>
-                        </div>
-                        <div className="bg-bg-card border border-border rounded-xl p-6 hover:border-accent-blue/30 transition-colors">
-                            <SectionTitle icon={Lightbulb}>{t.lblStrategy}</SectionTitle>
-                            <p className="text-text-secondary leading-relaxed text-sm mt-3">
-                                {project.strategicAlignment || "N/A"}
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Problem / Solution Table (Clean) */}
-                    <div className="bg-bg-card border border-border rounded-xl overflow-hidden">
-                        <div className="p-4 border-b border-border bg-bg-secondary/30">
-                            <SectionTitle icon={AlertTriangle}>{t.lblUseCases}</SectionTitle>
+                    {/* ── STEP 3: Solution — Problem/Solution mapping ── */}
+                    <div className="bg-bg-card border border-border rounded-2xl overflow-hidden">
+                        <div className="px-6 py-4 border-b border-border flex items-center justify-between">
+                            <StepBadge num="03" label={t.solTitle} />
+                            <span className="text-[9px] font-mono text-text-muted uppercase tracking-widest">{t.solSub}</span>
                         </div>
                         <div className="divide-y divide-border">
                             {project.problemMap?.map((pm, i) => (
-                                <div key={i} className="p-4 md:p-6 grid grid-cols-1 md:grid-cols-12 gap-4">
-                                    <div className="md:col-span-4">
-                                        <h4 className="font-bold text-text-primary text-sm mb-1">{pm.problem}</h4>
-                                        <p className="text-xs text-text-muted italic">{pm.context}</p>
+                                <div key={i} className="px-6 py-4 flex flex-col md:flex-row gap-4 md:gap-6 items-start group hover:bg-bg-secondary/20 transition-colors">
+                                    {/* Problem side */}
+                                    <div className="md:w-[38%]">
+                                        <p className="text-xs font-bold text-red-500 dark:text-red-400 mb-0.5">{pm.problem}</p>
+                                        <p className="text-[11px] text-text-muted italic">{pm.context}</p>
                                     </div>
-                                    <div className="md:col-span-8">
-                                        <div className="flex items-start gap-2">
-                                            <CheckCircle2 size={16} className="text-emerald-500 mt-0.5 shrink-0" />
-                                            <p className="text-sm text-text-secondary leading-relaxed">
-                                                <span className="font-medium text-text-primary">{pm.solution}</span> — {pm.mitigation}
-                                            </p>
-                                        </div>
+                                    {/* Arrow */}
+                                    <div className="hidden md:flex items-center pt-1">
+                                        <ArrowRight size={14} className="text-text-muted/40" />
                                     </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Metrics (KPIs) */}
-                    <div className="bg-bg-card border border-border rounded-xl p-6">
-                        <SectionTitle icon={BarChart3}>{t.lblMetrics}</SectionTitle>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border mt-4 border border-border rounded-lg overflow-hidden">
-                            {project.stats?.map((s, i) => (
-                                <div key={i} className="bg-bg-card p-6 text-center hover:bg-bg-secondary/20 transition-colors">
-                                    <div className="text-2xl font-bold text-text-primary mb-1 font-mono">{s.value}</div>
-                                    <div className="text-[10px] font-bold text-text-muted uppercase tracking-wider mb-2">{s.label}</div>
-                                    <div className="text-xs text-text-secondary leading-tight">{s.description}</div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Detailed Features & Specs */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        {/* Features List */}
-                        <div className="lg:col-span-2 bg-bg-card border border-border rounded-xl p-6">
-                            <SectionTitle icon={Zap}>{t.lblFeatures}</SectionTitle>
-                            <ul className="mt-4 space-y-4">
-                                {project.coreFeatures?.map((f, i) => (
-                                    <li key={i} className="flex gap-4 items-start group">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-accent-blue mt-2 group-hover:bg-accent-pink transition-colors"></div>
+                                    {/* Solution side */}
+                                    <div className="flex-1 flex gap-2 items-start">
+                                        <CheckCircle size={13} className="text-emerald-500 mt-0.5 flex-shrink-0" />
                                         <div>
-                                            <h4 className="font-bold text-text-primary text-sm">{f.name}</h4>
-                                            <p className="text-sm text-text-secondary mt-1">{f.desc}</p>
+                                            <p className="text-xs font-bold text-text-primary mb-0.5">{pm.solution}</p>
+                                            <p className="text-[11px] text-text-secondary">{pm.mitigation}</p>
                                         </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Tech Stack / Architecture */}
-                        <div className="bg-bg-card border border-border rounded-xl p-6 flex flex-col gap-6">
-                            <div>
-                                <SectionTitle icon={Layers}>{t.lblArchitecture}</SectionTitle>
-                                <p className="text-sm text-text-primary font-mono mt-3 p-3 bg-bg-secondary/30 rounded border border-border">
-                                    {project.productArchitecture}
-                                </p>
-                            </div>
-
-                            <div className="border-t border-border pt-6">
-                                <SectionTitle icon={ShieldCheck}>{t.lblAssumptions}</SectionTitle>
-                                <p className="text-xs text-text-secondary mt-3 whitespace-pre-line leading-relaxed">
-                                    {project.assumptions}
-                                </p>
-                            </div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
 
-                    {/* Design System Footer */}
-                    <div className="bg-gradient-to-r from-bg-card to-bg-secondary/30 border border-border rounded-xl p-6">
-                        <div className="flex flex-col md:flex-row gap-8">
-                            <div className="flex-1">
-                                <SectionTitle icon={PenTool}>{t.lblDesignSys}</SectionTitle>
-                                <p className="text-sm text-text-secondary mt-2">{project.designSystem}</p>
-                            </div>
-                            <div className="flex-1 border-t md:border-t-0 md:border-l border-border pt-4 md:pt-0 md:pl-8">
-                                <div className="text-xs font-bold text-text-muted uppercase mb-3">{t.lblTools} & Methods</div>
-                                <div className="flex flex-wrap gap-2">
-                                    {project.designTools?.map((tool, i) => (
-                                        <div key={i} className="px-2 py-1 bg-bg-primary border border-border rounded text-xs text-text-primary">
-                                            {tool}
-                                        </div>
-                                    ))}
-                                    {project.researchMethods?.map((method, i) => (
-                                        <div key={`res-${i}`} className="px-2 py-1 bg-bg-primary border border-border rounded text-xs text-text-secondary italic">
-                                            {method}
+                    {/* ── STEP 4: Impact & Metrics ── */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                        {/* Metrics Grid */}
+                        <div className={`bg-bg-card border border-border rounded-2xl p-6 ${project.researchImage ? 'lg:col-span-2' : 'lg:col-span-3'}`}>
+                            <StepBadge num="04" label={t.impactTitle} />
+                            <div className="mt-5 pl-10">
+                                {project.impact && (
+                                    <p className="text-sm text-text-secondary leading-relaxed mb-5">{project.translations?.[language]?.impact || project.impact}</p>
+                                )}
+                                <div className={`grid gap-px bg-border rounded-xl overflow-hidden border border-border ${project.researchImage ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-4'}`}>
+                                    {project.stats?.map((s, i) => (
+                                        <div key={i} className="bg-bg-card p-5 text-center hover:bg-bg-secondary/30 transition-colors">
+                                            <div className="text-2xl font-black text-text-primary font-mono mb-1">{s.value}</div>
+                                            <div className="text-[9px] font-bold uppercase tracking-widest text-text-muted mb-1.5">{s.label}</div>
+                                            <div className="text-[10px] text-text-secondary leading-snug">{s.description}</div>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         </div>
+
+                        {/* Research Results Image */}
+                        {project.researchImage && (
+                            <div className="bg-bg-card border border-border rounded-2xl p-6 flex flex-col">
+                                <SectionBlock label={t.researchTitle} icon={TrendingUp} />
+                                <div className="mt-4 flex-1 rounded-xl overflow-hidden border border-border/50 bg-bg-secondary/10 p-2 flex items-center justify-center">
+                                    <img 
+                                        src={project.researchImage} 
+                                        alt="Research Results" 
+                                        className="max-w-full max-h-48 object-contain rounded-lg shadow-sm"
+                                    />
+                                </div>
+                            </div>
+                        )}
                     </div>
+
+                    {/* ── TOOLS & METHODS (conditional by type) ── */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                        {/* Tools / Tech */}
+                        <div className="bg-bg-card border border-border rounded-2xl p-6">
+                            <SectionBlock label={isUiUx ? t.toolsTitle : t.stackTitle} icon={Wrench}>
+                                <div className="flex flex-wrap gap-2 mt-3">
+                                    {(isUiUx
+                                        ? [...(project.designTools || []), ...(project.researchMethods || [])]
+                                        : project.tags
+                                    )?.map((item, i) => (
+                                        <span key={i} className="px-3 py-1.5 bg-bg-secondary border border-border rounded-xl text-[10px] font-bold text-text-secondary hover:border-accent-pink/40 transition-colors cursor-default">
+                                            {item}
+                                        </span>
+                                    ))}
+                                </div>
+                            </SectionBlock>
+                        </div>
+
+                        {/* Features */}
+                        {project.coreFeatures && (
+                            <div className="bg-bg-card border border-border rounded-2xl p-6">
+                                <SectionBlock label={isUiUx ? t.uxFeaturesTitle : t.coreFeaturesTitle} icon={Lightbulb}>
+                                    <ul className="mt-3 space-y-3">
+                                        {project.coreFeatures.map((f, i) => (
+                                            <li key={i} className="flex gap-3">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-accent-pink mt-1.5 flex-shrink-0" />
+                                                <div>
+                                                    <p className="text-xs font-bold text-text-primary">{f.name}</p>
+                                                    <p className="text-[11px] text-text-secondary mt-0.5">{f.desc}</p>
+                                                </div>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </SectionBlock>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* ── Before / After (UI/UX only) ── */}
+                    {isUiUx && project.beforeAfter && project.beforeAfter.length > 0 && (
+                        <div className="bg-bg-card border border-border rounded-2xl overflow-hidden">
+                            <div className="px-6 py-4 border-b border-border">
+                                <SectionBlock label={t.beforeAfterTitle || "Before & After"} icon={TrendingUp}><></></SectionBlock>
+                            </div>
+                            <div className="divide-y divide-border">
+                                {/* Header Row */}
+                                <div className="grid grid-cols-3 divide-x divide-border bg-bg-secondary/30 border-b border-border text-[10px] font-black uppercase tracking-widest text-text-muted">
+                                    <div className="px-5 py-3">{t.lblAspect || "ASPECT"}</div>
+                                    <div className="px-5 py-3 text-red-400/80">{t.before || "BEFORE"}</div>
+                                    <div className="px-5 py-3 text-emerald-600">{t.after || "AFTER"}</div>
+                                </div>
+                                {project.beforeAfter.map((ba, i) => (
+                                    <div key={i} className="grid grid-cols-3 divide-x divide-border text-sm">
+                                        <div className="px-5 py-4 text-[10px] font-black uppercase tracking-widest text-text-muted flex items-center">{ba.aspect}</div>
+                                        <div className="px-5 py-4 text-[11px] text-red-400/80 flex items-start gap-2">
+                                            <span className="mt-0.5 text-red-400">✕</span> {ba.before}
+                                        </div>
+                                        <div className="px-5 py-4 text-[11px] text-emerald-600 flex items-start gap-2">
+                                            <span className="mt-0.5">✓</span> {ba.after}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Figma Embed (if provided) ── */}
+                    {project.figmaEmbed && (
+                        <div className="bg-bg-card border border-border rounded-2xl p-6 mt-6">
+                            <SectionBlock label="Interactive Prototype" icon={LayoutGrid}>
+                                <div className="mt-4 rounded-xl overflow-hidden border border-border/50 bg-bg-secondary/30">
+                                    <div 
+                                        dangerouslySetInnerHTML={{ __html: project.figmaEmbed.includes('<iframe') ? project.figmaEmbed : `<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="600" src="${project.figmaEmbed}" allowfullscreen></iframe>` }}
+                                    />
+                                </div>
+                            </SectionBlock>
+                        </div>
+                    )}
 
                 </div>
             </div>
         </motion.div>
     );
 };
-
-const SectionTitle = ({ icon: Icon, children }) => (
-    <h3 className="text-base font-bold text-text-primary flex items-center gap-2 uppercase tracking-wide">
-        {Icon && <Icon size={16} className="text-text-muted" />}
-        {children}
-    </h3>
-);
 
 export default ProjectDetail;

@@ -3,15 +3,27 @@ import { MessageSquare, X, Send, Sparkles, User, Bot, Maximize2, Minimize2 } fro
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { sendMessageToAI } from '../utils/chatService';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../utils/translations';
 
 const ChatWidget = ({ isOpen, onClose, onToggle }) => {
+    const { language } = useLanguage();
+    const t = translations[language].chat;
+
     const [messages, setMessages] = useState([
-        { role: 'assistant', content: "Halo! Saya Ningsih, Partner Digital dari Sulthan Abdi Dzikry. Ada yang bisa saya bantu diskusikan hari ini?" }
+        { role: 'assistant', content: t.greet }
     ]);
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
     const messagesEndRef = useRef(null);
+
+    // Update initial message when language changes if no other messages exist
+    useEffect(() => {
+        if (messages.length === 1 && messages[0].role === 'assistant') {
+            setMessages([{ role: 'assistant', content: t.greet }]);
+        }
+    }, [language, t.greet, messages.length]);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -76,7 +88,7 @@ const ChatWidget = ({ isOpen, onClose, onToggle }) => {
                                     <h3 className="font-bold text-text-primary text-sm">Ningsih</h3>
                                     <p className="text-xs text-text-muted flex items-center gap-1">
                                         <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                                        Online
+                                        {t.online}
                                     </p>
                                 </div>
                             </div>
@@ -84,7 +96,7 @@ const ChatWidget = ({ isOpen, onClose, onToggle }) => {
                                 <button
                                     onClick={() => setIsExpanded(!isExpanded)}
                                     className="p-2 hover:bg-white/5 rounded-full text-text-muted hover:text-text-primary transition-colors"
-                                    title={isExpanded ? "Collapse" : "Expand to Sidebar"}
+                                    title={isExpanded ? t.collapse : t.expand }
                                 >
                                     {isExpanded ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
                                 </button>
@@ -152,7 +164,7 @@ const ChatWidget = ({ isOpen, onClose, onToggle }) => {
                                     type="text"
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
-                                    placeholder="Tanya Ningsih..."
+                                    placeholder={t.inputPlaceholder}
                                     className="w-full bg-bg-primary border border-border/50 rounded-full pl-4 pr-10 py-2 text-xs text-text-primary focus:outline-none focus:border-accent-blue/50 focus:ring-1 focus:ring-accent-blue/50 transition-all placeholder:text-text-muted/50"
                                 />
                                 <button
@@ -165,7 +177,7 @@ const ChatWidget = ({ isOpen, onClose, onToggle }) => {
                             </div>
                             <div className="text-center mt-2">
                                 <p className="text-[10px] text-text-muted/50">
-                                    Powered by Gemini AI • Responses may be generated
+                                    {t.poweredBy}
                                 </p>
                             </div>
                         </form>

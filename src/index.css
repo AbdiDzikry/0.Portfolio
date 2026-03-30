@@ -4,69 +4,75 @@
 
 @layer base {
   :root {
-    /* Light Mode Defaults (Earthy/Olive/Cream) */
+    /* Flow-Inspired Light Mode (Pure White & Clean) */
     --bg-primary: #ffffff;
-    --bg-secondary: #f8fafc;
-    --bg-card: #f9f9f9;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
 
-    --text-primary: #2f3325;
-    /* Deep Olive Black */
-    --text-secondary: #5d6248;
-    /* Olive Gray */
-    --text-muted: #8c9172;
-    /* Muted Sage */
+    --text-primary: #111111;
+    --text-secondary: #444444;
+    --text-muted: #888888;
 
-    /* Extracted Palette based on #5d6248 */
-    --accent-blue: #5d6248;
-    /* Primary Olive (Replacing Blue) */
-    --accent-pink: #a4ac86;
-    /* Light Sage (Replacing Pink) */
-    --accent-green: #3e4232;
-    /* Dark Earth (Replacing Green) */
+    /* Bold Accent - Keeping the unique Sage/Olive tone but more saturated */
+    --accent-blue: #3e4232;
+    --accent-pink: #7d8260;
+    --accent-green: #a4ac86;
     --accent-yellow: #dce0d3;
-    /* Cream/Beige (Replacing Yellow) */
 
-    --border-color: #e2e8f0;
+    --border-color: #eeeeee;
 
-    /* Navbar (Clean White/Olive) */
-    --navbar-bg: rgba(255, 255, 255, 0.9);
-    --navbar-text: #2f3325;
-    --navbar-border: rgba(93, 98, 72, 0.1);
+    /* Navbar (Minimalist) */
+    --navbar-bg: rgba(255, 255, 255, 0.8);
+    --navbar-text: #111111;
+    --navbar-border: rgba(0, 0, 0, 0.05);
   }
 
   .dark {
-    /* Dark Mode (Deep Forest/Night Earth) */
-    --bg-primary: #1a1c18;
-    --bg-secondary: #25291f;
-    --bg-card: #20241b;
+    /* Flow-Inspired Dark Mode (Deep & Sophisticated) */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #111111;
+    --bg-card: #151515;
 
-    --text-primary: #f1f5f9;
-    --text-secondary: #c2c7b0;
-    --text-muted: #7d8260;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --text-muted: #555555;
 
     --accent-blue: #a4ac86;
-    /* Light Olive */
-    --accent-pink: #7d8260;
-    /* Muted Sage */
-    --accent-green: #dce0d3;
-    /* Pale Earth */
+    --accent-pink: #dce0d3;
+    --accent-green: #7d8260;
     --accent-yellow: #3e4232;
-    /* Deep Olive */
 
-    --border-color: #3e4232;
+    --border-color: #222222;
 
-    /* Navbar (Dark Olive) */
-    --navbar-bg: rgba(26, 28, 24, 0.9);
-    --navbar-text: #f1f5f9;
-    --navbar-border: rgba(164, 172, 134, 0.1);
+    /* Navbar (Minimalist) */
+    --navbar-bg: rgba(10, 10, 10, 0.8);
+    --navbar-text: #ffffff;
+    --navbar-border: rgba(255, 255, 255, 0.05);
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-bg-primary text-text-primary font-sans antialiased overflow-x-hidden transition-colors duration-300 cursor-none;
+    @apply bg-bg-primary text-text-primary font-sans antialiased overflow-x-hidden transition-colors duration-300;
+    /* Custom cursor is managed by component, but let's ensure base is clean */
+  }
+
+  ::selection {
+    @apply bg-accent-pink text-white;
   }
 }
 
 @layer utilities {
+  .text-reveal {
+    @apply overflow-hidden inline-block align-bottom;
+  }
+
+  .big-text {
+    @apply text-[12vw] font-bold leading-[0.9] tracking-tighter;
+  }
+
   .text-glow {
     text-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }

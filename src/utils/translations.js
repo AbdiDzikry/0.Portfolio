@@ -5,7 +5,50 @@ export const translations = {
             profile: "Profile",
             projects: "Projects",
             caseStudies: "Ideas",
-            lab: "Lab"
+            lab: "Lab",
+            projectsTitle: "Selected Works",
+            projectsSubtitle: "A collection of design & development projects.",
+            gridView: "Grid",
+            listView: "List",
+            ariaGrid: "Grid View",
+            ariaList: "List View"
+        },
+        footer: {
+            builtBy: "Designed & Built by"
+        },
+        hero: {
+            role: "Sulthan Abdi Dzikry / Product Designer",
+            word1: "CRAFTING",
+            word2: "STRATEGIC",
+            word3: "ECOSYSTEMS",
+            expLabel: "Experience",
+            expUnits: "Years",
+            expDesc: "Driving value through data-informed design and strategic product thinking across diverse industries.",
+            collabLabel: "Collaborations",
+            collabUnits: "Companies",
+            collabDesc: "Partnering with teams to scale products, refine user journeys, and achieve business objectives.",
+            execLabel: "Execution",
+            execUnits: "Live Projects",
+            execDesc: "End-to-end delivery of high-impact digital solutions that bridge the gap between users and technology."
+        },
+        ideas: {
+            title: "Ideas",
+            subtitle: "Creative concepts, life philosophies, and experimental projects.",
+            explore: "Explore Idea"
+        },
+        lab: {
+            title: "Digital Playground",
+            subtitle: "Strategic challenges at the intersection of logic and creativity.",
+            metaTitle: "Lab & Digital Playground",
+            metaDesc: "Digital Playground and experimental projects: 2048 Game, Widgets, and more."
+        },
+        chat: {
+            greet: "Hello! I'm Ningsih, Sulthan Abdi Dzikry's Digital Partner. How can I help you today?",
+            online: "Online",
+            inputPlaceholder: "Ask Ningsih...",
+            poweredBy: "Powered by Gemini AI • Responses may be generated",
+            expand: "Expand to Sidebar",
+            collapse: "Collapse"
         },
         profile: {
             title: "My Profile",
@@ -14,12 +57,19 @@ export const translations = {
             bioSub: "I don't just create aesthetic designs, I build functional and technical solutions. Ready to innovate.",
             contact: "Contact Me",
             downloadCv: "Download CV",
+            resume: "Resume",
             experienceTitle: "PROFESSIONAL EXPERIENCE",
             educationTitle: "EDUCATION",
             orgTitle: "ORGANIZATIONAL EXPERIENCE",
+            certTitle: "CERTIFICATIONS",
+            eduUniv: "Telkom University",
+            eduDept: "Informatics Engineering",
             gpa: "GPA",
             years: "Years",
             openToWork: "Open to Work",
+            technicalArsenal: "Technical Arsenal",
+            industries: "Industries",
+            info: "Information",
             jobs: [
                 { company: "PT Dharma Polimetal Tbk.", role: "Product Designer", desc: "Manufacturing Digitalization projects.", period: "Oct 2025 - Present" },
                 { company: "Codetag Studio", role: "Product Designer", desc: "Handling 5 projects end-to-end.", period: "Jul 2025 - Present" },
@@ -35,14 +85,18 @@ export const translations = {
                 { org: "Dies Natalis Informatics 2023", role: "Staff", desc: "Maintained event security & order.", period: "Nov 22 - Feb 23" },
                 { org: "UKM Catur ITTP", role: "Public Relations Staff", desc: "Managed documents & external comms.", period: "Oct 22 - Jan 23" }
             ],
-            certTitle: "CERTIFICATIONS",
             certs: [
                 { name: "Junior Web Developer", issuer: "BNSP (National Professional Certification Board)", date: "Jan 2025 - Jan 2028", desc: "Competence in Software Development & Programming." },
-                { name: "ITTP English Competency Test (ECT)", issuer: "Telkom University Purwokerto", date: "Dec 2024 - Dec 2026", desc: "Overall Score: 490" }
-            ]
+                { name: "ITTP English Competency Test (ECT)", issuer: "Telkom University Purwokerto", date: "Dec 2024 - Dec 2026", desc: "Overall Score: 490" },
+                { name: "Certificate of Completion", issuer: "Telkom Digital Amoeba", date: "Jan 2024", desc: "Successful completion of UX Researcher Internship program." },
+                { name: "UI/UX Intensive Bootcamp", issuer: "Rakamin Academy", date: "Jan 2024", desc: "Comprehensive training in UI/UX Design and Product Thinking." }
+            ],
+            skills: ['React', 'Tailwind CSS', 'Framer Motion', 'Figma', 'TypeScript', 'Node.js', 'PostgreSQL', 'UI/UX', 'Next.js', 'Vite'],
+            industriesList: ['Manufacturing', 'Digital Agency', 'EdTech', 'Enterprise', 'Hardware', 'E-Commerce']
         },
         projectDetail: {
             back: "Back to Projects",
+            allProjects: "All Projects",
             notFound: "Project not found",
             featured: "Featured",
             role: "Role",
@@ -51,8 +105,27 @@ export const translations = {
             prdTitle: "Product Requirements Document",
             ref: "Internal Reference",
             download: "Download PDF",
+            downloadPrd: "Download PRD",
+            livePreview: "Live Preview",
             approved: "APPROVED",
             public: "Public Access",
+            // Section Labels
+            probTitle: "The Problem",
+            thinkingTitle: "Design Thinking",
+            techTitle: "Technical Approach",
+            solTitle: "Solution",
+            solSub: "Problem → Solution mapping",
+            researchTitle: "Research & UX Results",
+            impactTitle: "Impact & Results",
+            toolsTitle: "Design Tools & Methods",
+            stackTitle: "Tech Stack",
+            uxFeaturesTitle: "Key UX Features",
+            coreFeaturesTitle: "Core Features",
+            beforeAfterTitle: "Before vs After",
+            before: "Before",
+            after: "After",
+            lblAspect: "Aspect",
+            teamTitle: "Team",
             // Table Labels
             lblProduct: "Product Name",
             lblVision: "Vision",
@@ -80,28 +153,78 @@ export const translations = {
             profile: "Profil",
             projects: "Proyek",
             caseStudies: "Ide",
-            lab: "Lab"
+            lab: "Lab",
+            projectsTitle: "Karya Terpilih",
+            projectsSubtitle: "Kumpulan proyek desain & pengembangan.",
+            gridView: "Grid",
+            listView: "Daftar",
+            ariaGrid: "Tampilan Grid",
+            ariaList: "Tampilan Daftar"
+        },
+        footer: {
+            builtBy: "Didesain & Dibangun oleh"
+        },
+        hero: {
+            role: "Sulthan Abdi Dzikry / Product Designer",
+            word1: "MEMBANGUN",
+            word2: "EKOSISTEM",
+            word3: "STRATEGIS",
+            expLabel: "Pengalaman",
+            expUnits: "Tahun",
+            expDesc: "Menciptakan nilai tambah melalui desain berbasis data dan pemikiran produk yang strategis di berbagai industri.",
+            collabLabel: "Kolaborasi",
+            collabUnits: "Perusahaan",
+            collabDesc: "Bekerja sama dengan tim untuk mengembangkan produk, mengoptimalkan journey pengguna, dan mencapai target bisnis.",
+            execLabel: "Eksekusi",
+            execUnits: "Proyek Rilis",
+            execDesc: "Pengiriman solusi digital berdampak tinggi yang menjembatani kebutuhan pengguna dengan teknologi."
+        },
+        ideas: {
+            title: "Ide & Pemikiran",
+            subtitle: "Konsep kreatif, filosofi hidup, dan proyek eksperimental.",
+            explore: "Jelajahi Ide"
+        },
+        lab: {
+            title: "Taman Bermain Digital",
+            subtitle: "Tantangan strategis di persimpangan logika dan kreativitas.",
+            metaTitle: "Lab & Eksperimen Digital",
+            metaDesc: "Taman bermain digital dan proyek eksperimental: Game 2048, Widget, dan lainnya."
+        },
+        chat: {
+            greet: "Halo! Saya Ningsih, Partner Digital dari Sulthan Abdi Dzikry. Ada yang bisa saya bantu diskusikan hari ini?",
+            online: "Online",
+            inputPlaceholder: "Tanya Ningsih...",
+            poweredBy: "Didukung oleh Gemini AI • Jawaban dapat diolah",
+            expand: "Perluas ke Samping",
+            collapse: "Sembunyikan"
         },
         profile: {
             title: "Profil Saya",
-            role: "Manajer Produk",
+            role: "Product Designer",
             bio: "Seorang profesional adaptif yang menawarkan perpaduan unik antara wawasan desain strategis dan fondasi teknis yang kuat.",
             bioSub: "Saya tidak hanya membuat desain estetis, saya membangun solusi fungsional dan teknis. Siap berinovasi.",
             contact: "Hubungi Saya",
             downloadCv: "Unduh CV",
+            resume: "Resume",
             experienceTitle: "PENGALAMAN PROFESIONAL",
             educationTitle: "PENDIDIKAN",
             orgTitle: "PENGALAMAN ORGANISASI",
+            certTitle: "SERTIFIKASI",
+            eduUniv: "Telkom University Purwokerto",
+            eduDept: "S1 Teknik Informatika",
             gpa: "IPK",
             years: "Tahun",
             openToWork: "Siap Bekerja",
+            technicalArsenal: "Arsenal Teknis",
+            industries: "Industri",
+            info: "Informasi",
             jobs: [
-                { company: "PT Dharma Polimetal Tbk.", role: "Manajer Produk", desc: "Memimpin proyek digitalisasi manufaktur.", period: "Okt 2025 - Sekarang" },
-                { company: "Codetag Studio", role: "Manajer Produk", desc: "Menangani 5 proyek secara end-to-end.", period: "Jul 2025 - Sekarang" },
+                { company: "PT Dharma Polimetal Tbk.", role: "Product Designer", desc: "Proyek Digitalisasi Manufaktur.", period: "Okt 2025 - Sekarang" },
+                { company: "Codetag Studio", role: "Product Designer", desc: "Menangani 5 proyek secara end-to-end.", period: "Jul 2025 - Sekarang" },
                 { company: "Telkom Digital Amoeba", role: "UX Researcher Intern", desc: "Riset end-to-end, analisis kuantitatif & kualitatif.", period: "Des 2023 - Jan 2024" },
-                { company: "Rakamin Academy", role: "Magang Desainer UI/UX", desc: "Mengoptimalkan UX aplikasi travel dengan skor kelayakan 79%.", period: "Agu 2023 - Jan 2024" },
+                { company: "Rakamin Academy", role: "UI/UX Designer Intern", desc: "Optimasi UX aplikasi travel dengan skor kelayakan 79%.", period: "Agu 2023 - Jan 2024" },
                 { company: "Korea Orient Technology", role: "Magang", desc: "Membantu operasional teknis.", period: "Okt 2019 - Mar 2020" },
-                { company: "Syntax Community", role: "Mentor UI/UX", desc: "Merancang kurikulum & melaksanakan sesi mentoring.", period: "Jun 2019 - Jun 2020" }
+                { company: "Syntax Community", role: "UI/UX Mentor", desc: "Merancang kurikulum & melaksanakan sesi mentoring.", period: "Jun 2019 - Jun 2020" }
             ],
             orgs: [
                 { org: "Dies Natalis Informatics 2024", role: "Staf", desc: "Mengkoordinasikan konsumsi & kebutuhan acara.", period: "Nov 23 - Jan 24" },
@@ -110,14 +233,18 @@ export const translations = {
                 { org: "Dies Natalis Informatics 2023", role: "Staf", desc: "Menjaga keamanan & ketertiban acara.", period: "Nov 22 - Feb 23" },
                 { org: "UKM Catur ITTP", role: "Staf Humas", desc: "Mengelola dokumen & komunikasi eksternal.", period: "Okt 22 - Jan 23" }
             ],
-            certTitle: "SERTIFIKASI",
             certs: [
-                { name: "Junior Web Developer", issuer: "BNSP", date: "Jan 2025 - Jan 2028", desc: "Kompetensi Pengembangan Perangkat Lunak & Pemrograman." },
-                { name: "ITTP English Competency Test (ECT)", issuer: "Telkom University Purwokerto", date: "Des 2024 - Des 2026", desc: "Skor Total: 490" }
-            ]
+                { name: "Junior Web Developer", issuer: "BNSP (Badan Nasional Sertifikasi Profesi)", date: "Jan 2025 - Jan 2028", desc: "Kompetensi dalam Pengembangan Perangkat Lunak & Pemrograman." },
+                { name: "ITTP English Competency Test (ECT)", issuer: "Telkom University Purwokerto", date: "Des 2024 - Des 2026", desc: "Skor Keseluruhan: 490" },
+                { name: "Sertifikat Kelulusan", issuer: "Telkom Digital Amoeba", date: "Jan 2024", desc: "Keberhasilan menyelesaikan program Magang UX Researcher." },
+                { name: "UI/UX Intensive Bootcamp", issuer: "Rakamin Academy", date: "Jan 2024", desc: "Pelatihan komprehensif dalam Desain UI/UX dan Product Thinking." }
+            ],
+            skills: ['React', 'Tailwind CSS', 'Framer Motion', 'Figma', 'TypeScript', 'Node.js', 'PostgreSQL', 'UI/UX', 'Next.js', 'Vite'],
+            industriesList: ['Manufaktur', 'Agensi Digital', 'EdTech', 'Enterprise', 'Hardware', 'E-Commerce']
         },
         projectDetail: {
             back: "Kembali ke Proyek",
+            allProjects: "Semua Proyek",
             notFound: "Proyek tidak ditemukan",
             featured: "Unggulan",
             role: "Peran",
@@ -126,8 +253,27 @@ export const translations = {
             prdTitle: "Dokumen Kebutuhan Produk (PRD)",
             ref: "Referensi Internal",
             download: "Unduh PDF",
+            downloadPrd: "Unduh PRD",
+            livePreview: "Demo Langsung",
             approved: "DISETUJUI",
             public: "Akses Publik",
+            // Section Labels
+            probTitle: "Masalah",
+            thinkingTitle: "Design Thinking",
+            techTitle: "Pendekatan Teknis",
+            solTitle: "Solusi",
+            solSub: "Pemetaan Masalah → Solusi",
+            researchTitle: "Riset & Hasil UX",
+            impactTitle: "Dampak & Hasil",
+            toolsTitle: "Alat & Metode Desain",
+            stackTitle: "Tech Stack",
+            uxFeaturesTitle: "Fitur Utama UX",
+            coreFeaturesTitle: "Fitur Utama",
+            beforeAfterTitle: "Sebelum vs Sesudah",
+            before: "Sebelum",
+            after: "Sesudah",
+            lblAspect: "Aspek",
+            teamTitle: "Tim",
             // Table Labels
             lblProduct: "Nama Produk",
             lblVision: "Visi",
@@ -142,7 +288,7 @@ export const translations = {
             lblUseCases: "Kasus Penggunaan",
             lblAssumptions: "Asumsi",
             lblInvestment: "Investasi / Cakupan",
-            lblArchitecture: "Arsitektur / Tekhol",
+            lblArchitecture: "Arsitektur / Teknologi",
             lblFeatures: "Fitur Utama",
             lblDesignSys: "Sistem Desain & DNA",
             lblTools: "Alat & Metode",

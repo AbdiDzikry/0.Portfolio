@@ -1,14 +1,11 @@
-npm error node_modules/react
-npm error   peer react@"^16.6.0 || ^17.0.0 || ^18.0.0" from react-helmet-async@2.0.5
-npm error   node_modules/react-helmet-async
-npm error     react-helmet-async@"^2.0.5" from the root project
-npm error
-npm error Fix the upstream dependency conflict, or retry
-npm error this command with --force or --legacy-peer-deps
-npm error to accept an incorrect (and potentially broken) dependency resolution.
-npm error
-npm error
-npm error For a full report see:
-npm error /vercel/.npm/_logs/2026-01-06T08_48_53_187Z-eresolve-report.txt
-npm error A complete log of this run can be found in: /vercel/.npm/_logs/2026-01-06T08_48_53_187Z-debug-0.log
-Error: Command "npm install" exited with 1
+ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=testis3131&api_key=demo&format=json&limit=1:1  Failed to load resource: the server responded with a status of 403 ()
+installHook.js:1 Last.fm fetch error: Error: Last.fm API error: 403
+    at fetchNowPlaying (NowPlayingWidget.jsx:19:27)
+overrideMethod @ installHook.js:1
+ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=testis3131&api_key=demo&format=json&limit=1:1  Failed to load resource: the server responded with a status of 403 ()
+installHook.js:1 Last.fm fetch error: Error: Last.fm API error: 403
+    at fetchNowPlaying (NowPlayingWidget.jsx:19:27)
+overrideMethod @ installHook.js:1
+:5173/src/components/CatCursor.jsx?t=1774836108459:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+installHook.js:1 [vite] Failed to reload /src/components/CatCursor.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+overrideMethod @ installHook.js:1

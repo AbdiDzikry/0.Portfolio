@@ -1,54 +1,30 @@
 import { useState } from 'react';
 import './CaseStudies.css';
 import SEO from '../components/SEO';
-
-const studies = [
-    {
-        id: 1,
-        title: "Keliling Dunia",
-        category: "Life Goal",
-        status: "Visionary",
-        color: "var(--accent-blue)",
-        description: "Exploring every corner of the planet to understand diverse cultures, landscapes, and human stories."
-    },
-    {
-        id: 2,
-        title: "Menjadi Orang Baik",
-        category: "Philosophy",
-        status: "Daily Pursuit",
-        color: "var(--accent-green)",
-        description: "Living a life rooted in empathy, kindness, and integrity to create a ripple effect of positivity."
-    },
-    {
-        id: 3,
-        title: "Hidup Tenang",
-        category: "State of Mind",
-        status: "Essential",
-        color: "var(--accent-pink)",
-        description: "Achieving mental clarity and peace by prioritizing what truly matters and letting go of the noise."
-    },
-    {
-        id: 4,
-        title: "Organisasi Gelap",
-        category: "Extreme Idea",
-        status: "Classified",
-        color: "var(--accent-yellow)",
-        description: "Membangun organisasi strategis untuk menciptakan perubahan sistemik dan menggulingkan struktur yang korup dengan cara apapun."
-    }
-];
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../utils/translations';
+import { ideasData } from '../data/ideas';
 
 const CaseStudies = () => {
+    const { language } = useLanguage();
+    const t = translations[language];
     const [activeId, setActiveId] = useState(1);
+
+    // Get localized study content
+    const studies = ideasData.map(study => ({
+        ...study,
+        ...(study.translations?.[language] || {})
+    }));
 
     return (
         <div className="container mx-auto px-6 md:px-12 lg:px-16 pt-10 min-h-screen flex flex-col">
             <SEO
-                title="Ideas & Case Studies"
-                description="Creative concepts, life philosophies, and experimental projects by Sulthan Abdi Dzikry."
+                title={t.ideas.title}
+                description={t.ideas.subtitle}
             />
             <header className="page-header text-center md:translate-x-14">
-                <h1 className="page-title">Ideas</h1>
-                <p className="page-subtitle">Creative concepts, life philosophies, and experimental projects.</p>
+                <h1 className="page-title">{t.ideas.title}</h1>
+                <p className="page-subtitle">{t.ideas.subtitle}</p>
             </header>
 
             <div className="bookshelf">
@@ -72,7 +48,7 @@ const CaseStudies = () => {
                                     {study.status}
                                 </div>
                                 <p className="cover-desc">{study.description}</p>
-                                <button className="read-more-btn">Explore Idea →</button>
+                                <button className="read-more-btn">{t.ideas.explore} →</button>
                             </div>
                         </div>
                     </div>
