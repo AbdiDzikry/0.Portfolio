@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     ArrowLeft, Download, ChevronRight, Lightbulb, Target,
-    Wrench, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink
+    Wrench, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink, MessageSquare, BarChart, ShieldCheck
 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
@@ -58,6 +58,274 @@ const ProjectDetail = () => {
                 <h2>{t.notFound}</h2>
                 <Link to="/projects" className="text-accent-pink underline">← {t.back}</Link>
             </div>
+        );
+    }
+
+    /* ─────────── Internship UX Template ─────────── */
+    const renderInternshipTemplate = () => (
+        <div className="max-w-6xl mx-auto space-y-20 pb-20">
+            {/* 1. Specialized Hero */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="space-y-6">
+                    <Link to="/projects" className="inline-flex items-center gap-1.5 text-text-muted hover:text-text-primary transition-colors text-xs font-mono uppercase tracking-widest mb-4">
+                        <ArrowLeft size={13} /> {t.allProjects}
+                    </Link>
+                    <div className="flex gap-3">
+                        <Tag>{project.category}</Tag>
+                        <Tag>6 Months</Tag>
+                    </div>
+                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-text-primary">
+                        {project.title}
+                    </h1>
+                    <p className="text-xl text-accent-pink font-medium italic">"{project.tagline}"</p>
+                    <p className="text-text-secondary leading-relaxed text-lg max-w-xl">{project.description}</p>
+                    
+                    <div className="pt-6 border-t border-border flex gap-4">
+                         <button onClick={() => generatePrdPdf(project)} className="px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-bold text-sm shadow-xl flex items-center gap-2">
+                            <Download size={16} /> Download Report
+                         </button>
+                    </div>
+                </div>
+                <div className="relative group">
+                    <div className="absolute -inset-4 bg-accent-pink/10 rounded-[3rem] blur-2xl group-hover:bg-accent-pink/20 transition-all duration-700" />
+                    <img src={project.image} alt={project.title} className="relative z-10 w-full rounded-[2.5rem] shadow-2xl border border-border/50" />
+                </div>
+            </div>
+
+            {/* 2. Team & Intro */}
+            <div className="grid md:grid-cols-3 gap-8">
+                <div className="md:col-span-2 bg-bg-card border border-border p-10 rounded-[2.5rem] space-y-6">
+                    <SectionBlock label="Executive Summary" icon={Lightbulb} />
+                    <p className="text-text-secondary leading-relaxed bg-bg-secondary/30 p-6 rounded-3xl border border-border/50">{project.background}</p>
+                    {project.keyHighlights && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                            {project.keyHighlights.map((hl, i) => (
+                                <div key={i} className="flex gap-3">
+                                    <div className="w-1.5 h-1.5 bg-accent-pink rounded-full mt-1.5 flex-shrink-0" />
+                                    <p className="text-xs text-text-secondary leading-relaxed">{hl}</p>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                    <div className="grid grid-cols-2 gap-4 mt-8">
+                        {project.stats?.map((s, i) => (
+                            <div key={i} className="p-6 bg-bg-secondary rounded-3xl border border-border/50 hover:border-accent-pink/30 transition-colors text-center">
+                                <div className="text-3xl font-black text-text-primary mb-1">{s.value}</div>
+                                <div className="text-[10px] font-bold uppercase tracking-widest text-accent-pink">{s.label}</div>
+                                <p className="text-[9px] text-text-muted mt-1">{s.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="bg-zinc-900 dark:bg-zinc-100 p-10 rounded-[2.5rem] text-white dark:text-zinc-900 shadow-xl space-y-6 h-fit">
+                     <SectionBlock label="HRGA-HRMS Team" icon={Users} />
+                     <div className="space-y-6">
+                        {project.team?.map((member, i) => (
+                            <div key={i} className="flex items-center gap-4 pb-4 border-b border-white/10 dark:border-zinc-900/10 last:border-0 last:pb-0">
+                                {member.image && (
+                                    <img src={member.image} alt={member.name} className="w-10 h-10 rounded-full object-cover bg-white/10" />
+                                )}
+                                <div>
+                                    <p className="font-bold text-sm">{member.name}</p>
+                                    <p className="text-[10px] opacity-70 uppercase tracking-widest">{member.role}</p>
+                                </div>
+                            </div>
+                        ))}
+                     </div>
+                </div>
+            </div>
+
+            {/* NEW: Presentation & Process Showcase */}
+            {project.showcaseImages && project.showcaseImages.length > 0 && (
+                <div className="space-y-10">
+                    <div className="flex flex-col md:flex-row justify-between items-end gap-4">
+                        <div>
+                            <SectionBlock label="Visual Showcase" icon={TrendingUp} />
+                            <h2 className="text-3xl md:text-5xl font-bold mt-2">Presentation & Process</h2>
+                        </div>
+                        <p className="text-text-muted max-w-md text-sm">Visualisasi high-fidelity dari sistem Doors dan dokumentasi perjalanan magang.</p>
+                    </div>
+                    
+                    {/* Primary Showcase Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {project.showcaseImages.slice(0, 4).map((img, i) => (
+                            <motion.div 
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
+                                className="group relative rounded-[2rem] overflow-hidden border border-border bg-bg-secondary aspect-video"
+                            >
+                                <img src={img} alt={`Showcase ${i}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                                    <p className="text-white text-xs font-mono uppercase tracking-widest">Case Study Asset {i + 1}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Secondary Thumbnails Grid */}
+                    {project.showcaseImages.length > 4 && (
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            {project.showcaseImages.slice(4).map((img, i) => (
+                                <motion.div 
+                                    key={i}
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    className="rounded-2xl overflow-hidden border border-border bg-bg-secondary aspect-video"
+                                >
+                                    <img src={img} alt={`Thumbnail ${i}`} className="w-full h-full object-cover hover:opacity-80 transition-opacity cursor-pointer" />
+                                </motion.div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* 3. The 6-Month Journey (Vertical Timeline) */}
+            <div className="space-y-12">
+                 <div className="text-center">
+                    <SectionBlock label="The Journey" icon={Clock} />
+                    <h2 className="text-3xl md:text-4xl font-bold mt-4">6 Months Timeline</h2>
+                 </div>
+                 <div className="relative max-w-4xl mx-auto pl-8 md:pl-0">
+                    <div className="absolute left-10 md:left-1/2 top-0 bottom-0 w-px bg-border hidden md:block" />
+                    {project.journey?.map((step, i) => (
+                        <div key={i} className={`relative mb-12 md:flex items-center gap-12 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                            <div className="absolute left-[-2rem] md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-accent-pink border-4 border-bg-primary z-20 shadow-[0_0_15px_rgba(236,72,153,0.5)]" />
+                            <div className="md:w-1/2 space-y-2">
+                                <div className={`flex items-center gap-3 ${i % 2 === 0 && 'md:justify-start'} ${i % 2 !== 0 && 'md:justify-end'}`}>
+                                    <span className="text-xs font-mono font-black text-accent-pink uppercase tracking-widest">{step.month}</span>
+                                    <div className="h-px w-8 bg-accent-pink/30" />
+                                </div>
+                                <h3 className={`text-xl font-bold ${i % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>{step.title}</h3>
+                                <p className={`text-sm text-text-muted leading-relaxed ${i % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>{step.desc}</p>
+                            </div>
+                            <div className="hidden md:block md:w-1/2" />
+                        </div>
+                    ))}
+                 </div>
+            </div>
+
+            {/* 4. Pillars of Innovation (Bento Grid) */}
+            <div className="space-y-8">
+                <div className="flex flex-col md:flex-row justify-between items-end gap-4">
+                    <div>
+                        <SectionBlock label="Project Modules" icon={TrendingUp} />
+                        <h2 className="text-3xl md:text-5xl font-bold mt-2">Pillars of Impact</h2>
+                    </div>
+                    <p className="text-text-muted max-w-md text-sm">Tiga pilar utama pengembangan sistem digital selama masa magang di Dharma Polimetal.</p>
+                </div>
+                <div className="grid md:grid-cols-3 gap-6">
+                    {project.pillars?.map((pillar, i) => (
+                        <div key={i} className="bg-bg-card border border-border p-8 rounded-[2.5rem] hover:bg-bg-secondary transition-all hover:-translate-y-2 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div className="w-12 h-12 bg-accent-pink/5 rounded-2xl flex items-center justify-center text-accent-pink mb-6">
+                                    <CheckCircle size={24} />
+                                </div>
+                                <h3 className="text-xl font-bold mb-2">{pillar.name}</h3>
+                                <p className="text-sm text-text-muted leading-relaxed mb-6">{pillar.desc}</p>
+                            </div>
+                            <div className="flex justify-between items-end pt-6 border-t border-border">
+                                <div className="text-2xl font-black text-text-primary font-mono">{pillar.metric}</div>
+                                <span className="text-[10px] font-mono font-bold text-accent-pink uppercase">{pillar.tag}</span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* 5. Insight & Strategy (Redesigned) */}
+            <div className="relative overflow-hidden rounded-[3rem] border border-border bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 p-8 md:p-16">
+                 {/* Decorative background glow */}
+                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-pink/20 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
+                 
+                 <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+                    <div className="space-y-8">
+                        <div>
+                            <SectionBlock label="Strategic Result" icon={ShieldCheck} />
+                            <h2 className="text-3xl md:text-5xl font-bold mt-4 leading-tight">Impactful Outcomes & Digital Vision.</h2>
+                        </div>
+                        <p className="text-xl opacity-80 leading-relaxed font-light italic">
+                            "{project.strategicAlignment}"
+                        </p>
+                        <div className="flex flex-wrap gap-3 pt-4">
+                            {project.tags?.map(tag => (
+                                <span key={tag} className="px-4 py-2 rounded-full border border-white/20 dark:border-zinc-900/20 text-[10px] font-black uppercase tracking-widest bg-white/5">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="p-8 rounded-[2rem] bg-white/5 dark:bg-zinc-900/5 border border-white/10 dark:border-zinc-900/10 backdrop-blur-sm space-y-4">
+                            <div className="w-10 h-10 rounded-2xl bg-accent-pink/20 flex items-center justify-center text-accent-pink">
+                                <BarChart size={20} />
+                            </div>
+                            <h3 className="font-bold">Technical Excellence</h3>
+                            <p className="text-xs opacity-60 leading-relaxed uppercase tracking-wider">Menguasai Full-stack development & Product Management terpadu.</p>
+                        </div>
+                        <div className="p-8 rounded-[2rem] bg-white/5 dark:bg-zinc-900/5 border border-white/10 dark:border-zinc-900/10 backdrop-blur-sm space-y-4">
+                            <div className="w-10 h-10 rounded-2xl bg-emerald-400/20 flex items-center justify-center text-emerald-400">
+                                <Users size={20} />
+                            </div>
+                            <h3 className="font-bold">Organizational Impact</h3>
+                            <p className="text-xs opacity-60 leading-relaxed uppercase tracking-wider">Berkontribusi dalam sinkronisasi proses lintas departemen.</p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+            {/* 6. Kesan & Saran */}
+            {project.kesanSaran && (
+                <div className="max-w-4xl mx-auto text-center space-y-8 py-10">
+                    <div className="w-16 h-1 w-24 bg-accent-pink/30 mx-auto" />
+                    <SectionBlock label="Reflection" icon={MessageSquare} />
+                    <p className="text-2xl md:text-3xl font-light italic text-text-secondary leading-relaxed font-serif">
+                        "{project.kesanSaran}"
+                    </p>
+                    <div className="w-16 h-1 w-24 bg-accent-pink/30 mx-auto" />
+                </div>
+            )}
+
+            {/* 7. Future Targets */}
+            {project.futureTargets && (
+                <div className="space-y-8">
+                    <div className="text-center">
+                        <SectionBlock label="Looking Ahead" icon={Target} />
+                        <h2 className="text-3xl font-bold mt-2">Target Kedepan</h2>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {project.futureTargets.map((group, i) => (
+                            <div key={i} className="bg-bg-card border border-border p-8 rounded-[2rem] relative group overflow-hidden">
+                                <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                                    <Target size={80} />
+                                </div>
+                                <h3 className="text-xs font-mono text-text-muted uppercase tracking-[0.3em] mb-6">{group.category}</h3>
+                                <ul className="space-y-3">
+                                    {group.items.map((item, j) => (
+                                        <li key={j} className="text-base text-text-secondary flex items-center gap-3">
+                                            <div className="w-1.5 h-1.5 bg-accent-pink rounded-full" /> {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+
+    if (project.uxTemplate === 'internship') {
+        return (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-bg-primary min-h-screen pt-28 pb-24 px-6 md:px-12 lg:px-16 transition-colors">
+                <SEO title={project.title} description={project.description} ogImage={project.image} />
+                {renderInternshipTemplate()}
+            </motion.div>
         );
     }
 

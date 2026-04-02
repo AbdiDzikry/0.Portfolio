@@ -1007,5 +1007,131 @@ export const projectsData = [
             }
         }
     },
-
+    {
+        id: 'internship-report',
+        title: 'Laporan Akhir Magang',
+        category: 'Presentation',
+        image: '/projects/doors/Presentasi Doors-1.webp', // Using Doors thumb as requested
+        tagline: 'Laporan Akhir Magang Nasional - Sulthan Abdi Dzikry',
+        description: 'Sebuah presentasi interaktif mengenai perjalanan magang nasional, mencakup profil, struktur organisasi, hingga insight dan target karir.',
+        tags: ['Presentation', 'Internship', 'Report'],
+        size: 'large',
+        path: '/presentation', // Custom path for presentation mode
+        translations: {
+            id: {
+                title: 'Laporan Akhir Magang',
+                category: 'Presentasi',
+                tagline: 'Laporan Akhir Magang Nasional - Sulthan Abdi Dzikry',
+                description: 'Sebuah presentasi interaktif mengenai perjalanan magang nasional, mencakup profil, struktur organisasi, hingga insight dan target karir.'
+            }
+        }
+    },
+    {
+        id: 'internship-detail',
+        title: 'Case Study: Magang Nasional',
+        category: 'UI/UX & System Dev',
+        image: '/projects/doors/Presentasi Doors-1.webp',
+        showcaseImages: [
+            '/projects/doors/Presentasi Doors-1.webp',
+            '/projects/doors/Presentasi Doors-2.webp',
+            '/projects/doors/Presentasi Doors-3.webp',
+            '/projects/doors/Presentasi Doors-4.webp',
+            '/projects/doors/Presentasi Doors-5.webp',
+            '/projects/doors/Presentasi Doors-8.webp',
+            '/projects/doors/Presentasi Doors-10.webp',
+            '/projects/doors/Presentasi Doors-11.webp',
+            '/projects/doors/tabletdoors.png',
+            '/projects/doors/hasil_sus_doors.png'
+        ],
+        tagline: 'Membangun Ekosistem Digital HR & GA selama 6 Bulan.',
+        description: 'Detail teknis dan manajerial dari perjalanan magang 6 bulan, fokus pada optimasi sistem internal dan digitalisasi manajemen fasilitas.',
+        problem: 'Sistem operasional internal yang terfragmentasi menyebabkan inefisiensi dalam manajemen fasilitas dan alur koordinasi antar departemen.',
+        solution: 'Mengembangkan suite aplikasi terintegrasi (Doors, Monitoring AC) dengan fokus pada kemudahan penggunaan dan akurasi data real-time.',
+        impact: 'Menyederhanakan 6 langkah booking menjadi 4 langkah instan, mengelola 600+ meeting tanpa konflik, dan mengotomasi monitoring aset GA.',
+        tags: ['Product Management', 'UI/UX Design', 'Full-stack Dev'],
+        size: 'medium',
+        uxTemplate: 'internship', // Custom UX template identification
+        team: [
+            { name: 'Lukman Hawari Pratama', role: 'Department Head', id: '99122022' },
+            { name: 'Listia Ningtias', role: 'Staff', id: '11240196' },
+            { name: 'Bagas Ardhi Pratama', role: 'Staff', id: '11195854' },
+            { name: 'Abdul Rohim', role: 'Staff', id: '11185354' }
+        ],
+        journey: [
+            { month: 'Bulan 1', title: 'Adaptasi & Research', desc: 'Memahami proses bisnis HRGA Dharma Polimetal dan memetakan alur booking ruangan manual yang rumit.' },
+            { month: 'Bulan 2', title: 'Proyek Doors Design', desc: 'Mendesain antarmuka Doors dengan pendekatan Mobile-First (Tablet) dan User Experience 4 Langkah.' },
+            { month: 'Bulan 3', title: 'Doors Development', desc: 'Membangun fungsionalitas utama (Check-in NPK, Gantt Chart) dan peluncuran produk pertama (Doors v2.0).' },
+            { month: 'Bulan 4', title: 'Monitoring AC System', desc: 'Melakukan ekspansi sistem ke manajemen fasilitas, khusus pemantauan perawatan AC lintas departemen.' },
+            { month: 'Bulan 5', title: 'Data Analytics & Insights', desc: 'Implementasi dashboard statistik untuk melacak penggunaan fasilitas dan analisis KPI operasional.' },
+            { month: 'Bulan 6', title: 'Integrasi Ekosistem', desc: 'Finalisasi sinkronisasi data antar modul dan penyerahan laporan akhir ekosistem digital HRGA.' }
+        ],
+        pillars: [
+            { id: 'doors', name: 'DOORS Project', icon: 'door', desc: 'Sistem booking 14 ruang rapat dengan 1.000+ pengguna aktif.', metric: '0% Conflicts', tag: 'UI/UX' },
+            { id: 'ac', name: 'Facility Monitoring', icon: 'fan', desc: 'Pemantauan berkala unit AC gedung untuk efisiensi perawatan.', metric: 'Daily Sync', tag: 'Dashboard' }
+        ],
+        problemMap: [
+            { problem: 'Booking Kompleks', context: '6 langkah manual yang memakan waktu.', solution: 'Alur 4 Langkah', mitigation: 'Implementasi Tablet Booking di depan ruangan.' }
+        ],
+        stats: [
+            { label: 'Booking Speed', value: '+33%', description: 'Penyederhanakan alur kerja.' },
+            { label: 'Conflicts', value: 'Zero', description: 'Manajemen jadwal 600+ rapat.' }
+        ],
+        timeline: [
+            { phase: 'Project Doors', period: 'Bulan 1-3', activities: ['Research & UI Design', 'System Development', 'Iteration & Launch'] },
+            { phase: 'Facility Systems', period: 'Bulan 4-6', activities: ['Monitoring AC Dev', 'System Integration', 'Final Handoff'] }
+        ],
+        mitigationPlans: [
+            { risk: 'Data Inaccuracy', action: 'Validasi database real-time dan sinkronisasi otomatis.' }
+        ],
+        personas: [
+            { role: 'Meeting Organizer', pain: 'Sering terjadi double booking.', goal: 'Sistem yang transparan dan mudah diakses.' },
+            { role: 'Staff GA', pain: 'Sulit memantau kondisi aset kantor.', goal: 'Dashboard monitoring yang komprehensif.' }
+        ],
+        businessModel: [
+            { type: 'Operational Efficiency', value: 'Pengurangan waktu administratif hingga 20%.' },
+            { type: 'Data Integrity', value: 'Pelaporan yang 100% digital dan terverifikasi.' }
+        ],
+        beforeAfter: [
+            { aspect: 'Booking Process', before: 'Email/Manual log (6 steps).', after: 'Instant tablet/web booking (4 steps).' }
+        ],
+        vision: 'Meningkatkan efisiensi korporasi melalui ekosistem digital yang adaptif dan user-centric.',
+        status: 'COMPLETED',
+        uxOverview: 'Fokus pada "Zero Learning Curve" agar staff dapat beralih ke sistem digital tanpa hambatan.',
+        background: 'Selama 6 bulan di PT Dharma Polimetal Tbk, saya berkesempatan untuk terlibat langsung dalam inisiasi transformasi digital di departemen HR & GA. Fokus utama saya adalah membantu mengintegrasikan proses operasional yang sebelumnya terfragmentasi dan manual menjadi sebuah ekosistem digital yang kohesif, mencakup manajemen fasilitas hingga pelaporan kualitas secara real-time.',
+        keyHighlights: [
+            'Proyek "Doors": Optimasi alur booking ruang rapat dari 6 langkah menjadi 4 langkah instan.',
+            'Digitalisasi GA: Implementasi sistem monitoring perawatan AC beralih dari kertas ke cloud.',
+            'User-Centric Design: Mencapai skor SUS 72.5 melalui iterasi desain yang berfokus pada kemudahan penggunaan internal.',
+            'Efficiency Boost: Mengelola 600+ jadwal pertemuan tanpa konflik.'
+        ],
+        strategicAlignment: 'Menunjukkan kemampuan Product Management terintegrasi dengan Full-stack development.',
+        coreFeatures: [
+            { name: 'Doors Booking', desc: 'Sistem booking ruang rapat 4 langkah.' },
+            { name: 'AC Monitoring', desc: 'Pemantauan perawatan aset GA secara digital.' }
+        ],
+        designSystem: 'Corporate Tech. Fokus pada keterbacaan tinggi dan alur navigasi yang efisien untuk penggunaan internal.',
+        designTools: ['Figma', 'React', 'Supabase'],
+        researchMethods: ['User Interviews', 'Process Mapping', 'A/B Testing'],
+        team: [
+            { id: '99122022', name: 'Lukman Hawari Pratama', role: 'Department Head', email: 'lukman.pratama@dp.dharmap.com', dept: 'HRGA', subDept: 'HRMS', image: '/lukmanprofil.png' },
+            { id: '11240196', name: 'Listia Ningtias', role: 'Staff', email: 'listia.ningtias@dp.dharmap.com', dept: 'HRGA', subDept: 'HRMS', image: '/listiaprofil.png' },
+            { id: '11195854', name: 'Bagas Ardhi Pratama', role: 'Staff', email: 'bagas.pratama@dp.dharmap.com', dept: 'HRGA', subDept: 'HRMS', image: '/bagasprofil.png' },
+            { id: '11185354', name: 'Abdul Rohim', role: 'Staff', email: 'abdul.rohim@dp.dharmap.com', dept: 'HRGA', subDept: 'HRMS', image: '/rohimprofil.png' }
+        ],
+        futureTargets: [
+            { category: 'Immediate (2026)', items: ['Professional: Junior UI/UX Designer at Reputable Tech Firm', 'Skill: Google Professional UX Certificate Completion'] },
+            { category: 'Growth (2027-2028)', items: ['Professional: Mid-Level UI/UX Designer / Product Designer', 'Academic: Pursuing Masters (S2) in Business Management'] },
+            { category: 'Strategic (2029-2032)', items: ['Professional: Product Design Lead / Staff Specialist', 'Community: Industry Speaker & External Educator'] }
+        ],
+        kesan: 'Lingkungan kerja yang sangat mendukung pembelajaran teknis dan manajerial.',
+        saran: 'Terus meningkatkan sinkronisasi data antar departemen agar ekosistem digital semakin solid.',
+        translations: {
+            id: {
+                title: 'Studi Kasus: Magang Nasional',
+                category: 'UI/UX & System Dev',
+                tagline: 'Membangun Ekosistem Digital HR & GA selama 6 Bulan.',
+                description: 'Detail teknis dan manajerial dari perjalanan magang 6 bulan, mencakup optimasi sistem booking ruangan hingga kontrol kualitas laporan.'
+            }
+        }
+    }
 ];

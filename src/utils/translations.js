@@ -92,7 +92,10 @@ export const translations = {
                 { name: "UI/UX Intensive Bootcamp", issuer: "Rakamin Academy", date: "Jan 2024", desc: "Comprehensive training in UI/UX Design and Product Thinking." }
             ],
             skills: ['React', 'Tailwind CSS', 'Framer Motion', 'Figma', 'TypeScript', 'Node.js', 'PostgreSQL', 'UI/UX', 'Next.js', 'Vite'],
-            industriesList: ['Manufacturing', 'Digital Agency', 'EdTech', 'Enterprise', 'Hardware', 'E-Commerce']
+            industriesList: ['Manufacturing', 'Digital Agency', 'EdTech', 'Enterprise', 'Hardware', 'E-Commerce'],
+            youtubeHeader: "YOUTUBE_TRACKS",
+            youtubeTitle: "My Curated Tracks",
+            youtubeSubtitle: "Exploring soundscapes on YouTube"
         },
         projectDetail: {
             back: "Back to Projects",
@@ -240,7 +243,10 @@ export const translations = {
                 { name: "UI/UX Intensive Bootcamp", issuer: "Rakamin Academy", date: "Jan 2024", desc: "Pelatihan komprehensif dalam Desain UI/UX dan Product Thinking." }
             ],
             skills: ['React', 'Tailwind CSS', 'Framer Motion', 'Figma', 'TypeScript', 'Node.js', 'PostgreSQL', 'UI/UX', 'Next.js', 'Vite'],
-            industriesList: ['Manufaktur', 'Agensi Digital', 'EdTech', 'Enterprise', 'Hardware', 'E-Commerce']
+            industriesList: ['Manufaktur', 'Agensi Digital', 'EdTech', 'Enterprise', 'Hardware', 'E-Commerce'],
+            youtubeHeader: "TRACK_YOUTUBE",
+            youtubeTitle: "Playlist Pilihan",
+            youtubeSubtitle: "Menjelajahi musik di YouTube"
         },
         projectDetail: {
             back: "Kembali ke Proyek",

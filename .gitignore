@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 .env
+logtanya.txt
+logerror.txt

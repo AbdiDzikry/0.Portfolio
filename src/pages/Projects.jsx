@@ -20,7 +20,7 @@ const ListRow = ({ proj, index, onHover, isActive }) => {
             className="relative group cursor-pointer"
             onHoverStart={() => onHover(proj)}
             onHoverEnd={() => onHover(null)}
-            onClick={() => navigate(`/projects/${proj.id}`)}
+            onClick={() => navigate(proj.path || `/projects/${proj.id}`)}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.04, duration: 0.35 }}

@@ -1,11 +1,83 @@
-ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=testis3131&api_key=demo&format=json&limit=1:1  Failed to load resource: the server responded with a status of 403 ()
-installHook.js:1 Last.fm fetch error: Error: Last.fm API error: 403
-    at fetchNowPlaying (NowPlayingWidget.jsx:19:27)
-overrideMethod @ installHook.js:1
-ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=testis3131&api_key=demo&format=json&limit=1:1  Failed to load resource: the server responded with a status of 403 ()
-installHook.js:1 Last.fm fetch error: Error: Last.fm API error: 403
-    at fetchNowPlaying (NowPlayingWidget.jsx:19:27)
-overrideMethod @ installHook.js:1
-:5173/src/components/CatCursor.jsx?t=1774836108459:1  Failed to load resource: the server responded with a status of 404 (Not Found)
-installHook.js:1 [vite] Failed to reload /src/components/CatCursor.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
-overrideMethod @ installHook.js:1
+bisa buatkan 1 projek lagi tetapi ini projek presentasi dan bentuknya nanti mungkin agak mirip ppt
+
+detailnya seperti ini
+
+judul
+Laporan Akhir Magang Nasional
+
+Sulthan Abdi Dzikry
+
+===
+
+Konten/Daftar Isi:
+Profile & Struktur Organisasi
+Timeline Mggang
+Project/Activites
+Inisight
+Kesan & Saran
+Target
+
+===
+
+Profile
+Berisi data diri dan stuktur organisasi department tempat Magang
+
+Sulthan Abdi Dzikry
+Pribadi adaptif dengan latar belakang Teknik Informatika lulusan Telkom University yang memadukan wawasan desain strategis dengan kemampuan
+teknis. Berpengalaman dalam memimpin brief projek, manajemen produk terpadu, serta pengembangan sistem perusahaan.
+
+===
+
+Struktur Organisasi
+Menampilkan struktur organisasi divisi/department peserta magang ditempatkan  
+
+Lukman Hawari Pratama	99122022	HRGA	HRMS	Department Head	lukman.pratama@dp.dharmap.com
+Listia Ningtias	11240196	HRGA	HRMS	Staff	listia.ningtias@dp.dharmap.com	
+Bagas Ardhi Pratama	11195854	HRGA	HRMS	Staff	bagas.pratama@dp.dharmap.com	
+Abdul Rohim	11185354	HRGA	HRMS	Staff	abdul.rohim@dp.dharmap.com
+
+====
+
+Timeline
+Diisikan timeline besaran aktivitas yang dilakukan selama masa Magang
+
+ini isinya adalah berdasarkan dari projek doors selama 3 bulan, nanti berikan juga gambar thumbnail dari projek doors
+
+Seperti di bulan 1 apa hingga bulan ke 3
+
+nanti di bulan ke 4 hingga 6 pembuatan projek monitoring AC General affair dan juga projek LMK QC Report 
+
+bagian ini nanti akan kita lengkapi lengkapi
+
+===
+
+Project/Activities
+
+Penjelasan lebih detail mengenai project atau aktivitas yang dilakukan selama magang di bagian masing-masing.
+
+Latar Belakang Masalah (Analisa kondisi)
+Rencana Perbaikan
+Saran/Hasil Perbaikan
+
+note: ini nanti ambil dari projek doors juga
+
+===
+
+Insight
+ilmu yang didapat selama magang 
+
+===
+
+
+Berisikan hal-hal yang bisa diimprove dari sisi perusahaan atau hal-hal yang ditemui dalam proses kerja.
+
+Dan kesan yang dirasakan selama masa magang
+
+===
+
+Target
+
+Berisikan target diri jangka panjang dan jangka pendek.
+
+Dari sisi pendidikan dan juga karir.
+

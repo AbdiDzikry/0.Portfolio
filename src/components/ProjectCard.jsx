@@ -6,7 +6,7 @@ import './ProjectCard.css';
 
 const MotionLink = motion.create(Link);
 
-const ProjectCard = ({ id, title, category, description, tags, image, size = 'medium', viewMode = 'grid' }) => {
+const ProjectCard = ({ id, title, category, description, tags, image, size = 'medium', viewMode = 'grid', path }) => {
     const isList = viewMode === 'list';
     const ref = useRef(null);
 

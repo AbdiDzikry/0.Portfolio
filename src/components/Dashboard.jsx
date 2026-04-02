@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Linkedin, Mail, Download, Briefcase, Award, GraduationCap, Boxes } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
-import NowPlayingWidget from './NowPlayingWidget';
+import YouTubeWidget from './YouTubeWidget';
 import GitHubWidget from './GitHubWidget';
 import ScrollReveal from './ScrollReveal';
 
@@ -131,9 +131,9 @@ const Dashboard = () => {
                             </div>
                         </ScrollReveal>
 
-                        {/* SPOTIFY WIDGET */}
+                        {/* YOUTUBE PLAYLIST WIDGET */}
                         <ScrollReveal>
-                            <NowPlayingWidget username="testis3131" />
+                            <YouTubeWidget playlistUrl="https://music.youtube.com/playlist?list=PLIp8n4_3xp0ffGtM6pzcmGvNqzigNaWzY&si=Gyd-2FBr1xsHJacC" />
                         </ScrollReveal>
 
                     </div>{/* end left column */}
