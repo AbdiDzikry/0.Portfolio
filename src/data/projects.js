@@ -121,7 +121,7 @@
     },
     {
         id: 'ac-monitoring',
-        title: 'AC Monitoring',
+        title: 'LaporAC',
         category: 'UI/UX Design',
         image: '/projects/9. AC Monitoring/ac.1.png',
         showcaseImages: [
@@ -287,7 +287,7 @@
     },
     {
         id: 'lmk-qc-report',
-        title: 'LMK QC Report',
+        title: 'LMK QC',
         category: 'Quality Control',
         image: '/projects/10. LMK QC Report/1.qc.png',
         showcaseImages: [

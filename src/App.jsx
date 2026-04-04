@@ -14,6 +14,7 @@ import ProjectDetail from './pages/ProjectDetail';
 import CaseStudies from './pages/CaseStudies';
 import Lab from './pages/Lab';
 import Presentation from './pages/Presentation';
+import Tools from './pages/Tools';
 import { AnimatePresence } from 'framer-motion';
 import PageTransition from './components/PageTransition';
 
@@ -34,6 +35,7 @@ function AppContent() {
             <Route path="/projects/:id" element={<PageTransition><ProjectDetail /></PageTransition>} />
             <Route path="/case-studies" element={<PageTransition><CaseStudies /></PageTransition>} />
             <Route path="/lab" element={<PageTransition><Lab /></PageTransition>} />
+            <Route path="/tools" element={<PageTransition><Tools /></PageTransition>} />
             <Route path="/presentation" element={<Presentation />} />
           </Routes>
         </AnimatePresence>

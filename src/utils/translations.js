@@ -6,6 +6,7 @@ export const translations = {
             projects: "Projects",
             caseStudies: "Ideas",
             lab: "Lab",
+            tools: "Tools",
             projectsTitle: "Selected Works",
             projectsSubtitle: "A collection of design & development projects.",
             gridView: "Grid",
@@ -41,6 +42,68 @@ export const translations = {
             subtitle: "Strategic challenges at the intersection of logic and creativity.",
             metaTitle: "Lab & Digital Playground",
             metaDesc: "Digital Playground and experimental projects: 2048 Game, Widgets, and more."
+        },
+        tools: {
+            title: "Tools",
+            subtitle: "Productivity tools and widgets to help you stay focused and organized.",
+            metaTitle: "Tools - Productivity & Widgets",
+            metaDesc: "Personal productivity tools: Time Tracker, Task Manager, Habit Tracker, and useful widgets.",
+            tabs: {
+                tasks: "Tasks",
+                habits: "Habits",
+                timer: "Timer",
+                widgets: "Widgets"
+            },
+            tasks: {
+                title: "Task Tracker",
+                subtitle: "Track your daily tasks and activities",
+                addTask: "Add task...",
+                addNote: "Add a note about this activity...",
+                noTasks: "No tasks yet. Start your day by adding a task!",
+                completed: "completed",
+                delete: "Delete",
+                edit: "Edit",
+                today: "Today",
+                week: "This Week",
+                total: "Total Tasks",
+                completionRate: "Completion Rate"
+            },
+            habits: {
+                title: "Habit Tracker",
+                subtitle: "Build consistency, track your streaks",
+                addHabit: "Add new habit...",
+                noHabits: "No habits yet. Start building good habits!",
+                streak: "day streak",
+                currentStreak: "Current Streak",
+                bestStreak: "Best Streak",
+                completionRate: "Completion Rate",
+                delete: "Delete",
+                days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+            },
+            timer: {
+                title: "Focus Timer",
+                subtitle: "Stay focused, track your time",
+                start: "Start",
+                pause: "Pause",
+                reset: "Reset",
+                work: "Work",
+                shortBreak: "Short Break",
+                longBreak: "Long Break",
+                sessions: "Sessions",
+                totalFocus: "Total Focus Time",
+                today: "Today",
+                week: "This Week"
+            },
+            widgets: {
+                title: "Widgets",
+                subtitle: "Music, GitHub activity, and more",
+                githubUsername: "GitHub Username",
+                setGithubUsername: "Set your GitHub username",
+                save: "Save",
+                nowPlaying: "Now Playing",
+                githubActivity: "GitHub Activity",
+                youtubePlaylist: "YouTube Playlist"
+            }
         },
         chat: {
             greet: "Hello! I'm Ningsih, Sulthan Abdi Dzikry's Digital Partner. How can I help you today?",
@@ -157,6 +220,7 @@ export const translations = {
             projects: "Proyek",
             caseStudies: "Ide",
             lab: "Lab",
+            tools: "Tools",
             projectsTitle: "Karya Terpilih",
             projectsSubtitle: "Kumpulan proyek desain & pengembangan.",
             gridView: "Grid",
@@ -192,6 +256,68 @@ export const translations = {
             subtitle: "Tantangan strategis di persimpangan logika dan kreativitas.",
             metaTitle: "Lab & Eksperimen Digital",
             metaDesc: "Taman bermain digital dan proyek eksperimental: Game 2048, Widget, dan lainnya."
+        },
+        tools: {
+            title: "Tools",
+            subtitle: "Alat produktivitas dan widget untuk membantu Anda tetap fokus dan terorganisir.",
+            metaTitle: "Tools - Produktivitas & Widget",
+            metaDesc: "Alat produktivitas pribadi: Time Tracker, Task Manager, Habit Tracker, dan widget berguna.",
+            tabs: {
+                tasks: "Tugas",
+                habits: "Kebiasaan",
+                timer: "Timer",
+                widgets: "Widget"
+            },
+            tasks: {
+                title: "Task Tracker",
+                subtitle: "Lacak tugas dan aktivitas harian Anda",
+                addTask: "Tambah tugas...",
+                addNote: "Tambah catatan tentang aktivitas ini...",
+                noTasks: "Belum ada tugas. Mulai hari dengan menambahkan tugas!",
+                completed: "selesai",
+                delete: "Hapus",
+                edit: "Edit",
+                today: "Hari Ini",
+                week: "Minggu Ini",
+                total: "Total Tugas",
+                completionRate: "Tingkat Penyelesaian"
+            },
+            habits: {
+                title: "Habit Tracker",
+                subtitle: "Bangun konsistensi, lacak streak Anda",
+                addHabit: "Tambah kebiasaan baru...",
+                noHabits: "Belum ada kebiasaan. Mulai bangun kebiasaan baik!",
+                streak: "hari streak",
+                currentStreak: "Streak Saat Ini",
+                bestStreak: "Streak Terbaik",
+                completionRate: "Tingkat Penyelesaian",
+                delete: "Hapus",
+                days: ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"]
+            },
+            timer: {
+                title: "Focus Timer",
+                subtitle: "Tetap fokus, lacak waktu Anda",
+                start: "Mulai",
+                pause: "Jeda",
+                reset: "Reset",
+                work: "Kerja",
+                shortBreak: "Istirahat Pendek",
+                longBreak: "Istirahat Panjang",
+                sessions: "Sesi",
+                totalFocus: "Total Waktu Fokus",
+                today: "Hari Ini",
+                week: "Minggu Ini"
+            },
+            widgets: {
+                title: "Widget",
+                subtitle: "Musik, aktivitas GitHub, dan lainnya",
+                githubUsername: "Username GitHub",
+                setGithubUsername: "Atur username GitHub Anda",
+                save: "Simpan",
+                nowPlaying: "Sedang Diputar",
+                githubActivity: "Aktivitas GitHub",
+                youtubePlaylist: "Playlist YouTube"
+            }
         },
         chat: {
             greet: "Halo! Saya Ningsih, Partner Digital dari Sulthan Abdi Dzikry. Ada yang bisa saya bantu diskusikan hari ini?",

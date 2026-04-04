@@ -80,6 +80,7 @@ const Navbar = ({ onChatToggle }) => {
                         <NavLink to="/profile" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.profile}</NavLink>
                         <NavLink to="/projects" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.projects}</NavLink>
                         <NavLink to="/case-studies" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.caseStudies}</NavLink>
+                        <NavLink to="/tools" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.tools}</NavLink>
                     </div>
 
                     <div className="flex items-center gap-1">
@@ -140,6 +141,7 @@ const Navbar = ({ onChatToggle }) => {
                             <MobileNavItem to="/profile">{t.nav.profile}</MobileNavItem>
                             <MobileNavItem to="/projects">{t.nav.projects}</MobileNavItem>
                             <MobileNavItem to="/case-studies">{t.nav.caseStudies}</MobileNavItem>
+                            <MobileNavItem to="/tools">{t.nav.tools}</MobileNavItem>
                         </motion.div>
                     )}
                 </AnimatePresence>
