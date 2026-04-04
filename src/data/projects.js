@@ -1,4 +1,4 @@
-export const projectsData = [
+﻿export const projectsData = [
     {
         id: 'doors',
         title: 'Doors',
@@ -116,6 +116,333 @@ export const projectsData = [
                     { phase: 'Design', period: '29 Okt - 14 Jan', activities: ['Arsitektur Informasi', 'Paper Prototyping', 'Wireframing Cepat'] },
                     { phase: 'Iterating', period: '29 Okt - 14 Jan', activities: ['Usability Testing (SUS)', 'Penyempurnaan UI/UX', 'Handoff Final'] }
                 ]
+            }
+        }
+    },
+    {
+        id: 'ac-monitoring',
+        title: 'AC Monitoring',
+        category: 'UI/UX Design',
+        image: '/projects/9. AC Monitoring/ac.1.png',
+        showcaseImages: [
+            '/projects/9. AC Monitoring/ac.1.png',
+            '/projects/9. AC Monitoring/ac.2.png',
+            '/projects/9. AC Monitoring/ac.3.png',
+            '/projects/9. AC Monitoring/ac.4.png',
+            '/projects/9. AC Monitoring/ac.5.png',
+            '/projects/9. AC Monitoring/ac.6.png',
+            '/projects/9. AC Monitoring/ac.7.png',
+            '/projects/9. AC Monitoring/ac.8.png',
+            '/projects/9. AC Monitoring/ac.9.png',
+            '/projects/9. AC Monitoring/ac.10.png'
+        ],
+        tagline: 'Digital Facility Asset Monitoring System.',
+        description: 'A centralized monitoring system for AC maintenance across departments at PT Dharma Polimetal Tbk., transitioning from manual paper-based tracking to a cloud-based digital dashboard.',
+        problem: 'Facility staff struggled to monitor AC unit conditions across multiple departments manually. Maintenance was unscheduled, leading to higher risk of asset damage and inefficient upkeep.',
+        solution: 'Developed a comprehensive AC monitoring dashboard with automatic maintenance scheduling and real-time asset status tracking, enabling cross-department visibility and proactive facility management.',
+        impact: 'Streamlined asset maintenance processes, improved cross-department data synchronization, and ensured technical data integrity for all AC units.',
+        tags: ['UI/UX Design', 'Dashboard', 'Facility Management', 'Figma', 'Digitalization'],
+        size: 'medium',
+        problemMap: [
+            {
+                problem: 'Manual Asset Tracking',
+                context: "AC unit conditions were tracked manually on paper, prone to data loss and delays.",
+                solution: 'Digital Dashboard',
+                mitigation: 'Centralized cloud-based system with real-time updates and notifications.'
+            },
+            {
+                problem: 'Unscheduled Maintenance',
+                context: "Maintenance was reactive, only done when AC units broke down.",
+                solution: 'Proactive Scheduling',
+                mitigation: 'Automated maintenance calendar with reminders and history tracking.'
+            },
+            {
+                problem: 'Limited Cross-Department Visibility',
+                context: "Each department tracked their own AC units independently.",
+                solution: 'Unified Monitoring System',
+                mitigation: 'Single dashboard showing all AC units across all departments.'
+            }
+        ],
+        stats: [
+            { label: 'Asset Coverage', value: '100%', description: 'All AC units monitored digitally.' },
+            { label: 'Sync Frequency', value: 'Daily', description: 'Real-time data updates.' },
+            { label: 'Departments', value: 'Multi', description: 'Cross-department visibility.' },
+            { label: 'Efficiency', value: '+40%', description: 'Maintenance scheduling improvement.' }
+        ],
+        timeline: [
+            { phase: 'Research', period: 'Week 1-2', activities: ['Stakeholder interviews', 'Current process analysis', 'Pain point mapping'] },
+            { phase: 'Design', period: 'Week 3-4', activities: ['Information architecture', 'Wireframing', 'UI design'] },
+            { phase: 'Development', period: 'Week 5-6', activities: ['Dashboard implementation', 'Data integration', 'Testing & iteration'] }
+        ],
+        mitigationPlans: [
+            { risk: 'Data Inaccuracy', action: 'Implement real-time database validation and automatic synchronization.' },
+            { risk: 'User Adoption', action: 'Conduct training sessions and create user-friendly onboarding flow.' }
+        ],
+        personas: [
+            { role: 'Facility Staff', pain: 'Difficult to monitor office asset conditions manually.', goal: 'Comprehensive monitoring dashboard that is easy to access.' },
+            { role: 'Department Head', pain: 'No visibility across departments.', goal: 'Centralized system for monitoring all facilities.' }
+        ],
+        businessModel: [
+            { type: 'Operational Efficiency', value: 'Reduction in administrative time up to 40% through automated scheduling.' },
+            { type: 'Asset Longevity', value: 'Proactive maintenance extends AC unit lifespan and reduces replacement costs.' }
+        ],
+        beforeAfter: [
+            { aspect: 'Monitoring Method', before: 'Manual paper-based tracking', after: 'Digital cloud-based dashboard' },
+            { aspect: 'Scheduling', before: 'Unscheduled/reactive maintenance', after: 'Proactive automatic scheduling' },
+            { aspect: 'Data Visibility', before: 'Limited to individual departments', after: 'Cross-department centralized view' },
+            { aspect: 'Asset Management', before: 'High risk of unnoticed damage', after: 'Proactive condition monitoring' }
+        ],
+        vision: 'To optimize facility maintenance efficiency through adaptive and user-centric digital asset monitoring.',
+        status: 'COMPLETED',
+        team: 'Sulthan Abdi Dzikry (Product Designer)',
+        background: 'During my internship at PT Dharma Polimetal Tbk., I was tasked to digitize the AC maintenance monitoring process that was previously still using a manual paper-based system. This project became an expansion of the HRGA digital ecosystem after the success of the Doors project.',
+        strategicAlignment: 'Demonstrates ability to digitize manual processes into efficient and integrated systems.',
+        investmentRequired: '6 Weeks Design & Development / 1 Product Designer',
+        assumptions: '1. Staff will prefer digital dashboard over paper for daily monitoring.\n2. Cross-department data sharing will improve maintenance coordination.',
+        productArchitecture: 'React (Frontend), Supabase (Database & Auth), Node.js (API)',
+        coreFeatures: [
+            { name: 'Centralized Dashboard', desc: 'Single view for all AC unit statuses across departments.' },
+            { name: 'Maintenance Scheduling', desc: 'Automatic scheduling for routine maintenance and servicing.' },
+            { name: 'Asset Database', desc: 'Comprehensive database of all AC units with technical specifications.' },
+            { name: 'Status Tracking', desc: 'Real-time monitoring of AC conditions and maintenance history.' }
+        ],
+        designSystem: 'Corporate dashboard design with focus on data readability and efficient navigation for internal use. Clean layout with clear visual hierarchy.',
+        designTools: ['Figma (UI/Prototyping)', 'FigJam (Process Mapping)', 'Paper & Pen (Wireframing)'],
+        researchMethods: ['Contextual Inquiry', 'Process Mapping', 'User Flow Design'],
+        uxOverview: 'Dashboard-first interface with real-time data visualization. Focus on clarity and quick decision-making for facility staff.',
+        translations: {
+            id: {
+                tagline: 'Sistem Monitoring Aset Fasilitas Digital.',
+                description: 'Sistem monitoring terpusat untuk perawatan AC lintas departemen di PT Dharma Polimetal Tbk., transisi dari pencatatan manual berbasis kertas ke dashboard digital berbasis cloud.',
+                problem: 'Staff GA kesulitan memantau kondisi unit AC antar departemen secara manual. Perawatan tidak terjadwal, menyebabkan risiko kerusakan aset lebih tinggi dan perawatan yang tidak efisien.',
+                solution: 'Mengembangkan dashboard monitoring AC yang komprehensif dengan penjadwalan perawatan otomatis dan pelacakan status aset real-time, memungkinkan visibilitas lintas departemen dan manajemen fasilitas yang proaktif.',
+                impact: 'Merampingkan proses perawatan aset, meningkatkan sinkronisasi data lintas departemen, dan memastikan integritas data teknis untuk semua unit AC.',
+                problemMap: [
+                    {
+                        problem: 'Pelacakan Aset Manual',
+                        context: "Kondisi unit AC dicatat manual di kertas, rentan terhadap kehilangan data dan keterlambatan.",
+                        solution: 'Dashboard Digital',
+                        mitigation: 'Sistem berbasis cloud terpusat dengan update dan notifikasi real-time.'
+                    },
+                    {
+                        problem: 'Perawatan Tidak Terjadwal',
+                        context: "Perawatan hanya dilakukan saat AC sudah rusak.",
+                        solution: 'Penjadwalan Proaktif',
+                        mitigation: 'Kalender perawatan otomatis dengan pengingat dan pelacakan riwayat.'
+                    },
+                    {
+                        problem: 'Visibilitas Lintas Departemen Terbatas',
+                        context: "Setiap departemen melacak unit AC mereka sendiri-sendiri.",
+                        solution: 'Sistem Monitoring Terpadu',
+                        mitigation: 'Dashboard tunggal menampilkan semua unit AC di semua departemen.'
+                    }
+                ],
+                stats: [
+                    { label: 'Cakupan Aset', value: '100%', description: 'Semua unit AC terpantau secara digital.' },
+                    { label: 'Frekuensi Sync', value: 'Harian', description: 'Update data real-time.' },
+                    { label: 'Departemen', value: 'Multi', description: 'Visibilitas lintas departemen.' },
+                    { label: 'Efisiensi', value: '+40%', description: 'Peningkatan penjadwalan perawatan.' }
+                ],
+                timeline: [
+                    { phase: 'Riset', period: 'Minggu 1-2', activities: ['Wawancara stakeholder', 'Analisis proses saat ini', 'Pemetaan pain point'] },
+                    { phase: 'Desain', period: 'Minggu 3-4', activities: ['Arsitektur informasi', 'Wireframing', 'Desain UI'] },
+                    { phase: 'Pengembangan', period: 'Minggu 5-6', activities: ['Implementasi dashboard', 'Integrasi data', 'Testing & iterasi'] }
+                ],
+                mitigationPlans: [
+                    { risk: 'Akurasi Data', action: 'Menerapkan validasi database real-time dan sinkronisasi otomatis.' },
+                    { risk: 'Adopsi User', action: 'Mengadakan sesi pelatihan dan membuat alur onboarding yang user-friendly.' }
+                ],
+                personas: [
+                    { role: 'Staff Fasilitas', pain: 'Sulit memantau kondisi aset kantor secara manual.', goal: 'Dashboard monitoring yang komprehensif dan mudah diakses.' },
+                    { role: 'Kepala Departemen', pain: 'Tidak ada visibilitas lintas departemen.', goal: 'Sistem terpusat untuk monitoring semua fasilitas.' }
+                ],
+                businessModel: [
+                    { type: 'Efisiensi Operasional', value: 'Pengurangan waktu administratif hingga 40% melalui penjadwalan otomatis.' },
+                    { type: 'Umur Aset', value: 'Perawatan proaktif memperpanjang umur unit AC dan mengurangi biaya penggantian.' }
+                ],
+                beforeAfter: [
+                    { aspect: 'Metode Monitoring', before: 'Pencatatan manual berbasis kertas', after: 'Dashboard digital berbasis cloud' },
+                    { aspect: 'Penjadwalan', before: 'Perawatan reaktif/tidak terjadwal', after: 'Penjadwalan otomatis proaktif' },
+                    { aspect: 'Visibilitas Data', before: 'Terbatas per departemen', after: 'Tampilan terpusat lintas departemen' },
+                    { aspect: 'Manajemen Aset', before: 'Risiko tinggi kerusakan tidak terdeteksi', after: 'Monitoring kondisi proaktif' }
+                ],
+                vision: 'Mengoptimalkan efisiensi perawatan fasilitas melalui digitalisasi monitoring aset yang adaptif dan user-centric.',
+                background: 'Selama magang di PT Dharma Polimetal Tbk., saya ditugaskan untuk mendigitalisasi proses monitoring perawatan AC yang sebelumnya masih menggunakan sistem manual berbasis kertas. Proyek ini menjadi ekspansi dari ekosistem digital HRGA setelah keberhasilan proyek Doors.',
+                strategicAlignment: 'Menunjukkan kemampuan dalam mendigitalisasi proses manual menjadi sistem yang efisien dan terintegrasi.',
+                investmentRequired: '6 Minggu Desain & Pengembangan',
+                assumptions: '1. Staff lebih memilih dashboard digital daripada kertas untuk monitoring harian.\n2. Berbagi data lintas departemen akan meningkatkan koordinasi perawatan.',
+                productArchitecture: 'React (Frontend), Supabase (Database & Auth), Node.js (API)',
+                coreFeatures: [
+                    { name: 'Dashboard Terpusat', desc: 'Tampilan tunggal untuk semua status unit AC lintas departemen.' },
+                    { name: 'Penjadwalan Perawatan', desc: 'Penjadwalan otomatis untuk perawatan dan servicing rutin.' },
+                    { name: 'Database Aset', desc: 'Database komprehensif semua unit AC dengan spesifikasi teknis.' },
+                    { name: 'Pelacakan Status', desc: 'Monitoring real-time kondisi dan riwayat perawatan AC.' }
+                ],
+                designSystem: 'Desain dashboard korporat dengan fokus pada keterbacaan data dan navigasi efisien untuk penggunaan internal. Layout bersih dengan hierarki visual yang jelas.',
+                designTools: ['Figma (UI/Prototyping)', 'FigJam (Pemetaan Proses)', 'Paper & Pen (Wireframing)'],
+                researchMethods: ['Contextual Inquiry', 'Process Mapping', 'User Flow Design'],
+                uxOverview: 'Interface berbasis dashboard dengan visualisasi data real-time. Fokus pada kejelasan dan pengambilan keputusan cepat untuk staff fasilitas.'
+            }
+        }
+    },
+    {
+        id: 'lmk-qc-report',
+        title: 'LMK QC Report',
+        category: 'Quality Control',
+        image: '/projects/10. LMK QC Report/1.qc.png',
+        showcaseImages: [
+            '/projects/10. LMK QC Report/1.qc.png',
+            '/projects/10. LMK QC Report/2.qc.png',
+            '/projects/10. LMK QC Report/3.qc.png',
+            '/projects/10. LMK QC Report/4.qc.png',
+            '/projects/10. LMK QC Report/5.qc.png'
+        ],
+        tagline: 'Quality Control Reporting & Documentation System.',
+        description: 'A structured quality control reporting system for LMK (Lembaga Masyarakat Kecamatan) to streamline inspection processes and ensure consistent quality documentation across projects.',
+        problem: 'QC reporting was fragmented and inconsistent, making it difficult to track quality metrics and maintain standardized documentation across different project sites.',
+        solution: 'Designed a unified QC reporting template with standardized metrics, visual documentation workflow, and centralized tracking for quality assurance compliance.',
+        impact: 'Improved QC documentation consistency, reduced reporting time, and enabled better quality tracking across all LMK project sites.',
+        tags: ['Quality Control', 'Documentation', 'Process Optimization', 'Figma', 'Standardization'],
+        size: 'medium',
+        problemMap: [
+            {
+                problem: 'Inconsistent Reporting',
+                context: "QC reports varied across sites with no standardized format.",
+                solution: 'Unified Template',
+                mitigation: 'Created standardized QC report template with mandatory fields and consistent structure.'
+            },
+            {
+                problem: 'Manual Documentation',
+                context: "Photo documentation and metrics were scattered across multiple channels.",
+                solution: 'Centralized System',
+                mitigation: 'Single source of truth for all QC documentation with version control.'
+            },
+            {
+                problem: 'Tracking Difficulty',
+                context: "Hard to track quality trends and identify recurring issues.",
+                solution: 'Visual Dashboard',
+                mitigation: 'Dashboard view for quick quality overview and issue identification.'
+            }
+        ],
+        stats: [
+            { label: 'Reports Standardized', value: '100%', description: 'All sites using unified template.' },
+            { label: 'Reporting Time', value: '-30%', description: 'Faster QC documentation process.' },
+            { label: 'Issue Tracking', value: 'Real-time', description: 'Immediate visibility of quality issues.' },
+            { label: 'Compliance', value: 'Improved', description: 'Better quality assurance compliance.' }
+        ],
+        timeline: [
+            { phase: 'Analysis', period: 'Week 1', activities: ['Current process audit', 'Stakeholder interviews', 'Gap analysis'] },
+            { phase: 'Design', period: 'Week 2-3', activities: ['Template design', 'Workflow mapping', 'Review cycle'] },
+            { phase: 'Implementation', period: 'Week 4', activities: ['Template rollout', 'Training', 'Feedback iteration'] }
+        ],
+        mitigationPlans: [
+            { risk: 'Adoption Resistance', action: 'Conduct training sessions and provide hands-on support during transition.' },
+            { risk: 'Data Consistency', action: 'Implement validation rules and mandatory fields in reporting template.' }
+        ],
+        personas: [
+            { role: 'QC Inspector', pain: 'Inconsistent templates make reporting tedious and error-prone.', goal: 'Streamlined process with clear guidelines.' },
+            { role: 'Project Manager', pain: 'Difficulty tracking quality across multiple sites.', goal: 'Centralized view of all QC metrics and issues.' }
+        ],
+        businessModel: [
+            { type: 'Process Efficiency', value: 'Reduced reporting time allows inspectors to focus on actual quality checks.' },
+            { type: 'Quality Assurance', value: 'Standardized reporting improves compliance and audit readiness.' }
+        ],
+        beforeAfter: [
+            { aspect: 'Reporting Format', before: 'Varied templates across sites', after: 'Unified standardized template' },
+            { aspect: 'Documentation', before: 'Scattered photos and notes', after: 'Centralized structured documentation' },
+            { aspect: 'Issue Tracking', before: 'Manual follow-up required', after: 'Real-time visibility and alerts' },
+            { aspect: 'Compliance', before: 'Inconsistent quality records', after: 'Standardized audit-ready documentation' }
+        ],
+        vision: 'To establish a culture of consistent quality control through standardized documentation and transparent reporting across all LMK project sites.',
+        status: 'COMPLETED',
+        team: 'Sulthan Abdi Dzikry (Product Designer)',
+        background: 'During my work with LMK projects, I identified that quality control reporting lacked standardization across different sites. This inconsistency made it challenging to maintain quality standards and track improvement areas. I designed a unified QC reporting system to address these gaps.',
+        strategicAlignment: 'Demonstrates ability to optimize operational processes through thoughtful documentation design and standardization.',
+        investmentRequired: '4 Weeks Design & Implementation / 1 Product Designer',
+        assumptions: '1. Inspectors will benefit from structured templates over free-form reporting.\n2. Centralized documentation will improve cross-site quality visibility.',
+        productArchitecture: 'Figma (Template Design), Google Workspace (Documentation & Sharing)',
+        coreFeatures: [
+            { name: 'Standardized Template', desc: 'Unified QC report format with mandatory fields and visual guidelines.' },
+            { name: 'Photo Documentation', desc: 'Structured photo evidence with metadata and timestamp.' },
+            { name: 'Issue Tracker', desc: 'Categorized issue logging with severity levels and status tracking.' },
+            { name: 'Summary Dashboard', desc: 'Quick overview of quality metrics across all sites.' }
+        ],
+        designSystem: 'Clean, professional layout with clear visual hierarchy. Uses tables and structured grids for data readability. Color-coded severity indicators for quick issue identification.',
+        designTools: ['Figma (Template Design)', 'Google Sheets (Data Structure)', 'FigJam (Process Mapping)'],
+        researchMethods: ['Process Observation', 'Stakeholder Interviews', 'Template Iteration'],
+        uxOverview: 'Form-based reporting interface with clear sections for different QC aspects. Emphasis on quick data entry and visual documentation attachment.',
+        translations: {
+            id: {
+                tagline: 'Sistem Pelaporan & Dokumentasi Quality Control.',
+                description: 'Sistem pelaporan quality control terstruktur untuk LMK (Lembaga Masyarakat Kecamatan) untuk merampingkan proses inspeksi dan memastikan dokumentasi kualitas yang konsisten di seluruh proyek.',
+                problem: 'Pelaporan QC terfragmentasi dan tidak konsisten, menyulitkan pelacakan metrik kualitas dan menjaga dokumentasi standar di berbagai lokasi proyek.',
+                solution: 'Mendesain template pelaporan QC terpadu dengan metrik standar, alur kerja dokumentasi visual, dan pelacakan terpusat untuk kepatuhan jaminan kualitas.',
+                impact: 'Meningkatkan konsistensi dokumentasi QC, mengurangi waktu pelaporan, dan memungkinkan pelacakan kualitas yang lebih baik di seluruh lokasi proyek LMK.',
+                problemMap: [
+                    {
+                        problem: 'Pelaporan Tidak Konsisten',
+                        context: "Laporan QC berbeda-beda di tiap lokasi tanpa format standar.",
+                        solution: 'Template Terpadu',
+                        mitigation: 'Membuat template laporan QC standar dengan field wajib dan struktur konsisten.'
+                    },
+                    {
+                        problem: 'Dokumentasi Manual',
+                        context: "Dokumentasi foto dan metrik tersebar di berbagai channel.",
+                        solution: 'Sistem Terpusat',
+                        mitigation: 'Single source of truth untuk semua dokumentasi QC dengan version control.'
+                    },
+                    {
+                        problem: 'Kesulitan Pelacakan',
+                        context: "Sulit melacak tren kualitas dan mengidentifikasi masalah berulang.",
+                        solution: 'Dashboard Visual',
+                        mitigation: 'Tampilan dashboard untuk overview kualitas cepat dan identifikasi masalah.'
+                    }
+                ],
+                stats: [
+                    { label: 'Laporan Terstandarisasi', value: '100%', description: 'Semua lokasi menggunakan template terpadu.' },
+                    { label: 'Waktu Pelaporan', value: '-30%', description: 'Proses dokumentasi QC lebih cepat.' },
+                    { label: 'Pelacakan Masalah', value: 'Real-time', description: 'Visibilitas langsung masalah kualitas.' },
+                    { label: 'Kepatuhan', value: 'Meningkat', description: 'Kepatuhan jaminan kualitas lebih baik.' }
+                ],
+                timeline: [
+                    { phase: 'Analisis', period: 'Minggu 1', activities: ['Audit proses saat ini', 'Wawancara stakeholder', 'Analisis gap'] },
+                    { phase: 'Desain', period: 'Minggu 2-3', activities: ['Desain template', 'Pemetaan alur kerja', 'Siklus review'] },
+                    { phase: 'Implementasi', period: 'Minggu 4', activities: ['Rollout template', 'Pelatihan', 'Iterasi feedback'] }
+                ],
+                mitigationPlans: [
+                    { risk: 'Penolakan Adopsi', action: 'Mengadakan sesi pelatihan dan memberikan dukungan hands-on selama transisi.' },
+                    { risk: 'Konsistensi Data', action: 'Menerapkan aturan validasi dan field wajib di template pelaporan.' }
+                ],
+                personas: [
+                    { role: 'Inspektur QC', pain: 'Template tidak konsisten membuat pelaporan melelahkan dan rawan error.', goal: 'Proses yang efisien dengan panduan jelas.' },
+                    { role: 'Manajer Proyek', pain: 'Kesulitan melacak kualitas di banyak lokasi.', goal: 'Tampilan terpusat semua metrik QC dan masalah.' }
+                ],
+                businessModel: [
+                    { type: 'Efisiensi Proses', value: 'Pengurangan waktu pelaporan memungkinkan inspektur fokus pada pengecekan kualitas aktual.' },
+                    { type: 'Jaminan Kualitas', value: 'Pelaporan terstandarisasi meningkatkan kepatuhan dan kesiapan audit.' }
+                ],
+                beforeAfter: [
+                    { aspect: 'Format Pelaporan', before: 'Template berbeda-beda di tiap lokasi', after: 'Template terstandarisasi terpadu' },
+                    { aspect: 'Dokumentasi', before: 'Foto dan catatan tersebar', after: 'Dokumentasi terstruktur terpusat' },
+                    { aspect: 'Pelacakan Masalah', before: 'Follow-up manual diperlukan', after: 'Visibilitas real-time dan alert' },
+                    { aspect: 'Kepatuhan', before: 'Rekaman kualitas tidak konsisten', after: 'Dokumentasi standar siap audit' }
+                ],
+                vision: 'Membangun budaya quality control yang konsisten melalui dokumentasi standar dan pelaporan transparan di seluruh lokasi proyek LMK.',
+                background: 'Selama bekerja dengan proyek LMK, saya mengidentifikasi bahwa pelaporan quality control kurang standarisasi di berbagai lokasi. Inkonsistensi ini menyulitkan menjaga standar kualitas dan melacak area perbaikan. Saya mendesain sistem pelaporan QC terpadu untuk mengatasi celah-celah ini.',
+                strategicAlignment: 'Menunjukkan kemampuan mengoptimasi proses operasional melalui desain dokumentasi yang thoughtfull dan standarisasi.',
+                investmentRequired: '4 Minggu Desain & Implementasi',
+                assumptions: '1. Inspektur akan mendapat manfaat dari template terstruktur dibanding pelaporan bebas.\n2. Dokumentasi terpusat akan meningkatkan visibilitas kualitas lintas lokasi.',
+                productArchitecture: 'Figma (Desain Template), Google Workspace (Dokumentasi & Sharing)',
+                coreFeatures: [
+                    { name: 'Template Terstandarisasi', desc: 'Format laporan QC terpadu dengan field wajib dan panduan visual.' },
+                    { name: 'Dokumentasi Foto', desc: 'Bukti foto terstruktur dengan metadata dan timestamp.' },
+                    { name: 'Pelacak Masalah', desc: 'Pencatatan masalah terkategori dengan level severity dan tracking status.' },
+                    { name: 'Dashboard Ringkasan', desc: 'Overview cepat metrik kualitas di seluruh lokasi.' }
+                ],
+                designSystem: 'Layout bersih dan profesional dengan hierarki visual jelas. Menggunakan tabel dan grid terstruktur untuk keterbacaan data. Indikator severity berwarna untuk identifikasi masalah cepat.',
+                designTools: ['Figma (Desain Template)', 'Google Sheets (Struktur Data)', 'FigJam (Pemetaan Proses)'],
+                researchMethods: ['Observasi Proses', 'Wawancara Stakeholder', 'Iterasi Template'],
+                uxOverview: 'Interface pelaporan berbasis form dengan section jelas untuk aspek QC berbeda. Penekanan pada entry data cepat dan attachment dokumentasi visual.'
             }
         }
     },
@@ -1135,3 +1462,4 @@ export const projectsData = [
         }
     }
 ];
+

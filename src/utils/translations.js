@@ -46,7 +46,7 @@ export const translations = {
             greet: "Hello! I'm Ningsih, Sulthan Abdi Dzikry's Digital Partner. How can I help you today?",
             online: "Online",
             inputPlaceholder: "Ask Ningsih...",
-            poweredBy: "Powered by Gemini AI • Responses may be generated",
+            poweredBy: "Powered by Sulthan AI • Responses may be generated",
             expand: "Expand to Sidebar",
             collapse: "Collapse"
         },
