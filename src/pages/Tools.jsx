@@ -64,33 +64,18 @@ const Tools = () => {
                             <p className="text-xs text-text-muted">Curated Playlist</p>
                         </div>
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        {/* Naga GIF Section */}
-                        <div className="col-span-1 bg-bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-2xl p-5 flex items-center justify-center">
-                            <div className="relative">
-                                <div className="absolute inset-0 bg-purple-500/10 rounded-2xl blur-xl" />
-                                <img
-                                    src="/naga.gif"
-                                    alt="Dragon Animation"
-                                    className="relative w-32 h-32 object-contain"
-                                />
-                            </div>
-                        </div>
-
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                         {/* Cat GIF Section */}
-                        <div className="col-span-1 bg-bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-2xl p-5 flex items-center justify-center">
-                            <div className="relative">
-                                <div className="absolute inset-0 bg-pink-500/10 rounded-2xl blur-xl" />
-                                <img
-                                    src="/cat.gif"
-                                    alt="Cat Animation"
-                                    className="relative w-32 h-32 object-contain"
-                                />
-                            </div>
+                        <div className="md:col-span-1 bg-white border border-border/50 rounded-2xl p-5 flex items-center justify-center">
+                            <img
+                                src="/cat.gif"
+                                alt="Cat Animation"
+                                className="w-32 h-32 object-contain"
+                            />
                         </div>
 
                         {/* YouTube Playlist */}
-                        <div className="md:col-span-2 bg-bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-2xl p-5">
+                        <div className="md:col-span-3 bg-white border border-border/50 rounded-2xl p-5">
                             <div className="rounded-xl overflow-hidden" style={{ minHeight: '350px', height: '100%' }}>
                                 <div className="youtube-widget-wrapper" style={{ height: '100%', minHeight: '350px' }}>
                                     <YouTubeWidget playlistUrl="https://music.youtube.com/playlist?list=PLIp8n4_3xp0ffGtM6pzcmGvNqzigNaWzY&si=Gyd-2FBr1xsHJacC" />
