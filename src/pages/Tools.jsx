@@ -12,7 +12,7 @@ import {
 import NowPlayingWidget from '../components/NowPlayingWidget';
 import GitHubWidget from '../components/GitHubWidget';
 import YouTubeWidget from '../components/YouTubeWidget';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area } from 'recharts';
 
 /* ── helpers ── */
 const getToday = () => new Date().toISOString().split('T')[0];
@@ -841,9 +841,46 @@ const JobTracker = ({ t }) => {
     };
 
     const handleCountChange = (id, newCount) => {
-        setSubjects(subjects.map(subject =>
-            subject.id === id ? { ...subject, count: newCount } : subject
-        ));
+        setSubjects(subjects.map(subject => {
+            if (subject.id !== id) return subject;
+            const oldCount = subject.count;
+            const diff = newCount - oldCount;
+
+            // If count increased, add log entry for today
+            if (diff > 0) {
+                const existingLogs = subject.logs || [];
+                const today = getToday();
+
+                // Check if there's already a log for today
+                const todayLogIndex = existingLogs.findIndex(log => log.date === today);
+
+                let updatedLogs;
+                if (todayLogIndex >= 0) {
+                    // Update existing today's log
+                    updatedLogs = [...existingLogs];
+                    updatedLogs[todayLogIndex] = {
+                        ...updatedLogs[todayLogIndex],
+                        count: updatedLogs[todayLogIndex].count + diff
+                    };
+                } else {
+                    // Add new log for today
+                    updatedLogs = [...existingLogs, {
+                        date: today,
+                        count: diff,
+                        note: '',
+                        createdAt: new Date().toISOString()
+                    }];
+                }
+
+                // Sort logs by date descending
+                updatedLogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                return { ...subject, count: newCount, logs: updatedLogs };
+            } else {
+                // If count decreased or same, just update count
+                return { ...subject, count: newCount };
+            }
+        }));
     };
 
     const deleteSubject = (id) => {
@@ -893,11 +930,25 @@ const JobTracker = ({ t }) => {
     const topSource = subjects.length > 0 ? subjects.reduce((max, s) => s.count > max.count ? s : max) : null;
 
     // Chart data preparation
-    const barChartData = subjects.map(s => ({
-        name: s.name.length > 10 ? s.name.substring(0, 10) + '...' : s.name,
-        fullName: s.name,
-        applications: s.count
-    })).sort((a, b) => b.applications - a.applications).slice(0, 8);
+    // Aggregate all logs by date for line chart
+    const allLogs = subjects.flatMap(s => (s.logs || []).map(l => ({ date: l.date, count: l.count })));
+    const dailyDataMap = {};
+    allLogs.forEach(l => {
+        dailyDataMap[l.date] = (dailyDataMap[l.date] || 0) + l.count;
+    });
+    const lineChartData = Object.entries(dailyDataMap)
+        .map(([date, count]) => ({
+            date,
+            applications: count,
+            label: new Date(date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })
+        }))
+        .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    // Pastel soft colors
+    const PASTEL_COLORS = [
+        '#a78bfa', '#f9a8d4', '#86efac', '#fcd34d', '#93c5fd', '#c4b5fd',
+        '#fdba74', '#86efac', '#67e8f9', '#f0abfc', '#a5b4fc', '#818cf8'
+    ];
 
     const pieChartData = subjects
         .filter(s => s.count > 0)
@@ -908,8 +959,6 @@ const JobTracker = ({ t }) => {
         }))
         .sort((a, b) => b.value - a.value)
         .slice(0, 6);
-
-    const COLORS = ['#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd', '#818cf8', '#7c3aed'];
 
     return (
         <div className="flex flex-col h-full">
@@ -936,23 +985,29 @@ const JobTracker = ({ t }) => {
             {/* Charts Section */}
             {subjects.length > 0 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    {/* Bar Chart */}
+                    {/* Line Chart - Daily Activity */}
                     <div className="bg-bg-primary border border-border rounded-xl p-4">
-                        <h3 className="text-sm font-semibold text-text-primary mb-3">{t.chartApplicationsBySource}</h3>
-                        {barChartData.length > 0 ? (
+                        <h3 className="text-sm font-semibold text-text-primary mb-3">{t.chartDailyActivity}</h3>
+                        {lineChartData.length > 0 ? (
                             <ResponsiveContainer width="100%" height={200}>
-                                <BarChart data={barChartData} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
-                                    <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                                    <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#888' }} />
-                                    <YAxis tick={{ fontSize: 10, fill: '#888' }} />
+                                <AreaChart data={lineChartData} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
+                                    <defs>
+                                        <linearGradient id="colorApps" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="5%" stopColor="#a78bfa" stopOpacity={0.6} />
+                                            <stop offset="95%" stopColor="#a78bfa" stopOpacity={0} />
+                                        </linearGradient>
+                                    </defs>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#444" strokeOpacity={0.3} />
+                                    <XAxis dataKey="label" tick={{ fontSize: 10, fill: '#888' }} />
+                                    <YAxis tick={{ fontSize: 10, fill: '#888' }} allowDecimals={false} />
                                     <Tooltip
-                                        contentStyle={{ backgroundColor: '#1a1a2e', border: '1px solid #333', borderRadius: '8px' }}
-                                        labelStyle={{ color: '#fff' }}
-                                        formatter={(value, name, props) => [value, t.applications]}
-                                        labelFormatter={(label, payload) => payload?.[0]?.payload?.fullName || label}
+                                        contentStyle={{ backgroundColor: '#1a1a2e', border: '1px solid #444', borderRadius: '8px', fontSize: '12px' }}
+                                        labelStyle={{ color: '#ccc' }}
+                                        formatter={(value) => [`${value} ${t.applications}`, t.chartDailyActivity]}
+                                        labelFormatter={(label) => label}
                                     />
-                                    <Bar dataKey="applications" fill="#6366f1" radius={[4, 4, 0, 0]} />
-                                </BarChart>
+                                    <Area type="monotone" dataKey="applications" stroke="#a78bfa" strokeWidth={2} fill="url(#colorApps)" />
+                                </AreaChart>
                             </ResponsiveContainer>
                         ) : (
                             <div className="h-[200px] flex items-center justify-center text-text-muted text-sm">
@@ -978,12 +1033,12 @@ const JobTracker = ({ t }) => {
                                             dataKey="value"
                                         >
                                             {pieChartData.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                                <Cell key={`cell-${index}`} fill={PASTEL_COLORS[index % PASTEL_COLORS.length]} />
                                             ))}
                                         </Pie>
                                         <Tooltip
-                                            contentStyle={{ backgroundColor: '#1a1a2e', border: '1px solid #333', borderRadius: '8px' }}
-                                            labelStyle={{ color: '#fff' }}
+                                            contentStyle={{ backgroundColor: '#1a1a2e', border: '1px solid #444', borderRadius: '8px', fontSize: '12px' }}
+                                            labelStyle={{ color: '#ccc' }}
                                             formatter={(value, name, props) => [`${value} (${Math.round((value / totalApplications) * 100)}%)`, props.payload.fullName]}
                                         />
                                     </PieChart>
@@ -992,7 +1047,7 @@ const JobTracker = ({ t }) => {
                                 <div className="flex-1 space-y-1">
                                     {pieChartData.map((entry, index) => (
                                         <div key={index} className="flex items-center gap-2 text-xs">
-                                            <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: COLORS[index % COLORS.length] }}></div>
+                                            <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: PASTEL_COLORS[index % PASTEL_COLORS.length] }}></div>
                                             <span className="text-text-muted truncate">{entry.fullName}</span>
                                             <span className="text-text-primary font-medium ml-auto">{entry.value}</span>
                                         </div>
