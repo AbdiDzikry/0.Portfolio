@@ -932,6 +932,7 @@ const JobTracker = ({ t }) => {
     // Chart data preparation
     // Aggregate all logs by date for line chart
     const allLogs = subjects.flatMap(s => (s.logs || []).map(l => ({ date: l.date, count: l.count })));
+    const todayApplications = allLogs.filter(l => l.date === getToday()).reduce((sum, l) => sum + l.count, 0);
     const dailyDataMap = {};
     allLogs.forEach(l => {
         dailyDataMap[l.date] = (dailyDataMap[l.date] || 0) + l.count;
@@ -977,8 +978,8 @@ const JobTracker = ({ t }) => {
                     <div className="text-[10px] text-text-muted mt-1">{t.topSource}</div>
                 </div>
                 <div className="bg-bg-primary border border-border rounded-xl p-3">
-                    <div className="text-xl font-bold text-text-primary">{totalSubjects > 0 ? Math.round(totalApplications / totalSubjects) : 0}</div>
-                    <div className="text-[10px] text-text-muted mt-1">{t.avgPerSource}</div>
+                    <div className="text-xl font-bold text-text-primary">{todayApplications}</div>
+                    <div className="text-[10px] text-text-muted mt-1">{t.today}</div>
                 </div>
             </div>
 
