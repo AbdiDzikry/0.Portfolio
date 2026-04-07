@@ -818,6 +818,9 @@ const JobTracker = ({ t }) => {
     });
     const [showAddForm, setShowAddForm] = useState(false);
     const [newSubject, setNewSubject] = useState({ name: '', count: 0 });
+    const [expandedHistory, setExpandedHistory] = useState(null);
+    const [newLog, setNewLog] = useState({ subjectId: null, date: getToday(), count: 1, note: '' });
+    const [showLogForm, setShowLogForm] = useState(null);
 
     useEffect(() => {
         localStorage.setItem('tools_jobs', JSON.stringify(subjects));
@@ -829,7 +832,8 @@ const JobTracker = ({ t }) => {
             id: Date.now(),
             name: newSubject.name.trim(),
             count: parseInt(newSubject.count) || 0,
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
+            logs: []
         };
         setSubjects([subject, ...subjects]);
         setNewSubject({ name: '', count: 0 });
@@ -844,6 +848,44 @@ const JobTracker = ({ t }) => {
 
     const deleteSubject = (id) => {
         setSubjects(subjects.filter(subject => subject.id !== id));
+    };
+
+    const toggleHistory = (id) => {
+        setExpandedHistory(expandedHistory === id ? null : id);
+        setShowLogForm(null);
+    };
+
+    const openLogForm = (subjectId) => {
+        setShowLogForm(subjectId);
+        setNewLog({ subjectId, date: getToday(), count: 1, note: '' });
+    };
+
+    const addLog = () => {
+        if (!newLog.count || newLog.count <= 0) return;
+        setSubjects(subjects.map(subject => {
+            if (subject.id !== newLog.subjectId) return subject;
+            const updatedLogs = [...(subject.logs || []), {
+                date: newLog.date,
+                count: parseInt(newLog.count),
+                note: newLog.note.trim(),
+                createdAt: new Date().toISOString()
+            }];
+            // Sort logs by date descending
+            updatedLogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+            return { ...subject, logs: updatedLogs, count: subject.count + parseInt(newLog.count) };
+        }));
+        setShowLogForm(null);
+        setNewLog({ subjectId: null, date: getToday(), count: 1, note: '' });
+    };
+
+    const deleteLog = (subjectId, logIndex) => {
+        setSubjects(subjects.map(subject => {
+            if (subject.id !== subjectId) return subject;
+            const updatedLogs = subject.logs.filter((_, i) => i !== logIndex);
+            // Recalculate total from remaining logs
+            const newTotal = updatedLogs.reduce((sum, log) => sum + log.count, 0);
+            return { ...subject, logs: updatedLogs, count: newTotal };
+        }));
     };
 
     const totalApplications = subjects.reduce((sum, s) => sum + s.count, 0);
@@ -1021,39 +1063,144 @@ const JobTracker = ({ t }) => {
                     </div>
                 )}
 
-                {subjects.map(subject => (
-                    <div key={subject.id} className="bg-bg-primary border border-border rounded-xl p-3 group hover:border-accent-blue/50 transition-colors">
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3 flex-1">
-                                <Building2 size={16} className="text-text-muted flex-shrink-0" />
-                                <h3 className="text-sm font-semibold text-text-primary">{subject.name}</h3>
-                                <div className="flex items-center gap-2">
-                                    <input
-                                        type="number"
-                                        value={subject.count}
-                                        onChange={(e) => handleCountChange(subject.id, parseInt(e.target.value) || 0)}
-                                        min="0"
-                                        className="bg-bg-secondary border border-border rounded-lg px-2 py-1 text-xs text-text-primary focus:outline-none focus:border-accent-blue w-20"
-                                    />
-                                    <span className="text-xs text-text-secondary">
-                                        {subject.count === 1 ? t.applicationSingular : t.applicationPlural}
-                                    </span>
+                {subjects.map(subject => {
+                    const subjectLogs = subject.logs || [];
+                    const isHistoryExpanded = expandedHistory === subject.id;
+                    const isLogFormOpen = showLogForm === subject.id;
+
+                    return (
+                        <div key={subject.id} className="bg-bg-primary border border-border rounded-xl group hover:border-accent-blue/50 transition-colors">
+                            {/* Card Header */}
+                            <div className="p-3">
+                                <div className="flex items-center justify-between mb-2">
+                                    <div className="flex items-center gap-3 flex-1">
+                                        <Building2 size={16} className="text-text-muted flex-shrink-0" />
+                                        <h3 className="text-sm font-semibold text-text-primary">{subject.name}</h3>
+                                        <div className="flex items-center gap-2">
+                                            <input
+                                                type="number"
+                                                value={subject.count}
+                                                onChange={(e) => handleCountChange(subject.id, parseInt(e.target.value) || 0)}
+                                                min="0"
+                                                className="bg-bg-secondary border border-border rounded-lg px-2 py-1 text-xs text-text-primary focus:outline-none focus:border-accent-blue w-20"
+                                            />
+                                            <span className="text-xs text-text-secondary">
+                                                {subject.count === 1 ? t.applicationSingular : t.applicationPlural}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <button
+                                            onClick={() => openLogForm(subject.id)}
+                                            className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-green-500/10 text-text-muted hover:text-green-500 transition-all"
+                                            title={t.addLogEntry}
+                                        >
+                                            <Plus size={14} />
+                                        </button>
+                                        <button
+                                            onClick={() => toggleHistory(subject.id)}
+                                            className={`p-1.5 rounded-lg transition-all flex items-center gap-1 ${isHistoryExpanded ? 'bg-accent-blue/10 text-accent-blue' : 'opacity-0 group-hover:opacity-100 hover:bg-blue-500/10 text-text-muted hover:text-blue-500'}`}
+                                        >
+                                            {isHistoryExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                                            {subjectLogs.length > 0 && (
+                                                <span className="text-[10px]">{subjectLogs.length}</span>
+                                            )}
+                                        </button>
+                                        <button
+                                            onClick={() => deleteSubject(subject.id)}
+                                            className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-red-500/10 text-text-muted hover:text-red-500 transition-all"
+                                        >
+                                            <Trash2 size={14} />
+                                        </button>
+                                    </div>
                                 </div>
+
+                                {/* Log Form */}
+                                {isLogFormOpen && (
+                                    <div className="mt-3 pt-3 border-t border-border bg-bg-secondary/30 rounded-lg p-3">
+                                        <div className="grid grid-cols-3 gap-2 mb-2">
+                                            <input
+                                                type="date"
+                                                value={newLog.date}
+                                                onChange={(e) => setNewLog({ ...newLog, date: e.target.value })}
+                                                className="bg-bg-secondary border border-border rounded-lg px-2 py-1.5 text-xs text-text-primary focus:outline-none focus:border-accent-blue"
+                                            />
+                                            <input
+                                                type="number"
+                                                value={newLog.count}
+                                                onChange={(e) => setNewLog({ ...newLog, count: e.target.value })}
+                                                min="1"
+                                                placeholder={t.count}
+                                                className="bg-bg-secondary border border-border rounded-lg px-2 py-1.5 text-xs text-text-primary focus:outline-none focus:border-accent-blue"
+                                            />
+                                            <input
+                                                type="text"
+                                                value={newLog.note}
+                                                onChange={(e) => setNewLog({ ...newLog, note: e.target.value })}
+                                                placeholder={t.logNote}
+                                                className="bg-bg-secondary border border-border rounded-lg px-2 py-1.5 text-xs text-text-primary focus:outline-none focus:border-accent-blue"
+                                            />
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <button
+                                                onClick={addLog}
+                                                className="flex-1 bg-accent-blue text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:opacity-90"
+                                            >
+                                                {t.saveLog}
+                                            </button>
+                                            <button
+                                                onClick={() => setShowLogForm(null)}
+                                                className="px-3 py-1.5 bg-bg-secondary border border-border rounded-lg text-xs text-text-muted hover:text-text-primary"
+                                            >
+                                                {t.cancel}
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                            <div className="flex items-center gap-2">
-                                <span className="text-xs text-text-muted">
-                                    {new Date(subject.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
-                                </span>
-                                <button
-                                    onClick={() => deleteSubject(subject.id)}
-                                    className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-red-500/10 text-text-muted hover:text-red-500 transition-all"
-                                >
-                                    <Trash2 size={14} />
-                                </button>
-                            </div>
+
+                            {/* History Dropdown */}
+                            {isHistoryExpanded && (
+                                <div className="border-t border-border px-3 pb-3">
+                                    {subjectLogs.length === 0 ? (
+                                        <div className="py-6 text-center text-xs text-text-muted">
+                                            {t.noLogs}
+                                        </div>
+                                    ) : (
+                                        <div className="space-y-2 mt-3 max-h-48 overflow-y-auto">
+                                            {subjectLogs.map((log, index) => (
+                                                <div key={index} className="flex items-center justify-between bg-bg-secondary/50 rounded-lg px-3 py-2 group/log">
+                                                    <div className="flex items-center gap-3 flex-1">
+                                                        <Calendar size={12} className="text-text-muted flex-shrink-0" />
+                                                        <div>
+                                                            <div className="flex items-center gap-2">
+                                                                <span className="text-xs font-medium text-text-primary">
+                                                                    {new Date(log.date).toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })}
+                                                                </span>
+                                                                <span className="bg-accent-blue/10 text-accent-blue px-2 py-0.5 rounded-full text-[10px] font-bold">
+                                                                    +{log.count}
+                                                                </span>
+                                                            </div>
+                                                            {log.note && (
+                                                                <p className="text-[10px] text-text-muted mt-0.5">{log.note}</p>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                    <button
+                                                        onClick={() => deleteLog(subject.id, index)}
+                                                        className="p-1 rounded opacity-0 group-hover/log:opacity-100 hover:bg-red-500/10 text-text-muted hover:text-red-500 transition-all"
+                                                    >
+                                                        <X size={12} />
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
 
             {/* Export/Import */}

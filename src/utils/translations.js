@@ -77,7 +77,13 @@ export const translations = {
                 chartApplicationsBySource: "Applications by Source",
                 chartDistribution: "Distribution",
                 noDataToShow: "Add data to see analytics",
-                applications: "Applications"
+                applications: "Applications",
+                addLogEntry: "Add log entry",
+                count: "Count",
+                logNote: "Note (optional)",
+                saveLog: "Save Log",
+                noLogs: "No history logs yet",
+                history: "History"
             },
             tasks: {
                 title: "Task Tracker",
@@ -316,7 +322,13 @@ export const translations = {
                 chartApplicationsBySource: "Lamaran per Sumber",
                 chartDistribution: "Distribusi",
                 noDataToShow: "Tambah data untuk melihat analitik",
-                applications: "Lamaran"
+                applications: "Lamaran",
+                addLogEntry: "Tambah riwayat",
+                count: "Jumlah",
+                logNote: "Catatan (opsional)",
+                saveLog: "Simpan Riwayat",
+                noLogs: "Belum ada riwayat",
+                history: "Riwayat"
             },
             tasks: {
                 title: "Task Tracker",
