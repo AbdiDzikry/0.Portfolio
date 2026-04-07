@@ -1269,23 +1269,17 @@ const JobTracker = ({ t }) => {
             <div className="flex gap-3 pt-4 border-t border-border flex-shrink-0">
                 <button
                     onClick={() => {
-                        const today = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-                        let content = `JOB TRACKER BACKUP\nDate: ${today}\n${'='.repeat(50)}\n\n`;
-                        subjects.forEach((s, i) => {
-                            content += `${i + 1}. ${s.name} - ${s.count} applications\n`;
-                            content += `   Created: ${new Date(s.createdAt).toLocaleDateString('id-ID')}\n\n`;
-                        });
-                        content += `${'='.repeat(50)}\nTotal Sources: ${subjects.length}\nTotal Applications: ${totalApplications}\n`;
-                        const blob = new Blob([content], { type: 'text/plain' });
+                        const dataStr = JSON.stringify(subjects, null, 2);
+                        const blob = new Blob([dataStr], { type: 'application/json' });
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement('a');
                         a.href = url;
-                        a.download = `jobs-backup-${getToday()}.txt`;
+                        a.download = `jobs-backup-${getToday()}.json`;
                         a.click();
                     }}
                     className="flex items-center gap-2 px-4 py-2 bg-bg-secondary border border-border rounded-lg text-sm text-text-muted hover:text-text-primary transition-colors"
                 >
-                    <Download size={14} /> Export TXT
+                    <Download size={14} /> Export JSON
                 </button>
                 <label className="flex items-center gap-2 px-4 py-2 bg-bg-secondary border border-border rounded-lg text-sm text-text-muted hover:text-text-primary transition-colors cursor-pointer">
                     <Upload size={14} /> Import JSON
