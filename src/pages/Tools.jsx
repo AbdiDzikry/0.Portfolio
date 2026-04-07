@@ -80,45 +80,53 @@ const Tools = () => {
                         </button>
                     </div>
                     {!collapsedMusic && (
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                            {/* Cat GIF Section */}
-                            <div className="md:col-span-1 bg-white border border-border/50 rounded-2xl p-5 flex items-center justify-center">
-                                <img
-                                    src="/cat.gif"
-                                    alt="Cat Animation"
-                                    className="w-32 h-32 object-contain"
-                                />
-                            </div>
-
-                            {/* YouTube Playlist */}
-                            <div className="md:col-span-3 bg-white border border-border/50 rounded-2xl p-5">
-                                <div className="rounded-xl overflow-hidden" style={{ minHeight: '350px', height: '100%' }}>
-                                    <div className="youtube-widget-wrapper" style={{ height: '100%', minHeight: '350px' }}>
-                                        <YouTubeWidget playlistUrl="https://music.youtube.com/playlist?list=PLIp8n4_3xp0ffGtM6pzcmGvNqzigNaWzY&si=Gyd-2FBr1xsHJacC" />
-                                    </div>
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            className="overflow-hidden"
+                        >
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                                {/* Cat GIF Section */}
+                                <div className="md:col-span-1 bg-white border border-border/50 rounded-2xl p-5 flex items-center justify-center">
+                                    <img
+                                        src="/cat.gif"
+                                        alt="Cat Animation"
+                                        className="w-32 h-32 object-contain"
+                                    />
                                 </div>
-                                <style>{`
-                                    .youtube-widget-wrapper > div {
-                                        min-height: 350px !important;
-                                        height: 100% !important;
-                                    }
-                                    .youtube-widget-wrapper > div > div {
-                                        min-height: 250px !important;
-                                        flex: 1 !important;
-                                    }
-                                    .youtube-widget-wrapper iframe {
-                                        min-height: 220px !important;
-                                        height: 100% !important;
-                                    }
-                                `}</style>
+
+                                {/* YouTube Playlist */}
+                                <div className="md:col-span-3 bg-white border border-border/50 rounded-2xl p-5">
+                                    <div className="rounded-xl overflow-hidden" style={{ minHeight: '350px', height: '100%' }}>
+                                        <div className="youtube-widget-wrapper" style={{ height: '100%', minHeight: '350px' }}>
+                                            <YouTubeWidget playlistUrl="https://music.youtube.com/playlist?list=PLIp8n4_3xp0ffGtM6pzcmGvNqzigNaWzY&si=Gyd-2FBr1xsHJacC" />
+                                        </div>
+                                    </div>
+                                    <style>{`
+                                        .youtube-widget-wrapper > div {
+                                            min-height: 350px !important;
+                                            height: 100% !important;
+                                        }
+                                        .youtube-widget-wrapper > div > div {
+                                            min-height: 250px !important;
+                                            flex: 1 !important;
+                                        }
+                                        .youtube-widget-wrapper iframe {
+                                            min-height: 220px !important;
+                                            height: 100% !important;
+                                        }
+                                    `}</style>
+                                </div>
                             </div>
-                        </div>
+                        </motion.div>
                     )}
                 </section>
 
                 {/* Job Tracker - Full Width Section (Below Music) */}
-                <section className={`bg-gradient-to-br from-indigo-500/5 via-violet-500/5 to-transparent border border-indigo-500/20 rounded-3xl p-6 hover:border-indigo-500/40 transition-all flex flex-col ${collapsedJobs ? 'h-auto' : 'min-h-[800px]'}`}>
-                    <div className="flex items-center justify-between flex-shrink-0">
+                <section className="bg-gradient-to-br from-indigo-500/5 via-violet-500/5 to-transparent border border-indigo-500/20 rounded-3xl p-6 hover:border-indigo-500/40 transition-colors">
+                    <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
                                 <Briefcase size={20} className="text-indigo-500" />
@@ -135,19 +143,27 @@ const Tools = () => {
                             {collapsedJobs ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
                         </button>
                     </div>
-                    {!collapsedJobs && (
-                        <div className="flex-1 flex flex-col overflow-hidden mt-4">
-                            <JobTracker t={t.jobs} />
-                        </div>
-                    )}
+                    <AnimatePresence>
+                        {!collapsedJobs && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                                className="overflow-hidden"
+                            >
+                                <JobTracker t={t.jobs} />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </section>
 
                 {/* Bento Grid - 2x2 Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
 
                     {/* Task Tracker - Blue Theme */}
-                    <section className={`bg-gradient-to-br from-blue-500/5 via-cyan-500/5 to-transparent border border-blue-500/20 rounded-3xl p-6 hover:border-blue-500/40 transition-all flex flex-col ${collapsedTask ? 'h-auto' : 'h-[580px]'}`}>
-                        <div className="flex items-center justify-between flex-shrink-0">
+                    <section className="bg-gradient-to-br from-blue-500/5 via-cyan-500/5 to-transparent border border-blue-500/20 rounded-3xl p-6 hover:border-blue-500/40 transition-colors">
+                        <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center flex-shrink-0">
                                     <Check size={20} className="text-blue-500" />
@@ -164,16 +180,26 @@ const Tools = () => {
                                 {collapsedTask ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
                             </button>
                         </div>
-                        {!collapsedTask && (
-                            <div className="flex-1 flex flex-col overflow-hidden mt-4">
-                                <TaskTracker t={t.tasks} />
-                            </div>
-                        )}
+                        <AnimatePresence>
+                            {!collapsedTask && (
+                                <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                                    className="overflow-hidden"
+                                >
+                                    <div className="h-[580px] flex flex-col">
+                                        <TaskTracker t={t.tasks} />
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </section>
 
                     {/* Habit Tracker - Orange Theme */}
-                    <section className={`bg-gradient-to-br from-orange-500/5 via-amber-500/5 to-transparent border border-orange-500/20 rounded-3xl p-6 hover:border-orange-500/40 transition-all flex flex-col ${collapsedHabit ? 'h-auto' : 'h-[580px]'}`}>
-                        <div className="flex items-center justify-between flex-shrink-0">
+                    <section className="bg-gradient-to-br from-orange-500/5 via-amber-500/5 to-transparent border border-orange-500/20 rounded-3xl p-6 hover:border-orange-500/40 transition-colors">
+                        <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center flex-shrink-0">
                                     <Flame size={20} className="text-orange-500" />
@@ -190,15 +216,25 @@ const Tools = () => {
                                 {collapsedHabit ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
                             </button>
                         </div>
-                        {!collapsedHabit && (
-                            <div className="flex-1 flex flex-col overflow-hidden mt-4">
-                                <HabitTracker t={t.habits} />
-                            </div>
-                        )}
+                        <AnimatePresence>
+                            {!collapsedHabit && (
+                                <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                                    className="overflow-hidden"
+                                >
+                                    <div className="h-[580px] flex flex-col">
+                                        <HabitTracker t={t.habits} />
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </section>
 
                     {/* Focus Timer - Pink Theme */}
-                    <section className={`bg-gradient-to-br from-pink-500/5 via-rose-500/5 to-transparent border border-pink-500/20 rounded-3xl p-6 hover:border-pink-500/40 transition-all ${collapsedTimer ? '' : ''}`}>
+                    <section className="bg-gradient-to-br from-pink-500/5 via-rose-500/5 to-transparent border border-pink-500/20 rounded-3xl p-6 hover:border-pink-500/40 transition-colors">
                         <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-xl bg-pink-500/10 flex items-center justify-center">
@@ -216,11 +252,23 @@ const Tools = () => {
                                 {collapsedTimer ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
                             </button>
                         </div>
-                        {!collapsedTimer && <FocusTimer t={t.timer} />}
+                        <AnimatePresence>
+                            {!collapsedTimer && (
+                                <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                                    className="overflow-hidden"
+                                >
+                                    <FocusTimer t={t.timer} />
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </section>
 
                     {/* GitHub - Green Theme */}
-                    <section className={`bg-gradient-to-br from-green-500/5 via-emerald-500/5 to-transparent border border-green-500/20 rounded-3xl p-6 hover:border-green-500/40 transition-all ${collapsedGithub ? '' : ''}`}>
+                    <section className="bg-gradient-to-br from-green-500/5 via-emerald-500/5 to-transparent border border-green-500/20 rounded-3xl p-6 hover:border-green-500/40 transition-colors">
                         <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
@@ -238,11 +286,21 @@ const Tools = () => {
                                 {collapsedGithub ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
                             </button>
                         </div>
-                        {!collapsedGithub && (
-                            <div className="bg-bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-xl p-4">
-                                <GitHubWidget username="AbdiDzikry" />
-                            </div>
-                        )}
+                        <AnimatePresence>
+                            {!collapsedGithub && (
+                                <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                                    className="overflow-hidden"
+                                >
+                                    <div className="bg-bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-xl p-4">
+                                        <GitHubWidget username="AbdiDzikry" />
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </section>
 
                 </div>
