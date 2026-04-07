@@ -1039,8 +1039,14 @@ const JobTracker = ({ t }) => {
                                         </Pie>
                                         <Tooltip
                                             contentStyle={{ backgroundColor: '#1a1a2e', border: '1px solid #444', borderRadius: '8px', fontSize: '12px' }}
-                                            labelStyle={{ color: '#ccc' }}
-                                            formatter={(value, name, props) => [`${value} (${Math.round((value / totalApplications) * 100)}%)`, props.payload.fullName]}
+                                            formatter={(value) => {
+                                                const percentage = Math.round((value / totalApplications) * 100);
+                                                return [`${value} applications (${percentage}%)`];
+                                            }}
+                                            labelFormatter={(label) => {
+                                                const item = pieChartData.find(d => d.name === label);
+                                                return item ? item.fullName : label;
+                                            }}
                                         />
                                     </PieChart>
                                 </ResponsiveContainer>
