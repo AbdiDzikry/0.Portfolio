@@ -119,11 +119,11 @@ const Tools = () => {
                 </section>
 
                 {/* Bento Grid - 2x2 Layout */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
 
                     {/* Task Tracker - Blue Theme */}
-                    <section className={`bg-gradient-to-br from-blue-500/5 via-cyan-500/5 to-transparent border border-blue-500/20 rounded-3xl p-6 hover:border-blue-500/40 transition-colors flex flex-col ${collapsedTask ? 'h-auto' : 'h-[580px]'}`}>
-                        <div className="flex items-center justify-between mb-4 flex-shrink-0">
+                    <section className={`bg-gradient-to-br from-blue-500/5 via-cyan-500/5 to-transparent border border-blue-500/20 rounded-3xl p-6 hover:border-blue-500/40 transition-all flex flex-col ${collapsedTask ? 'h-auto' : 'h-[580px]'}`}>
+                        <div className="flex items-center justify-between flex-shrink-0">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center flex-shrink-0">
                                     <Check size={20} className="text-blue-500" />
@@ -141,15 +141,15 @@ const Tools = () => {
                             </button>
                         </div>
                         {!collapsedTask && (
-                            <div className="flex-1 flex flex-col overflow-hidden">
+                            <div className="flex-1 flex flex-col overflow-hidden mt-4">
                                 <TaskTracker t={t.tasks} />
                             </div>
                         )}
                     </section>
 
                     {/* Habit Tracker - Orange Theme */}
-                    <section className={`bg-gradient-to-br from-orange-500/5 via-amber-500/5 to-transparent border border-orange-500/20 rounded-3xl p-6 hover:border-orange-500/40 transition-colors flex flex-col ${collapsedHabit ? 'h-auto' : 'h-[580px]'}`}>
-                        <div className="flex items-center justify-between mb-4 flex-shrink-0">
+                    <section className={`bg-gradient-to-br from-orange-500/5 via-amber-500/5 to-transparent border border-orange-500/20 rounded-3xl p-6 hover:border-orange-500/40 transition-all flex flex-col ${collapsedHabit ? 'h-auto' : 'h-[580px]'}`}>
+                        <div className="flex items-center justify-between flex-shrink-0">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center flex-shrink-0">
                                     <Flame size={20} className="text-orange-500" />
@@ -167,7 +167,7 @@ const Tools = () => {
                             </button>
                         </div>
                         {!collapsedHabit && (
-                            <div className="flex-1 flex flex-col overflow-hidden">
+                            <div className="flex-1 flex flex-col overflow-hidden mt-4">
                                 <HabitTracker t={t.habits} />
                             </div>
                         )}
