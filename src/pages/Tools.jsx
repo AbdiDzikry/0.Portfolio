@@ -35,6 +35,8 @@ const formatDate = (dateStr) => {
 const Tools = () => {
     const { language } = useLanguage();
     const t = translations[language].tools;
+    const [collapsedTask, setCollapsedTask] = useState(false);
+    const [collapsedHabit, setCollapsedHabit] = useState(false);
 
     return (
         <motion.div
@@ -120,35 +122,55 @@ const Tools = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                     {/* Task Tracker - Blue Theme */}
-                    <section className="bg-gradient-to-br from-blue-500/5 via-cyan-500/5 to-transparent border border-blue-500/20 rounded-3xl p-6 hover:border-blue-500/40 transition-colors flex flex-col h-[580px]">
-                        <div className="flex items-center gap-3 mb-6 flex-shrink-0">
-                            <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center flex-shrink-0">
-                                <Check size={20} className="text-blue-500" />
+                    <section className={`bg-gradient-to-br from-blue-500/5 via-cyan-500/5 to-transparent border border-blue-500/20 rounded-3xl p-6 hover:border-blue-500/40 transition-colors flex flex-col ${collapsedTask ? 'h-auto' : 'h-[580px]'}`}>
+                        <div className="flex items-center justify-between mb-4 flex-shrink-0">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                                    <Check size={20} className="text-blue-500" />
+                                </div>
+                                <div>
+                                    <h2 className="text-lg font-bold text-text-primary">{t.tasks.title}</h2>
+                                    <p className="text-xs text-text-muted">{t.tasks.subtitle}</p>
+                                </div>
                             </div>
-                            <div>
-                                <h2 className="text-lg font-bold text-text-primary">{t.tasks.title}</h2>
-                                <p className="text-xs text-text-muted">{t.tasks.subtitle}</p>
+                            <button
+                                onClick={() => setCollapsedTask(!collapsedTask)}
+                                className={`p-2 rounded-lg transition-all ${collapsedTask ? 'bg-blue-500/10 text-blue-500' : 'hover:bg-blue-500/10 text-text-muted hover:text-blue-500'}`}
+                            >
+                                {collapsedTask ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                            </button>
+                        </div>
+                        {!collapsedTask && (
+                            <div className="flex-1 flex flex-col overflow-hidden">
+                                <TaskTracker t={t.tasks} />
                             </div>
-                        </div>
-                        <div className="flex-1 flex flex-col overflow-hidden">
-                            <TaskTracker t={t.tasks} />
-                        </div>
+                        )}
                     </section>
 
                     {/* Habit Tracker - Orange Theme */}
-                    <section className="bg-gradient-to-br from-orange-500/5 via-amber-500/5 to-transparent border border-orange-500/20 rounded-3xl p-6 hover:border-orange-500/40 transition-colors flex flex-col h-[580px]">
-                        <div className="flex items-center gap-3 mb-6 flex-shrink-0">
-                            <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center flex-shrink-0">
-                                <Flame size={20} className="text-orange-500" />
+                    <section className={`bg-gradient-to-br from-orange-500/5 via-amber-500/5 to-transparent border border-orange-500/20 rounded-3xl p-6 hover:border-orange-500/40 transition-colors flex flex-col ${collapsedHabit ? 'h-auto' : 'h-[580px]'}`}>
+                        <div className="flex items-center justify-between mb-4 flex-shrink-0">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center flex-shrink-0">
+                                    <Flame size={20} className="text-orange-500" />
+                                </div>
+                                <div>
+                                    <h2 className="text-lg font-bold text-text-primary">{t.habits.title}</h2>
+                                    <p className="text-xs text-text-muted">{t.habits.subtitle}</p>
+                                </div>
                             </div>
-                            <div>
-                                <h2 className="text-lg font-bold text-text-primary">{t.habits.title}</h2>
-                                <p className="text-xs text-text-muted">{t.habits.subtitle}</p>
+                            <button
+                                onClick={() => setCollapsedHabit(!collapsedHabit)}
+                                className={`p-2 rounded-lg transition-all ${collapsedHabit ? 'bg-orange-500/10 text-orange-500' : 'hover:bg-orange-500/10 text-text-muted hover:text-orange-500'}`}
+                            >
+                                {collapsedHabit ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                            </button>
+                        </div>
+                        {!collapsedHabit && (
+                            <div className="flex-1 flex flex-col overflow-hidden">
+                                <HabitTracker t={t.habits} />
                             </div>
-                        </div>
-                        <div className="flex-1 flex flex-col overflow-hidden">
-                            <HabitTracker t={t.habits} />
-                        </div>
+                        )}
                     </section>
 
                     {/* Focus Timer - Pink Theme */}
