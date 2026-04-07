@@ -811,239 +811,153 @@ const HabitTracker = ({ t }) => {
    JOB TRACKER
 ═══════════════════════════════════════════ */
 const JobTracker = ({ t }) => {
-    const [jobs, setJobs] = useState(() => {
+    const [subjects, setSubjects] = useState(() => {
         const saved = localStorage.getItem('tools_jobs');
         return saved ? JSON.parse(saved) : [];
     });
     const [showAddForm, setShowAddForm] = useState(false);
-    const [newJob, setNewJob] = useState({ company: '', position: '', status: 'applied', dateApplied: getToday() });
-    const [expandedNotes, setExpandedNotes] = useState(null);
-    const [noteText, setNoteText] = useState('');
+    const [newSubject, setNewSubject] = useState({ name: '', count: 0 });
 
     useEffect(() => {
-        localStorage.setItem('tools_jobs', JSON.stringify(jobs));
-    }, [jobs]);
+        localStorage.setItem('tools_jobs', JSON.stringify(subjects));
+    }, [subjects]);
 
-    const addJob = () => {
-        if (!newJob.company.trim() || !newJob.position.trim()) return;
-        const job = {
+    const addSubject = () => {
+        if (!newSubject.name.trim()) return;
+        const subject = {
             id: Date.now(),
-            company: newJob.company.trim(),
-            position: newJob.position.trim(),
-            status: newJob.status,
-            dateApplied: newJob.dateApplied || getToday(),
-            notes: [],
+            name: newSubject.name.trim(),
+            count: parseInt(newSubject.count) || 0,
             createdAt: new Date().toISOString()
         };
-        setJobs([job, ...jobs]);
-        setNewJob({ company: '', position: '', status: 'applied', dateApplied: getToday() });
+        setSubjects([subject, ...subjects]);
+        setNewSubject({ name: '', count: 0 });
         setShowAddForm(false);
     };
 
-    const updateJobStatus = (id, status) => {
-        setJobs(jobs.map(job => job.id === id ? { ...job, status } : job));
-    };
-
-    const deleteJob = (id) => {
-        setJobs(jobs.filter(job => job.id !== id));
-    };
-
-    const addNote = (jobId) => {
-        if (!noteText.trim()) return;
-        setJobs(jobs.map(job =>
-            job.id === jobId
-                ? { ...job, notes: [...job.notes, { text: noteText.trim(), createdAt: new Date().toISOString() }] }
-                : job
+    const handleCountChange = (id, newCount) => {
+        setSubjects(subjects.map(subject =>
+            subject.id === id ? { ...subject, count: newCount } : subject
         ));
-        setNoteText('');
     };
 
-    const statusColors = {
-        applied: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
-        screening: 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20',
-        interview: 'bg-purple-500/10 text-purple-500 border-purple-500/20',
-        offered: 'bg-green-500/10 text-green-500 border-green-500/20',
-        rejected: 'bg-red-500/10 text-red-500 border-red-500/20',
-        withdrawn: 'bg-gray-500/10 text-gray-500 border-gray-500/20'
+    const deleteSubject = (id) => {
+        setSubjects(subjects.filter(subject => subject.id !== id));
     };
 
-    const activeJobs = jobs.filter(j => ['applied', 'screening', 'interview'].includes(j.status)).length;
-    const interviews = jobs.filter(j => j.status === 'interview').length;
-    const offers = jobs.filter(j => j.status === 'offered').length;
+    const totalApplications = subjects.reduce((sum, s) => sum + s.count, 0);
+    const totalSubjects = subjects.length;
+    const topSource = subjects.length > 0 ? subjects.reduce((max, s) => s.count > max.count ? s : max) : null;
 
     return (
         <div className="flex flex-col h-full">
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 <div className="bg-bg-primary border border-border rounded-xl p-4">
-                    <div className="text-2xl font-bold text-text-primary">{jobs.length}</div>
+                    <div className="text-2xl font-bold text-text-primary">{totalSubjects}</div>
+                    <div className="text-xs text-text-muted mt-1">{t.totalSources}</div>
+                </div>
+                <div className="bg-bg-primary border border-border rounded-xl p-4">
+                    <div className="text-2xl font-bold text-text-primary">{totalApplications}</div>
                     <div className="text-xs text-text-muted mt-1">{t.totalApplications}</div>
                 </div>
                 <div className="bg-bg-primary border border-border rounded-xl p-4">
-                    <div className="text-2xl font-bold text-text-primary">{activeJobs}</div>
-                    <div className="text-xs text-text-muted mt-1">{t.activeApplications}</div>
+                    <div className="text-2xl font-bold text-text-primary">{topSource ? topSource.name : '-'}</div>
+                    <div className="text-xs text-text-muted mt-1">{t.topSource}</div>
                 </div>
                 <div className="bg-bg-primary border border-border rounded-xl p-4">
-                    <div className="text-2xl font-bold text-text-primary">{interviews}</div>
-                    <div className="text-xs text-text-muted mt-1">{t.interviewsScheduled}</div>
-                </div>
-                <div className="bg-bg-primary border border-border rounded-xl p-4">
-                    <div className="text-2xl font-bold text-text-primary">{offers}</div>
-                    <div className="text-xs text-text-muted mt-1">{t.offersReceived}</div>
+                    <div className="text-2xl font-bold text-text-primary">{totalSubjects > 0 ? Math.round(totalApplications / totalSubjects) : 0}</div>
+                    <div className="text-xs text-text-muted mt-1">{t.avgPerSource}</div>
                 </div>
             </div>
 
-            {/* Add Job Button / Form */}
+            {/* Add Subject Button / Form */}
             <div className="mb-6">
                 {!showAddForm ? (
                     <button
                         onClick={() => setShowAddForm(true)}
                         className="w-full bg-bg-primary border border-border border-dashed rounded-xl p-4 text-sm text-text-muted hover:text-text-primary hover:border-accent-blue transition-all flex items-center justify-center gap-2"
                     >
-                        <Plus size={16} /> {t.addJob}
+                        <Plus size={16} /> {t.addSubject}
                     </button>
                 ) : (
                     <div className="bg-bg-primary border border-border rounded-xl p-4 space-y-3">
                         <div className="grid grid-cols-2 gap-3">
                             <input
                                 type="text"
-                                value={newJob.company}
-                                onChange={(e) => setNewJob({ ...newJob, company: e.target.value })}
-                                placeholder={t.company}
+                                value={newSubject.name}
+                                onChange={(e) => setNewSubject({ ...newSubject, name: e.target.value })}
+                                placeholder={t.sourceName}
                                 className="bg-bg-secondary border border-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
                             />
                             <input
-                                type="text"
-                                value={newJob.position}
-                                onChange={(e) => setNewJob({ ...newJob, position: e.target.value })}
-                                placeholder={t.position}
+                                type="number"
+                                value={newSubject.count}
+                                onChange={(e) => setNewSubject({ ...newSubject, count: e.target.value })}
+                                placeholder={t.applicationCount}
+                                min="0"
                                 className="bg-bg-secondary border border-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
-                            />
-                        </div>
-                        <div className="grid grid-cols-2 gap-3">
-                            <select
-                                value={newJob.status}
-                                onChange={(e) => setNewJob({ ...newJob, status: e.target.value })}
-                                className="bg-bg-secondary border border-border rounded-lg px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-accent-blue"
-                            >
-                                <option value="applied">{t.applied}</option>
-                                <option value="screening">{t.screening}</option>
-                                <option value="interview">{t.interview}</option>
-                                <option value="offered">{t.offered}</option>
-                                <option value="rejected">{t.rejected}</option>
-                                <option value="withdrawn">{t.withdrawn}</option>
-                            </select>
-                            <input
-                                type="date"
-                                value={newJob.dateApplied}
-                                onChange={(e) => setNewJob({ ...newJob, dateApplied: e.target.value })}
-                                className="bg-bg-secondary border border-border rounded-lg px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-accent-blue"
                             />
                         </div>
                         <div className="flex gap-2">
                             <button
-                                onClick={addJob}
+                                onClick={addSubject}
                                 className="flex-1 bg-accent-blue text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90"
                             >
-                                Add Job
+                                {t.addSource}
                             </button>
                             <button
                                 onClick={() => setShowAddForm(false)}
                                 className="px-4 py-2 bg-bg-secondary border border-border rounded-lg text-sm text-text-muted hover:text-text-primary"
                             >
-                                Cancel
+                                {t.cancel}
                             </button>
                         </div>
                     </div>
                 )}
             </div>
 
-            {/* Jobs List */}
+            {/* Subjects List */}
             <div className="flex-1 space-y-3 mb-6 overflow-y-auto">
-                {jobs.length === 0 && (
+                {subjects.length === 0 && (
                     <div className="text-center py-12 text-text-muted">
                         <Briefcase size={40} className="mx-auto mb-3 opacity-20" />
-                        <p>{t.noJobs}</p>
+                        <p>{t.noSubjects}</p>
                     </div>
                 )}
 
-                {jobs.map(job => (
-                    <div key={job.id} className="bg-bg-primary border border-border rounded-xl p-4 group hover:border-accent-blue/50 transition-colors">
-                        <div className="flex items-start justify-between mb-3">
+                {subjects.map(subject => (
+                    <div key={subject.id} className="bg-bg-primary border border-border rounded-xl p-4 group hover:border-accent-blue/50 transition-colors">
+                        <div className="flex items-start justify-between">
                             <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-1">
-                                    <Building2 size={14} className="text-text-muted flex-shrink-0" />
-                                    <h3 className="text-sm font-medium text-text-primary">{job.company}</h3>
+                                <div className="flex items-center gap-2 mb-2">
+                                    <Building2 size={16} className="text-text-muted flex-shrink-0" />
+                                    <h3 className="text-base font-semibold text-text-primary">{subject.name}</h3>
                                 </div>
-                                <div className="flex items-center gap-2 text-xs text-text-muted">
-                                    <FileText size={12} className="flex-shrink-0" />
-                                    <span>{job.position}</span>
-                                    <span className="text-text-muted/50">•</span>
-                                    <Calendar size={12} className="flex-shrink-0" />
-                                    <span>{new Date(job.dateApplied).toLocaleDateString('id-ID')}</span>
+                                <div className="flex items-center gap-2 mt-2">
+                                    <FileText size={14} className="text-text-muted flex-shrink-0" />
+                                    <input
+                                        type="number"
+                                        value={subject.count}
+                                        onChange={(e) => handleCountChange(subject.id, parseInt(e.target.value) || 0)}
+                                        min="0"
+                                        className="bg-bg-secondary border border-border rounded-lg px-3 py-1.5 text-sm text-text-primary focus:outline-none focus:border-accent-blue w-24"
+                                    />
+                                    <span className="text-sm text-text-secondary">
+                                        {subject.count === 1 ? t.applicationSingular : t.applicationPlural}
+                                    </span>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <select
-                                    value={job.status}
-                                    onChange={(e) => updateJobStatus(job.id, e.target.value)}
-                                    className={`text-[10px] font-bold px-2 py-1 rounded-full border ${statusColors[job.status]} focus:outline-none cursor-pointer`}
-                                >
-                                    <option value="applied">{t.applied}</option>
-                                    <option value="screening">{t.screening}</option>
-                                    <option value="interview">{t.interview}</option>
-                                    <option value="offered">{t.offered}</option>
-                                    <option value="rejected">{t.rejected}</option>
-                                    <option value="withdrawn">{t.withdrawn}</option>
-                                </select>
-                                <button
-                                    onClick={() => deleteJob(job.id)}
-                                    className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-red-500/10 text-text-muted hover:text-red-500 transition-all"
-                                >
-                                    <Trash2 size={14} />
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Notes Section */}
-                        {job.notes.length > 0 && (
-                            <div className="mt-3 pt-3 border-t border-border">
-                                <button
-                                    onClick={() => setExpandedNotes(expandedNotes === job.id ? null : job.id)}
-                                    className="flex items-center gap-2 text-xs text-text-muted hover:text-text-primary transition-colors"
-                                >
-                                    {expandedNotes === job.id ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
-                                    {job.notes.length} {t.notes}
-                                </button>
-                                {expandedNotes === job.id && (
-                                    <div className="mt-2 space-y-2">
-                                        {job.notes.map((note, i) => (
-                                            <div key={i} className="text-xs text-text-muted bg-bg-secondary/50 rounded-lg px-3 py-2">
-                                                {note.text}
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                        )}
-
-                        {/* Add Note Input */}
-                        <div className="mt-3 flex gap-2">
-                            <input
-                                type="text"
-                                value={noteText}
-                                onChange={(e) => setNoteText(e.target.value)}
-                                onKeyDown={(e) => e.key === 'Enter' && addNote(job.id)}
-                                onFocus={() => setExpandedNotes(job.id)}
-                                placeholder={t.addNote}
-                                className="flex-1 bg-bg-secondary border border-border rounded-lg px-3 py-2 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
-                            />
                             <button
-                                onClick={() => addNote(job.id)}
-                                className="bg-accent-blue text-white px-3 py-2 rounded-lg text-xs font-medium hover:opacity-90"
+                                onClick={() => deleteSubject(subject.id)}
+                                className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-red-500/10 text-text-muted hover:text-red-500 transition-all ml-2"
                             >
-                                Add
+                                <Trash2 size={16} />
                             </button>
+                        </div>
+                        <div className="text-xs text-text-muted mt-2">
+                            <Calendar size={12} className="inline mr-1" />
+                            {new Date(subject.createdAt).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
                         </div>
                     </div>
                 ))}
@@ -1055,19 +969,11 @@ const JobTracker = ({ t }) => {
                     onClick={() => {
                         const today = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
                         let content = `JOB TRACKER BACKUP\nDate: ${today}\n${'='.repeat(50)}\n\n`;
-                        jobs.forEach((j, i) => {
-                            content += `${i + 1}. ${j.company} - ${j.position}\n`;
-                            content += `   Status: ${j.status}\n`;
-                            content += `   Date Applied: ${j.dateApplied}\n`;
-                            if (j.notes.length > 0) {
-                                content += `   Notes:\n`;
-                                j.notes.forEach((note, n) => {
-                                    content += `     - ${note.text}\n`;
-                                });
-                            }
-                            content += `\n`;
+                        subjects.forEach((s, i) => {
+                            content += `${i + 1}. ${s.name} - ${s.count} applications\n`;
+                            content += `   Created: ${new Date(s.createdAt).toLocaleDateString('id-ID')}\n\n`;
                         });
-                        content += `${'='.repeat(50)}\nTotal: ${jobs.length}\n`;
+                        content += `${'='.repeat(50)}\nTotal Sources: ${subjects.length}\nTotal Applications: ${totalApplications}\n`;
                         const blob = new Blob([content], { type: 'text/plain' });
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement('a');
@@ -1080,10 +986,10 @@ const JobTracker = ({ t }) => {
                     <Download size={14} /> Export TXT
                 </button>
                 <label className="flex items-center gap-2 px-4 py-2 bg-bg-secondary border border-border rounded-lg text-sm text-text-muted hover:text-text-primary transition-colors cursor-pointer">
-                    <Upload size={14} /> Import TXT/JSON
+                    <Upload size={14} /> Import JSON
                     <input
                         type="file"
-                        accept=".txt,.json"
+                        accept=".json"
                         className="hidden"
                         onChange={(e) => {
                             const file = e.target.files[0];
@@ -1091,56 +997,11 @@ const JobTracker = ({ t }) => {
                             const reader = new FileReader();
                             reader.onload = (event) => {
                                 try {
-                                    const content = event.target.result;
-                                    if (file.name.endsWith('.json')) {
-                                        const imported = JSON.parse(content);
-                                        if (Array.isArray(imported)) setJobs(imported);
-                                    } else if (file.name.endsWith('.txt')) {
-                                        const importedJobs = [];
-                                        const lines = content.split('\n');
-                                        let currentJob = null;
-                                        let inNotes = false;
-                                        for (let i = 0; i < lines.length; i++) {
-                                            const line = lines[i].trim();
-                                            if (line.startsWith('JOB TRACKER') || line.startsWith('Date:') || line.startsWith('=') || line.startsWith('Total:') || line === '') {
-                                                if (line === '' && currentJob) {
-                                                    importedJobs.push(currentJob);
-                                                    currentJob = null;
-                                                }
-                                                continue;
-                                            }
-                                            const jobMatch = line.match(/^\d+\.\s+(.+?)\s+-\s+(.+)/);
-                                            if (jobMatch) {
-                                                if (currentJob) importedJobs.push(currentJob);
-                                                currentJob = {
-                                                    id: Date.now() + importedJobs.length,
-                                                    company: jobMatch[1],
-                                                    position: jobMatch[2],
-                                                    status: 'applied',
-                                                    dateApplied: getToday(),
-                                                    notes: [],
-                                                    createdAt: new Date().toISOString()
-                                                };
-                                                inNotes = false;
-                                                continue;
-                                            }
-                                            if (line.startsWith('Status:')) {
-                                                if (currentJob) currentJob.status = line.replace('Status: ', '').trim();
-                                                continue;
-                                            }
-                                            if (line.startsWith('Date Applied:')) {
-                                                if (currentJob) currentJob.dateApplied = line.replace('Date Applied: ', '').trim();
-                                                continue;
-                                            }
-                                            if (line === 'Notes:') { inNotes = true; continue; }
-                                            if (inNotes && line.startsWith('- ')) {
-                                                if (currentJob) currentJob.notes.push({ text: line.substring(2), createdAt: new Date().toISOString() });
-                                                continue;
-                                            }
-                                        }
-                                        if (currentJob) importedJobs.push(currentJob);
-                                        if (importedJobs.length > 0) setJobs(importedJobs);
-                                        else alert('No jobs found in file');
+                                    const imported = JSON.parse(event.target.result);
+                                    if (Array.isArray(imported)) {
+                                        setSubjects(imported);
+                                    } else {
+                                        alert('Invalid file format');
                                     }
                                 } catch (err) {
                                     alert('Invalid file format');
