@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 const GitHubWidget = ({ username = 'AbdiDzikry' }) => {
     const [stats, setStats] = useState(null);
     const [recentActivity, setRecentActivity] = useState(null);
+    const [contributions, setContributions] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -15,8 +16,8 @@ const GitHubWidget = ({ username = 'AbdiDzikry' }) => {
                 if (!userResponse.ok) throw new Error('User not found');
                 const userData = await userResponse.json();
 
-                // Fetch recent events
-                const eventsResponse = await fetch(`https://api.github.com/users/${username}/events/public?per_page=5`);
+                // Fetch recent events (last 100 for contribution tracking)
+                const eventsResponse = await fetch(`https://api.github.com/users/${username}/events/public?per_page=100`);
                 if (!eventsResponse.ok) throw new Error('Events not found');
                 const eventsData = await eventsResponse.json();
 
@@ -29,8 +30,35 @@ const GitHubWidget = ({ username = 'AbdiDzikry' }) => {
                     url: userData.html_url
                 });
 
-                // Get latest push event
+                // Process contribution data (last 52 weeks)
                 if (Array.isArray(eventsData)) {
+                    const contributionMap = {};
+                    const now = new Date();
+
+                    // Initialize last 52 weeks with 0
+                    for (let i = 0; i < 364; i++) {
+                        const d = new Date(now);
+                        d.setDate(d.getDate() - i);
+                        const dateStr = d.toISOString().split('T')[0];
+                        contributionMap[dateStr] = 0;
+                    }
+
+                    // Count contributions per day
+                    eventsData.forEach(event => {
+                        const dateStr = new Date(event.created_at).toISOString().split('T')[0];
+                        if (contributionMap.hasOwnProperty(dateStr)) {
+                            contributionMap[dateStr] += 1;
+                        }
+                    });
+
+                    // Convert to array for rendering
+                    const contribArray = Object.entries(contributionMap)
+                        .map(([date, count]) => ({ date, count }))
+                        .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+                    setContributions(contribArray);
+
+                    // Get latest push event
                     const latestPush = eventsData.find(event => event.type === 'PushEvent');
                     if (latestPush) {
                         setRecentActivity({
@@ -45,13 +73,13 @@ const GitHubWidget = ({ username = 'AbdiDzikry' }) => {
                 setLoading(false);
             } catch (err) {
                 console.error('GitHub fetch error:', err);
-                setStats(null); // Ensure stats is null on error so fallback UI shows
+                setStats(null);
                 setLoading(false);
             }
         };
 
         fetchGitHubData();
-        const interval = setInterval(fetchGitHubData, 300000); // Update every 5 min
+        const interval = setInterval(fetchGitHubData, 300000);
         return () => clearInterval(interval);
     }, [username]);
 
@@ -95,6 +123,61 @@ const GitHubWidget = ({ username = 'AbdiDzikry' }) => {
             }
         }
         return 'just now';
+    };
+
+    // Contribution level colors
+    const getContributionColor = (count) => {
+        if (count === 0) return 'bg-white/20 dark:bg-black/20';
+        if (count <= 2) return 'bg-green-200/60 dark:bg-green-900/40';
+        if (count <= 4) return 'bg-green-300/70 dark:bg-green-700/50';
+        if (count <= 6) return 'bg-green-400/80 dark:bg-green-600/60';
+        return 'bg-green-500 dark:bg-green-500';
+    };
+
+    // Group contributions by week for grid layout
+    const renderContributionGrid = () => {
+        if (contributions.length === 0) return null;
+
+        // Group into weeks (7 days each)
+        const weeks = [];
+        for (let i = 0; i < contributions.length; i += 7) {
+            weeks.push(contributions.slice(i, i + 7));
+        }
+
+        return (
+            <div className="mt-3">
+                <div className="text-[10px] text-text-muted mb-2 font-medium">Contribution Activity</div>
+                <div className="overflow-x-auto pb-2">
+                    <div className="flex gap-[2px] min-w-fit">
+                        {weeks.map((week, weekIndex) => (
+                            <div key={weekIndex} className="flex flex-col gap-[2px]">
+                                {week.map((day, dayIndex) => (
+                                    <div
+                                        key={`${weekIndex}-${dayIndex}`}
+                                        className={`w-[10px] h-[10px] rounded-sm ${getContributionColor(day.count)} hover:ring-1 hover:ring-accent-green/50 transition-all cursor-pointer`}
+                                        title={`${day.date}: ${day.count} contributions`}
+                                    />
+                                ))}
+                                {/* Fill empty cells if week has less than 7 days */}
+                                {Array.from({ length: 7 - week.length }).map((_, i) => (
+                                    <div key={`empty-${i}`} className="w-[10px] h-[10px] rounded-sm bg-transparent" />
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                {/* Legend */}
+                <div className="flex items-center gap-1 mt-2 text-[9px] text-text-muted">
+                    <span>Less</span>
+                    <div className="w-[10px] h-[10px] rounded-sm bg-white/20 dark:bg-black/20" />
+                    <div className="w-[10px] h-[10px] rounded-sm bg-green-200/60 dark:bg-green-900/40" />
+                    <div className="w-[10px] h-[10px] rounded-sm bg-green-300/70 dark:bg-green-700/50" />
+                    <div className="w-[10px] h-[10px] rounded-sm bg-green-400/80 dark:bg-green-600/60" />
+                    <div className="w-[10px] h-[10px] rounded-sm bg-green-500 dark:bg-green-500" />
+                    <span>More</span>
+                </div>
+            </div>
+        );
     };
 
     return (
@@ -160,6 +243,9 @@ const GitHubWidget = ({ username = 'AbdiDzikry' }) => {
                         </div>
                     </a>
                 )}
+
+                {/* Contribution Grid */}
+                {renderContributionGrid()}
             </div>
         </motion.div>
     );
