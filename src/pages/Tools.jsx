@@ -101,7 +101,7 @@ const Tools = () => {
                 </section>
 
                 {/* Job Tracker - Full Width Section (Below Music) */}
-                <section className="bg-gradient-to-br from-indigo-500/5 via-violet-500/5 to-transparent border border-indigo-500/20 rounded-3xl p-6 hover:border-indigo-500/40 transition-colors flex flex-col h-[600px]">
+                <section className="bg-gradient-to-br from-indigo-500/5 via-violet-500/5 to-transparent border border-indigo-500/20 rounded-3xl p-6 hover:border-indigo-500/40 transition-colors flex flex-col min-h-[800px]">
                     <div className="flex items-center gap-3 mb-6 flex-shrink-0">
                         <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
                             <Briefcase size={20} className="text-indigo-500" />
