@@ -12,6 +12,7 @@ import {
 import NowPlayingWidget from '../components/NowPlayingWidget';
 import GitHubWidget from '../components/GitHubWidget';
 import YouTubeWidget from '../components/YouTubeWidget';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 /* ── helpers ── */
 const getToday = () => new Date().toISOString().split('T')[0];
@@ -99,6 +100,22 @@ const Tools = () => {
                     </div>
                 </section>
 
+                {/* Job Tracker - Full Width Section (Below Music) */}
+                <section className="bg-gradient-to-br from-indigo-500/5 via-violet-500/5 to-transparent border border-indigo-500/20 rounded-3xl p-6 hover:border-indigo-500/40 transition-colors flex flex-col h-[600px]">
+                    <div className="flex items-center gap-3 mb-6 flex-shrink-0">
+                        <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
+                            <Briefcase size={20} className="text-indigo-500" />
+                        </div>
+                        <div>
+                            <h2 className="text-lg font-bold text-text-primary">{t.jobs.title}</h2>
+                            <p className="text-xs text-text-muted">{t.jobs.subtitle}</p>
+                        </div>
+                    </div>
+                    <div className="flex-1 flex flex-col overflow-hidden">
+                        <JobTracker t={t.jobs} />
+                    </div>
+                </section>
+
                 {/* Bento Grid - 2x2 Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -165,22 +182,6 @@ const Tools = () => {
                     </section>
 
                 </div>
-
-                {/* Job Tracker - Full Width Section */}
-                <section className="bg-gradient-to-br from-indigo-500/5 via-violet-500/5 to-transparent border border-indigo-500/20 rounded-3xl p-6 hover:border-indigo-500/40 transition-colors flex flex-col h-[650px]">
-                    <div className="flex items-center gap-3 mb-6 flex-shrink-0">
-                        <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
-                            <Briefcase size={20} className="text-indigo-500" />
-                        </div>
-                        <div>
-                            <h2 className="text-lg font-bold text-text-primary">{t.jobs.title}</h2>
-                            <p className="text-xs text-text-muted">{t.jobs.subtitle}</p>
-                        </div>
-                    </div>
-                    <div className="flex-1 flex flex-col overflow-hidden">
-                        <JobTracker t={t.jobs} />
-                    </div>
-                </section>
 
             </div>
         </motion.div>
@@ -849,30 +850,124 @@ const JobTracker = ({ t }) => {
     const totalSubjects = subjects.length;
     const topSource = subjects.length > 0 ? subjects.reduce((max, s) => s.count > max.count ? s : max) : null;
 
+    // Chart data preparation
+    const barChartData = subjects.map(s => ({
+        name: s.name.length > 10 ? s.name.substring(0, 10) + '...' : s.name,
+        fullName: s.name,
+        applications: s.count
+    })).sort((a, b) => b.applications - a.applications).slice(0, 8);
+
+    const pieChartData = subjects
+        .filter(s => s.count > 0)
+        .map(s => ({
+            name: s.name.length > 12 ? s.name.substring(0, 12) + '...' : s.name,
+            fullName: s.name,
+            value: s.count
+        }))
+        .sort((a, b) => b.value - a.value)
+        .slice(0, 6);
+
+    const COLORS = ['#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd', '#818cf8', '#7c3aed'];
+
     return (
         <div className="flex flex-col h-full">
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                <div className="bg-bg-primary border border-border rounded-xl p-4">
-                    <div className="text-2xl font-bold text-text-primary">{totalSubjects}</div>
-                    <div className="text-xs text-text-muted mt-1">{t.totalSources}</div>
+            {/* Stats - Compact */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                <div className="bg-bg-primary border border-border rounded-xl p-3">
+                    <div className="text-xl font-bold text-text-primary">{totalSubjects}</div>
+                    <div className="text-[10px] text-text-muted mt-1">{t.totalSources}</div>
                 </div>
-                <div className="bg-bg-primary border border-border rounded-xl p-4">
-                    <div className="text-2xl font-bold text-text-primary">{totalApplications}</div>
-                    <div className="text-xs text-text-muted mt-1">{t.totalApplications}</div>
+                <div className="bg-bg-primary border border-border rounded-xl p-3">
+                    <div className="text-xl font-bold text-text-primary">{totalApplications}</div>
+                    <div className="text-[10px] text-text-muted mt-1">{t.totalApplications}</div>
                 </div>
-                <div className="bg-bg-primary border border-border rounded-xl p-4">
-                    <div className="text-2xl font-bold text-text-primary">{topSource ? topSource.name : '-'}</div>
-                    <div className="text-xs text-text-muted mt-1">{t.topSource}</div>
+                <div className="bg-bg-primary border border-border rounded-xl p-3">
+                    <div className="text-xl font-bold text-text-primary">{topSource ? topSource.name.substring(0, 8) + (topSource.name.length > 8 ? '...' : '') : '-'}</div>
+                    <div className="text-[10px] text-text-muted mt-1">{t.topSource}</div>
                 </div>
-                <div className="bg-bg-primary border border-border rounded-xl p-4">
-                    <div className="text-2xl font-bold text-text-primary">{totalSubjects > 0 ? Math.round(totalApplications / totalSubjects) : 0}</div>
-                    <div className="text-xs text-text-muted mt-1">{t.avgPerSource}</div>
+                <div className="bg-bg-primary border border-border rounded-xl p-3">
+                    <div className="text-xl font-bold text-text-primary">{totalSubjects > 0 ? Math.round(totalApplications / totalSubjects) : 0}</div>
+                    <div className="text-[10px] text-text-muted mt-1">{t.avgPerSource}</div>
                 </div>
             </div>
 
+            {/* Charts Section */}
+            {subjects.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    {/* Bar Chart */}
+                    <div className="bg-bg-primary border border-border rounded-xl p-4">
+                        <h3 className="text-sm font-semibold text-text-primary mb-3">{t.chartApplicationsBySource}</h3>
+                        {barChartData.length > 0 ? (
+                            <ResponsiveContainer width="100%" height={200}>
+                                <BarChart data={barChartData} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+                                    <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#888' }} />
+                                    <YAxis tick={{ fontSize: 10, fill: '#888' }} />
+                                    <Tooltip
+                                        contentStyle={{ backgroundColor: '#1a1a2e', border: '1px solid #333', borderRadius: '8px' }}
+                                        labelStyle={{ color: '#fff' }}
+                                        formatter={(value, name, props) => [value, t.applications]}
+                                        labelFormatter={(label, payload) => payload?.[0]?.payload?.fullName || label}
+                                    />
+                                    <Bar dataKey="applications" fill="#6366f1" radius={[4, 4, 0, 0]} />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        ) : (
+                            <div className="h-[200px] flex items-center justify-center text-text-muted text-sm">
+                                {t.noDataToShow}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Pie Chart */}
+                    <div className="bg-bg-primary border border-border rounded-xl p-4">
+                        <h3 className="text-sm font-semibold text-text-primary mb-3">{t.chartDistribution}</h3>
+                        {pieChartData.length > 0 ? (
+                            <div className="flex items-center gap-2">
+                                <ResponsiveContainer width="60%" height={200}>
+                                    <PieChart>
+                                        <Pie
+                                            data={pieChartData}
+                                            cx="50%"
+                                            cy="50%"
+                                            labelLine={false}
+                                            outerRadius={80}
+                                            fill="#8884d8"
+                                            dataKey="value"
+                                        >
+                                            {pieChartData.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                            ))}
+                                        </Pie>
+                                        <Tooltip
+                                            contentStyle={{ backgroundColor: '#1a1a2e', border: '1px solid #333', borderRadius: '8px' }}
+                                            labelStyle={{ color: '#fff' }}
+                                            formatter={(value, name, props) => [`${value} (${Math.round((value / totalApplications) * 100)}%)`, props.payload.fullName]}
+                                        />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                                {/* Legend */}
+                                <div className="flex-1 space-y-1">
+                                    {pieChartData.map((entry, index) => (
+                                        <div key={index} className="flex items-center gap-2 text-xs">
+                                            <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: COLORS[index % COLORS.length] }}></div>
+                                            <span className="text-text-muted truncate">{entry.fullName}</span>
+                                            <span className="text-text-primary font-medium ml-auto">{entry.value}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="h-[200px] flex items-center justify-center text-text-muted text-sm">
+                                {t.noDataToShow}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
+
             {/* Add Subject Button / Form */}
-            <div className="mb-6">
+            <div className="mb-4">
                 {!showAddForm ? (
                     <button
                         onClick={() => setShowAddForm(true)}
@@ -918,7 +1013,7 @@ const JobTracker = ({ t }) => {
             </div>
 
             {/* Subjects List */}
-            <div className="flex-1 space-y-3 mb-6 overflow-y-auto">
+            <div className="flex-1 space-y-2 mb-4 overflow-y-auto">
                 {subjects.length === 0 && (
                     <div className="text-center py-12 text-text-muted">
                         <Briefcase size={40} className="mx-auto mb-3 opacity-20" />
@@ -927,37 +1022,35 @@ const JobTracker = ({ t }) => {
                 )}
 
                 {subjects.map(subject => (
-                    <div key={subject.id} className="bg-bg-primary border border-border rounded-xl p-4 group hover:border-accent-blue/50 transition-colors">
-                        <div className="flex items-start justify-between">
-                            <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <Building2 size={16} className="text-text-muted flex-shrink-0" />
-                                    <h3 className="text-base font-semibold text-text-primary">{subject.name}</h3>
-                                </div>
-                                <div className="flex items-center gap-2 mt-2">
-                                    <FileText size={14} className="text-text-muted flex-shrink-0" />
+                    <div key={subject.id} className="bg-bg-primary border border-border rounded-xl p-3 group hover:border-accent-blue/50 transition-colors">
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3 flex-1">
+                                <Building2 size={16} className="text-text-muted flex-shrink-0" />
+                                <h3 className="text-sm font-semibold text-text-primary">{subject.name}</h3>
+                                <div className="flex items-center gap-2">
                                     <input
                                         type="number"
                                         value={subject.count}
                                         onChange={(e) => handleCountChange(subject.id, parseInt(e.target.value) || 0)}
                                         min="0"
-                                        className="bg-bg-secondary border border-border rounded-lg px-3 py-1.5 text-sm text-text-primary focus:outline-none focus:border-accent-blue w-24"
+                                        className="bg-bg-secondary border border-border rounded-lg px-2 py-1 text-xs text-text-primary focus:outline-none focus:border-accent-blue w-20"
                                     />
-                                    <span className="text-sm text-text-secondary">
+                                    <span className="text-xs text-text-secondary">
                                         {subject.count === 1 ? t.applicationSingular : t.applicationPlural}
                                     </span>
                                 </div>
                             </div>
-                            <button
-                                onClick={() => deleteSubject(subject.id)}
-                                className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-red-500/10 text-text-muted hover:text-red-500 transition-all ml-2"
-                            >
-                                <Trash2 size={16} />
-                            </button>
-                        </div>
-                        <div className="text-xs text-text-muted mt-2">
-                            <Calendar size={12} className="inline mr-1" />
-                            {new Date(subject.createdAt).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+                            <div className="flex items-center gap-2">
+                                <span className="text-xs text-text-muted">
+                                    {new Date(subject.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
+                                </span>
+                                <button
+                                    onClick={() => deleteSubject(subject.id)}
+                                    className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-red-500/10 text-text-muted hover:text-red-500 transition-all"
+                                >
+                                    <Trash2 size={14} />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 ))}

@@ -73,7 +73,11 @@ export const translations = {
                 delete: "Delete",
                 edit: "Edit",
                 exportJobs: "Export Jobs",
-                importJobs: "Import Jobs"
+                importJobs: "Import Jobs",
+                chartApplicationsBySource: "Applications by Source",
+                chartDistribution: "Distribution",
+                noDataToShow: "Add data to see analytics",
+                applications: "Applications"
             },
             tasks: {
                 title: "Task Tracker",
@@ -308,7 +312,11 @@ export const translations = {
                 delete: "Hapus",
                 edit: "Edit",
                 exportJobs: "Export Lamaran",
-                importJobs: "Import Lamaran"
+                importJobs: "Import Lamaran",
+                chartApplicationsBySource: "Lamaran per Sumber",
+                chartDistribution: "Distribusi",
+                noDataToShow: "Tambah data untuk melihat analitik",
+                applications: "Lamaran"
             },
             tasks: {
                 title: "Task Tracker",
