@@ -37,6 +37,10 @@ const Tools = () => {
     const t = translations[language].tools;
     const [collapsedTask, setCollapsedTask] = useState(false);
     const [collapsedHabit, setCollapsedHabit] = useState(false);
+    const [collapsedMusic, setCollapsedMusic] = useState(false);
+    const [collapsedJobs, setCollapsedJobs] = useState(false);
+    const [collapsedTimer, setCollapsedTimer] = useState(false);
+    const [collapsedGithub, setCollapsedGithub] = useState(false);
 
     return (
         <motion.div
@@ -57,65 +61,85 @@ const Tools = () => {
             <div className="max-w-7xl mx-auto space-y-6">
 
                 {/* Music Section - Full Width Top */}
-                <section className="bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-orange-500/5 border border-purple-500/20 rounded-3xl p-6 md:p-8">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center">
-                            <Music size={20} className="text-purple-500" />
-                        </div>
-                        <div>
-                            <h2 className="text-xl font-bold text-text-primary">Music & Playlist</h2>
-                            <p className="text-xs text-text-muted">Curated Playlist</p>
-                        </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        {/* Cat GIF Section */}
-                        <div className="md:col-span-1 bg-white border border-border/50 rounded-2xl p-5 flex items-center justify-center">
-                            <img
-                                src="/cat.gif"
-                                alt="Cat Animation"
-                                className="w-32 h-32 object-contain"
-                            />
-                        </div>
-
-                        {/* YouTube Playlist */}
-                        <div className="md:col-span-3 bg-white border border-border/50 rounded-2xl p-5">
-                            <div className="rounded-xl overflow-hidden" style={{ minHeight: '350px', height: '100%' }}>
-                                <div className="youtube-widget-wrapper" style={{ height: '100%', minHeight: '350px' }}>
-                                    <YouTubeWidget playlistUrl="https://music.youtube.com/playlist?list=PLIp8n4_3xp0ffGtM6pzcmGvNqzigNaWzY&si=Gyd-2FBr1xsHJacC" />
-                                </div>
+                <section className={`bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-orange-500/5 border border-purple-500/20 rounded-3xl p-6 md:p-8 transition-all ${collapsedMusic ? '' : ''}`}>
+                    <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center">
+                                <Music size={20} className="text-purple-500" />
                             </div>
-                            <style>{`
-                                .youtube-widget-wrapper > div {
-                                    min-height: 350px !important;
-                                    height: 100% !important;
-                                }
-                                .youtube-widget-wrapper > div > div {
-                                    min-height: 250px !important;
-                                    flex: 1 !important;
-                                }
-                                .youtube-widget-wrapper iframe {
-                                    min-height: 220px !important;
-                                    height: 100% !important;
-                                }
-                            `}</style>
+                            <div>
+                                <h2 className="text-xl font-bold text-text-primary">Music & Playlist</h2>
+                                <p className="text-xs text-text-muted">Curated Playlist</p>
+                            </div>
                         </div>
+                        <button
+                            onClick={() => setCollapsedMusic(!collapsedMusic)}
+                            className={`p-2 rounded-lg transition-all ${collapsedMusic ? 'bg-purple-500/10 text-purple-500' : 'hover:bg-purple-500/10 text-text-muted hover:text-purple-500'}`}
+                        >
+                            {collapsedMusic ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                        </button>
                     </div>
+                    {!collapsedMusic && (
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                            {/* Cat GIF Section */}
+                            <div className="md:col-span-1 bg-white border border-border/50 rounded-2xl p-5 flex items-center justify-center">
+                                <img
+                                    src="/cat.gif"
+                                    alt="Cat Animation"
+                                    className="w-32 h-32 object-contain"
+                                />
+                            </div>
+
+                            {/* YouTube Playlist */}
+                            <div className="md:col-span-3 bg-white border border-border/50 rounded-2xl p-5">
+                                <div className="rounded-xl overflow-hidden" style={{ minHeight: '350px', height: '100%' }}>
+                                    <div className="youtube-widget-wrapper" style={{ height: '100%', minHeight: '350px' }}>
+                                        <YouTubeWidget playlistUrl="https://music.youtube.com/playlist?list=PLIp8n4_3xp0ffGtM6pzcmGvNqzigNaWzY&si=Gyd-2FBr1xsHJacC" />
+                                    </div>
+                                </div>
+                                <style>{`
+                                    .youtube-widget-wrapper > div {
+                                        min-height: 350px !important;
+                                        height: 100% !important;
+                                    }
+                                    .youtube-widget-wrapper > div > div {
+                                        min-height: 250px !important;
+                                        flex: 1 !important;
+                                    }
+                                    .youtube-widget-wrapper iframe {
+                                        min-height: 220px !important;
+                                        height: 100% !important;
+                                    }
+                                `}</style>
+                            </div>
+                        </div>
+                    )}
                 </section>
 
                 {/* Job Tracker - Full Width Section (Below Music) */}
-                <section className="bg-gradient-to-br from-indigo-500/5 via-violet-500/5 to-transparent border border-indigo-500/20 rounded-3xl p-6 hover:border-indigo-500/40 transition-colors flex flex-col min-h-[800px]">
-                    <div className="flex items-center gap-3 mb-6 flex-shrink-0">
-                        <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
-                            <Briefcase size={20} className="text-indigo-500" />
+                <section className={`bg-gradient-to-br from-indigo-500/5 via-violet-500/5 to-transparent border border-indigo-500/20 rounded-3xl p-6 hover:border-indigo-500/40 transition-all flex flex-col ${collapsedJobs ? 'h-auto' : 'min-h-[800px]'}`}>
+                    <div className="flex items-center justify-between flex-shrink-0">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
+                                <Briefcase size={20} className="text-indigo-500" />
+                            </div>
+                            <div>
+                                <h2 className="text-lg font-bold text-text-primary">{t.jobs.title}</h2>
+                                <p className="text-xs text-text-muted">{t.jobs.subtitle}</p>
+                            </div>
                         </div>
-                        <div>
-                            <h2 className="text-lg font-bold text-text-primary">{t.jobs.title}</h2>
-                            <p className="text-xs text-text-muted">{t.jobs.subtitle}</p>
+                        <button
+                            onClick={() => setCollapsedJobs(!collapsedJobs)}
+                            className={`p-2 rounded-lg transition-all ${collapsedJobs ? 'bg-indigo-500/10 text-indigo-500' : 'hover:bg-indigo-500/10 text-text-muted hover:text-indigo-500'}`}
+                        >
+                            {collapsedJobs ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                        </button>
+                    </div>
+                    {!collapsedJobs && (
+                        <div className="flex-1 flex flex-col overflow-hidden mt-4">
+                            <JobTracker t={t.jobs} />
                         </div>
-                    </div>
-                    <div className="flex-1 flex flex-col overflow-hidden">
-                        <JobTracker t={t.jobs} />
-                    </div>
+                    )}
                 </section>
 
                 {/* Bento Grid - 2x2 Layout */}
@@ -174,33 +198,51 @@ const Tools = () => {
                     </section>
 
                     {/* Focus Timer - Pink Theme */}
-                    <section className="bg-gradient-to-br from-pink-500/5 via-rose-500/5 to-transparent border border-pink-500/20 rounded-3xl p-6 hover:border-pink-500/40 transition-colors">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-xl bg-pink-500/10 flex items-center justify-center">
-                                <Clock size={20} className="text-pink-500" />
+                    <section className={`bg-gradient-to-br from-pink-500/5 via-rose-500/5 to-transparent border border-pink-500/20 rounded-3xl p-6 hover:border-pink-500/40 transition-all ${collapsedTimer ? '' : ''}`}>
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-pink-500/10 flex items-center justify-center">
+                                    <Clock size={20} className="text-pink-500" />
+                                </div>
+                                <div>
+                                    <h2 className="text-lg font-bold text-text-primary">{t.timer.title}</h2>
+                                    <p className="text-xs text-text-muted">{t.timer.subtitle}</p>
+                                </div>
                             </div>
-                            <div>
-                                <h2 className="text-lg font-bold text-text-primary">{t.timer.title}</h2>
-                                <p className="text-xs text-text-muted">{t.timer.subtitle}</p>
-                            </div>
+                            <button
+                                onClick={() => setCollapsedTimer(!collapsedTimer)}
+                                className={`p-2 rounded-lg transition-all ${collapsedTimer ? 'bg-pink-500/10 text-pink-500' : 'hover:bg-pink-500/10 text-text-muted hover:text-pink-500'}`}
+                            >
+                                {collapsedTimer ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                            </button>
                         </div>
-                        <FocusTimer t={t.timer} />
+                        {!collapsedTimer && <FocusTimer t={t.timer} />}
                     </section>
 
                     {/* GitHub - Green Theme */}
-                    <section className="bg-gradient-to-br from-green-500/5 via-emerald-500/5 to-transparent border border-green-500/20 rounded-3xl p-6 hover:border-green-500/40 transition-colors">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
-                                <Github size={20} className="text-green-500" />
+                    <section className={`bg-gradient-to-br from-green-500/5 via-emerald-500/5 to-transparent border border-green-500/20 rounded-3xl p-6 hover:border-green-500/40 transition-all ${collapsedGithub ? '' : ''}`}>
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
+                                    <Github size={20} className="text-green-500" />
+                                </div>
+                                <div>
+                                    <h2 className="text-lg font-bold text-text-primary">GitHub Activity</h2>
+                                    <p className="text-xs text-text-muted">Development progress tracking</p>
+                                </div>
                             </div>
-                            <div>
-                                <h2 className="text-lg font-bold text-text-primary">GitHub Activity</h2>
-                                <p className="text-xs text-text-muted">Development progress tracking</p>
+                            <button
+                                onClick={() => setCollapsedGithub(!collapsedGithub)}
+                                className={`p-2 rounded-lg transition-all ${collapsedGithub ? 'bg-green-500/10 text-green-500' : 'hover:bg-green-500/10 text-text-muted hover:text-green-500'}`}
+                            >
+                                {collapsedGithub ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                            </button>
+                        </div>
+                        {!collapsedGithub && (
+                            <div className="bg-bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-xl p-4">
+                                <GitHubWidget username="AbdiDzikry" />
                             </div>
-                        </div>
-                        <div className="bg-bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-xl p-4">
-                            <GitHubWidget username="AbdiDzikry" />
-                        </div>
+                        )}
                     </section>
 
                 </div>
