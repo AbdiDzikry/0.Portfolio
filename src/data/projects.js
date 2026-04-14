@@ -1386,11 +1386,11 @@
         ],
         journey: [
             { month: 'Bulan 1', title: 'Adaptasi & Research', desc: 'Memahami proses bisnis HRGA Dharma Polimetal dan memetakan alur booking ruangan manual yang rumit.' },
-            { month: 'Bulan 2', title: 'Proyek Doors Design', desc: 'Mendesain antarmuka Doors dengan pendekatan Mobile-First (Tablet) dan User Experience 4 Langkah.' },
+            { month: 'Bulan 2', title: 'Proyek Doors Design', desc: 'Mendesain antarmuka Doors dengan pendekatan Mobile-First (Tablet) dan Penyederhanaan proses pemesanan ruangan meeting.' },
             { month: 'Bulan 3', title: 'Doors Development', desc: 'Membangun fungsionalitas utama (Check-in NPK, Gantt Chart) dan peluncuran produk pertama (Doors v2.0).' },
-            { month: 'Bulan 4', title: 'Monitoring AC System', desc: 'Melakukan ekspansi sistem ke manajemen fasilitas, khusus pemantauan perawatan AC lintas departemen.' },
-            { month: 'Bulan 5', title: 'Data Analytics & Insights', desc: 'Implementasi dashboard statistik untuk melacak penggunaan fasilitas dan analisis KPI operasional.' },
-            { month: 'Bulan 6', title: 'Integrasi Ekosistem', desc: 'Finalisasi sinkronisasi data antar modul dan penyerahan laporan akhir ekosistem digital HRGA.' }
+            { month: 'Bulan 4', title: 'Monitoring AC System', desc: 'Melakukan ekspansi sistem ke manajemen fasilitas, khusus pemantauan perawatan serta pelaporan fasilitas AC.' },
+            { month: 'Bulan 5', title: 'Documentation', desc: 'Persiapan Dokumentasi Teknis dan General untuk Hand-Over ke Tim Departemen HRMS.' },
+            { month: 'Bulan 6', title: 'Final Action', desc: 'Penyerahan Dokumentasi Teknis dan General terkait projek yang telah dibuat selama magang.' }
         ],
         pillars: [
             { id: 'doors', name: 'DOORS Project', icon: 'door', desc: 'Sistem booking 14 ruang rapat dengan 1.000+ pengguna aktif.', metric: '0% Conflicts', tag: 'UI/UX' },

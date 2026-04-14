@@ -1,0 +1,333 @@
+================================================================================
+  NASKAH PRESENTASI - LAPORAN AKHIR MAGANG NASIONAL
+  Sulthan Abdi Dzikry | PT Dharma Polimetal
+  Durasi Target: 10-15 menit | Total Slide: 10
+================================================================================
+
+TIPS UMUM SEBELUM MULAI:
+- Jangan baca slide, CERITAKAN. Slide itu visual, kamu yang ngomong.
+- Kontak mata ke audiens, bukan ke layar terus.
+- Pakai pause (diam 1-2 detik) setelah kalimat penting. Biar nge-land.
+- Kalau nervous, tarik napas dulu. Gak perlu buru-buru.
+- Gunakan gesture tangan saat menunjuk poin di slide.
+
+________________________________________________________________________________
+
+[SLIDE 01] — TITLE: "Laporan Akhir Magang Nasional"
+DURASI: 30 detik (opening cepat, jangan terlalu lama)
+________________________________________________________________________________
+
+NASKAH:
+"Selamat [pagi/siang/sore], Bapak/Ibu dan rekan-rekan sekalian.
+
+Perkenalkan, nama saya Sulthan Abdi Dzikry — mahasiswa Teknik Informatika
+Telkom University, angkatan 2022. Pada kesempatan ini, saya akan memaparkan
+laporan akhir dari program magang nasional yang saya jalani selama kurang
+lebih enam bulan di PT Dharma Polimetal.
+
+Saya ingin memulai dengan sebuah fakta: banyak perusahaan manufaktur besar
+masih bergantung pada proses manual yang bisa — dan seharusnya — didigitalisasi.
+Nah, itulah yang menjadi misi saya selama magang ini."
+
+TIPS:
+- Buka dengan kontak mata, senyum tipis, tunjukkan ketenangan.
+- Kalimat "fakta" itu buat bikin audiens penasaran, pakai nada sedikit lebih rendah
+  saat bilang "banyak perusahaan masih bergantung pada proses manual".
+- Sudah bisa lanjut ke slide berikutnya setelah kalimat terakhir.
+
+________________________________________________________________________________
+
+[SLIDE 02] — PROFILE: "Sulthan Abdi Dzikry"
+DURASI: 60-90 detik
+________________________________________________________________________________
+
+NASKAH:
+"Sedikit tentang diri saya.
+
+Saya berlatar belakang Teknik Informatika dengan fokus pada UI/UX Design dan
+pengembangan sistem berbasis web. Bukan hanya coding — tapi saya tertarik pada
+bagaimana kita bisa merancang solusi yang benar-benar dipakai orang, bukan
+sekadar secara teknis berjalan.
+
+Jobdesk utama saya di Dharma Polimetal adalah melakukan gap analysis — yaitu
+mengidentifikasi proses bisnis yang berjalan secara manual, lalu merancang
+dan mengimplementasikan solusi digitalnya.
+
+Kalau teman-teman mau terkoneksi, saya ada di LinkedIn dengan nama lengkap
+saya, atau bisa dicapai via email yang tertera di layar."
+
+TIPS:
+- Saat menyebut "gap analysis", beri jeda sebentar lalu jelaskan artinya dengan
+  sederhana — jangan asumsi semua audiens tau istilah itu.
+- Tunjuk foto diri dan nama di slide sambil bilang "saya Sulthan".
+- Jangan baca bio panjang dari slide — cukup highlight jobdesk-nya saja.
+
+________________________________________________________________________________
+
+[SLIDE 03] — ORG: "Struktur Organisasi"
+DURASI: 45-60 detik
+________________________________________________________________________________
+
+NASKAH:
+"Selama magang, saya ditempatkan di divisi HRGA — Human Resources & General Affairs,
+tepatnya di departemen HRMS atau HR Management System.
+
+Di sini saya bekerja di bawah bimbingan [sebutkan nama mentor/supervisor jika ada].
+Departemen ini bertanggung jawab atas pengelolaan sistem kepegawaian,
+fasilitas kantor, hingga digitalisasi proses internal.
+
+Uniknya, meski saya dari Informatika, saya berkolaborasi intens dengan
+tim HR, GA, bahkan QC — karena sistem yang baik harus memahami kebutuhan
+penggunanya secara langsung."
+
+TIPS:
+- Tunjuk kartu/foto masing-masing anggota tim saat disebut.
+- Kalau ada anggota tim di ruangan, acknowledge mereka: "dan Pak/Bu X yang ada
+  di sini juga menjadi bagian dari perjalanan ini."
+- Frasa "uniknya" itu jeda dulu, bikin audiens noleh ke kamu.
+
+________________________________________________________________________________
+
+[SLIDE 04] — TIMELINE: "Timeline Magang"
+DURASI: 90 detik (1.5 menit)
+________________________________________________________________________________
+
+NASKAH:
+"Enam bulan itu bukan waktu yang singkat. Mari saya ceritakan bagaimana
+perjalanan itu berlangsung dari bulan ke bulan.
+
+[Bulan 1-2] — Di awal magang, saya fokus pada riset dan orientasi sistem.
+Saya melakukan wawancara dengan pengguna internal — karyawan yang setiap hari
+pakai fasilitas booking ruang — untuk memahami pain point mereka secara langsung.
+
+[Bulan 3-4] — Ini fase krusial: perancangan dan development. Saya mulai
+membangun sistem DOORS dari nol, sambil terus iterasi desain berdasarkan
+feedback dari tim lapangan.
+
+[Bulan 5-6] — Fase implementasi dan evaluasi. Sistem mulai diuji oleh pengguna
+nyata. Saya melakukan usability testing menggunakan metode SUS — System Usability
+Scale — untuk mengukur seberapa mudah sistem ini digunakan.
+
+Jadi bisa dilihat, ini bukan proyek yang dikerjakan dalam semalam. Ada proses
+riset, desain, build, test, dan iterate yang berjalan paralel."
+
+TIPS:
+- Gunakan tangan untuk "mengarah" dari kiri ke kanan mengikuti timeline di layar.
+- Saat menyebut "wawancara dengan pengguna", ini momen untuk tunjukkan bahwa kamu
+  empathetic, bukan cuma developer yang ngoding tanpa bicara sama user.
+- Kata "krusial" perlu ditekan — ini climax dari timeline.
+
+________________________________________________________________________________
+
+[SLIDE 05] — CASE STUDY: "Project DOORS: Room Booking"
+DURASI: 2-3 menit (slide terpenting, jangan terburu-buru)
+________________________________________________________________________________
+
+NASKAH:
+"Sekarang masuk ke inti dari laporan ini — Project DOORS.
+
+[KOLOM KIRI — MASALAH]
+Bayangkan ini: setiap kali mau booking ruang rapat di Dharma Polimetal,
+karyawan harus kirim email ke GA, tunggu konfirmasi, lalu update ke chat
+internal, minimal 6 langkah. Dan hasilnya? Jadwal tabrakan, data tersebar
+di mana-mana, tidak ada satu sumber kebenaran tunggal.
+
+Ini bukan masalah kecil — di perusahaan dengan ratusan karyawan, inefisiensi
+seperti ini terjadi puluhan kali sehari.
+
+[KOLOM TENGAH — SOLUSI]
+Saya merancang DOORS: sistem reservasi ruang berbasis web yang bisa diakses
+dari HP, komputer, bahkan tablet yang dipasang langsung di depan pintu ruang rapat.
+
+Prosedurnya langsung: pilih ruang, tentukan waktu, undang peserta, selesai —
+4 langkah, bukan 6. Dan semua data tersinkronisasi secara real-time.
+
+[KOLOM KANAN — HASIL]
+Hasilnya terukur. Efisiensi waktu booking meningkat 33%. Konflik jadwal nol.
+Dan yang paling penting — skor SUS 72.5, yang masuk kategori 'High Usability'.
+Artinya pengguna nyaman pakai sistem ini tanpa perlu training panjang.
+
+Ini bukan angka di atas kertas — ini dari pengujian langsung dengan karyawan asli."
+
+TIPS:
+- Mulai dengan "bayangkan ini" sambil pause, buat audiens masuk ke skenarionya.
+- Saat bicara "6 langkah", bisa dihitung pakai jari — lebih dramatis.
+- Kolom tengah (hitam) adalah highlight — saat kamu tunjuk ke sana, nada suara
+  naik sedikit, lebih excited.
+- Angka "72.5" dan "33%" diucapkan dengan tegas, jangan melesetkan.
+- Kalimat terakhir "bukan angka di atas kertas" itu penting banget — menunjukkan
+  bahwa kamu melakukan penelitian yang nyata.
+
+________________________________________________________________________________
+
+[SLIDE 06] — CASE STUDY: "AC Monitoring Management"
+DURASI: 90 detik
+________________________________________________________________________________
+
+NASKAH:
+"Proyek kedua — AC Monitoring Management.
+
+[MASALAH]
+Perusahaan sebesar Dharma Polimetal punya ratusan unit AC yang tersebar di
+berbagai gedung. Sebelumnya, pemantauan dan jadwal maintenance dilakukan manual —
+artinya kalau ada AC yang hampir rusak, tim GA baru tahu setelah rusak beneran.
+Itu mahal, baik dari sisi waktu maupun biaya perbaikan.
+
+[SOLUSI]
+Saya rancang dashboard monitoring terpusat yang mencatat status setiap unit AC secara
+real-time dan otomatis men-generate jadwal maintenance preventif — bukan reaktif.
+
+[HASIL]
+Hasilnya: tidak ada lagi maintenance yang 'kaget'. Semua terjadwal. Antar
+departemen bisa sinkronisasi data tanpa harus WhatsApp sana-sini."
+
+TIPS:
+- Project ini lebih 'serius' dibanding DOORS — sampaikan dengan nada yang lebih
+  bisnis/formal, bukan casual.
+- "Kalau ada AC yang hampir rusak, baru tahu setelah rusak beneran" — ini relatable,
+  audiens yang pernah alami ini pasti langsung senyum.
+- Jangan takut buat sedikit humor kecil: "tidak ada lagi yang WhatsApp-WhatsApp
+  soal AC nya mati" — natural aja.
+
+________________________________________________________________________________
+
+[SLIDE 07] — INSIGHT: "Key Insights: Learning Journey"
+DURASI: 90 detik
+________________________________________________________________________________
+
+NASKAH:
+"Di luar dua proyek utama tadi, ada empat insight besar yang saya bawa pulang
+dari pengalaman ini.
+
+Pertama — Modernisasi Proses. Saya belajar bahwa mengubah alur manual ke digital
+bukan tentang teknologinya, tapi tentang memahami kenapa orang melakukan sesuatu
+dengan cara yang lama.
+
+Kedua — Interpretasi Visi. Klien tidak selalu tahu apa yang mereka butuhkan —
+tugas saya adalah mendengarkan kekhawatiran mereka, lalu menerjemahkannya jadi
+solusi yang konkret.
+
+Ketiga — Product Management. Di sini saya merasakan sendiri siklus penuh
+pengembangan produk: dari riset, wireframe, coding, testing, sampai deploy.
+
+Keempat — dan ini yang paling berharga — Sinergi Departemen. Sistem terbaik
+tidak lahir dari satu orang yang jenius sendiri di sudut ruangan. Dia lahir dari
+kolaborasi nyata antara HR, GA, QC, dan IT."
+
+TIPS:
+- Angka "satu, dua, tiga, empat" bisa diikuti dengan jari tangan sebagai visual.
+- Poin keempat adalah punchline — pause sebelum bilang "Sinergi Departemen",
+  buat audiens menunggu.
+- Nada di sini lebih reflektif, lebih dalam. Kurangi kecepatan bicara sedikit.
+
+________________________________________________________________________________
+
+[SLIDE 08] — FEEDBACK: "Kesan & Saran"
+DURASI: 60-90 detik
+________________________________________________________________________________
+
+NASKAH:
+"Tentu saja, perjalanan enam bulan ini tidak selalu mulus.
+
+[KESAN — KIRI]
+Yang paling berkesan bagi saya adalah kesempatan untuk melihat langsung bagaimana
+sebuah perusahaan berskala nasional beroperasi. Banyak hal yang tidak bisa
+dipelajari dari bangku kuliah — dan magang ini mengisi gap itu.
+
+[SARAN — KANAN]
+Untuk perbaikan ke depan — saya merekomendasikan agar proses onboarding magang
+diperkuat dengan dokumentasi sistem yang lebih terstruktur. Ini akan mempercepat
+kurva belajar mahasiswa baru yang masuk dan memungkinkan mereka berkontribusi
+lebih cepat."
+
+TIPS:
+- Jangan baca teks di slide mentah-mentah. Elaborasi dengan pengalaman pribadi.
+- "Tidak selalu mulus" — jujur itu kuat. Audiens respect kalau kamu acknowledge
+  kesulitan tanpa mengeluh.
+- Poin saran harus disampaikan konstruktif, bukan kritik. Nada positif.
+
+________________________________________________________________________________
+
+[SLIDE 09] — TARGET: "Professional Roadmap"
+DURASI: 60-90 detik
+________________________________________________________________________________
+
+NASKAH:
+"Magang ini bukan titik akhir — ini adalah fondasi.
+
+Ke depan, roadmap profesional saya terfokus pada karir di bidang UI/UX dan Product
+Design. Saya ingin menguasai research methodology yang lebih mendalam — dari
+ethnographic study sampai A/B testing.
+
+Dari sana, target saya adalah menjadi Product Designer yang tidak hanya bisa
+membuat tampilan yang cantik, tapi yang bisa membuktikan dampaknya secara
+kuantitatif — seperti yang sudah saya coba tunjukkan di DOORS dengan angka SUS.
+
+Jangka panjang, saya ingin berkontribusi pada solusi enterprise di industri
+manufaktur — karena masih banyak sekali proses konvensional yang menunggu untuk
+didigitalisasi."
+
+TIPS:
+- Tunjuk milestone dari kiri ke kanan sambil bicara.
+- Kalimat "masih banyak sekali proses konvensional yang menunggu" — ini adalah
+  link back ke pembukaan tadi. Audiens yang perhatiin akan sadar kamu tying
+  it all together. Bagus banget untuk storytelling.
+- Kalau ada waktu, bisa mention 1 pencapaian spesifik dari roadmap yang sudah
+  mulai dieksekusi (misal: sudah mulai belajar Figma Advanced, dll).
+
+________________________________________________________________________________
+
+[SLIDE 10] — THANK YOU
+DURASI: 30-45 detik + sesi tanya jawab
+________________________________________________________________________________
+
+NASKAH:
+"Demikian laporan akhir magang saya. Terima kasih atas waktu dan perhatian
+Bapak/Ibu sekalian.
+
+Saya sangat berterima kasih kepada seluruh tim Dharma Polimetal — khususnya
+divisi HRGA — yang telah memberikan kepercayaan, ruang belajar, dan tantangan
+nyata selama enam bulan ini.
+
+Jika ada pertanyaan, masukan, atau bahkan tawaran kolaborasi selanjutnya,
+saya dengan senang hati terbuka. Kontak saya ada di layar.
+
+Sekali lagi, terima kasih."
+
+TIPS:
+- Senyum genuine. Bukan senyum paksa.
+- Saat bilang "tawaran kolaborasi", itu subtle call to action — bagus untuk
+  kesan terakhir yang profesional dan ambisius.
+- Setelah selesai: diam sebentar, lalu "Apakah ada pertanyaan?"
+  JANGAN langsung tanya sebelum audiens sempat menyerap.
+
+================================================================================
+  TIPS SESI Q&A (TANYA JAWAB)
+================================================================================
+
+1. Kalau tidak tahu jawaban: "Pertanyaan yang sangat bagus, untuk detail teknisnya
+   saya perlu cek kembali dan bisa saya follow up via email."
+   → Jangan ngarang. Kejujuran itu lebih dihormati.
+
+2. Kalau pertanyaan terlalu luas: "Boleh saya tanyakan, apakah Bapak/Ibu lebih
+   tertarik pada sisi teknis atau sisi bisnis prosesnya?" — Perjelas dulu.
+
+3. Kalau ditanya soal angka/data yang spesifik: Jangan langsung jawab kalau
+   tidak yakin. "Data lengkapnya ada di laporan tertulis, tapi secara garis besar..."
+
+4. Kalau ada kritik: Terima dengan kepala dingin. "Terima kasih atas masukannya,
+   itu adalah area yang memang masih bisa kami optimalkan ke depan."
+
+================================================================================
+  CHECKLIST SEBELUM PRESENTASI
+================================================================================
+
+[ ] Pastikan dev server jalan dan slide bisa dibuka di browser
+[ ] Test fullscreen mode (tekan tombol Fullscreen di bawah slide)
+[ ] Cek koneksi internet atau run offline kalau perlu
+[ ] Hafal flow cerita tiap slide, bukan teks verbatim
+[ ] Siapkan air minum
+[ ] Datang 10 menit lebih awal untuk setup
+[ ] Latihan minimal 2x run-through sebelum hari-H
+
+================================================================================

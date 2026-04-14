@@ -1,0 +1,84 @@
+saya akan buat naskah dan urutan slide nya sedikit berbeda berdasarkan naskah dan urutan story telling presentasi saya, jadi anda tolong bantu sesuaika
+
+===slide 1 sudah sesuai===
+
+ naskah: 
+ 
+Selamat Siang, Bapak dan kakak sekalian yang telah hadir pada hari ini 
+dan meluangkan waktunya untuk mendengarkan presentasi saya.
+
+saya ucapkan terima kasih atas kehadiran Bapak Lukman selaku departemen head HR Management System 
+Bapak Bagas selaku pembimbing magang dan juga staff departemen HRMS
+tidak lupa dengan kak Esi selaku Penyelenggara program magang nasional di PT Dharma Polimetal
+
+pada hari ini saya akan mempresentasikan laporan akhir program magang nasional 
+yang saya jalani selama kurang dari enam bulan di PT Dharma Polimetal.
+
+sebelum masuk ke topik utama, saya akan memperkenalkan sedikit tentang
+saya terlebih dahulu
+
+
+===slide 2: sudah sesuai===
+
+
+Perkenalkan saya sulthan abdi dzikry yang merupakan lulusan telkom university 
+dari jurusan teknik informatika 
+yang memiliki spesialisasi dalam mengoptimasi proses konvesional
+menjadi ekosistem digital yang efisien.
+saya memiliki keunggulan dalam menerjemahkan visi klien menjadi solusi desain yang integratif
+dan fungsional
+
+
+
+tanggung jawab saya selama magang di Dharma Polimetal adalah
+mengidentifikasi proses bisnis serta operasional yang dilakukan di perusahaan, lalu merancang
+dan mengimplementasikan solusi digitalnya.
+
+
+===Slide 3 sesuai===
+
+naskah: 
+Selama magang di Dharma Polimetal saya ditempatkan di departemen HR management System dengan 
+struktur organisasinya
+
+Bapak Lukman Sebagai departemen head
+lalu juga ada ketiga pembimbing saya yaitu
+kak Listia, Bapak Bagas, dan juga bapak Rohim sebagai staff HR Management System.
+
+===slide 4===
+Latar belakang projek doors dan Projek AC Monitoring
+
+naskah: 
+Bersama TIM HR management system saya membantu dalam merancang ulang sistem yang 
+dimiliki oleh dharma polimetal yang bernama doors, doors merupakan
+sistem manajemen pemesanan ruang meeting yang berguna untuk meminjam ruangan 
+yang tersedia di perusahaan untuk berbagai keperluan meeting atau bertemu dengan tamu. 
+
+Namun fitur pada sistem doors
+saat ini sudah tidak relevan dengan kebutuhan pengguna saat ini. 
+
+ini dibuktikan dengan analisis serta validasi saya selama satu bulan
+terhadap sistem doors yang sudah ada, ditemukan 8 paint point atau kesulitan
+yang dialami oleh pengguna sebagai berikut.
+
+Proses Lambat; Sistem lama menghadapi kendala operasional karena alur pemesanan yang terlalu panjang dan tidak efisien.
+
+UI Tidak Informatif; Hal ini diperparah oleh tampilan antarmuka yang tidak memberikan informasi cukup bagi pengguna dalam mengambil keputusan.
+
+Tanpa Visualisasi; Akibatnya, pengguna kesulitan memantau ketersediaan karena tidak adanya visualisasi ruangan sehingga pengecekan harus dilakukan manual satu per satu.
+
+Laptop Only; Keterbatasan aksesibilitas juga menjadi masalah utama sebab sistem hanya bisa diakses lewat laptop dan tidak mendukung penggunaan ponsel.
+
+Absensi Manual; Di sisi lain, sisi administrasi masih sangat konvensional di mana pencatatan daftar hadir masih menggunakan kertas dan belum terintegrasi ke sistem.
+
+Ghost meeting; Kondisi ketika ada pemesanan ruangan tetapi tidak digunakan oleh pemesannya sehingga menimbulkan konflik dengan pengguna lain yang ingin menggunakan ruangan tersebut
+
+Tanpa On-the-Spot; Selain itu, terdapat kesenjangan teknologi di lokasi karena pengguna tidak bisa memesan atau melihat status ruangan langsung di depan pintu.
+
+Tidak Bisa Edit; Masalah terakhir adalah kekakuan sistem yang tidak menyediakan fitur untuk mengubah atau mengedit jadwal meeting yang sudah terlanjur dibuat.
+
+serta mengembangkan sistem AC Monitorng yaitu sistem pemantauan unit AC serta maintenance berkala 
+untuk departemen General Affair
+
+Masuk
+

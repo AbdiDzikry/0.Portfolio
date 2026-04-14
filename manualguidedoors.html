@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Buku Panduan Pengguna - Doors System</title>
+    <!-- Tambahan Font DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #047857; /* Emerald 600 */
+            --primary-light: #d1fae5; /* Emerald 100 */
+            --primary-dark: #064e3b; /* Emerald 900 */
+            --text-main: #1f2937; /* Gray 800 */
+            --text-muted: #6b7280; /* Gray 500 */
+            --bg-body: #F3F4F1;
+            --bg-card: #ffffff;
+            --border: #e5e7eb; /* Gray 200 */
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            padding: 2rem 1rem;
+            background-color: var(--bg-body);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 4rem 5rem;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle top border accent */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #10b981, #047857);
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 3.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-light);
+            display: inline-block;
+        }
+
+        h3 {
+            color: var(--text-main);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h4 {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .toc {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .toc li {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc a {
+            color: var(--text-main);
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .toc a:hover {
+            color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .toc a::before {
+            content: "→";
+            margin-right: 8px;
+            color: var(--primary-light);
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover::before {
+            color: var(--primary);
+        }
+
+        .link-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            border: 1px solid #bfdbfe;
+            transition: all 0.2s;
+        }
+
+        .link-badge:hover {
+            background: #dbeafe;
+            text-decoration: none;
+        }
+
+        /* Lists */
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Screenshots */
+        .screenshot-box {
+            margin: 2rem 0;
+            background-color: #f8fafc;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .screenshot-box img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .img-caption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        /* Buttons */
+        .btn-visual {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 4px;
+            vertical-align: text-bottom;
+        }
+
+        .btn-green { background-color: #10b981; }
+        .btn-red { background-color: #ef4444; }
+        .btn-blue { background-color: #3b82f6; }
+        .btn-yellow { background-color: #f59e0b; color: white; }
+        .btn-gray { background-color: #6b7280; }
+
+        .toggle-switch-on {
+            display: inline-block;
+            width: 32px;
+            height: 18px;
+            background: #10b981;
+            border-radius: 100px;
+            vertical-align: text-bottom;
+            position: relative;
+            margin: 0 6px;
+        }
+
+        .toggle-switch-on::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            right: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            color: white;
+            margin: 0 4px;
+            vertical-align: middle;
+            font-size: 12px;
+        }
+
+        .icon-edit { background: #3b82f6; }
+        .icon-view { background: #10b981; }
+
+        .footer {
+            margin-top: 4rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+
+        /* Print styling */
+        @media print {
+            body { background: #fff; padding: 0; }
+            .container {
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+                max-width: 100%;
+            }
+            .container::before { display: none; }
+            .toc { border: 1px solid #ccc; background: transparent; }
+            .screenshot-box { border: 1px solid #ccc; background: transparent; box-shadow: none; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 2rem; border-radius: 16px; margin: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>BUKU PANDUAN PENGGUNA TERPADU</h1>
+        <div class="subtitle">Sistem Pemesanan Ruangan & Manajemen Aset (Doors System)</div>
+
+        <div class="screenshot-box" style="margin-top: -1rem; margin-bottom: 3rem; border: none; background: transparent; padding: 0; box-shadow: none;">
+            <img src="./content/projects/8.%20Doors/Presentasi%20Doors-1.webp" alt="Cover Guide Doors" style="width: 100%; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);">
+        </div>
+
+        <div class="toc">
+            <h3>DAFTAR ISI</h3>
+            <ul>
+                <li><a href="#bab-1">BAB I. PENDAHULUAN</a></li>
+                <li><a href="#bab-2">BAB II. AKSES SISTEM DAN DASBOR</a></li>
+                <li><a href="#bab-3">BAB III. MANAJEMEN PERTEMUAN</a></li>
+                <li><a href="#bab-4">BAB IV. MANAJEMEN DATA INDUK (MASTER DATA)</a></li>
+                <li><a href="#bab-5">BAB V. MODUL FASILITAS & RESEPSIONIS</a></li>
+                <li><a href="#bab-6">BAB VI. ADMINISTRASI DAN KONFIGURASI SISTEM</a></li>
+                <li><a href="#bab-7">BAB VII. AKSES MULTI-PERANGKAT PENGGUNA</a></li>
+                <li><a href="#bab-8">BAB VIII. FITUR LANJUTAN & GLOSARIUM</a></li>
+                <li><a href="#bab-9">BAB IX. PANDUAN KENDALA UMUM (TROUBLESHOOTING)</a></li>
+            </ul>
+        </div>
+
+        <!-- BAB 1 -->
+        <h2 id="bab-1">BAB I. PENDAHULUAN</h2>
+        <h3>1.1. Tujuan Dokumen</h3>
+        <p>Dokumen Manual Pengguna ini disusun sebagai rujukan formal dan operasional bagi manajemen, staf IT, maupun
+            pengguna akhir dalam mengoperasikan <strong>Doors System</strong>. Pendekatan manual ini didesain sesuai
+            standar korporat guna memastikan standardisasi proses perencanaan pertemuan, pengelolaan logistik gedung,
+            dan penanganan perangkat secara efektif.</p>
+
+        <!-- BAB 2 -->
+        <h2 id="bab-2">BAB II. AKSES SISTEM DAN DASBOR</h2>
+
+        <h3>2.1. Otentikasi Pengguna</h3>
+        <a href="https://doors2.dharmap.com/login" target="_blank" class="link-badge">🔗 https://doors2.dharmap.com/login</a>
+        <ul>
+            <li><strong>Kolom NPK</strong>: Diisi dengan Nomor Pokok Karyawan yang sah.</li>
+            <li><strong>Kolom Password</strong>: Kata sandi akun. Terdapat ikon "Mata" untuk melihat sandi.</li>
+            <li><span class="btn-visual btn-green">Log In</span> : Mengeksekusi verifikasi masuk ke dalam sistem.</li>
+        </ul>
+
+        <h3>2.2. Navigasi Dasbor Profil</h3>
+        <a href="https://doors2.dharmap.com/dashboard" target="_blank" class="link-badge">🔗
+            https://doors2.dharmap.com/dashboard</a>
+        <ul>
+            <li><strong>Widget Metrik (Angka Ringkasan)</strong>: Menampilkan data Total Meeting Aktif hari ini, Total
+                Pertemuan Bulan Ini.</li>
+            <li><strong>Dropdown Profil (Kanan Atas)</strong>: Untuk mengganti kata sandi atau <span
+                    class="btn-visual btn-gray">Log Out</span>.</li>
+        </ul>
+
+        <!-- BAB 3 -->
+        <h2 id="bab-3">BAB III. MANAJEMEN PERTEMUAN (MEETING MANAGEMENT)</h2>
+
+        <h3>3.1. Reservasi Ruangan (Room Reservations)</h3>
+        <h4>A. Tampilan Kartu Ruangan (List View)</h4>
+        <a href="https://doors2.dharmap.com/meeting/room-reservations" target="_blank" class="link-badge">🔗
+            https://doors2.dharmap.com/meeting/room-reservations</a>
+        <ul>
+            <li><strong>Tampilan Grid (Kartu Ruangan)</strong>: Menampilkan informasi rincian kapasitas ruangan, ketersediaan fasilitas pendukung (misalnya proyektor atau TV LED), beserta pratinjau visual eksterior maupun interior ruangan.</li>
+            <li><span class="btn-visual btn-green">Pesan Ruangan</span> : Menu navigasi utama untuk membuka formulir penyusunan jadwal rapat. Karyawan diwajibkan melengkapi parameter esensial seperti Judul Pertemuan, Batas Waktu Registrasi (Mulai & Selesai), Daftar Kehadiran Relasi (<em>Add Participants</em>), serta opsi penambahan perihal distribusi konsumsi melalui modul Pantry Terpadu.</li>
+        </ul>
+
+        <h4>B. Tampilan Jadwal Garis Waktu (Timeline View)</h4>
+        <a href="https://doors2.dharmap.com/meeting/room-reservations?view=timeline" target="_blank" class="link-badge">🔗
+            https://doors2.dharmap.com/meeting/room-reservations?view=timeline</a>
+        <ul>
+            <li><strong>Tampilan Horizontal (Gantt Chart)</strong>: Diagram interaktif yang difungsikan untuk identifikasi jadwal tumpang tindih (<em>overlap</em>). Balok berorientasi warna <span class="btn-visual btn-red">MERAH / ABU-ABU TUA</span> mengindikasikan bahwa ruangan <strong>Telah Direservasi/Terkunci Konfirmasinya</strong> oleh pihak lain secara paten.</li>
+            <li><strong>Area Putih (Kosong)</strong>: Menginformasikan ruang lowong dan kekosongan jam ketersediaan, di mana karyawan absah menjatuhkan slot permohonan waktunya secara aman dan transparan tanpa ada peluang terjadinya anomali persinggungan data.</li>
+            <li><strong>Filter Indikator Tanggal</strong>: Pemilih kalender periodik (<em>Datepicker Interface</em>) yang memastikan kapabilitas pemantauan status persiagaan operasional ruangan secara antisipatif pada rentang hari dan bulan ke depan.</li>
+        </ul>
+
+        <h3>3.2. Daftar Rapat dan Arsip (Meeting Lists)</h3>
+        <a href="https://doors2.dharmap.com/meeting/meeting-lists" target="_blank" class="link-badge">🔗
+            /meeting/meeting-lists</a>
+        <ul>
+            <li><span class="icon-btn icon-view">👁</span> <strong>(View Data)</strong> : Menginspeksi laporan rincian parameter, yang mencakup identifikasi tamu undangan eksternal serta catatan pesanan logistik/makanan berelasi secara administratif dan terpusat.</li>
+            <li><span class="icon-btn icon-edit">✎</span> <strong>(Edit Sched)</strong> : Fungsionalitas perubahan kalkulatif durasi atau parameter susulan. Integrasi keamanan peladen sistem secara cerdas akan langsung memvalidasi serta memblokir penyimpanan suntingan manakala muncul potensi penabrakan penjadwalan antrean kalender korporasi serentak.</li>
+            <li><span class="btn-visual btn-red">Cancel Meeting</span> : Tindakan terminasi pembatalan agenda secara penuh yang berefek simultan terhadap evakuasi data basis jadwal pusat serta pengiriman notifikasi sangkalan resmi, membebaskan dapur Pantry dari urgensi pelayanan pesanan sajian tak jadi dan mencabut slot ketersediaan agar lowong kembali.</li>
+        </ul>
+
+        <!-- BAB 4 -->
+        <h2 id="bab-4">BAB IV. MANAJEMEN DATA INDUK (MASTER DATA)</h2>
+        <p>Instruksi pendayagunaan infrastruktur penambahan rekaman inventaris dan profil entitas esensial demi melengkapi integritas sistem pusat informasi (*Master Database*).</p>
+
+        <h3>4.1. Peserta Eksternal (External Participants)</h3>
+        <h4>A. Daftar Peserta (Index)</h4>
+        <a href="https://doors2.dharmap.com/master/external-participants" target="_blank" class="link-badge">🔗
+            /master/external-participants</a>
+        <ul>
+            <li>Direktori pendaftaran entitas non-karyawan / para klien / tamu istimewa yang secara sejarah dan kelaziman rutin diikutsertakan. Terlampir hak privilese administrator mutlak memodifikasi (<span class="icon-btn icon-edit">✎</span>) atau menyisihkan penghapusan rekaman data.</li>
+        </ul>
+
+        <h4>B. Halaman Pembuatan Tamu (Create) & Formulir Edit</h4>
+        <a href="https://doors2.dharmap.com/master/external-participants/create" target="_blank" class="link-badge">🔗
+            .../external-participants/create</a> <br>
+        <a href="https://doors2.dharmap.com/master/external-participants/1/edit" target="_blank" class="link-badge">🔗
+            .../external-participants/{id}/edit</a>
+        <ul>
+            <li><strong>Kolom Nama Pribadi</strong>: Nama sah entitas bersangkutan.</li>
+            <li><strong>Kolom Alamat Elektronik / E-Mail</strong>: Atribut pengenal komunikasi amat esensial. Ketidaklengkapan instrumen surat elektronik ini berimplikasi pada matinya rute jalur lalu lintas distribusi berkas tautan <em>.ics</em> yang mengandung PDF formal Undangan Kalender Perusahaan.</li>
+            <li><strong>Asal Lembaga / Rekanan Perusahaan</strong>: Identitas perusahaan instansi penyalur naungan tamu untuk memudahkan pendataan silang rekapitulasi keabsahan data validitas klien harian di titik sentral penerima gerbang.</li>
+            <li><span class="btn-visual btn-green">Simpan / Create Entry</span> : Meresmikan rekaman daftar tamu kelolaan baru hingga sekadar bisa menembus muncul saat proses pencarian identitas di Menu Reservasi Karyawan ke depannya secara legal.</li>
+        </ul>
+
+        <h3>4.2. Fasilitas Pantry (Pantry Items)</h3>
+
+        <h4>A. Daftar Pantry Tersedia</h4>
+        <a href="https://doors2.dharmap.com/master/pantry-items" target="_blank" class="link-badge">🔗
+            /master/pantry-items</a>
+        <ul>
+            <li>Area sentral kuantitas barang asupan komoditi dapur Pantry. Memfasilitasi penghitungan cerdas sehingga seumpama ambang kritis kalkulasi sisa makanan ringan / minuman memijat angka habis / nihil, maka varian sejenis seketika disembunyikan (*Dis-appearing Mechanism*) pada waktu pergelaran navigasi pemilihan menu oleh staf, supaya tidak menimbulkan kerugian inefisiensi administrasi internal maupun kesalahpahaman logistik operasional.</li>
+        </ul>
+
+        <h4>B. Halaman Form Penambahan Menu (Create & Edit)</h4>
+        <a href="https://doors2.dharmap.com/master/pantry-items/create" target="_blank" class="link-badge">🔗
+            .../pantry-items/create</a> <br>
+        <a href="https://doors2.dharmap.com/master/pantry-items/1/edit" target="_blank" class="link-badge">🔗
+            .../pantry-items/{id}/edit</a>
+        <ul>
+            <li><strong>Penamaan Klasifikasi Hidangan</strong>: Contoh valid (Kopi Hitam Spesial / Air Mineral 330ml).</li>
+            <li><strong>Drop-down Kategori Hirarki</strong>: Fungsionalitas manajemen penataan makanan (Food) agar dikelompokkan secara berbeda struktur letaknya dibanding Minuman dan sajian basah lain pada katalog pemesanan akhir.</li>
+            <li><strong>Otomatisasi Hitungan Persediaan (Counter)</strong>: Bilamana stok adalah tak ada habisnya bersifat <em>reguler tak terbatas</em>, inputlah margin digit logis konstan -1 agar pemotongan kalkulasi terhenti.</li>
+            <li><strong>Impor Gambar Ilustrasi (*Thumbnail*)</strong>: Keterlibatan sisipan grafis medium beresolusi baik guna memberi kemapanan visual pada pengalaman antar-muka (*User Experience*) pekerja.</li>
+        </ul>
+
+        <h3>4.3. Manajemen Ruangan (Rooms) / Create / Edit</h3>
+        <a href="https://doors2.dharmap.com/master/rooms" target="_blank" class="link-badge">🔗 /master/rooms</a>
+        <ul>
+            <li><strong>Limitasi Kapasitas Keamanan</strong>: Fitur yang menjamin keleluasaan peserta, guna secara sadar merintangi upaya karyawan menempatkan pemesanan ajang partisipan 30 kepala di hadapan profil ruangan minimalis berkekuatan utilitas ruang 10 kursi standar.</li>
+            <li><strong>Opsi Keberfungsian Properti</strong>: Saklar operasional (<span class="toggle-switch-on"></span>). Menghentikan atau mengarahkan fungsi navigasi apabila ruang bilik yang bersangkutan secara teknis terkena dampak restorasi tak terjadwal atau rutinitas kelayakan pemeliharaan bangunan teknis (*Maintenance Control*).</li>
+        </ul>
+
+        <h3>4.4. Manajemen Karyawan (Users) / Create / Edit / Import</h3>
+        <a href="https://doors2.dharmap.com/master/users" target="_blank" class="link-badge">🔗 /master/users</a>
+        <ul>
+            <li><span class="btn-visual btn-blue">Sync Data API</span> : Sistem pengambilan mutakhir pangkalan kepegawaian sentral perusahaan, merefleksikan penyerasian identitas rekrutmen pekerja generasi anyar dan terminasi tenaga keluar secara mandiri.</li>
+            <li><strong>Hak Akses Sekunder (Privileges Override)</strong>: Fasilitas penganugerahan wewenang akses silang kepada personel teknis spesifik berkedudukan esensial dalam alur perusahaan (<em>Contoh: Pengubahan Staf Biasa dinaikkan kualifikasi status akunnya menjajaki kemampuan "PIC Pekerja Resepsionis Dapur" menggunakan menu *Role Administrator*</em>).</li>
+        </ul>
+
+        <!-- BAB 5 -->
+        <h2 id="bab-5">BAB V. MODUL FASILITAS & RESEPSIONIS (KONSUMSI OB)</h2>
+
+        <h3>5.1. Dasbor Resepsionis / Pantry</h3>
+        <a href="https://doors2.dharmap.com/dashboard/receptionist" target="_blank" class="link-badge">🔗
+            /dashboard/receptionist</a>
+        <p>Unit visualisasi penyedia arahan pusat (<em>Command Central Display</em>) yang dialokasikan permanen agar dapat mendarat aktif pada media Tablet Peramban sentral di pos wilayah stasiun pengerjaan petugas tata boga perorangan atau dapur korporasi (Pantry).</p>
+        <ul>
+            <li><strong>Indikator Notifikasi Persiapan Segera <span class="btn-visual btn-yellow">KUNING (Menunggu)</span></strong> : Parameter siaga pertama, menginstruksikan para eksekutor lapangan bergegas mendata lalu menyiapkan pengemasan ragam teh/kopi terdaftar lantaran estimasi rapat yang sudah bersiap ditarik durasinya pada hari terkait dalam mode (*Pending Status*).</li>
+            <li><strong>Penanda Tuntas Pelayanan Tugas <span class="btn-visual btn-green">HIJAU (Terpenuhi Tuntas)</span></strong> : Saklar Konfirmasi Inti Pelaksanaan. Manakala pesanan hidangan kelar diantarkan sepenuhnya hingga berjejer membaur di meja dalam ruang tujuan tepat masa, koordinator bersangkutan wajib menginisiasi tindakan interaktif sentuhan 'Tombol Tersajikan'. Supaya menyingkirkan pesan pemberitahuan prioritas kuning, membersihkan tampilan antrian pemantauan pelayan secara saksama (*Completed Status Resolved*).</li>
+        </ul>
+
+        <!-- BAB 6 -->
+        <h2 id="bab-6">BAB VI. ADMINISTRASI GLOBAL SISTEM</h2>
+        <h3>6.1. Konfigurasi Sistem Utama (Configurations)</h3>
+        <a href="https://doors2.dharmap.com/settings/configurations" target="_blank" class="link-badge">🔗
+            /settings/configurations</a>
+        <ul>
+            <li><strong>Batasan Durasi Maksimal Tunggal (<em>Maximum Monopolistic Reservation</em>)</strong>: Tolok ukur batas pertahanan kalibrasi kebebasan seorang personel melakukan blokase okupansi sebuah balai. Misalnya, pada penetapan 10 jangkauan angka jam kerja berkesinambungan absolut, aplikasi cerdas akan mencetuskan konfrontasi terminasi mutlak membatalkan simpangan berlebih perancang formulir agar memberi proporsionalitas keadilan penggunaan ke divisi lain.</li>
+            <li><span class="btn-visual btn-blue">Simpan Pengaturan</span> : Konfirmasi mutasi validasi operasional parameter variabel komputasional keseluruhan ke dasar rekam direktori pusat perusahaan (*Save Core Changes*).</li>
+        </ul>
+
+        <!-- BAB 7 -->
+        <h2 id="bab-7">BAB VII. EKSPLORASI PERANGKAT LUAR (KIOSK & SIGNAGE)</h2>
+
+        <h3>7.1. Panel Layar Tablet Eksterior Pintu (Room Displays)</h3>
+        <a href="https://doors2.dharmap.com/tablet/dashboard" target="_blank" class="link-badge">🔗 /tablet/dashboard</a>
+        <ul>
+            <li><strong>Visibilitas Nyala Cemerlang <span class="btn-visual btn-green">HIJAU (Tersedia Penuh)</span></strong> : Indikasi estetika konfirmasi di lajur lalu lalang perihal kesiapan suatu balai, bersih tanpa peminjam sesaat. Menyediakan modul opsi langsung layar sapa <span class="btn-visual btn-gray">Pesan Instan (On the Spot)</span> tempat staf cukup merebahkan lencana RFID pekerja / Memasukkan rentetan angka NPK tanpa melangkahkan atensi lebih dalam terhadap penggunaan <em>browser Web / PC Komputer</em>.</li>
+            <li><strong>Visibilitas Nyala Ketat <span class="btn-visual btn-red">MERAH (Berlangsung Aktif / Terokupansi)</span></strong> : Komunikasi peringatan akomodasi visual atas penyelenggaraan eksklusif dan privasi penuh jalannya negosiasi intern. Mengakomodasi detail keterangan penunjuk waktu parameter penghitung hitung mundur (<em>Live Countdown</em>) sampai berakhirnya penggunaan wewenang rapat di ruang bersangkutan seraya menghilangkan elemen akses instan.</li>
+            <li><span class="btn-visual btn-green">Validasi Bukti Kehadiran Pra-Rapat (Check-IN Button)</span> : Interaktivitas layar tablet esensial menjelang mulainya jadwal sah penyewa (kisaran 15 menit). Penggagas acara dituntut wajib menghampiri panel kaca dan meresmikan eksistensi kedatangannya lewat pemindaian tombol presensi fisik. Abainya komitmen pengesahan ini menjelmakan pelepasan izin ruang seketika dan mencairkannya secara umum lagi sesuai pedoman protokol perusahaan yang bertajuk (*Abolition Auto-Cancel Rules Penalty*).</li>
+            <li><span class="btn-visual btn-blue">Opsi Keleluasaan Memperpanjang Ekstra (Extend Sessions)</span> : Alternasi logistik perbanyakan jangka waktu selagi penutupan mendekat. Membekali penambahan jangkauan waktu kisaran kompensatif 30 menit tambahan mutlak terkontrol asalkan bentangan jadwal masa depan belum terkuasai delegasi pertemuan kolega setelahnya demi kedamaian administrasi.</li>
+        </ul>
+
+        <!-- BAB 8 -->
+        <h2 id="bab-8">BAB VIII. FITUR TEKNIS & GLOSARIUM</h2>
+        <h3>8.1. Sinkronisasi Kalender Surel Berkas Publik (*.ICS Formatting Integration*)</h3>
+        <p>Bila Formulir Penambahan Tamu Relasi External secara krusial disuplai dengan format surel yang absolut valid, maka mesin perutean pesan memproyeksikan lembar formulir elektronik formal memuat PDF Undangan Eksklusif melalui portal email sistem. Diiringi sandi <em>.ics</em> tersemat, yang ketika dicanangkan di peramban kalender surat mereka, rekan bisnis disuguhkan determinasi ganda atas kebersediaannya (<em>Confirm Acceptancy / Deny Appointment Request</em>). Penanggapan tersebut otomatis berkorelasi integrasi silang dua arah sinkron ke sistem pengingat Kalender Google (*Google Calendar / Outlook Sync Environment*).</p>
+
+        <!-- BAB 9 -->
+        <h2 id="bab-9">BAB IX. PANDUAN PEMECAHAN MASALAH KENDALA (TROUBLESHOOTING)</h2>
+        <ul>
+            <li><strong>Anomali Faktual 1: Hilangnya Rapat Definitif yang Telah Direservasikan Jauh Hari pada Detik-Detik Jam Pelaksanaan Tiba?</strong> <br>
+                Ulasan Temuan Teknis: Fenomena termanifestasi "Auto-Cancel Penalty". Konsekuensi pengimplementasian unit <em>signage</em> mewajibkan pencetus jadwal melegalisasikan eksistensinya sebelum waktu kedaluwarsa toleransi keterlambatan lewat pemencetan layar konfirmasi <span class="btn-visual btn-green">Check IN Validasi Dinding</span> pada perangkat kaca luar pintu. Keabsenan aksi ini berdampak mutlak pada hilangnya klaim kepemilikan agenda, dianggap sebatas manuver rapat fiktif yang dibatalkan sistem supaya lalu lintas antrian personil kelenturan jadwal perusahaan memulih sempurna.</li>
+            <li><strong>Anomali Faktual 2: Absen/Lenyapnya Opsi Penghancuran Agenda <span class="btn-visual btn-red">Cancel Meeting</span> Pada Menu Pribadi Menjelang Aktualisasi Waktu yang Segera Berlangsung?</strong> <br> Ulasan Temuan Teknis: Adaptasi paksa <em>Rule No Turning Back Tolerance</em>. Sebagaimana kewajaran rasionalitas prosedural operasional tata boga internal, kebebasan mencabut pengajuan ruang di saat genting diputus sistem pangkalan guna mengamankan nilai material, di mana menghindari pihak staf teknisi dapur telah menyalurkan tenaga penyeduhan bahan olahan makanan basi lalu tersiakan atas batalnya rapat mendadak tersebut (*Preventive Waste Food Losses Control*).</li>
+            <li><strong>Anomali Faktual 3: Timbulnya Notasi Peringatan Teks Kritis "Galat 403 / Not Authorized Valid Access" pada Navigasi Komputer</strong> <br> Ulasan Temuan Teknis: Pembatasan akses teknis level reguler yang tak diperkenankan menapakkan otorisasi ke halaman pangkalan eksklusif, contoh konfigurasi <em>Master Core Data</em> hingga Menu Tinjauan Spesifik Rekapan Transaksional Konsumsi Pelapor Pantry Logistik. Penanggulangan Logis: Rekomendasi langsung terhadap pembaruan peningkatan legitimasi mandat (*Account Role Upgrade Privilege Access*) via verifikasi permohonan ke Departemen Divisi Information System (*IT/HR Administrator Support*).</li>
+        </ul>
+
+        <div class="footer">
+            Hak Cipta &copy; 2026 PT Dharma Polimetal. Dokumen Korporat Konfidensial Internal. Tidak untuk
+            didistribusikan secara ilegal.
+        </div>
+    </div>
+
+</body>
+
+</html>
