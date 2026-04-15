@@ -84,7 +84,7 @@ const Presentation = () => {
             type: 'doors-intro-problems',
             title: 'Project DOORS',
             subtitle: 'Latar Belakang & 8 Titik Masalah (Pain Points)',
-            image: '/old-doors-icon.png',
+            image: '/projects/doors/before/old-doors-icon.png',
             stat: { rooms: '14 Ruangan', freq: 'Pemesanan Masif', prev: 'Sistem Lama' },
             paragraphs: [
                 'DOORS adalah sistem peminjaman ruangan yang tersedia di perusahaan untuk berbagai keperluan meeting maupun tamu.',
@@ -183,7 +183,7 @@ const Presentation = () => {
                 { icon: <Target />, text: 'Modernisasi Proses: Mengubah alur kerja konvensional menjadi ekosistem digital yang efisien.' },
                 { icon: <MessageSquare />, text: 'Interpretasi Visi: Mahir dalam menerjemahkan kemauan klien menjadi solusi desain yang fungsional.' },
                 { icon: <Layout />, text: 'Product Management: Mengelola siklus pengembangan produk dari riset hingga implementasi.' },
-                { icon: <Users />, text: 'Sinergi Departemen: Kolaborasi lintas divisi (HR, GA, QC) untuk sinkronisasi data perusahaan.' }
+                { icon: <Users />, text: 'Sinergi Departemen: Kolaborasi lintas divisi (HRGA) untuk sinkronisasi data perusahaan.' }
             ],
             kesan: project.kesan,
             saran: project.saran
