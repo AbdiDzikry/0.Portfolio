@@ -18,6 +18,9 @@ const Presentation = () => {
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [isDownloading, setIsDownloading] = useState(false);
     const [downloadProgress, setDownloadProgress] = useState(0);
+    const [enlargedImage, setEnlargedImage] = useState(null); // { url, images: [], index }
+    const [activeBeforeImage, setActiveBeforeImage] = useState(0);
+    const [activeAfterImage, setActiveAfterImage] = useState(0);
 
     const project = projectsData.find(p => p.id === 'internship-detail') || {};
 
@@ -82,7 +85,7 @@ const Presentation = () => {
             title: 'Project DOORS',
             subtitle: 'Latar Belakang & 8 Titik Masalah (Pain Points)',
             image: '/old-doors-icon.png',
-            stat: { rooms: '14 Ruangan', freq: '~25 Booking/Hari', prev: 'Sistem Lama' },
+            stat: { rooms: '14 Ruangan', freq: 'Pemesanan Masif', prev: 'Sistem Lama' },
             paragraphs: [
                 'DOORS adalah sistem peminjaman ruangan yang tersedia di perusahaan untuk berbagai keperluan meeting maupun tamu.',
                 'Namun keseluruhan layanannya saat ini sudah tidak relevan dengan kebutuhan pengguna.',
@@ -103,16 +106,16 @@ const Presentation = () => {
             type: 'doors-solution-impact',
             title: 'Project DOORS: Evaluasi Solusi Terpadu',
             subtitle: 'Implementasi PWA Mulus, Kepastian Jadwal Real-time',
-            imageBefore: '', // Placeholder
-            imageAfter: '', // Placeholder
+            imagesBefore: ['/projects/doors/before/old-doors-icon.png', '/projects/doors/before/doors-dashboard.png'],
+            imagesAfter: ['/projects/doors/after/Logo Doors Baru.png', '/projects/doors/after/gantt chart.png'],
             paragraphs: [
                 'Redesain UX Efisien: Menyederhanakan alur pemesanan agar lebih cepat dan ringkas.',
                 'Dashboard Informatif: Menyajikan transparansi detail meeting dalam satu pandangan.',
                 'Visualisasi Gantt Chart: Deteksi ketersediaan ruangan secara instan via grafik interaktif.',
-                'Teknologi PWA Multi-Device: Akses sistem yang lancar via Smartphone tanpa instalasi.',
-                'Digitalisasi Absensi (QR): Migrasi total dari absensi kertas ke sistem QR terintegrasi.',
-                'Sistem Anti-Ghost Meeting: Fitur monitor penggunaan ruang untuk meminimalkan pemborosan.',
-                'Pemesanan On-the-Spot: Kemampuan memesan ruangan secara langsung di depan pintu.',
+                'fleksibilitas Akses Sistem: Secara fungsional, akses sistem dapat melalui berbagai device.',
+                'Digitalisasi Absensi: Migrasi total dari absensi kertas ke sistem check-in NPK terintegrasi.',
+                'Sistem Anti-Ghost Meeting: Auto-cancelled ruang meeting jika tidak ada yang hadir.',
+                'Pemesanan On-the-Spot: Device Tablet untuk memesan ruangan secara langsung di depan pintu.',
                 'Modifikasi Jadwal Mandiri: Fitur ubah dan batalkan jadwal yang fleksibel bagi pemesan.'
             ],
             impact: [
@@ -123,41 +126,46 @@ const Presentation = () => {
             ]
         },
         {
-            type: 'case-study',
-            title: 'AC Monitoring Management',
-            subtitle: 'Sistem Pemantauan Perawatan Aset Gedung',
-            context: {
-                headline: 'Perawatan ratusan unit AC dikelola secara manual lintas departemen',
-                points: [
-                    'Tidak ada jadwal maintenance yang sistematis dan terdokumentasi',
-                    'Tim GA baru mengetahui kerusakan setelah terjadi — bukan sebelumnya',
-                    'Data kondisi aset tersebar di spreadsheet dan catatan manual'
-                ]
-            },
-            plan: {
-                headline: 'Dashboard terpusat untuk pemantauan preventif seluruh unit AC',
-                points: [
-                    'Status setiap unit AC tercatat real-time dalam satu platform',
-                    'Jadwal maintenance ter-generate otomatis berdasarkan interval waktu',
-                    'Riwayat perbaikan tersimpan dan bisa diaudit lintas departemen'
-                ]
-            },
-            result: {
-                headline: 'Maintenance bergeser dari reaktif menjadi preventif terencana',
-                points: [
-                    'Tidak ada lagi maintenance dadakan yang mengganggu operasional',
-                    'Sinkronisasi data aset antar departemen berjalan tanpa hambatan',
-                    'Integritas catatan teknis terjamin dan dapat diaudit kapan saja'
-                ]
-            },
-            future: {
-                headline: 'Potensi skalabilitas sistem ke level yang lebih cerdas',
-                points: [
-                    'Integrasi sensor IoT untuk monitoring suhu & konsumsi daya real-time',
-                    'Prediktif maintenance berbasis pola kerusakan historis',
-                    'Konsolidasi dashboard untuk seluruh aset gedung, bukan hanya AC'
-                ]
-            }
+            type: 'doors-intro-problems',
+            title: 'LaporAC: Manajemen Aset',
+            subtitle: 'Otomatisasi Operasional & Kolaborasi Vendor',
+            stat: { aset: 'Ratusan Unit AC', status: 'Sistem dari Nol', klien: 'General Affair' },
+            paragraphs: [
+                'Sistem ini dikembangkan untuk meningkatkan validitas data operasional dalam pemeliharaan dan perbaikan unit AC.',
+                'Aplikasi ini dibangun untuk menyederhanakan birokrasi serta memperkuat kolaborasi dan akuntabilitas kerja dengan vendor.',
+                'Berikut adalah tantangan operasional yang dihadapi dalam pengelolaan aset AC secara konvensional (analog).'
+            ],
+            problems: [
+                { num: '01', tag: 'Validitas Data', desc: 'Kebutuhan akan pelaporan perbaikan yang lebih transparan dan mudah diverifikasi validitasnya', image: '/projects/9. AC Monitoring/ac.1.png' },
+                { num: '02', tag: 'Komunikasi Tersebar', desc: 'Laporan kerusakan masih melalui platform chat; data tidak terpusat dan sulit untuk dilacak kembali', image: '/projects/9. AC Monitoring/ac.10.png' },
+                { num: '03', tag: 'Birokrasi Panjang', desc: 'Proses approval perbaikan yang manual memicu penundaan pengerjaan di lapangan', image: '/projects/9. AC Monitoring/ac.3.png' },
+                { num: '04', tag: 'Administrasi Manual', desc: 'Dokumen legal seperti SPK dan Berita Acara (BA) masih memerlukan rekapitulasi manual yang memakan waktu', image: '/projects/9. AC Monitoring/ac.4.png' },
+                { num: '05', tag: 'Visibilitas Vendor', desc: 'Tantangan dalam memantau progres kerja vendor secara real-time dan memastikan kualitas perbaikan', image: '/projects/9. AC Monitoring/ac.6.png' },
+                { num: '06', tag: 'Analisis Histori', desc: 'Belum adanya riwayat perbaikan terintegrasi untuk menentukan strategi penggantian atau servis unit', image: '/projects/9. AC Monitoring/ac.7.png' },
+                { num: '07', tag: 'Risiko Arsip Fisik', desc: 'Dokumen laporan dan lampiran fisik memiliki risiko rusak atau terselip dalam proses administrasi', image: '/projects/9. AC Monitoring/ac.8.png' },
+                { num: '08', tag: 'Waktu Respons', desc: 'Proses perbaikan membutuhkan waktu lebih lama akibat alur koordinasi manual yang berjenjang', image: '/projects/9. AC Monitoring/ac.9.png' },
+            ]
+        },
+        {
+            type: 'doors-solution-impact',
+            title: 'LaporAC: Evaluasi Ekosistem Digital GA',
+            subtitle: 'Akuntabilitas Data, Multi-User Akses, & Otomasi Administrasi',
+            imagesBefore: [], // Empty to show "Before" placeholder (because it's from scratch/manual)
+            imagesAfter: ['/projects/9. AC Monitoring/ac.1.png', '/projects/9. AC Monitoring/ac.2.png', '/projects/9. AC Monitoring/ac.3.png', '/projects/9. AC Monitoring/ac.5.png'],
+            paragraphs: [
+                'Pendataan & Riwayat Terpusat: Basis data mencatat keseluruhan unit AC (baik sedang diperbaiki maupun normal) untuk melacak rekam jejak per unit secara historikal.',
+
+                'Lingkungan Multi-User: Vendor dari pihak luar mendapatkan akses guna memantau tiket perbaikan dan memperbarui progres kerja (evidence upload).',
+                'Digital Approval Instan: SPK dan BA langsung disetujui melalui sistem di manapun pimpinan manajemen berada.',
+                'Auto-Generate Dokumen Legal (PDF): Dalam satu klik laporan dibuat dalamformat PDF',
+                'Laporan Real-Time Data Driven: Transparansi pengeluaran, sebagai keputusan ganti unit ketimbang rugi servis total.'
+            ],
+            impact: [
+                { label: 'Akurasi Data', value: '100% Terintegrasi', desc: 'Data sepenuhnya transparan dan akurat.' },
+                { label: 'Approval Vendor', value: 'Downtime Berkurang', desc: 'Downtime AC rusak berkurang signifikan, karena tidak perlu membuat dokumen' },
+                { label: 'Administrasi', value: '1-Click PDF', desc: 'Waktu pembuatan dan proses kompilasi rekap surat SPK/BA ke pihak luar dipangkas amat tajam.' },
+                { label: 'Kinerja Pekerjaan', value: 'Akuntabel', desc: 'General Affair memiliki bukti untuk pembayaran Vendor yang sudah terintegrasi dengan sistems.' }
+            ]
         },
         {
             type: 'timeline',
@@ -169,20 +177,16 @@ const Presentation = () => {
             }))
         },
         {
-            type: 'insight',
-            title: 'Key Insights: Learning Journey',
+            type: 'insight-feedback',
+            title: 'Key Insights & Feedback',
             points: [
                 { icon: <Target />, text: 'Modernisasi Proses: Mengubah alur kerja konvensional menjadi ekosistem digital yang efisien.' },
                 { icon: <MessageSquare />, text: 'Interpretasi Visi: Mahir dalam menerjemahkan kemauan klien menjadi solusi desain yang fungsional.' },
                 { icon: <Layout />, text: 'Product Management: Mengelola siklus pengembangan produk dari riset hingga implementasi.' },
                 { icon: <Users />, text: 'Sinergi Departemen: Kolaborasi lintas divisi (HR, GA, QC) untuk sinkronisasi data perusahaan.' }
-            ]
-        },
-        {
-            type: 'feedback',
-            title: 'Kesan & Saran',
-            content: project.kesan,
-            suggestion: project.saran
+            ],
+            kesan: project.kesan,
+            saran: project.saran
         },
         {
             type: 'target',
@@ -324,7 +328,13 @@ const Presentation = () => {
         const handleKeyDown = (e) => {
             if (e.key === 'ArrowRight' || e.key === ' ') paginate(1);
             if (e.key === 'ArrowLeft') paginate(-1);
-            if (e.key === 'Escape') navigate('/projects');
+            if (e.key === 'Escape') {
+                if (enlargedImage) {
+                    setEnlargedImage(null);
+                } else {
+                    navigate('/projects');
+                }
+            }
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
@@ -605,37 +615,143 @@ const Presentation = () => {
 
 
                             {slides[currentSlide].type === 'doors-solution-impact' && (
-                                <motion.div variants={containerVariants} initial="initial" animate="animate" className="flex flex-row h-full gap-8 pt-4 pb-2 items-stretch px-2 overflow-hidden">
-                                    
-                                    {/* Left Side: Before & After Photos (Stacked) */}
-                                    <div className="w-[35%] flex flex-col gap-5 h-full">
-                                        <motion.div variants={itemVariants} className="flex-1 relative bg-zinc-50 border border-zinc-200 rounded-[1.5rem] overflow-hidden flex items-center justify-center group shadow-sm min-h-0">
-                                            <div className="absolute top-3 left-4 px-2 py-0.5 bg-red-100 text-red-600 rounded-md text-[8px] font-black tracking-widest uppercase z-10">Before</div>
-                                            {slides[currentSlide].imageBefore ? (
-                                                <img src={slides[currentSlide].imageBefore} alt="Before" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                                            ) : (
-                                                <div className="flex flex-col items-center gap-2 opacity-30">
-                                                    <ImageIcon size={28} className="text-zinc-500" />
-                                                    <span className="text-[8px] font-mono font-black tracking-widest uppercase text-zinc-600">Sistem Lama</span>
-                                                </div>
-                                            )}
-                                        </motion.div>
+                                <motion.div variants={containerVariants} initial="initial" animate="animate" className="flex flex-row h-full gap-6 pt-4 pb-2 items-stretch px-2 overflow-hidden">
 
-                                        <motion.div variants={itemVariants} className="flex-1 relative bg-zinc-50 border border-zinc-200 rounded-[1.5rem] overflow-hidden flex items-center justify-center group shadow-sm min-h-0">
-                                            <div className="absolute top-3 left-4 px-2 py-0.5 bg-emerald-100 text-emerald-600 rounded-md text-[8px] font-black tracking-widest uppercase z-10">After</div>
-                                            {slides[currentSlide].imageAfter ? (
-                                                <img src={slides[currentSlide].imageAfter} alt="After" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                                            ) : (
-                                                <div className="flex flex-col items-center gap-2 opacity-30">
-                                                    <ImageIcon size={28} className="text-zinc-500" />
-                                                    <span className="text-[8px] font-mono font-black tracking-widest uppercase text-zinc-600">Sistem DOORS</span>
+                                    {/* Left Side: Photos */}
+                                    <div className="w-[40%] flex flex-col gap-3 h-full">
+                                        {/* Before Placeholder - Only show if imagesBefore exists */}
+                                        {slides[currentSlide].imagesBefore && slides[currentSlide].imagesBefore.length > 0 && (
+                                            <motion.div variants={itemVariants} className="flex-1 relative bg-zinc-50 border border-zinc-200 rounded-[1.5rem] overflow-hidden flex flex-col group shadow-sm min-h-0">
+                                                <div className="absolute top-3 left-4 px-3 py-1 bg-red-100 text-red-600 rounded-lg text-[9px] font-black tracking-widest uppercase z-20">Before</div>
+
+                                                {/* Main Image Display */}
+                                                <div className="flex-1 w-full h-full bg-zinc-100 flex items-center justify-center p-6 pt-12 relative">
+                                                    <div className="w-full h-full bg-zinc-50 rounded-xl overflow-hidden shadow-lg relative flex items-center justify-center">
+                                                        <img
+                                                            src={slides[currentSlide].imagesBefore[activeBeforeImage]}
+                                                            alt="Before"
+                                                            className="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:scale-105 cursor-pointer"
+                                                            onClick={() => setEnlargedImage({
+                                                                url: slides[currentSlide].imagesBefore[activeBeforeImage],
+                                                                images: slides[currentSlide].imagesBefore,
+                                                                index: activeBeforeImage
+                                                            })}
+                                                        />
+                                                    </div>
+
+                                                    {/* Navigation Arrows */}
+                                                    {slides[currentSlide].imagesBefore.length > 1 && (
+                                                        <>
+                                                            <button
+                                                                onClick={(e) => { e.stopPropagation(); setActiveBeforeImage(prev => prev > 0 ? prev - 1 : slides[currentSlide].imagesBefore.length - 1); }}
+                                                                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/60 hover:bg-white rounded-full flex items-center justify-center shadow-sm text-zinc-500 hover:text-zinc-900 transition-all z-10 opacity-40 hover:opacity-100"
+                                                            >
+                                                                <ChevronLeft size={16} />
+                                                            </button>
+                                                            <button
+                                                                onClick={(e) => { e.stopPropagation(); setActiveBeforeImage(prev => prev < slides[currentSlide].imagesBefore.length - 1 ? prev + 1 : 0); }}
+                                                                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/60 hover:bg-white rounded-full flex items-center justify-center shadow-sm text-zinc-500 hover:text-zinc-900 transition-all z-10 opacity-40 hover:opacity-100"
+                                                            >
+                                                                <ChevronRight size={16} />
+                                                            </button>
+                                                        </>
+                                                    )}
+                                                </div>
+
+                                                {/* Thumbnail Strip */}
+                                                {slides[currentSlide].imagesBefore.length > 1 && (
+                                                    <div className="px-4 pb-4 pt-2 flex gap-2 overflow-x-auto">
+                                                        {slides[currentSlide].imagesBefore.map((img, i) => (
+                                                            <button
+                                                                key={i}
+                                                                onClick={() => setActiveBeforeImage(i)}
+                                                                className={`w-10 h-10 rounded-lg overflow-hidden border-2 flex-shrink-0 transition-all ${activeBeforeImage === i ? 'border-red-500 scale-110' : 'border-zinc-200 hover:border-zinc-400'}`}
+                                                            >
+                                                                <img src={img} alt={`Before ${i + 1}`} className="w-full h-full object-cover" />
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </motion.div>
+                                        )}
+
+                                        {/* After Placeholder / App Preview */}
+                                        <motion.div variants={itemVariants} className="flex-1 relative bg-zinc-50 border border-zinc-200 rounded-[1.5rem] overflow-hidden flex flex-col group shadow-sm min-h-0">
+                                            {slides[currentSlide].imagesBefore && slides[currentSlide].imagesBefore.length > 0 && (
+                                                <div className="absolute top-3 left-4 px-3 py-1 bg-emerald-100 text-emerald-600 rounded-lg text-[9px] font-black tracking-widest uppercase z-20">After</div>
+                                            )}
+
+                                            {/* Main Image Display */}
+                                            <div className="flex-1 w-full h-full bg-zinc-100 flex items-center justify-center p-6 pt-12 relative">
+                                                {slides[currentSlide].imagesAfter && slides[currentSlide].imagesAfter.length > 0 ? (
+                                                    <>
+                                                        <div className="w-full h-full bg-white rounded-xl overflow-hidden shadow-lg relative flex items-center justify-center">
+                                                            {/* Dashboard Header (Top Bar) */}
+                                                            <div className="absolute top-0 left-0 right-0 h-6 bg-zinc-50 border-b border-zinc-200 flex items-center px-3 gap-2 z-10">
+                                                                <div className="flex gap-1.5">
+                                                                    <div className="w-2 h-2 rounded-full bg-red-400"></div>
+                                                                    <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
+                                                                    <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                                                                </div>
+                                                                <div className="flex-1 h-3 bg-zinc-200 rounded-full max-w-[120px]"></div>
+                                                            </div>
+                                                            <img
+                                                                src={slides[currentSlide].imagesAfter[activeAfterImage]}
+                                                                alt="After"
+                                                                className="w-full h-[calc(100%-24px)] mt-6 object-contain cursor-pointer"
+                                                                onClick={() => setEnlargedImage({
+                                                                    url: slides[currentSlide].imagesAfter[activeAfterImage],
+                                                                    images: slides[currentSlide].imagesAfter,
+                                                                    index: activeAfterImage
+                                                                })}
+                                                            />
+                                                        </div>
+
+                                                        {/* Navigation Arrows */}
+                                                        {slides[currentSlide].imagesAfter.length > 1 && (
+                                                            <>
+                                                                <button
+                                                                    onClick={(e) => { e.stopPropagation(); setActiveAfterImage(prev => prev > 0 ? prev - 1 : slides[currentSlide].imagesAfter.length - 1); }}
+                                                                    className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/60 hover:bg-white rounded-full flex items-center justify-center shadow-sm text-zinc-500 hover:text-zinc-900 transition-all z-10 opacity-40 hover:opacity-100"
+                                                                >
+                                                                    <ChevronLeft size={16} />
+                                                                </button>
+                                                                <button
+                                                                    onClick={(e) => { e.stopPropagation(); setActiveAfterImage(prev => prev < slides[currentSlide].imagesAfter.length - 1 ? prev + 1 : 0); }}
+                                                                    className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/60 hover:bg-white rounded-full flex items-center justify-center shadow-sm text-zinc-500 hover:text-zinc-900 transition-all z-10 opacity-40 hover:opacity-100"
+                                                                >
+                                                                    <ChevronRight size={16} />
+                                                                </button>
+                                                            </>
+                                                        )}
+                                                    </>
+                                                ) : (
+                                                    <div className="flex flex-col items-center gap-2 opacity-30">
+                                                        <ImageIcon size={28} className="text-zinc-500" />
+                                                        <span className="text-[8px] font-mono font-black tracking-widest uppercase text-zinc-600">After</span>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            {/* Thumbnail Strip */}
+                                            {slides[currentSlide].imagesAfter && slides[currentSlide].imagesAfter.length > 1 && (
+                                                <div className="px-4 pb-4 pt-2 flex gap-2 overflow-x-auto">
+                                                    {slides[currentSlide].imagesAfter.map((img, i) => (
+                                                        <button
+                                                            key={i}
+                                                            onClick={() => setActiveAfterImage(i)}
+                                                            className={`w-10 h-10 rounded-lg overflow-hidden border-2 flex-shrink-0 transition-all ${activeAfterImage === i ? 'border-emerald-500 scale-110' : 'border-zinc-200 hover:border-zinc-400'}`}
+                                                        >
+                                                            <img src={img} alt={`After ${i + 1}`} className="w-full h-full object-cover" />
+                                                        </button>
+                                                    ))}
                                                 </div>
                                             )}
                                         </motion.div>
                                     </div>
 
                                     {/* Right Side: Textual Content & Impact */}
-                                    <div className="w-[65%] flex flex-col h-full pl-4 overflow-y-auto pr-2 custom-scrollbar">
+                                    <div className="w-[60%] flex flex-col h-full pl-4 overflow-y-auto pr-2 custom-scrollbar">
                                         <div className="mb-3">
                                             <motion.h2 variants={itemVariants} className="text-lg lg:text-xl font-black text-zinc-900 uppercase tracking-tighter mb-1 leading-none">{slides[currentSlide].title}</motion.h2>
                                             <motion.p variants={itemVariants} className="text-zinc-500 font-mono text-[11px] lg:text-[12px] tracking-widest uppercase font-bold">{slides[currentSlide].subtitle}</motion.p>
@@ -645,30 +761,28 @@ const Presentation = () => {
                                             {slides[currentSlide].paragraphs.map((p, i) => (
                                                 <motion.div variants={itemVariants} key={i} className="flex gap-3 items-start">
                                                     <div className="w-1 h-1 mt-1.5 rounded-full bg-emerald-500 shrink-0 shadow-sm" />
-                                                    <p className="text-[11px] lg:text-[12px] leading-relaxed text-zinc-600 font-medium text-justify">
+                                                    <p className="text-[12px] lg:text-[13px] leading-relaxed text-zinc-600 font-medium text-justify">
                                                         {p}
                                                     </p>
                                                 </motion.div>
                                             ))}
                                         </div>
 
-                                        <div className="mt-auto border-t border-zinc-100 pt-1">
-                                            <motion.div variants={itemVariants} className="flex items-center gap-2 mb-1">
-                                                <div className="p-1 bg-emerald-100 rounded text-emerald-600 shadow-sm"><TrendingUp size={12} /></div>
+                                        <div className="mt-6 border-t border-zinc-100 pt-2">
+                                            <motion.div variants={itemVariants} className="flex items-center gap-2 mb-2">
+                                                <div className="p-0.5 bg-emerald-100 rounded text-emerald-600 shadow-sm"><TrendingUp size={12} /></div>
                                                 <h3 className="text-[10px] font-black text-zinc-800 uppercase tracking-widest">Metrik Hasil Akhir</h3>
-                                            </motion.div>
-
-                                            <div className="grid grid-cols-4 gap-x-7">
+                                            </motion.div>                                            <div className="grid grid-cols-4 gap-x-5">
                                                 {slides[currentSlide].impact.map((res, i) => (
                                                     <motion.div variants={itemVariants} key={i} className="group">
-                                                        <div className="flex flex-col gap-2 mb-2">
-                                                            <div className="w-9 h-9 rounded-xl bg-zinc-50 border border-zinc-200 flex items-center justify-center text-emerald-600 group-hover:scale-110 group-hover:bg-emerald-50 transition-all duration-300 shadow-sm shrink-0 mb-1">
-                                                                {i === 0 ? <CheckCircle size={18} /> : i === 1 ? <TrendingUp size={18} /> : i === 2 ? <ShieldCheck size={18} /> : <BarChart size={18} />}
+                                                        <div className="flex flex-row items-center gap-2 mb-2">
+                                                            <div className="w-8 h-8 rounded-lg bg-zinc-50 border border-zinc-200 flex items-center justify-center text-emerald-600 group-hover:scale-110 group-hover:bg-emerald-50 transition-all duration-300 shadow-sm shrink-0">
+                                                                {i === 0 ? <CheckCircle size={16} /> : i === 1 ? <TrendingUp size={16} /> : i === 2 ? <ShieldCheck size={16} /> : <BarChart size={16} />}
                                                             </div>
                                                             <h4 className="text-[18px] lg:text-[20px] font-black text-zinc-900 leading-none tracking-tight">{res.value}</h4>
                                                         </div>
-                                                        <p className="text-[9.5px] font-black text-emerald-600 uppercase tracking-widest mb-1.5">{res.label}</p>
-                                                        <p className="text-[10px] lg:text-[11px] text-zinc-400 font-medium leading-tight max-w-[150px]">{res.desc}</p>
+                                                        <p className="text-[9px] font-black text-emerald-600 uppercase tracking-widest mb-1.5 px-1">{res.label}</p>
+                                                        <p className="text-[10px] lg:text-[11px] text-zinc-400 font-medium leading-tight px-1 max-w-[150px]">{res.desc}</p>
                                                     </motion.div>
                                                 ))}
                                             </div>
@@ -755,26 +869,42 @@ const Presentation = () => {
                                 </motion.div>
                             )}
 
-                            {slides[currentSlide].type === 'insight' && (
-                                <motion.div variants={containerVariants} initial="initial" animate="animate" className="max-w-xl mx-auto space-y-6">
-                                    <div className="text-center space-y-1"><motion.h2 variants={itemVariants} className="text-xl md:text-2xl font-black text-zinc-900 uppercase tracking-tighter">{slides[currentSlide].title}</motion.h2><motion.div variants={itemVariants} className="h-0.5 w-12 bg-zinc-900 mx-auto rounded-full" /></div>
-                                    <div className="grid gap-3">
-                                        {slides[currentSlide].points.map((point, i) => (
-                                            <motion.div key={i} variants={itemVariants} whileHover={{ x: 6, backgroundColor: "#fafafa" }} className="flex items-center gap-4 p-4 bg-white border border-zinc-100 rounded-[1.5rem] shadow-sm transition-all group">
-                                                <div className="w-10 h-10 bg-zinc-50 rounded-xl flex items-center justify-center text-zinc-800 shadow-sm border border-zinc-100 group-hover:bg-zinc-900 group-hover:text-white transition-all duration-500 shrink-0">{React.cloneElement(point.icon, { size: 14 })}</div>
-                                                <p className="text-xs md:text-[13px] text-zinc-800 font-bold tracking-tight leading-snug">{point.text}</p>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                </motion.div>
-                            )}
+                            {slides[currentSlide].type === 'insight-feedback' && (
+                                <motion.div variants={containerVariants} initial="initial" animate="animate" className="flex flex-col h-full pt-4">
+                                    <motion.div variants={itemVariants} className="text-center mb-8">
+                                        <h2 className="text-2xl md:text-3xl font-black text-zinc-900 uppercase tracking-tighter mb-1">{slides[currentSlide].title}</h2>
+                                        <p className="text-zinc-400 font-mono text-[9px] tracking-[0.3em] uppercase">Learning Journey & Final Reflection</p>
+                                    </motion.div>
 
-                            {slides[currentSlide].type === 'feedback' && (
-                                <motion.div variants={containerVariants} initial="initial" animate="animate" className="flex flex-col h-full pt-8">
-                                    <motion.div variants={itemVariants} className="text-center mb-10"><h2 className="text-2xl md:text-3xl font-black text-zinc-900 uppercase tracking-tighter mb-1">{slides[currentSlide].title}</h2><p className="text-zinc-400 font-mono text-[9px] tracking-[0.3em] uppercase">Final Reflection & Improvements</p></motion.div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1 h-full items-start">
-                                        <motion.div variants={itemVariants} className="bg-white/95 backdrop-blur-xl border border-zinc-100 p-8 rounded-[2.5rem] shadow-sm flex flex-col items-center justify-center text-center relative overflow-hidden h-full group"><div className="absolute top-0 left-0 w-full h-1 bg-zinc-900" /><MessageSquare className="w-10 h-10 text-zinc-200 mb-6 group-hover:scale-110 group-hover:text-zinc-900 transition-all duration-500" /><p className="text-lg md:text-xl text-zinc-800 font-black leading-[1.4] italic px-4">"{slides[currentSlide].content}"</p><div className="mt-8 flex items-center gap-3"><div className="h-px w-6 bg-zinc-100" /><span className="text-[9px] font-mono text-zinc-400 uppercase tracking-widest">Kesan Magang</span><div className="h-px w-6 bg-zinc-100" /></div></motion.div>
-                                        <motion.div variants={itemVariants} className="bg-zinc-900 p-8 rounded-[2.5rem] shadow-2xl flex flex-col items-center justify-center text-center text-white h-full relative group"><div className="absolute top-0 right-0 w-full h-1 bg-white/20" /><Lightbulb className="w-10 h-10 text-white/30 mb-6 group-hover:scale-110 group-hover:text-white transition-all duration-500" /><p className="text-lg md:text-xl text-zinc-100 font-bold leading-[1.4] px-4">"{slides[currentSlide].suggestion}"</p><div className="mt-8 flex items-center gap-3"><div className="h-px w-6 bg-white/10" /><span className="text-[9px] font-mono text-white/40 uppercase tracking-widest">Saran & Perbaikan</span><div className="h-px w-6 bg-white/10" /></div></motion.div>
+                                    <div className="grid grid-cols-[1.2fr_0.8fr] gap-8 flex-1 h-full items-start px-2">
+                                        {/* Left Side: Insights */}
+                                        <div className="space-y-3">
+                                            {slides[currentSlide].points.map((point, i) => (
+                                                <motion.div key={i} variants={itemVariants} whileHover={{ x: 6, backgroundColor: "#fafafa" }} className="flex items-center gap-4 p-3.5 bg-white border border-zinc-100 rounded-[1.2rem] shadow-sm transition-all group">
+                                                    <div className="w-9 h-9 bg-zinc-50 rounded-xl flex items-center justify-center text-zinc-800 shadow-sm border border-zinc-100 group-hover:bg-zinc-900 group-hover:text-white transition-all duration-500 shrink-0">
+                                                        {React.cloneElement(point.icon, { size: 13 })}
+                                                    </div>
+                                                    <p className="text-[12px] text-zinc-800 font-bold tracking-tight leading-snug">{point.text}</p>
+                                                </motion.div>
+                                            ))}
+                                        </div>
+
+                                        {/* Right Side: Kesan & Saran */}
+                                        <div className="flex flex-col gap-4 h-full">
+                                            <motion.div variants={itemVariants} className="bg-white/95 backdrop-blur-xl border border-zinc-100 p-6 rounded-[1.5rem] shadow-sm flex flex-col items-center justify-center text-center relative overflow-hidden group">
+                                                <div className="absolute top-0 left-0 w-full h-1 bg-zinc-900" />
+                                                <MessageSquare className="w-6 h-6 text-zinc-200 mb-3 group-hover:scale-110 group-hover:text-zinc-900 transition-all duration-500" />
+                                                <p className="text-xs md:text-sm text-zinc-800 font-black leading-[1.5] italic px-2">"{slides[currentSlide].kesan}"</p>
+                                                <span className="mt-4 text-[8px] font-mono text-zinc-400 uppercase tracking-widest font-bold">Kesan Magang</span>
+                                            </motion.div>
+
+                                            <motion.div variants={itemVariants} className="bg-zinc-900 p-6 rounded-[1.5rem] shadow-xl flex flex-col items-center justify-center text-center text-white relative group">
+                                                <div className="absolute top-0 right-0 w-full h-1 bg-white/20" />
+                                                <Lightbulb className="w-6 h-6 text-white/30 mb-3 group-hover:scale-110 group-hover:text-white transition-all duration-500" />
+                                                <p className="text-xs md:text-sm text-zinc-100 font-bold leading-[1.5] px-2">"{slides[currentSlide].saran}"</p>
+                                                <span className="mt-4 text-[8px] font-mono text-white/40 uppercase tracking-widest font-bold">Saran & Perbaikan</span>
+                                            </motion.div>
+                                        </div>
                                     </div>
                                 </motion.div>
                             )}
@@ -831,10 +961,12 @@ const Presentation = () => {
                     </AnimatePresence>
                 </div>
 
-                <div className="absolute inset-0 pointer-events-none flex items-center justify-between px-3 md:px-5 no-print z-[90]">
-                    <button onClick={() => paginate(-1)} disabled={currentSlide === 0} className={`p-2 rounded-full bg-white/20 backdrop-blur-md border border-zinc-200/30 text-zinc-500 hover:text-zinc-900 hover:bg-white pointer-events-auto transition-all shadow-sm ${currentSlide === 0 ? 'opacity-0 scale-50 cursor-default' : 'opacity-20 hover:opacity-100'}`}><ChevronLeft size={20} /></button>
-                    <button onClick={() => paginate(1)} disabled={currentSlide === slides.length - 1} className={`p-2 rounded-full bg-white/20 backdrop-blur-md border border-zinc-200/30 text-zinc-500 hover:text-zinc-900 hover:bg-white pointer-events-auto transition-all shadow-sm ${currentSlide === slides.length - 1 ? 'opacity-0 scale-50 cursor-default' : 'opacity-20 hover:opacity-100'}`}><ChevronRight size={20} /></button>
-                </div>
+                {!(slides[currentSlide].type === 'doors-solution-impact' && !enlargedImage) && (
+                    <div className="absolute inset-0 pointer-events-none flex items-center justify-between px-3 md:px-5 no-print z-[90]">
+                        <button onClick={() => paginate(-1)} disabled={currentSlide === 0} className={`p-2 rounded-full bg-white/20 backdrop-blur-md border border-zinc-200/30 text-zinc-500 hover:text-zinc-900 hover:bg-white pointer-events-auto transition-all shadow-sm ${currentSlide === 0 ? 'opacity-0 scale-50 cursor-default' : 'opacity-20 hover:opacity-100'}`}><ChevronLeft size={20} /></button>
+                        <button onClick={() => paginate(1)} disabled={currentSlide === slides.length - 1} className={`p-2 rounded-full bg-white/20 backdrop-blur-md border border-zinc-200/30 text-zinc-500 hover:text-zinc-900 hover:bg-white pointer-events-auto transition-all shadow-sm ${currentSlide === slides.length - 1 ? 'opacity-0 scale-50 cursor-default' : 'opacity-20 hover:opacity-100'}`}><ChevronRight size={20} /></button>
+                    </div>
+                )}
             </div>
 
             <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} className="h-12 px-6 flex justify-between items-center bg-zinc-50/50 backdrop-blur-xl border-t border-zinc-100 z-50 no-print">
@@ -871,6 +1003,39 @@ const Presentation = () => {
                     <div className="flex items-center gap-2 text-zinc-400"><div className="w-1 h-1 rounded-full bg-emerald-500" /><span className="font-mono text-[8px] font-black text-zinc-900 uppercase">Slide {currentSlide + 1} / {slides.length}</span></div>
                 </div>
             </motion.div>
+
+            {/* Enlarged Image Modal (Lightbox) */}
+            {enlargedImage && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-sm flex items-center justify-center p-8 no-print"
+                    onClick={() => setEnlargedImage(null)}
+                >
+                    <motion.div
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.9, opacity: 0 }}
+                        className="relative max-w-full max-h-full"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setEnlargedImage(null)}
+                            className="absolute -top-12 right-0 w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all"
+                        >
+                            <X size={20} />
+                        </button>
+                        {/* Enlarged Image */}
+                        <img
+                            src={enlargedImage.url}
+                            alt="Enlarged view"
+                            className="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl"
+                        />
+                    </motion.div>
+                </motion.div>
+            )}
 
             <div className="hidden print:block absolute inset-0 bg-white z-0 overflow-visible">
                 {slides.map((slide, index) => (
