@@ -185,10 +185,10 @@ const Presentation = () => {
                 { icon: <Layout />, text: 'Kak Listi: Bekerja dengan sangat telaten dalam bidangnya dan apa adanya.' },
                 { icon: <Users />, text: 'Mas Rohim: Pandai secara teknis dan selalu punya kemauan keras untuk terus belajar.' }
             ],
-            kesan: 'Diposisikan di IT Digitalisasi mengajarkan saya cara memahami user dan juga alur proses bisnis lintas departemen.',
-            saran: 'Batasan saya terus dilewati, namun semuanya terasa jauh lebih terkoordinir. Saya sangat ingin menjadi profesional seperti Tim HRMS Dharma Polimetal!',
-            kesanTitle: 'Insight Pembelajaran',
-            saranTitle: 'Refleksi & Aspirasi'
+            kesan: 'Posisi IT Digitalisasi mengajarkan saya memahami user dan proses bisnis lintas departemen. Dukungan tim ini mendorong batasan diri saya sehingga pekerjaan terasa lebih terkoordinir. Saya terinspirasi menjadi seperti kalian!',
+            saran: 'Teruslah menjadi tim yang solid karena komposisi kolaborasi saat ini sudah sangat ideal. Jangan pernah berhenti untuk terus berinovasi bagi Dharma Polimetal!',
+            kesanTitle: 'Refleksi & Pembelajaran',
+            saranTitle: 'Saran & Perbaikan'
         },
         {
             type: 'target',
