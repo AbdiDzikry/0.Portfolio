@@ -1450,7 +1450,7 @@ export const projectsData = [
             { category: 'Years 2-3: Design Growth', items: ['Career: Mid-Level UI/UX Designer (UX Research & Prototyping)', 'Mandarin: HSK 1-2 (Basic Conversation)', 'Side: IoT Integration for Automated Hydroponics'] },
             { category: 'Years 4-5: Design Expert', items: ['Career: Senior UI/UX Designer (Design Systems & Strategy)', 'Mandarin: HSK 3-4 (Business & Technical)', 'Side: Profitable Microgreens & Farming Exploration'] },
             { category: 'Years 6-8: Expert', items: ['Career: Senior Digital BA (Expert & Mentorship)', 'Mandarin: HSK 5 (Global Tech Vendors focus)', 'Side: Scaling Modern Agribusiness Operations'] },
-            { category: 'Years 9-10: Managerial', items: ['Career: Digital Transformation Manager (Strategic)', 'Strategy: Global IT Coordination & Executive Strategy', 'Goal: Successful Transition to Professional Farming'] }
+            { category: 'Years 9-10: Senior Strategic', items: ['Career: Senior Digital BA (Enterprise Strategy & Architecture)', 'Strategy: Driving Cross-functional Digitalization', 'Goal: Successful Transition to Professional Farming'] }
         ],
         kesan: 'Lingkungan kerja yang sangat mendukung pembelajaran teknis dan manajerial.',
         saran: 'Terus meningkatkan sinkronisasi data antar departemen agar ekosistem digital semakin solid.',
