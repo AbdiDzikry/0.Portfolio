@@ -535,12 +535,12 @@ const Presentation = () => {
                                                         <div className="w-3 h-3 rounded-full bg-white border-[3px] border-zinc-900 z-20 shadow-md group-hover:scale-150 transition-all duration-500" />
                                                     </div>
                                                     <motion.div initial={{ height: 0 }} animate={{ height: 60 }} transition={{ delay: 1, duration: 0.8 }} className={`absolute left-1/2 -translate-x-1/2 w-px bg-zinc-100 group-hover:bg-zinc-900 transition-colors duration-500 ${i % 2 === 0 ? 'bottom-1/2 mb-1.5' : 'top-1/2 mt-1.5'}`} />
-                                                    <div className={`absolute w-44 text-center space-y-2 px-2 transform ${i % 2 === 0 ? 'bottom-[62%]' : 'top-[62%]'}`}>
+                                                    <div className={`absolute w-56 text-center space-y-2 px-2 transform ${i % 2 === 0 ? 'bottom-[62%]' : 'top-[62%]'}`}>
                                                         <div className="flex flex-col items-center gap-1.5">
-                                                            <span className="px-2.5 py-0.5 bg-white border-2 border-zinc-900 rounded-full text-[8px] font-black text-zinc-900 uppercase tracking-widest shadow-sm inline-block group-hover:bg-zinc-900 group-hover:text-white transition-all duration-300">{item.month}</span>
-                                                            <div className="space-y-0.5">
-                                                                <h4 className="text-[10px] font-black text-zinc-900 leading-tight uppercase tracking-tighter">{item.project}</h4>
-                                                                <p className="text-[9px] text-zinc-400 leading-snug font-bold group-hover:text-zinc-500 transition-colors">{item.activities}</p>
+                                                            <span className="px-3 py-1 bg-white border-2 border-zinc-900 rounded-full text-[10px] font-black text-zinc-900 uppercase tracking-widest shadow-sm inline-block group-hover:bg-zinc-900 group-hover:text-white transition-all duration-300">{item.month}</span>
+                                                            <div className="space-y-1">
+                                                                <h4 className="text-xs font-black text-zinc-900 leading-tight uppercase tracking-tighter">{item.project}</h4>
+                                                                <p className="text-[10px] md:text-[11px] text-zinc-400 leading-snug font-bold group-hover:text-zinc-500 transition-colors">{item.activities}</p>
                                                             </div>
                                                         </div>
                                                     </div>
