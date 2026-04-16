@@ -1448,7 +1448,7 @@ export const projectsData = [
         futureTargets: [
             { category: 'Year 1: Foundation', items: ['Career: Junior UI/UX Designer (Visual & Interaction Focus)', 'Side: Basic Hydroponic Practice (Wick System)'] },
             { category: 'Years 2-3: Design Growth', items: ['Career: Mid-Level UI/UX Designer (UX Research & Prototyping)', 'Mandarin: HSK 1-2 (Basic Conversation)', 'Side: IoT Integration for Automated Hydroponics'] },
-            { category: 'Years 4-5: Pivot to BA', items: ['Career: Senior Digital BA (System Optimization & Logic)', 'Mandarin: HSK 3-4 (Business & Technical)', 'Side: Profitable Microgreens & Farming Exploration'] },
+            { category: 'Years 4-5: Design Expert', items: ['Career: Senior UI/UX Designer (Design Systems & Strategy)', 'Mandarin: HSK 3-4 (Business & Technical)', 'Side: Profitable Microgreens & Farming Exploration'] },
             { category: 'Years 6-8: Expert', items: ['Career: Senior Digital BA (Expert & Mentorship)', 'Mandarin: HSK 5 (Global Tech Vendors focus)', 'Side: Scaling Modern Agribusiness Operations'] },
             { category: 'Years 9-10: Managerial', items: ['Career: Digital Transformation Manager (Strategic)', 'Strategy: Global IT Coordination & Executive Strategy', 'Goal: Successful Transition to Professional Farming'] }
         ],
