@@ -186,7 +186,7 @@ const Presentation = () => {
                 { icon: <Users />, text: 'Mas Rohim: Pandai secara teknis dan selalu punya kemauan keras untuk terus belajar.' }
             ],
             kesan: 'Posisi IT Digitalisasi mengajarkan saya memahami user dan proses bisnis lintas departemen. Dukungan tim ini mendorong batasan diri saya sehingga pekerjaan terasa lebih terkoordinir. Saya terinspirasi menjadi seperti kalian!',
-            saran: 'Teruslah menjadi tim yang solid karena komposisi kolaborasi saat ini sudah sangat ideal. Jangan pernah berhenti untuk terus berinovasi bagi Dharma Polimetal!',
+            saran: 'Teruslah menjadi tim yang solid karena komposisi kolaborasi saat ini sudah sangat ideal. Jangan pernah berhenti untuk terus berinovasi ',
             kesanTitle: 'Refleksi & Pembelajaran',
             saranTitle: 'Saran & Perbaikan'
         },
