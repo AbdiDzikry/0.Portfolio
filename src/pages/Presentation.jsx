@@ -178,15 +178,17 @@ const Presentation = () => {
         },
         {
             type: 'insight-feedback',
-            title: 'Key Insights & Feedback',
+            title: 'Insight & Tim HRMS',
             points: [
-                { icon: <Target />, text: 'Modernisasi Proses: Mengubah alur kerja konvensional menjadi ekosistem digital yang efisien.' },
-                { icon: <MessageSquare />, text: 'Interpretasi Visi: Mahir dalam menerjemahkan kemauan klien menjadi solusi desain yang fungsional.' },
-                { icon: <Layout />, text: 'Product Management: Mengelola siklus pengembangan produk dari riset hingga implementasi.' },
-                { icon: <Users />, text: 'Sinergi Departemen: Kolaborasi lintas divisi (HRGA) untuk sinkronisasi data perusahaan.' }
+                { icon: <Target />, text: 'Pak Lukman: Sosok inovator yang sangat pandai dalam strategi dan koordinasi tim.' },
+                { icon: <MessageSquare />, text: 'Mas Bagas: Mentor tangguh yang selalu adaptif dan fleksibel dalam bekerja.' },
+                { icon: <Layout />, text: 'Kak Listi: Bekerja dengan sangat telaten dalam bidangnya dan apa adanya.' },
+                { icon: <Users />, text: 'Mas Rohim: Pandai secara teknis dan selalu punya kemauan keras untuk terus belajar.' }
             ],
-            kesan: project.kesan,
-            saran: project.saran
+            kesan: 'Diposisikan di IT Digitalisasi mengajarkan saya cara memahami user dan juga alur proses bisnis lintas departemen.',
+            saran: 'Batasan saya terus dilewati, namun semuanya terasa jauh lebih terkoordinir. Saya sangat ingin menjadi profesional seperti Tim HRMS Dharma Polimetal!',
+            kesanTitle: 'Insight Pembelajaran',
+            saranTitle: 'Refleksi & Aspirasi'
         },
         {
             type: 'target',
@@ -895,14 +897,14 @@ const Presentation = () => {
                                                 <div className="absolute top-0 left-0 w-full h-1 bg-zinc-900" />
                                                 <MessageSquare className="w-6 h-6 text-zinc-200 mb-3 group-hover:scale-110 group-hover:text-zinc-900 transition-all duration-500" />
                                                 <p className="text-xs md:text-sm text-zinc-800 font-black leading-[1.5] italic px-2">"{slides[currentSlide].kesan}"</p>
-                                                <span className="mt-4 text-[8px] font-mono text-zinc-400 uppercase tracking-widest font-bold">Kesan Magang</span>
+                                                <span className="mt-4 text-[8px] font-mono text-zinc-400 uppercase tracking-widest font-bold">{slides[currentSlide].kesanTitle || 'Kesan Magang'}</span>
                                             </motion.div>
 
                                             <motion.div variants={itemVariants} className="bg-zinc-900 p-6 rounded-[1.5rem] shadow-xl flex flex-col items-center justify-center text-center text-white relative group">
                                                 <div className="absolute top-0 right-0 w-full h-1 bg-white/20" />
                                                 <Lightbulb className="w-6 h-6 text-white/30 mb-3 group-hover:scale-110 group-hover:text-white transition-all duration-500" />
                                                 <p className="text-xs md:text-sm text-zinc-100 font-bold leading-[1.5] px-2">"{slides[currentSlide].saran}"</p>
-                                                <span className="mt-4 text-[8px] font-mono text-white/40 uppercase tracking-widest font-bold">Saran & Perbaikan</span>
+                                                <span className="mt-4 text-[8px] font-mono text-white/40 uppercase tracking-widest font-bold">{slides[currentSlide].saranTitle || 'Saran & Perbaikan'}</span>
                                             </motion.div>
                                         </div>
                                     </div>
