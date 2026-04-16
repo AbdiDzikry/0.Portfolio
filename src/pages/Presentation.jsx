@@ -192,7 +192,7 @@ const Presentation = () => {
             type: 'target',
             title: 'Professional Roadmap',
             milestones: (project.futureTargets || []).map((ft, i) => {
-                const icons = [<Search />, <Layout />, <Briefcase />, <ShieldCheck />, <Users />, <TrendingUp />, <Rocket />];
+                const icons = [<Search />, <Briefcase />, <TrendingUp />, <Users />, <Rocket />];
                 return {
                     category: ft.category,
                     items: ft.items,
@@ -911,7 +911,7 @@ const Presentation = () => {
 
                             {slides[currentSlide].type === 'target' && (
                                 <div className="flex flex-col h-full pt-10 px-4">
-                                    <motion.div variants={containerVariants} initial="initial" animate="animate" className="text-center mb-0"><motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-black text-zinc-900 uppercase tracking-tighter">{slides[currentSlide].title}</motion.h2><motion.p variants={itemVariants} className="text-zinc-400 font-mono text-[9px] tracking-[0.4em] uppercase">The UI/UX Progression 2026 - 2032</motion.p></motion.div>
+                                    <motion.div variants={containerVariants} initial="initial" animate="animate" className="text-center mb-0"><motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-black text-zinc-900 uppercase tracking-tighter">{slides[currentSlide].title}</motion.h2><motion.p variants={itemVariants} className="text-zinc-400 font-mono text-[9px] tracking-[0.4em] uppercase">Digital Transformation 2026-2035</motion.p></motion.div>
                                     <div className="relative flex-1 flex items-center mt-6 h-full">
                                         <div className="absolute top-1/2 left-0 right-0 h-[3px] bg-gradient-to-r from-zinc-50 via-zinc-200 to-zinc-50 -translate-y-1/2 z-0 opacity-50" />
                                         <div className="flex justify-around w-full relative z-10 px-12 lg:px-24">

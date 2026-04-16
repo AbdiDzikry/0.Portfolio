@@ -1,4 +1,4 @@
-﻿export const projectsData = [
+export const projectsData = [
     {
         id: 'doors',
         title: 'Doors',
@@ -1385,12 +1385,12 @@
             { name: 'Abdul Rohim', role: 'Staff', id: '11185354' }
         ],
         journey: [
-            { month: 'Bulan 1', title: 'Adaptasi & Research', desc: 'Memahami proses bisnis HRGA Dharma Polimetal dan memetakan alur booking ruangan manual yang rumit.' },
-            { month: 'Bulan 2', title: 'Proyek Doors Design', desc: 'Mendesain antarmuka Doors dengan pendekatan Mobile-First (Tablet) dan Penyederhanaan proses pemesanan ruangan meeting.' },
-            { month: 'Bulan 3', title: 'Doors Development', desc: 'Membangun fungsionalitas utama (Check-in NPK, Gantt Chart) dan peluncuran produk pertama (Doors v2.0).' },
-            { month: 'Bulan 4', title: 'Monitoring AC System', desc: 'Melakukan ekspansi sistem ke manajemen fasilitas, khusus pemantauan perawatan serta pelaporan fasilitas AC.' },
-            { month: 'Bulan 5', title: 'Documentation', desc: 'Persiapan Dokumentasi Teknis dan General untuk Hand-Over ke Tim Departemen HRMS.' },
-            { month: 'Bulan 6', title: 'Final Action', desc: 'Penyerahan Dokumentasi Teknis dan General terkait projek yang telah dibuat selama magang.' }
+            { month: 'Bulan 1', title: 'Adaptasi & Research', desc: 'Memahami proses bisnis HRGA Dharma Polimetal dan melakukan observasi terhadap sistem yang sedang berjalan.' },
+            { month: 'Bulan 2', title: 'Doors Improvement', desc: 'Mendesain konsep perancangan ulang sistem Doors berdasarkan kesulitan pengguna ' },
+            { month: 'Bulan 3', title: 'Doors Launching', desc: 'Membangun fungsionalitas utama (Check-in NPK, Gantt Chart) dan peluncuran produk pertama (Doors v2.0).' },
+            { month: 'Bulan 4', title: 'Monitoring AC System', desc: 'Mulai merancang konsep dan membuat prototype atau konsep awal sistem aplikasi' },
+            { month: 'Bulan 5', title: 'Improvement', desc: 'Menyempurnakan fitur dari Prototype sistem AC Monitoring sehingga menjadi satu aplikasi utuh' },
+            { month: 'Bulan 6', title: 'Documentation', desc: 'Pembuatan dan Penyerahan Dokumentasi Teknis dan General terkait projek yang telah dibuat selama magang.' }
         ],
         pillars: [
             { id: 'doors', name: 'DOORS Project', icon: 'door', desc: 'Sistem booking 14 ruang rapat dengan 1.000+ pengguna aktif.', metric: '0% Conflicts', tag: 'UI/UX' },
@@ -1446,9 +1446,11 @@
             { id: '11185354', name: 'Abdul Rohim', role: 'Staff', email: 'abdul.rohim@dp.dharmap.com', dept: 'HRGA', subDept: 'HRMS', image: '/rohimprofil.png' }
         ],
         futureTargets: [
-            { category: 'Immediate (2026)', items: ['Professional: Junior UI/UX Designer at Reputable Tech Firm', 'Skill: Google Professional UX Certificate Completion'] },
-            { category: 'Growth (2027-2028)', items: ['Professional: Mid-Level UI/UX Designer / Product Designer', 'Academic: Pursuing Masters (S2) in Business Management'] },
-            { category: 'Strategic (2029-2032)', items: ['Professional: Product Design Lead / Staff Specialist', 'Community: Industry Speaker & External Educator'] }
+            { category: 'Year 1: Foundation', items: ['Career: Junior UI/UX Designer (Visual & Interaction Focus)', 'Side: Basic Hydroponic Practice (Wick System)'] },
+            { category: 'Years 2-3: Design Growth', items: ['Career: Mid-Level UI/UX Designer (UX Research & Prototyping)', 'Mandarin: HSK 1-2 (Basic Conversation)', 'Side: IoT Integration for Automated Hydroponics'] },
+            { category: 'Years 4-5: Pivot to BA', items: ['Career: Senior Digital BA (System Optimization & Logic)', 'Mandarin: HSK 3-4 (Business & Technical)', 'Side: Profitable Microgreens & Farming Exploration'] },
+            { category: 'Years 6-8: Expert', items: ['Career: Senior Digital BA (Expert & Mentorship)', 'Mandarin: HSK 5 (Global Tech Vendors focus)', 'Side: Scaling Modern Agribusiness Operations'] },
+            { category: 'Years 9-10: Managerial', items: ['Career: Digital Transformation Manager (Strategic)', 'Strategy: Global IT Coordination & Executive Strategy', 'Goal: Successful Transition to Professional Farming'] }
         ],
         kesan: 'Lingkungan kerja yang sangat mendukung pembelajaran teknis dan manajerial.',
         saran: 'Terus meningkatkan sinkronisasi data antar departemen agar ekosistem digital semakin solid.',
