@@ -1482,14 +1482,16 @@ export const projectsData = [
         size: 'large',
         uxTemplate: 'standard',
         journey: [
-            { month: 'Identifikasi Risiko', title: 'Risk Assessment', desc: 'Memetakan anomali pada log pemesanan dan celah monopoli ruangan oleh oknum.' },
-            { month: 'Deteksi Dini', title: 'Preventive Controls', desc: 'Membangun kewajiban Check-In fisik via tablet untuk mencegah Ghost Meetings.' },
-            { month: 'Monitoring Realtime', title: 'Audit Dashboard', desc: 'Memonitor utilisasi dan mendeteksi jadwal ganda atau ketidakhadiran secara live.' },
-            { month: 'Evaluasi & Laporan', title: 'Reporting', desc: 'Menghasilkan laporan utilisasi valid yang bebas manipulasi untuk evaluasi HRGA.' }
+            { month: 'Pilar 1', title: 'Pencegahan (Prevention)', desc: 'Membangun tata kelola (GCG) dan memotong Peluang (Opportunity) fraud lewat SOP wajib Check-In fisik.' },
+            { month: 'Pilar 2', title: 'Deteksi (Detection)', desc: 'Mengintegrasikan audit internal dan analisis data untuk mengidentifikasi anomali pemesanan fiktif.' },
+            { month: 'Pilar 3', title: 'Investigasi & Sanksi', desc: 'Menyediakan Audit Trail tak terbantahkan berbasis NPK untuk menggali modus operandi pelaku.' },
+            { month: 'Pilar 4', title: 'Pemantauan & Evaluasi', desc: 'Meninjau efektivitas strategi secara berkala lewat laporan utilisasi aset HRGA yang bebas manipulasi.' }
         ],
         pillars: [
-            { id: 'preventive', name: 'Preventive Control', icon: 'shield', desc: 'Sistem "Auto-Cancel" untuk memblokir pemesanan fiktif.', metric: '100% Valid', tag: 'Fraud Prevention' },
-            { id: 'detective', name: 'Detective Control', icon: 'search', desc: 'Log histori pemesanan berbasis NPK untuk mendokumentasikan jejak pelaku.', metric: 'Real-time', tag: 'Audit' }
+            { id: 'preventive', name: 'Pencegahan', icon: 'shield', desc: 'Sistem Auto-Cancel untuk memblokir niat kecurangan sesuai fraud triangle.', metric: 'Zero Loopholes', tag: 'Prevention' },
+            { id: 'detective', name: 'Deteksi', icon: 'search', desc: 'Dashboard analitik live untuk mengidentifikasi anomali (Ghost Meetings).', metric: 'Live Audit', tag: 'Detection' },
+            { id: 'investigative', name: 'Investigasi & Pelaporan', icon: 'file-text', desc: 'Rekam jejak NPK mutlak untuk bukti forensik dan sanksi.', metric: '100% Trace', tag: 'Investigation' },
+            { id: 'monitoring', name: 'Pemantauan', icon: 'eye', desc: 'Evaluasi berkala pemanfaatan aset HRGA berdasar data murni.', metric: 'SOP Compliant', tag: 'Monitoring' }
         ],
         problemMap: [
             { problem: 'Resource Hoarding', context: 'Oknum memonopoli ruang rapat di sistem namun praktiknya tidak pernah hadir.', solution: 'On-Spot Validation', mitigation: 'Sistem otomatis menggugurkan booking jika dalam 15 menit awal tak ada validasi tablet rungan.' }
@@ -1514,7 +1516,7 @@ export const projectsData = [
         vision: 'Mewujudkan praktik Good Corporate Governance melindungi fasilitas perusahaan.',
         status: 'COMPLETED',
         uxOverview: 'Sistem dirancang dengan orientasi rekam jejak penuh (audit trail) murni utuk investigasi oknum penyalahguna.',
-        background: 'Dalam industri, fraud operasional tidak selalu berupa uang, tetapi bisa berbentuk sabotase atau monopoli aset fisik secara sembunyi-sembunyi. Hal ini marak terjadi via identitas fiktif (identity spoofing) dan ketidakhadiran yang direkayasa (Ghost Meetings) saat pemesanan ruang meeting direksi. Memahami kebutuhan rekrutmen Anti Fraud Officer di PT Dharma Polimetal, saya berhasil menumpulkan risiko ini via sistem DOORS. Saya memetakan kelemahan log buku fisik dan memodernisasinya lewat autentikasi berlapis: tap NPK dan On-Spot Tablet Scanner. Ini memastikan log audit 100% tervalidasi yang mempersempit ruang gerak pelaku.',
+        background: 'Mendasari konsep Fraud Triangle (Tekanan, Peluang, Rasionalisasi), mayoritas celah fraud di bidang operasional lahir dari besarnya sebuah "Peluang" pada sistem terdesentralisasi—seperti buku absen kertas yang disalahgunakan untuk monopoli pemesanan VIP. Menjawab kualifikasi Anti-Fraud Officer di PT Dharma Polimetal Tbk, saya membuktikan diri dalam mengimplementasikan "Fraud Control Plan" (Pencegahan, Deteksi, Investigasi, Pemantauan) ke dalam simulasi nyata via ekosistem DOORS. Lewat kontrol autentikasi berlapis (Tablet NPK), saya secara harafiah "menekan habis peluang" bagi oknum, memastikan budaya sadar tata kelola terbangun sempurna dan data audit bebas dari campur tangan oknum.',
         keyHighlights: [
             'Risk Identification: Menganalisa tabiat "Ghost Meetings" dan penimbunan wewenang.',
             'Digital Control: Autentikasi NPK & Auto-Cancel via tablet fisik (On-Spot).',
