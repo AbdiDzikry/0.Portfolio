@@ -1473,68 +1473,68 @@ export const projectsData = [
             '/projects/doors/Presentasi Doors-4.webp',
             '/projects/doors/Presentasi Doors-10.webp'
         ],
-        tagline: 'Mengurangi Celah Fraud melalui Digitalisasi SPK & Audit Trail.',
-        description: 'Pendekatan investigasi dan manajemen risiko menggunakan platform DOORS untuk pelacakan kepatuhan vendor dan pencegahan klaim fiktif.',
-        problem: 'Proses manual Surat Perintah Kerja (SPK) rentan penyalahgunaan seperti manipulasi tanggal garansi vendor, penagihan ganda (double-billing), dan rekam jejak audit yang terputus.',
-        solution: 'Mengimplementasikan alur kerja SPK digital terpusat dengan validasi garansi otomatis dan pembuatan dokumen Berita Acara (BA) ber-timestamp yang valid.',
-        impact: 'Menutup celah manipulasi dokumen, meningkatkan akuntabilitas proses maintenance, dan menyediakan data investigasi real-time untuk keperluan evaluasi anti-fraud.',
+                tagline: 'Mencegah Penyalahgunaan Aset & Integritas Data Booking DOORS.',
+        description: 'Pendekatan evaluasi dan manajemen risiko menggunakan platform DOORS untuk pelacakan penggunaan ruang rapat dan pencegahan pemesanan fiktif (resource hoarding).',
+        problem: 'Proses manual rentan terhadap penyalahgunaan fasilitas, pemesanan fiktif yang merugikan operasional, dan ketiadaan rekam jejak (audit trail) siapa yang memonopoli ruang meeting VIP.',
+        solution: 'Mengimplementasikan pengamanan identifikasi berbasis Nomor Induk Karyawan (NPK) dan fitur On-Spot Check-In untuk membatalkan pertemuan "fiktif" otomatis.',
+        impact: 'Membasmi kebocoran utilisasi ruang, memastikan akuntabilitas pemakaian aset perusahaan, dan menyajikan laporan valid untuk keperluan audit operasional HRGA.',
         tags: ['Anti-Fraud', 'Process Audit', 'Risk Management', 'Investigasi'],
         size: 'large',
         uxTemplate: 'standard',
         journey: [
-            { month: 'Identifikasi Risiko', title: 'Risk Assessment', desc: 'Memetakan celah permohonan klaim pemeliharaan tanpa bukti kuat.' },
-            { month: 'Deteksi Dini', title: 'Preventive Controls', desc: 'Membangun logika validasi otomatis 3 bulan garansi untuk memblokir penagihan ganda.' },
-            { month: 'Monitoring Realtime', title: 'Audit Dashboard', desc: 'Memonitor setiap kejadian perbaikan aset dari hulu ke hilir lintas departemen.' },
-            { month: 'Evaluasi & Laporan', title: 'Reporting', desc: 'Menghasilkan laporan valid berbasis sistem untuk investigasi tim Finance/Audit.' }
+            { month: 'Identifikasi Risiko', title: 'Risk Assessment', desc: 'Memetakan anomali pada log pemesanan dan celah monopoli ruangan oleh oknum.' },
+            { month: 'Deteksi Dini', title: 'Preventive Controls', desc: 'Membangun kewajiban Check-In fisik via tablet untuk mencegah Ghost Meetings.' },
+            { month: 'Monitoring Realtime', title: 'Audit Dashboard', desc: 'Memonitor utilisasi dan mendeteksi jadwal ganda atau ketidakhadiran secara live.' },
+            { month: 'Evaluasi & Laporan', title: 'Reporting', desc: 'Menghasilkan laporan utilisasi valid yang bebas manipulasi untuk evaluasi HRGA.' }
         ],
         pillars: [
-            { id: 'preventive', name: 'Preventive Control', icon: 'shield', desc: 'Validasi otomatis masa garansi aset.', metric: '100% Valid', tag: 'Fraud Prevention' },
-            { id: 'detective', name: 'Detective Control', icon: 'search', desc: 'Database terpusat (Audit Trail) untuk investigasi riwayat.', metric: 'Real-time', tag: 'Audit' }
+            { id: 'preventive', name: 'Preventive Control', icon: 'shield', desc: 'Sistem "Auto-Cancel" untuk memblokir pemesanan fiktif.', metric: '100% Valid', tag: 'Fraud Prevention' },
+            { id: 'detective', name: 'Detective Control', icon: 'search', desc: 'Log histori pemesanan berbasis NPK untuk mendokumentasikan jejak pelaku.', metric: 'Real-time', tag: 'Audit' }
         ],
         problemMap: [
-            { problem: 'Klaim Fiktif (Fraud)', context: 'Vendor mengklaim perbaikan di masa garansi sebagai tagihan baru.', solution: 'Auto-Warranty System', mitigation: 'Sistem menolak pembuatan tagihan jika status aset masih bergaransi.' }
+            { problem: 'Resource Hoarding', context: 'Oknum memonopoli ruang rapat di sistem namun praktiknya tidak pernah hadir.', solution: 'On-Spot Validation', mitigation: 'Sistem otomatis menggugurkan booking jika dalam 15 menit awal tak ada validasi tablet rungan.' }
         ],
         stats: [
-            { label: 'Data Integrity', value: '100%', description: 'Log aktivitas tervalidasi.' },
-            { label: 'Audit Time', value: '-80%', description: 'Kecepatan investigasi dokumen.' }
+            { label: 'Data Integrity', value: '100%', description: 'Log log-in divalidasi keaktifannya.' },
+            { label: 'Asset Utilization', value: '+40%', description: 'Penurunan angka "Ghost Meetings".' }
         ],
         mitigationPlans: [
-            { risk: 'Unverified Input / Data Tampering', action: 'Mengintegrasikan timestamp server dan riwayat akun pada dokumen PDF akhir.' }
+            { risk: 'Identity Spoofing', action: 'Mengunci hak akses pemesanan pada sistem hanya melalui autentikasi NPK milik karyawan yang sah.' }
         ],
         personas: [
-            { role: 'Anti Fraud Officer', pain: 'Kesulitan melacak rekam jejak dokumen cetak yang mudah rusak/hilang.', goal: 'Sistem pemantauan kejadian fraud (leaks) yang komprehensif.' },
-            { role: 'GA Manager', pain: 'Kebocoran anggaran akibat kelalaian klaim garansi.', goal: 'Efisiensi dan transparansi pada pengelolaan budget fasilitas.' }
+            { role: 'Anti Fraud Officer', pain: 'Kehilangan kendali pelacakan pada oknum internal yang menyalahgunakan pemesanan.', goal: 'Dasbor pemantauan anti manipulasi.' },
+            { role: 'GA Manager', pain: 'Konflik departemen akibat bentrok fasilitas karena jejak kertas tak valid.', goal: 'Budaya tertib penggunaan aset perusahaan.' }
         ],
         businessModel: [
-            { type: 'Cost Avoidance', value: 'Mencegah kerugian finansial akibat pembayaran ganda pada vendor nakal.' }
+            { type: 'Operational Efficiency', value: 'Mencegah inefisiensi jam meeting dan memaksimalkan ruang.' }
         ],
         beforeAfter: [
-            { aspect: 'Audit Trail', before: 'Tumpukan Berita Acara (BA) fisik yang rentan dimanipulasi tanggalnya.', after: 'Sistem rekam digital dengan sistem pengunci tanggal mutlak.' }
+            { aspect: 'Audit Trail', before: 'Logbook kertas rentan ditulis asal tanpa verifikasi pasti.', after: 'Autentikasi mutlak merekam identitas digital konstan.' }
         ],
-        vision: 'Mewujudkan Good Corporate Governance melalui transparansi dan integritas data operasional.',
+        vision: 'Mewujudkan praktik Good Corporate Governance melindungi fasilitas perusahaan.',
         status: 'COMPLETED',
-        uxOverview: 'Dashboard dirancang murni untuk kemudahan proses analisa, investigasi, dan monitoring pelaksanaan anti-fraud yang terstruktur.',
-        background: 'Berkaca pada kualifikasi rekrutmen PT Dharma Polimetal Tbk, posisi Anti Fraud Officer membutuhkan pemahaman kuat terhadap identifikasi, monitoring, serta analitik. Proyek DOORS adalah simulasi riil penyelesaian masalah ini. Dengan mengubah alur administrasi dari kertas menjadi sistem digital terpusat, saya mengamankan proses operasional dari celah (fraud) pada tingkat vendor maintenance—membuktikan kemampuan problem solving, analytical thinking, dan keberanian mengambil keputusan untuk mitigasi risiko.',
+        uxOverview: 'Sistem dirancang dengan orientasi rekam jejak penuh (audit trail) murni utuk investigasi oknum penyalahguna.',
+        background: 'Dalam industri, fraud operasional tidak selalu berupa uang, tetapi bisa berbentuk sabotase atau monopoli aset fisik secara sembunyi-sembunyi. Hal ini marak terjadi via identitas fiktif (identity spoofing) dan ketidakhadiran yang direkayasa (Ghost Meetings) saat pemesanan ruang meeting direksi. Memahami kebutuhan rekrutmen Anti Fraud Officer di PT Dharma Polimetal, saya berhasil menumpulkan risiko ini via sistem DOORS. Saya memetakan kelemahan log buku fisik dan memodernisasinya lewat autentikasi berlapis: tap NPK dan On-Spot Tablet Scanner. Ini memastikan log audit 100% tervalidasi yang mempersempit ruang gerak pelaku.',
         keyHighlights: [
-            'Risk Identification: Menganalisa celah fraud pada manajemen vendor.',
-            'Digital Monitoring: Mengawasi pelaksanaan maintenance harian dengan dashboard anti-manipulasi.',
-            'Reporting & Evaluation: Menyediakan data yang akuntabel untuk audit internal.',
-            'Cross-Department Communication: Memastikan SOP pelaporan dijalankan oleh user lintas devisi.'
+            'Risk Identification: Menganalisa tabiat "Ghost Meetings" dan penimbunan wewenang.',
+            'Digital Control: Autentikasi NPK & Auto-Cancel via tablet fisik (On-Spot).',
+            'Reporting & Fact Verification: Log Audit Trail transparan dan tidak dapat diubah.',
+            'Policy Enforcement: Memaksa pegawai patuh SOP peminjaman melalui sistem blokir.'
         ],
-        strategicAlignment: 'Menunjukkan Analytical Thinking, Problem Solving, dan Kemampuan Investigasi Proses Bisnis.',
+        strategicAlignment: 'Menunjukkan Investigasi Fraud, Pemetaan Risiko Internal, & Verifikasi Data Logikal.',
         coreFeatures: [
-            { name: 'Warranty Tracking', desc: 'Validasi otomatis yang menolak tagihan vendor pada masa garansi.' },
-            { name: 'Tamper-proof Log', desc: 'Pencatatan rekam aktivitas (Audit Trail) untuk dokumentasi kejadian persis.' }
+            { name: 'Hardware Validation (Tablet)', desc: 'Validasi on-spot mengeliminasi tindakan fiktif oknum.' },
+            { name: 'Irreversible NPK Log', desc: 'Audit Trail rekam aktivitas konstan tertaut Nomor Induk Karyawan utuh.' }
         ],
-        designSystem: 'Analytical & Clean.',
-        designTools: ['Risk Matrix', 'Process Mapping', 'Root Cause Analysis'],
-        researchMethods: ['Verification Audit', 'Flow Observation'],
+        designSystem: 'Analytical, Immutable Traceability (Jejak Terkunci), & Transparent.',
+        designTools: ['Risk Register Map', 'Actor Use-Case Modeling', 'Control Procedure Flowchart'],
+        researchMethods: ['User Pattern Identification', 'Data Flow Fraud Simulation'],
         translations: {
             id: {
-                title: 'Studi Kasus: Validasi Anti-Fraud DOORS',
+                title: 'Studi Kasus: DOORS - Integritas & Audit Forensik',
                 category: 'Manajemen Risiko',
-                tagline: 'Mencegah Celah Fraud melalui Ekosistem Audit Digital.',
-                description: 'Penerapan kemampuan analitik dan investigasi untuk memetakan celah penipuan pada vendor maintenance melalui sistem DOORS.'
+                tagline: 'Memutus Monopoli Fasilitas Lewat Kontrol Log Digital.',
+                description: 'Penerapan kemampuan analitik untuk membatalkan taktik manipulasi pemesanan sistem DOORS HRGA.'
             }
         }
     }
