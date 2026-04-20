@@ -646,6 +646,49 @@ const ProjectDetail = () => {
                         )}
                     </div>
 
+                    {/* ── PILLARS (if present) ── */}
+                    {project.pillars && project.pillars.length > 0 && (
+                        <div className="space-y-6 mt-8">
+                            <div className="px-2">
+                                <SectionBlock label="Strategic Pillars" icon={ShieldCheck} />
+                            </div>
+                            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                {project.pillars.map((pillar, i) => (
+                                    <div key={i} className="bg-bg-card border border-border p-6 rounded-2xl hover:bg-bg-secondary transition-all flex flex-col justify-between">
+                                        <div>
+                                            <div className="w-10 h-10 bg-accent-pink/5 rounded-xl flex items-center justify-center text-accent-pink mb-4">
+                                                <CheckCircle size={20} />
+                                            </div>
+                                            <h3 className="text-sm font-bold mb-2">{pillar.name}</h3>
+                                            <p className="text-[11px] text-text-secondary leading-relaxed mb-4">{pillar.desc}</p>
+                                        </div>
+                                        <div className="flex justify-between items-end pt-4 border-t border-border">
+                                            <div className="text-lg font-black text-text-primary font-mono">{pillar.metric}</div>
+                                            <span className="text-[9px] font-mono font-bold text-accent-pink uppercase">{pillar.tag}</span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── TIMELINE JOURNEY (if present) ── */}
+                    {project.journey && project.journey.length > 0 && (
+                        <div className="bg-bg-card border border-border rounded-2xl p-6 mt-8">
+                            <SectionBlock label="Implementation Phases" icon={Clock} />
+                            <div className="mt-6 flex flex-col md:flex-row gap-4">
+                                {project.journey.map((step, i) => (
+                                    <div key={i} className="flex-1 border-l-2 md:border-l-0 md:border-t-2 border-accent-pink/30 pl-4 py-2 md:pl-0 md:pt-4 md:pb-0 relative">
+                                        <div className="absolute -left-[5px] top-4 md:-top-[5px] md:left-4 w-2 h-2 rounded-full bg-accent-pink" />
+                                        <div className="text-[10px] font-mono font-black text-accent-pink uppercase tracking-widest mb-1">{step.month}</div>
+                                        <h3 className="text-xs font-bold mb-1 text-text-primary">{step.title}</h3>
+                                        <p className="text-[11px] text-text-secondary">{step.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
                     {/* ── TOOLS & METHODS (conditional by type) ── */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
@@ -685,8 +728,8 @@ const ProjectDetail = () => {
                         )}
                     </div>
 
-                    {/* ── Before / After (UI/UX only) ── */}
-                    {isUiUx && project.beforeAfter && project.beforeAfter.length > 0 && (
+                    {/* ── Before / After ── */}
+                    {project.beforeAfter && project.beforeAfter.length > 0 && (
                         <div className="bg-bg-card border border-border rounded-2xl overflow-hidden">
                             <div className="px-6 py-4 border-b border-border">
                                 <SectionBlock label={t.beforeAfterTitle || "Before & After"} icon={TrendingUp}><></></SectionBlock>
