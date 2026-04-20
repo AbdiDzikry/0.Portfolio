@@ -1462,6 +1462,80 @@ export const projectsData = [
                 description: 'Detail teknis dan manajerial dari perjalanan magang 6 bulan, mencakup optimasi sistem booking ruangan hingga kontrol kualitas laporan.'
             }
         }
+    },
+    {
+        id: 'anti-fraud-doors',
+        title: 'Case Study: Anti-Fraud & Vendor Audit System',
+        category: 'Risk Management',
+        image: '/projects/doors/Presentasi Doors-1.webp',
+        showcaseImages: [
+            '/projects/doors/Presentasi Doors-1.webp',
+            '/projects/doors/Presentasi Doors-4.webp',
+            '/projects/doors/Presentasi Doors-10.webp'
+        ],
+        tagline: 'Mengurangi Celah Fraud melalui Digitalisasi SPK & Audit Trail.',
+        description: 'Pendekatan investigasi dan manajemen risiko menggunakan platform DOORS untuk pelacakan kepatuhan vendor dan pencegahan klaim fiktif.',
+        problem: 'Proses manual Surat Perintah Kerja (SPK) rentan penyalahgunaan seperti manipulasi tanggal garansi vendor, penagihan ganda (double-billing), dan rekam jejak audit yang terputus.',
+        solution: 'Mengimplementasikan alur kerja SPK digital terpusat dengan validasi garansi otomatis dan pembuatan dokumen Berita Acara (BA) ber-timestamp yang valid.',
+        impact: 'Menutup celah manipulasi dokumen, meningkatkan akuntabilitas proses maintenance, dan menyediakan data investigasi real-time untuk keperluan evaluasi anti-fraud.',
+        tags: ['Anti-Fraud', 'Process Audit', 'Risk Management', 'Investigasi'],
+        size: 'large',
+        uxTemplate: 'standard',
+        journey: [
+            { month: 'Identifikasi Risiko', title: 'Risk Assessment', desc: 'Memetakan celah permohonan klaim pemeliharaan tanpa bukti kuat.' },
+            { month: 'Deteksi Dini', title: 'Preventive Controls', desc: 'Membangun logika validasi otomatis 3 bulan garansi untuk memblokir penagihan ganda.' },
+            { month: 'Monitoring Realtime', title: 'Audit Dashboard', desc: 'Memonitor setiap kejadian perbaikan aset dari hulu ke hilir lintas departemen.' },
+            { month: 'Evaluasi & Laporan', title: 'Reporting', desc: 'Menghasilkan laporan valid berbasis sistem untuk investigasi tim Finance/Audit.' }
+        ],
+        pillars: [
+            { id: 'preventive', name: 'Preventive Control', icon: 'shield', desc: 'Validasi otomatis masa garansi aset.', metric: '100% Valid', tag: 'Fraud Prevention' },
+            { id: 'detective', name: 'Detective Control', icon: 'search', desc: 'Database terpusat (Audit Trail) untuk investigasi riwayat.', metric: 'Real-time', tag: 'Audit' }
+        ],
+        problemMap: [
+            { problem: 'Klaim Fiktif (Fraud)', context: 'Vendor mengklaim perbaikan di masa garansi sebagai tagihan baru.', solution: 'Auto-Warranty System', mitigation: 'Sistem menolak pembuatan tagihan jika status aset masih bergaransi.' }
+        ],
+        stats: [
+            { label: 'Data Integrity', value: '100%', description: 'Log aktivitas tervalidasi.' },
+            { label: 'Audit Time', value: '-80%', description: 'Kecepatan investigasi dokumen.' }
+        ],
+        mitigationPlans: [
+            { risk: 'Unverified Input / Data Tampering', action: 'Mengintegrasikan timestamp server dan riwayat akun pada dokumen PDF akhir.' }
+        ],
+        personas: [
+            { role: 'Anti Fraud Officer', pain: 'Kesulitan melacak rekam jejak dokumen cetak yang mudah rusak/hilang.', goal: 'Sistem pemantauan kejadian fraud (leaks) yang komprehensif.' },
+            { role: 'GA Manager', pain: 'Kebocoran anggaran akibat kelalaian klaim garansi.', goal: 'Efisiensi dan transparansi pada pengelolaan budget fasilitas.' }
+        ],
+        businessModel: [
+            { type: 'Cost Avoidance', value: 'Mencegah kerugian finansial akibat pembayaran ganda pada vendor nakal.' }
+        ],
+        beforeAfter: [
+            { aspect: 'Audit Trail', before: 'Tumpukan Berita Acara (BA) fisik yang rentan dimanipulasi tanggalnya.', after: 'Sistem rekam digital dengan sistem pengunci tanggal mutlak.' }
+        ],
+        vision: 'Mewujudkan Good Corporate Governance melalui transparansi dan integritas data operasional.',
+        status: 'COMPLETED',
+        uxOverview: 'Dashboard dirancang murni untuk kemudahan proses analisa, investigasi, dan monitoring pelaksanaan anti-fraud yang terstruktur.',
+        background: 'Berkaca pada kualifikasi rekrutmen PT Dharma Polimetal Tbk, posisi Anti Fraud Officer membutuhkan pemahaman kuat terhadap identifikasi, monitoring, serta analitik. Proyek DOORS adalah simulasi riil penyelesaian masalah ini. Dengan mengubah alur administrasi dari kertas menjadi sistem digital terpusat, saya mengamankan proses operasional dari celah (fraud) pada tingkat vendor maintenance—membuktikan kemampuan problem solving, analytical thinking, dan keberanian mengambil keputusan untuk mitigasi risiko.',
+        keyHighlights: [
+            'Risk Identification: Menganalisa celah fraud pada manajemen vendor.',
+            'Digital Monitoring: Mengawasi pelaksanaan maintenance harian dengan dashboard anti-manipulasi.',
+            'Reporting & Evaluation: Menyediakan data yang akuntabel untuk audit internal.',
+            'Cross-Department Communication: Memastikan SOP pelaporan dijalankan oleh user lintas devisi.'
+        ],
+        strategicAlignment: 'Menunjukkan Analytical Thinking, Problem Solving, dan Kemampuan Investigasi Proses Bisnis.',
+        coreFeatures: [
+            { name: 'Warranty Tracking', desc: 'Validasi otomatis yang menolak tagihan vendor pada masa garansi.' },
+            { name: 'Tamper-proof Log', desc: 'Pencatatan rekam aktivitas (Audit Trail) untuk dokumentasi kejadian persis.' }
+        ],
+        designSystem: 'Analytical & Clean.',
+        designTools: ['Risk Matrix', 'Process Mapping', 'Root Cause Analysis'],
+        researchMethods: ['Verification Audit', 'Flow Observation'],
+        translations: {
+            id: {
+                title: 'Studi Kasus: Validasi Anti-Fraud DOORS',
+                category: 'Manajemen Risiko',
+                tagline: 'Mencegah Celah Fraud melalui Ekosistem Audit Digital.',
+                description: 'Penerapan kemampuan analitik dan investigasi untuk memetakan celah penipuan pada vendor maintenance melalui sistem DOORS.'
+            }
+        }
     }
 ];
-
