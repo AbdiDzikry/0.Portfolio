@@ -8,9 +8,13 @@ export const generatePrdPdf = (project) => {
     let yPos = margin;
 
     // --- Header ---
+    const isRiskManagement = project.category?.toLowerCase().includes('risk') || project.category?.toLowerCase().includes('audit');
+    const docTitle = isRiskManagement ? "Fraud Control & Risk Report" : "Product Requirements Document";
+    const headTitle = isRiskManagement ? "Audit/Analysis Area" : "Product Requirements";
+
     doc.setFontSize(22);
     doc.setFont("helvetica", "bold");
-    doc.text("Product Requirements Document", margin, yPos);
+    doc.text(docTitle, margin, yPos);
     yPos += 8;
 
     doc.setFontSize(10);
@@ -59,7 +63,7 @@ export const generatePrdPdf = (project) => {
     // Main Table
     autoTable(doc, {
         startY: yPos,
-        head: [['Product Requirements', 'Details']],
+        head: [[headTitle, 'Details']],
         body: bodyData,
         theme: 'grid',
         headStyles: {
@@ -96,5 +100,5 @@ export const generatePrdPdf = (project) => {
         doc.text(`Page ${i} of ${pageCount}`, pageWidth - margin, doc.internal.pageSize.height - 10, { align: 'right' });
     }
 
-    doc.save(`${project.id}_PRD_Table.pdf`);
+    doc.save(`${project.id}_${isRiskManagement ? 'Analysis_Report' : 'PRD_Table'}.pdf`);
 };
