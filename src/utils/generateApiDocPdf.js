@@ -36,9 +36,9 @@ export const generateApiDocPdf = (project) => {
     doc.setFont("helvetica", "normal");
     doc.setTextColor(73, 80, 87);
     
-    let overviewText = `Gunakan API endpoint ini untuk berinteraksi dengan sistem ${project.title}. Semua request memerlukan autentikasi menggunakan Bearer Token (JWT) yang dilewatkan pada header Authorization.`;
+    let overviewText = `Use this API endpoint to interact with the ${project.title} system. All requests require authentication using a Bearer Token (JWT) passed in the Authorization header.`;
     if (project.id === 'doors') {
-        overviewText = "Aplikasi Doors secara garis besar adalah aplikasi Monolith berbasis Laravel (menggunakan Blade/Livewire untuk view), sehingga sebagian besar interaksi data menggunakan form submission standar. Namun, dokumen ini merangkum REST API internal dan eksternal kunci yang digunakan dalam ekosistem (contoh: integrasi Tablet dan Sinkronisasi Karyawan).";
+        overviewText = "The Doors application is primarily a Monolithic application based on Laravel (using Blade/Livewire for views), so most data interactions use standard form submissions. However, this document summarizes the key internal and external REST APIs used within the ecosystem (e.g., Tablet integration and Employee Synchronization).";
     }
 
     const splitOverview = doc.splitTextToSize(overviewText, pageWidth - (margin * 2));
@@ -85,7 +85,7 @@ export const generateApiDocPdf = (project) => {
 
             autoTable(doc, {
                 startY: yPos,
-                head: [['Nama Parameter', 'Tipe', 'Wajib', 'Deskripsi']],
+                head: [['Parameter Name', 'Type', 'Required', 'Description']],
                 body: paramsData,
                 theme: 'grid',
                 headStyles: { fillColor: [108, 117, 125], textColor: [255, 255, 255], fontSize: 9 },
@@ -130,7 +130,7 @@ export const generateApiDocPdf = (project) => {
             "x-api-key: <stored_in_env>",
             "Query Parameters",
             [
-                ['company', 'String', 'Ya', 'Kode perusahaan (contoh: dpm) untuk filter data.']
+                ['company', 'String', 'Yes', 'Company code (e.g., dpm) to filter data.']
             ],
             "200 OK",
             `[
@@ -158,8 +158,8 @@ export const generateApiDocPdf = (project) => {
             "Content-Type: application/json",
             "Request Body (JSON)",
             [
-                ['room_id', 'Integer', 'Ya', 'ID Ruangan tempat tablet berada.'],
-                ['level', 'Integer', 'Ya', 'Sisa persentase baterai tablet.']
+                ['room_id', 'Integer', 'Yes', 'The ID of the room where the tablet is located.'],
+                ['level', 'Integer', 'Yes', 'Remaining battery percentage of the tablet.']
             ],
             "200 OK",
             `{
@@ -180,7 +180,7 @@ export const generateApiDocPdf = (project) => {
             "Accept: application/json",
             "Path Parameters",
             [
-                ['id_ruangan', 'Integer', 'Ya', 'ID Unik dari ruangan (Room ID).']
+                ['id_ruangan', 'Integer', 'Yes', 'Unique ID of the room (Room ID).']
             ],
             "200 OK",
             `{
@@ -198,8 +198,8 @@ export const generateApiDocPdf = (project) => {
             "Content-Type: application/json",
             "Request Body",
             [
-                ['userId', 'String', 'Ya', 'ID Unik dari pengguna yang melakukan request.'],
-                ['actionType', 'String', 'Ya', 'Jenis aksi yang ingin dilakukan.']
+                ['userId', 'String', 'Yes', 'Unique ID of the requesting user.'],
+                ['actionType', 'String', 'Yes', 'Type of action to be performed.']
             ],
             "200 OK",
             `{\n  "status": "success",\n  "data": {\n    "processedAt": "2026-01-07T10:00:00Z"\n  }\n}`
