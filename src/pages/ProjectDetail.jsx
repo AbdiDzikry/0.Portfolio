@@ -10,6 +10,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
 import { generatePrdPdf } from '../utils/generatePrdPdf';
 import { generateBrdPdf } from '../utils/generateBrdPdf';
+import { generateApiDocPdf } from '../utils/generateApiDocPdf';
 import SEO from '../components/SEO';
 
 /* ─────────── helpers ─────────── */
@@ -81,12 +82,15 @@ const ProjectDetail = () => {
                     <p className="text-xl text-accent-pink font-medium italic">"{project.tagline}"</p>
                     <p className="text-text-secondary leading-relaxed text-lg max-w-xl">{project.description}</p>
                     
-                    <div className="pt-6 border-t border-border flex gap-4">
-                         <button onClick={() => generatePrdPdf(project)} className="px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-bold text-sm shadow-xl flex items-center gap-2">
-                            <Download size={16} /> Download Report
+                    <div className="pt-6 border-t border-border flex flex-wrap gap-3">
+                         <button onClick={() => generatePrdPdf(project)} className="px-5 py-2.5 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-bold text-xs shadow-xl flex items-center gap-2">
+                            <Download size={13} /> Download Report
                          </button>
-                         <button onClick={() => generateBrdPdf(project)} className="px-6 py-3 border border-zinc-900 dark:border-white text-zinc-900 dark:text-white rounded-full font-bold text-sm shadow-xl flex items-center gap-2 hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-zinc-900 transition-colors">
-                            <Download size={16} /> Download BRD
+                         <button onClick={() => generateBrdPdf(project)} className="px-5 py-2.5 border border-zinc-900 dark:border-white text-zinc-900 dark:text-white rounded-full font-bold text-xs shadow-xl flex items-center gap-2 hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-zinc-900 transition-colors">
+                            <Download size={13} /> Download BRD
+                         </button>
+                         <button onClick={() => generateApiDocPdf(project)} className="px-5 py-2.5 bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-full font-bold text-xs shadow-xl flex items-center gap-2 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
+                            <Download size={13} /> Download API Doc
                          </button>
                     </div>
                 </div>
@@ -476,6 +480,14 @@ const ProjectDetail = () => {
                                 className="flex items-center gap-2 px-5 py-2.5 border border-black dark:border-white text-black dark:text-white rounded-full text-xs font-bold hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all shadow-md"
                             >
                                 <Download size={13} /> Download BRD
+                            </button>
+
+                            {/* Download API Doc */}
+                            <button
+                                onClick={() => generateApiDocPdf(project)}
+                                className="flex items-center gap-2 px-5 py-2.5 bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-full text-xs font-bold hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all shadow-md"
+                            >
+                                <Download size={13} /> Download API Doc
                             </button>
 
                             {/* Live Link */}
