@@ -67,9 +67,9 @@ const Navbar = ({ onChatToggle }) => {
             animate={hidden ? "hidden" : "visible"}
             className="fixed top-6 left-1/2 z-50 w-full max-w-[900px] -translate-x-1/2 px-4"
         >
-            <div className="bg-white border border-zinc-200 rounded-[2rem] px-6 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.1)] flex flex-col transition-all duration-300">
+            <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-[2rem] px-6 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.1)] flex flex-col transition-all duration-300">
                 <div className="flex items-center justify-between w-full">
-                    <NavLink to="/" className="text-sm font-bold tracking-tight text-black hover:opacity-100 transition-opacity">
+                    <NavLink to="/" className="text-sm font-bold tracking-tight text-black dark:text-white hover:opacity-100 transition-opacity">
                         <span className="font-mono hidden sm:inline uppercase">Sulthan Abdi Dzikry</span>
                         <span className="font-mono sm:hidden">S.A.D</span>.
                     </NavLink>
@@ -116,13 +116,13 @@ const Navbar = ({ onChatToggle }) => {
 
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="p-2 rounded-full hover:bg-zinc-100 transition-colors md:hidden"
+                            className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors md:hidden"
                             aria-label="Toggle Menu"
                         >
                             {isMenuOpen ? (
-                                <X className="w-6 h-6 text-black" />
+                                <X className="w-6 h-6 text-black dark:text-white" />
                             ) : (
-                                <Menu className="w-6 h-6 text-zinc-500" />
+                                <Menu className="w-6 h-6 text-zinc-500 dark:text-zinc-400" />
                             )}
                         </button>
                     </div>
@@ -135,7 +135,7 @@ const Navbar = ({ onChatToggle }) => {
                             initial="closed"
                             animate="open"
                             exit="closed"
-                            className="pt-4 pb-2 flex flex-col gap-1 border-t border-zinc-100 mt-3"
+                            className="pt-4 pb-2 flex flex-col gap-1 border-t border-zinc-100 dark:border-zinc-800 mt-3"
                         >
                             <MobileNavItem to="/">{t.nav.home}</MobileNavItem>
                             <MobileNavItem to="/profile">{t.nav.profile}</MobileNavItem>
@@ -153,7 +153,7 @@ const Navbar = ({ onChatToggle }) => {
 const MobileNavItem = ({ to, children }) => (
     <NavLink to={to} className={({ isActive }) =>
         `px-4 py-3 rounded-xl text-base font-normal transition-all duration-300 
-        ${isActive ? 'bg-navbar-text text-navbar-bg' : 'text-text-primary opacity-60 hover:opacity-100 hover:bg-white/5'}`
+        ${isActive ? 'bg-black dark:bg-white text-white dark:text-black' : 'text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800'}`
     }>
         {children}
     </NavLink>
