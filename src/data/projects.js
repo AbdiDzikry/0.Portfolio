@@ -58,9 +58,9 @@ export const projectsData = [
             { label: 'Conflicts', value: '0', description: 'Zero scheduling overlaps achieved.' }
         ],
         timeline: [
-            { phase: 'Discovery', period: '29 Oct - 14 Jan', activities: ['Agile Methodology setup', 'Current state analysis', 'User pain point mapping'] },
-            { phase: 'Design', period: '29 Oct - 14 Jan', activities: ['Information Architecture', 'Paper Prototyping', 'Rapid Wireframing'] },
-            { phase: 'Iterating', period: '29 Oct - 14 Jan', activities: ['SUS Usability Testing', 'Refining UI/UX', 'Final Handoff'] }
+            { phase: 'Research', period: '29 Oct - 12 Nov (2 Weeks)', activities: ['Agile Methodology setup', 'Current state analysis', 'User pain point mapping'] },
+            { phase: 'System Development', period: '12 Nov - 24 Dec (6 Weeks)', activities: ['Information Architecture', 'Prototyping', 'Full-stack Development'] },
+            { phase: 'Testing & Documentation', period: '24 Dec - 14 Jan (3 Weeks)', activities: ['SUS Usability Testing', 'User Handoff', 'Project Documentation'] }
         ],
         coreFeatures: [
             { name: 'Available Room', desc: 'Gantt Chart visualization for overviewing room schedules in one view.' },
@@ -117,9 +117,9 @@ export const projectsData = [
                 ],
                 researchMethods: ['Skala Usability Sistem (SUS)', 'Metodologi Agile', 'Pemetaan Alur Pengguna', 'Inkuiri Kontekstual'],
                 timeline: [
-                    { phase: 'Discovery', period: '29 Okt - 14 Jan', activities: ['Setup Metodologi Agile', 'Analisis kondisi saat ini', 'Pemetaan pain point'] },
-                    { phase: 'Design', period: '29 Okt - 14 Jan', activities: ['Arsitektur Informasi', 'Paper Prototyping', 'Wireframing Cepat'] },
-                    { phase: 'Iterating', period: '29 Okt - 14 Jan', activities: ['Usability Testing (SUS)', 'Penyempurnaan UI/UX', 'Handoff Final'] }
+                    { phase: 'Riset', period: '29 Okt - 12 Nov (2 Minggu)', activities: ['Setup Metodologi Agile', 'Analisis kondisi saat ini', 'Pemetaan pain point'] },
+                    { phase: 'Pengembangan Sistem', period: '12 Nov - 24 Des (6 Minggu)', activities: ['Arsitektur Informasi', 'Prototyping', 'Full-stack Development'] },
+                    { phase: 'Testing & Dokumentasi', period: '24 Des - 14 Jan (3 Minggu)', activities: ['Usability Testing (SUS)', 'Handoff Pengguna', 'Dokumentasi Pengerjaan'] }
                 ]
             }
         }
