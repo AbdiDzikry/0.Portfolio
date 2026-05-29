@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     ArrowLeft, Download, ChevronRight, Lightbulb, Target,
-    Wrench, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink, MessageSquare, BarChart, ShieldCheck
+    Wrench, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink, MessageSquare, BarChart, ShieldCheck, LayoutGrid
 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
 import { generatePrdPdf } from '../utils/generatePrdPdf';
+import { generateBrdPdf } from '../utils/generateBrdPdf';
 import SEO from '../components/SEO';
 
 /* ─────────── helpers ─────────── */
@@ -83,6 +84,9 @@ const ProjectDetail = () => {
                     <div className="pt-6 border-t border-border flex gap-4">
                          <button onClick={() => generatePrdPdf(project)} className="px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-bold text-sm shadow-xl flex items-center gap-2">
                             <Download size={16} /> Download Report
+                         </button>
+                         <button onClick={() => generateBrdPdf(project)} className="px-6 py-3 border border-zinc-900 dark:border-white text-zinc-900 dark:text-white rounded-full font-bold text-sm shadow-xl flex items-center gap-2 hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-zinc-900 transition-colors">
+                            <Download size={16} /> Download BRD
                          </button>
                     </div>
                 </div>
@@ -464,6 +468,14 @@ const ProjectDetail = () => {
                                 className="flex items-center gap-2 px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black rounded-full text-xs font-bold hover:opacity-80 transition-all shadow-md"
                             >
                                 <Download size={13} /> {project.category?.toLowerCase().includes('risk') ? 'Download Hasil Analisis' : t.downloadPrd}
+                            </button>
+
+                            {/* Download BRD */}
+                            <button
+                                onClick={() => generateBrdPdf(project)}
+                                className="flex items-center gap-2 px-5 py-2.5 border border-black dark:border-white text-black dark:text-white rounded-full text-xs font-bold hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all shadow-md"
+                            >
+                                <Download size={13} /> Download BRD
                             </button>
 
                             {/* Live Link */}
