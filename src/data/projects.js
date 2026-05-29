@@ -18,7 +18,12 @@ export const projectsData = [
         solution: 'Introduced an on-the-spot booking system and a fully responsive web interface (tablet-friendly), simplifying the flow into 4 intuitive steps to ensure rooms can be booked anytime, anywhere.',
         impact: 'Successfully managed 623+ completed meetings and 374+ scheduled sessions. Maintained smooth operations for over 752 long-duration meetings (>2 hours) without a single overlap.',
         status: 'Completed (3 Months Development)',
-        benefits: 'Employees of PT. Dharma Polimetal Tbk.',
+        benefits: 'Staff Dharma Polimetal',
+        vision: 'Untuk mempermudah penggunaan sistem sebelumnya.',
+        strategicAlignment: 'Mendukung digitalisasi operasional PT Dharma Polimetal Tbk. dengan mengoptimalkan utilitas aset perusahaan (ruang rapat) dan meningkatkan efisiensi waktu karyawan melalui sistem yang responsif dan terintegrasi.',
+        personas: [
+            { role: 'Staff Dharma Polimetal', goal: 'Mendapatkan kemudahan dalam mem-booking ruang rapat secara on-the-spot tanpa birokrasi rumit.' }
+        ],
         researchImage: '/projects/doors/hasil_sus_doors.png',
         tags: ['Agile', 'PWA', 'Paper Prototyping', 'SUS Testing', 'UI/UX Design'],
         size: 'large',
