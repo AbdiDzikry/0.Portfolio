@@ -108,7 +108,7 @@ export const generateApiDocPdf = (project) => {
         doc.text(`Response Example (${responseCode})`, margin, yPos);
         yPos += 4;
 
-        const lines = responseJson.split('\\n');
+        const lines = responseJson.split('\n');
         const boxHeight = (lines.length * 4.5) + 10;
         
         doc.setDrawColor(220);
