@@ -28,7 +28,7 @@ export const projectsData = [
         tags: ['Agile', 'PWA', 'Paper Prototyping', 'SUS Testing', 'UI/UX Design'],
         size: 'large',
         liveLink: 'https://doors2.dharmap.com/',
-        designTools: ['Figma', 'Paper & Pen', 'FigJam'],
+        designTools: ['Figma', 'Paper & Pen', 'FigJam', 'Postman', 'Notion'],
         researchMethods: ['System Usability Scale (SUS)', 'Agile Methodology', 'User Flow Mapping', 'Contextual Inquiry'],
         figmaEmbed: '', // PASTE FIGMA EMBED URL HERE
         problemMap: [
