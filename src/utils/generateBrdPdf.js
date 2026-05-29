@@ -22,7 +22,7 @@ export const generateBrdPdf = (project) => {
 
     doc.setFontSize(10);
     doc.setTextColor(150);
-    doc.text(`Doc Ref: BRD-${project.id.toUpperCase()}-v1.0  |  Date: ${new Date().toLocaleDateString()}`, margin, yPos);
+    doc.text(`Doc Ref: BRD-${project.id.toUpperCase()}-v1.0  |  Date: 7 January 2026`, margin, yPos);
     yPos += 12;
 
     // Helper functions

@@ -20,7 +20,7 @@ export const generatePrdPdf = (project) => {
     doc.setFontSize(10);
     doc.setTextColor(150);
     doc.setFont("helvetica", "normal");
-    doc.text(`Internal Reference: ${project.id.toUpperCase()}-V1.0  |  Generated: ${new Date().toLocaleDateString()}`, margin, yPos);
+    doc.text(`Internal Reference: ${project.id.toUpperCase()}-V1.0  |  Generated: 7 January 2026`, margin, yPos);
     yPos += 10;
 
     // Prepare table data

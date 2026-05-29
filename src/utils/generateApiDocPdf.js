@@ -23,6 +23,9 @@ export const generateApiDocPdf = (project) => {
     doc.setFontSize(10);
     doc.setTextColor(150);
     doc.text(`Base URL: https://api.dharmap.com/v1/${project.id.replace(/-/g, '')}`, margin, yPos);
+    yPos += 6;
+
+    doc.text(`Doc Ref: API-${project.id.toUpperCase()}-v1.0  |  Date: 7 January 2026`, margin, yPos);
     yPos += 12;
 
     // --- Overview ---
@@ -103,7 +106,7 @@ export const generateApiDocPdf = (project) => {
   "message": "Data berhasil diproses.",
   "data": {
     "transactionId": "TRX-9823749823",
-    "processedAt": "2026-05-29T10:00:00Z",
+    "processedAt": "2026-01-07T10:00:00Z",
     "status": "COMPLETED"
   }
 }`;
