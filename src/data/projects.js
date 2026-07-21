@@ -25,7 +25,7 @@ export const projectsData = [
             { role: 'Dharma Polimetal Staff', goal: 'Gain ease in booking meeting rooms on-the-spot without complex bureaucracy.' }
         ],
         researchImage: '/projects/doors/hasil_sus_doors.png',
-        tags: ['Agile', 'PWA', 'Paper Prototyping', 'SUS Testing', 'UI/UX Design'],
+        tags: ['Agile', 'PWA', 'Website', 'SUS Testing', 'UI/UX Design'],
         size: 'large',
         liveLink: 'https://doors2.dharmap.com/',
         designTools: ['Figma', 'Paper & Pen', 'FigJam', 'Postman', 'Notion'],
