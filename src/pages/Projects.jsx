@@ -50,8 +50,8 @@ const ListRow = ({ proj, index, onHover, isActive }) => {
 
                 {/* Tags (desktop only) */}
                 <div className="hidden md:flex gap-2 flex-shrink-0">
-                    {(proj.tags || []).slice(0, 2).map((tag, i) => (
-                        <span key={i} className="text-[9px] font-bold border border-border rounded-full px-3 py-1 text-text-muted group-hover:border-zinc-400 transition-colors">
+                    {(proj.tags || []).slice(0, 3).map((tag, i) => (
+                        <span key={i} className="text-[9px] font-bold border border-border rounded-full px-3 py-1 text-text-muted group-hover:border-zinc-400 transition-colors whitespace-nowrap">
                             {tag}
                         </span>
                     ))}
