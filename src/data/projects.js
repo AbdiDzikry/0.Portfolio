@@ -146,7 +146,7 @@ export const projectsData = [
         problem: 'Facility staff struggled to monitor AC unit conditions across multiple departments manually. Maintenance was unscheduled, leading to higher risk of asset damage and inefficient upkeep.',
         solution: 'Developed a comprehensive AC monitoring dashboard with automatic maintenance scheduling and real-time asset status tracking, enabling cross-department visibility and proactive facility management.',
         impact: 'Streamlined asset maintenance processes, improved cross-department data synchronization, and ensured technical data integrity for all AC units.',
-        tags: ['UI/UX Design', 'Dashboard', 'Facility Management', 'Figma', 'Digitalization'],
+        tags: ['UI/UX Design', 'Dashboard', 'Facility Management', 'Figma', 'Digitalization', 'Website'],
         size: 'medium',
         problemMap: [
             {
@@ -307,7 +307,7 @@ export const projectsData = [
         problem: 'QC reporting was fragmented and inconsistent, making it difficult to track quality metrics and maintain standardized documentation across different project sites.',
         solution: 'Designed a unified QC reporting template with standardized metrics, visual documentation workflow, and centralized tracking for quality assurance compliance.',
         impact: 'Improved QC documentation consistency, reduced reporting time, and enabled better quality tracking across all LMK project sites.',
-        tags: ['Quality Control', 'Documentation', 'Process Optimization', 'Figma', 'Standardization'],
+        tags: ['Quality Control', 'Documentation', 'Process Optimization', 'Figma', 'Standardization', 'Website'],
         size: 'medium',
         problemMap: [
             {
