@@ -7,7 +7,8 @@ import {
     Plus, Check, X, Trash2, Play, Pause, RotateCcw,
     Music, Github, Clock, Calendar, TrendingUp, Flame,
     Download, Upload, Settings, Briefcase, Building2,
-    MapPin, ExternalLink, FileText, ChevronDown, ChevronUp
+    MapPin, ExternalLink, FileText, ChevronDown, ChevronUp,
+    StickyNote, Wallet, Target, Pin
 } from 'lucide-react';
 import NowPlayingWidget from '../components/NowPlayingWidget';
 import GitHubWidget from '../components/GitHubWidget';
@@ -41,6 +42,9 @@ const Tools = () => {
     const [collapsedJobs, setCollapsedJobs] = useState(false);
     const [collapsedTimer, setCollapsedTimer] = useState(false);
     const [collapsedGithub, setCollapsedGithub] = useState(false);
+    const [collapsedNotes, setCollapsedNotes] = useState(false);
+    const [collapsedExpense, setCollapsedExpense] = useState(false);
+    const [collapsedGoals, setCollapsedGoals] = useState(false);
 
     return (
         <motion.div
@@ -298,6 +302,117 @@ const Tools = () => {
                     </section>
 
                 </div>
+
+                {/* Additional Tools - Notes & Goals */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+
+                    {/* Notes - Amber Sticky Theme */}
+                    <section className="bg-gradient-to-br from-amber-500/5 via-yellow-500/5 to-transparent border border-amber-500/20 rounded-3xl p-6 hover:border-amber-500/40 transition-colors">
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                                    <StickyNote size={20} className="text-amber-500" />
+                                </div>
+                                <div>
+                                    <h2 className="text-lg font-bold text-text-primary">{t.notes.title}</h2>
+                                    <p className="text-xs text-text-muted">{t.notes.subtitle}</p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setCollapsedNotes(!collapsedNotes)}
+                                className={`p-2 rounded-lg transition-all ${collapsedNotes ? 'bg-amber-500/10 text-amber-500' : 'hover:bg-amber-500/10 text-text-muted hover:text-amber-500'}`}
+                            >
+                                {collapsedNotes ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                            </button>
+                        </div>
+                        <AnimatePresence>
+                            {!collapsedNotes && (
+                                <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                                    className="overflow-hidden"
+                                >
+                                    <div className="h-[420px] flex flex-col">
+                                        <NotesTool t={t.notes} />
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </section>
+
+                    {/* Goals - Teal Theme */}
+                    <section className="bg-gradient-to-br from-teal-500/5 via-cyan-500/5 to-transparent border border-teal-500/20 rounded-3xl p-6 hover:border-teal-500/40 transition-colors">
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center flex-shrink-0">
+                                    <Target size={20} className="text-teal-500" />
+                                </div>
+                                <div>
+                                    <h2 className="text-lg font-bold text-text-primary">{t.goals.title}</h2>
+                                    <p className="text-xs text-text-muted">{t.goals.subtitle}</p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setCollapsedGoals(!collapsedGoals)}
+                                className={`p-2 rounded-lg transition-all ${collapsedGoals ? 'bg-teal-500/10 text-teal-500' : 'hover:bg-teal-500/10 text-text-muted hover:text-teal-500'}`}
+                            >
+                                {collapsedGoals ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                            </button>
+                        </div>
+                        <AnimatePresence>
+                            {!collapsedGoals && (
+                                <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                                    className="overflow-hidden"
+                                >
+                                    <div className="h-[420px] flex flex-col">
+                                        <GoalsTool t={t.goals} />
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </section>
+
+                </div>
+
+                {/* Expense Tracker - Full Width Violet Theme */}
+                <section className="bg-gradient-to-br from-violet-500/5 via-purple-500/5 to-transparent border border-violet-500/20 rounded-3xl p-6 hover:border-violet-500/40 transition-colors">
+                    <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center">
+                                <Wallet size={20} className="text-violet-500" />
+                            </div>
+                            <div>
+                                <h2 className="text-lg font-bold text-text-primary">{t.expense.title}</h2>
+                                <p className="text-xs text-text-muted">{t.expense.subtitle}</p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={() => setCollapsedExpense(!collapsedExpense)}
+                            className={`p-2 rounded-lg transition-all ${collapsedExpense ? 'bg-violet-500/10 text-violet-500' : 'hover:bg-violet-500/10 text-text-muted hover:text-violet-500'}`}
+                        >
+                            {collapsedExpense ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                        </button>
+                    </div>
+                    <AnimatePresence>
+                        {!collapsedExpense && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                                className="overflow-hidden"
+                            >
+                                <ExpenseTracker t={t.expense} />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </section>
 
             </div>
         </motion.div>
@@ -957,46 +1072,10 @@ const JobTracker = ({ t }) => {
     };
 
     const handleCountChange = (id, newCount) => {
-        setSubjects(subjects.map(subject => {
-            if (subject.id !== id) return subject;
-            const oldCount = subject.count;
-            const diff = newCount - oldCount;
-
-            // If count increased, add log entry for today
-            if (diff > 0) {
-                const existingLogs = subject.logs || [];
-                const today = getToday();
-
-                // Check if there's already a log for today
-                const todayLogIndex = existingLogs.findIndex(log => log.date === today);
-
-                let updatedLogs;
-                if (todayLogIndex >= 0) {
-                    // Update existing today's log
-                    updatedLogs = [...existingLogs];
-                    updatedLogs[todayLogIndex] = {
-                        ...updatedLogs[todayLogIndex],
-                        count: updatedLogs[todayLogIndex].count + diff
-                    };
-                } else {
-                    // Add new log for today
-                    updatedLogs = [...existingLogs, {
-                        date: today,
-                        count: diff,
-                        note: '',
-                        createdAt: new Date().toISOString()
-                    }];
-                }
-
-                // Sort logs by date descending
-                updatedLogs.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-                return { ...subject, count: newCount, logs: updatedLogs };
-            } else {
-                // If count decreased or same, just update count
-                return { ...subject, count: newCount };
-            }
-        }));
+        const normalized = Math.max(0, newCount || 0);
+        setSubjects(subjects.map(subject =>
+            subject.id === id ? { ...subject, count: normalized } : subject
+        ));
     };
 
     const deleteSubject = (id) => {
@@ -1662,5 +1741,519 @@ const WidgetsSection = ({ t }) => {
         </div>
     );
 };
+
+/* ═══════════════════════════════════════════
+   NOTES TOOL
+═══════════════════════════════════════════ */
+const NOTES_COLORS = ['#fde68a', '#d9f99d', '#a5f3fc', '#fbcfe8', '#ddd6fe'];
+
+const NotesTool = ({ t }) => {
+    const [notes, setNotes] = useState(() => {
+        const saved = localStorage.getItem('tools_notes');
+        return saved ? JSON.parse(saved) : [];
+    });
+    const [text, setText] = useState('');
+    const [color, setColor] = useState(NOTES_COLORS[0]);
+
+    useEffect(() => {
+        localStorage.setItem('tools_notes', JSON.stringify(notes));
+    }, [notes]);
+
+    const addNote = () => {
+        if (!text.trim()) return;
+        const note = {
+            id: Date.now(),
+            text: text.trim(),
+            color,
+            createdAt: new Date().toISOString(),
+            pinned: false
+        };
+        setNotes([note, ...notes]);
+        setText('');
+    };
+
+    const togglePin = (id) => {
+        setNotes(notes.map(n =>
+            n.id === id ? { ...n, pinned: !n.pinned } : n
+        ));
+    };
+
+    const deleteNote = (id) => {
+        setNotes(notes.filter(n => n.id !== id));
+    };
+
+    const sortedNotes = [...notes].sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
+
+    return (
+        <div className="flex flex-col h-full">
+            <div className="flex flex-col gap-3 mb-5 flex-shrink-0">
+                <textarea
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder={t.placeholder}
+                    rows={2}
+                    className="w-full bg-bg-secondary border border-border rounded-xl px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue transition-colors resize-none"
+                />
+                <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-text-muted uppercase tracking-wider">{t.colors}</span>
+                        {NOTES_COLORS.map(c => (
+                            <button
+                                key={c}
+                                onClick={() => setColor(c)}
+                                className={`w-5 h-5 rounded-full transition-transform ${color === c ? 'ring-2 ring-offset-2 ring-text-primary scale-110' : 'hover:scale-110'}`}
+                                style={{ backgroundColor: c }}
+                            />
+                        ))}
+                    </div>
+                    <button
+                        onClick={addNote}
+                        disabled={!text.trim()}
+                        className="bg-text-primary text-bg-primary px-5 py-2.5 rounded-xl font-medium hover:opacity-90 transition-opacity flex items-center gap-2 disabled:opacity-40"
+                    >
+                        <Plus size={16} />
+                    </button>
+                </div>
+            </div>
+
+            <div className="flex-1 space-y-3 overflow-y-auto pr-1">
+                {sortedNotes.length === 0 && (
+                    <div className="text-center py-12 text-text-muted">
+                        <StickyNote size={48} className="mx-auto mb-4 opacity-20" />
+                        <p>{t.noNotes}</p>
+                    </div>
+                )}
+
+                {sortedNotes.map(note => (
+                    <div
+                        key={note.id}
+                        className="relative rounded-xl p-4 shadow-sm group"
+                        style={{ backgroundColor: note.color }}
+                    >
+                        {note.pinned && (
+                            <span className="absolute -top-2 right-3 text-[9px] font-bold text-bg-primary bg-text-primary/80 px-2 py-0.5 rounded-full flex items-center gap-1">
+                                <Pin size={9} strokeWidth={3} /> {t.pinned}
+                            </span>
+                        )}
+                        <p className="text-sm text-black/80 whitespace-pre-wrap pr-8">{note.text}</p>
+                        <div className="absolute top-3 right-3 flex items-center gap-1">
+                            <button
+                                onClick={() => togglePin(note.id)}
+                                className={`p-1 rounded-md text-black/50 hover:text-black transition-colors ${note.pinned ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+                                title="Pin"
+                            >
+                                <Pin size={13} />
+                            </button>
+                            <button
+                                onClick={() => deleteNote(note.id)}
+                                className="p-1 rounded-md text-black/50 hover:text-red-600 transition-colors opacity-0 group-hover:opacity-100"
+                                title={t.delete}
+                            >
+                                <X size={14} />
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+/* ═══════════════════════════════════════════
+   GOALS TOOL
+═══════════════════════════════════════════ */
+const GoalsTool = ({ t }) => {
+    const [goals, setGoals] = useState(() => {
+        const saved = localStorage.getItem('tools_goals');
+        return saved ? JSON.parse(saved) : [];
+    });
+    const [showForm, setShowForm] = useState(false);
+    const [title, setTitle] = useState('');
+    const [deadline, setDeadline] = useState('');
+
+    useEffect(() => {
+        localStorage.setItem('tools_goals', JSON.stringify(goals));
+    }, [goals]);
+
+    const addGoal = () => {
+        if (!title.trim()) return;
+        const goal = {
+            id: Date.now(),
+            title: title.trim(),
+            deadline: deadline || null,
+            progress: 0,
+            createdAt: new Date().toISOString()
+        };
+        setGoals([goal, ...goals]);
+        setTitle('');
+        setDeadline('');
+        setShowForm(false);
+    };
+
+    const deleteGoal = (id) => {
+        setGoals(goals.filter(g => g.id !== id));
+    };
+
+    const setProgress = (id, progress) => {
+        setGoals(goals.map(g =>
+            g.id === id ? { ...g, progress: Math.max(0, Math.min(100, progress)) } : g
+        ));
+    };
+
+    const isOverdue = (deadline) => deadline && new Date(deadline) < new Date(getToday());
+
+    return (
+        <div className="flex flex-col h-full">
+            <div className="flex-shrink-0 mb-5">
+                {!showForm ? (
+                    <button
+                        onClick={() => setShowForm(true)}
+                        className="w-full bg-bg-secondary border border-dashed border-teal-500/40 rounded-xl px-4 py-3 text-sm text-text-muted hover:text-text-primary hover:border-teal-500 transition-colors flex items-center justify-center gap-2"
+                    >
+                        <Plus size={16} /> {t.addGoal}
+                    </button>
+                ) : (
+                    <div className="bg-bg-secondary border border-border rounded-xl p-4 space-y-3">
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && addGoal()}
+                            placeholder={t.addGoal}
+                            autoFocus
+                            className="w-full bg-bg-primary border border-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-teal-500 transition-colors"
+                        />
+                        <div className="flex items-center gap-2">
+                            <Calendar size={14} className="text-text-muted" />
+                            <input
+                                type="date"
+                                value={deadline}
+                                onChange={(e) => setDeadline(e.target.value)}
+                                className="flex-1 bg-bg-primary border border-border rounded-lg px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-teal-500 transition-colors"
+                            />
+                        </div>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={addGoal}
+                                disabled={!title.trim()}
+                                className="flex-1 bg-teal-500 text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity text-sm disabled:opacity-40"
+                            >
+                                {t.save}
+                            </button>
+                            <button
+                                onClick={() => setShowForm(false)}
+                                className="px-4 py-2 rounded-lg bg-bg-primary border border-border text-text-muted hover:text-text-primary transition-colors text-sm"
+                            >
+                                <X size={16} />
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            <div className="flex-1 space-y-4 overflow-y-auto pr-1">
+                {goals.length === 0 && (
+                    <div className="text-center py-12 text-text-muted">
+                        <Target size={48} className="mx-auto mb-4 opacity-20" />
+                        <p>{t.noGoals}</p>
+                    </div>
+                )}
+
+                {goals.map(goal => {
+                    const completed = goal.progress >= 100;
+                    return (
+                        <div key={goal.id} className="bg-bg-secondary border border-border rounded-xl p-5 group hover:border-teal-500/40 transition-colors">
+                            <div className="flex items-start justify-between">
+                                <div className="flex-1">
+                                    <h3 className={`text-sm font-medium text-text-primary ${completed ? 'line-through opacity-50' : ''}`}>
+                                        {goal.title}
+                                    </h3>
+                                    {goal.deadline && (
+                                        <p className={`text-[10px] mt-1 flex items-center gap-1 ${isOverdue(goal.deadline) && !completed ? 'text-red-500' : 'text-text-muted'}`}>
+                                            <Calendar size={12} />
+                                            {t.due}: {new Date(goal.deadline).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
+                                            {isOverdue(goal.deadline) && !completed && ' | ' + t.due}
+                                        </p>
+                                    )}
+                                </div>
+                                <div className="flex items-center gap-3 flex-shrink-0 ml-4">
+                                    {completed && <span className="text-xs font-bold text-teal-500">{t.completed}</span>}
+                                    <button
+                                        onClick={() => deleteGoal(goal.id)}
+                                        className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-red-500/10 text-text-muted hover:text-red-500 transition-all"
+                                    >
+                                        <Trash2 size={14} />
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Progress bar */}
+                            <div className="mt-4">
+                                <div className="flex items-center justify-between mb-1.5">
+                                    <span className="text-[10px] text-text-muted uppercase tracking-wider">{t.progress}</span>
+                                    <span className="text-xs font-bold text-teal-500">{goal.progress}%</span>
+                                </div>
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value={goal.progress}
+                                    onChange={(e) => setProgress(goal.id, parseInt(e.target.value))}
+                                    className="w-full accent-[#14b8a6]"
+                                />
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+};
+
+/* ═══════════════════════════════════════════
+   EXPENSE TRACKER
+═══════════════════════════════════════════ */
+const EXPENSE_COLORS = ['#60a5fa', '#fca5a5', '#fcd34d', '#34d399', '#a78bfa', '#f472b6'];
+
+const ExpenseTracker = ({ t }) => {
+    const { language } = useLanguage();
+    const [expenses, setExpenses] = useState(() => {
+        const saved = localStorage.getItem('tools_expenses');
+        return saved ? JSON.parse(saved) : [];
+    });
+    const [budget, setBudget] = useState(() => {
+        const saved = localStorage.getItem('tools_budget');
+        return saved ? JSON.parse(saved) : 0;
+    });
+    const [showForm, setShowForm] = useState(false);
+    const [amount, setAmount] = useState('');
+    const [category, setCategory] = useState(t.categories[0]);
+    const [note, setNote] = useState('');
+    const [date, setDate] = useState(getToday());
+
+    useEffect(() => {
+        localStorage.setItem('tools_expenses', JSON.stringify(expenses));
+    }, [expenses]);
+
+    useEffect(() => {
+        localStorage.setItem('tools_budget', JSON.stringify(budget));
+    }, [budget]);
+
+    const monthKey = getToday().slice(0, 7);
+
+    const addExpense = () => {
+        const value = parseFloat(amount);
+        if (!value || value <= 0) return;
+        const expense = {
+            id: Date.now(),
+            amount: value,
+            category,
+            note: note.trim(),
+            date,
+            month: date.slice(0, 7)
+        };
+        setExpenses([expense, ...expenses]);
+        setAmount('');
+        setNote('');
+        setShowForm(false);
+    };
+
+    const deleteExpense = (id) => {
+        setExpenses(expenses.filter(e => e.id !== id));
+    };
+
+    const monthExpenses = expenses.filter(e => e.month === monthKey);
+    const total = monthExpenses.reduce((sum, e) => sum + e.amount, 0);
+    const remaining = budget > 0 ? budget - total : null;
+
+    const byCategory = {};
+    monthExpenses.forEach(e => {
+        byCategory[e.category] = (byCategory[e.category] || 0) + e.amount;
+    });
+    const catData = Object.entries(byCategory).map(([name, value]) => ({
+        name,
+        value: Math.round(value)
+    }));
+
+    return (
+        <div className="flex flex-col md:flex-row gap-6">
+            {/* Left: Form & List */}
+            <div className="flex-1 min-w-0">
+                {/* Budget summary */}
+                <div className="grid grid-cols-3 gap-3 mb-5">
+                    <div className="bg-bg-secondary border border-border rounded-xl p-4 text-center">
+                        <div className="text-lg font-bold text-text-primary">{formatMoney(total, language)}</div>
+                        <div className="text-[10px] text-text-muted uppercase">{t.spent}</div>
+                    </div>
+                    <div className="bg-bg-secondary border border-border rounded-xl p-4 text-center">
+                        <div className="text-lg font-bold text-text-primary">{formatMoney(budget, language)}</div>
+                        <div className="text-[10px] text-text-muted uppercase">{t.budget}</div>
+                        <button
+                            onClick={() => {
+                                const val = prompt(t.setBudget, budget || '');
+                                if (val !== null) {
+                                    const parsed = parseFloat(val);
+                                    if (!isNaN(parsed) && parsed >= 0) setBudget(parsed);
+                                }
+                            }}
+                            className="mt-1 text-[10px] text-violet-500 hover:underline"
+                        >
+                            {t.save}
+                        </button>
+                    </div>
+                    <div className={`bg-bg-secondary border rounded-xl p-4 text-center ${remaining !== null && remaining < 0 ? 'border-red-500/40' : 'border-border'}`}>
+                        <div className={`text-lg font-bold ${remaining !== null && remaining < 0 ? 'text-red-500' : 'text-text-primary'}`}>
+                            {remaining !== null ? formatMoney(remaining, language) : '-'}
+                        </div>
+                        <div className="text-[10px] text-text-muted uppercase">{t.remaining}</div>
+                    </div>
+                </div>
+
+                {/* Divider visualization */}
+                {budget > 0 && (
+                    <div className="w-full h-2.5 bg-bg-secondary rounded-full overflow-hidden mb-5 border border-border">
+                        <div
+                            className={`h-full transition-all ${total > budget ? 'bg-red-500' : 'bg-violet-500'}`}
+                            style={{ width: `${budget > 0 ? Math.min(100, (total / budget) * 100) : 0}%` }}
+                        />
+                    </div>
+                )}
+
+                {/* Add expense */}
+                {!showForm ? (
+                    <button
+                        onClick={() => setShowForm(true)}
+                        className="w-full bg-bg-secondary border border-dashed border-violet-500/40 rounded-xl px-4 py-3 text-sm text-text-muted hover:text-text-primary hover:border-violet-500 transition-colors flex items-center justify-center gap-2"
+                    >
+                        <Plus size={16} /> {t.addExpense}
+                    </button>
+                ) : (
+                    <div className="bg-bg-secondary border border-border rounded-xl p-4 space-y-3">
+                        <div className="flex flex-wrap gap-2">
+                            <input
+                                type="number"
+                                value={amount}
+                                onChange={(e) => setAmount(e.target.value)}
+                                placeholder={t.amount}
+                                autoFocus
+                                className="flex-1 min-w-[120px] bg-bg-primary border border-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-violet-500 transition-colors"
+                            />
+                            <select
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                                className="bg-bg-primary border border-border rounded-lg px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-violet-500 transition-colors"
+                            >
+                                {t.categories.map(c => <option key={c} value={c}>{c}</option>)}
+                            </select>
+                            <input
+                                type="date"
+                                value={date}
+                                onChange={(e) => setDate(e.target.value)}
+                                className="bg-bg-primary border border-border rounded-lg px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-violet-500 transition-colors"
+                            />
+                        </div>
+                        <input
+                            type="text"
+                            value={note}
+                            onChange={(e) => setNote(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && addExpense()}
+                            placeholder={t.note}
+                            className="w-full bg-bg-primary border border-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-violet-500 transition-colors"
+                        />
+                        <div className="flex gap-2">
+                            <button
+                                onClick={addExpense}
+                                disabled={!amount}
+                                className="flex-1 bg-violet-500 text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity text-sm disabled:opacity-40"
+                            >
+                                {t.add}
+                            </button>
+                            <button
+                                onClick={() => setShowForm(false)}
+                                className="px-4 py-2 rounded-lg bg-bg-primary border border-border text-text-muted hover:text-text-primary transition-colors text-sm"
+                            >
+                                {t.cancel}
+                            </button>
+                        </div>
+                    </div>
+                )}
+
+                {/* List */}
+                <div className="mt-4 space-y-2 max-h-72 overflow-y-auto pr-1">
+                    {monthExpenses.length === 0 && (
+                        <div className="text-center py-10 text-text-muted">
+                            <Wallet size={40} className="mx-auto mb-3 opacity-20" />
+                            <p className="text-sm">{t.noData}</p>
+                        </div>
+                    )}
+                    {monthExpenses.map(e => (
+                        <div key={e.id} className="flex items-center gap-3 bg-bg-secondary border border-border rounded-xl px-4 py-3 group hover:border-violet-500/40 transition-colors">
+                            <span className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
+                                style={{ backgroundColor: EXPENSE_COLORS[Math.max(0, t.categories.indexOf(e.category)) % EXPENSE_COLORS.length] }}
+                            >
+                                {e.category[0]}
+                            </span>
+                            <div className="flex-1 min-w-0">
+                                <p className="text-sm text-text-primary">{e.note || e.category}</p>
+                                <p className="text-[10px] text-text-muted">{e.category} - {new Date(e.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })}</p>
+                            </div>
+                            <span className="text-sm font-medium text-text-primary flex-shrink-0">-{formatMoney(e.amount, language)}</span>
+                            <button
+                                onClick={() => deleteExpense(e.id)}
+                                className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-red-500/10 text-text-muted hover:text-red-500 transition-all flex-shrink-0"
+                            >
+                                <Trash2 size={14} />
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Right: Pie chart */}
+            <div className="md:w-96 flex-shrink-0">
+                <div className="h-72">
+                    <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
+                            <Pie
+                                data={catData}
+                                dataKey="value"
+                                nameKey="name"
+                                innerRadius={60}
+                                outerRadius={90}
+                                paddingAngle={2}
+                            >
+                                {catData.map((entry, index) => (
+                                    <Cell key={entry.name} fill={EXPENSE_COLORS[index % EXPENSE_COLORS.length]} />
+                                ))}
+                            </Pie>
+                            <Tooltip />
+                        </PieChart>
+                    </ResponsiveContainer>
+                </div>
+                {catData.length > 0 && (
+                    <div className="mt-2 space-y-1.5">
+                        {catData.map((c, i) => (
+                            <div key={c.name} className="flex items-center gap-2 text-xs">
+                                <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: EXPENSE_COLORS[i % EXPENSE_COLORS.length] }} />
+                                <span className="text-text-secondary flex-1">{c.name}</span>
+                                <span className="text-text-primary font-medium">{formatMoney(c.value, language)}</span>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
+
+function formatMoney(value, language) {
+    const locale = language === 'id' ? 'id-ID' : 'en-US';
+    const currency = language === 'id' ? 'IDR' : undefined;
+    return new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency: currency || 'USD',
+        maximumFractionDigits: 0
+    }).format(value || 0);
+}
 
 export default Tools;

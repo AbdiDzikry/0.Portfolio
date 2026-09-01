@@ -1,4 +1,4 @@
-import HeroV2 from '../components/HeroV2';
+import HeroShooter from '../components/HeroShooter';
 import SEO from '../components/SEO';
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
                 description="Welcome to Sulthan Abdi Dzikry's portfolio - UI/UX Designer & Business Analyst"
             />
             <div className="home-container">
-                <HeroV2 />
+                <HeroShooter />
             </div>
         </>
     );

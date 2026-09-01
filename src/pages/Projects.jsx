@@ -87,8 +87,12 @@ const Projects = () => {
     const t = translations[language];
     const rawProjects = projectsData;
 
+    // Projects kept accessible via direct URL only (hidden from listing)
+    const hiddenProjectIds = ['anti-fraud-doors', 'internship-detail'];
+    const visibleProjects = rawProjects.filter(p => !hiddenProjectIds.includes(p.id));
+
     // Map translations if ID is selected
-    const projects = rawProjects.map(p => {
+    const projects = visibleProjects.map(p => {
         if (language === 'id' && p.translations?.id) {
             return { ...p, ...p.translations.id };
         }

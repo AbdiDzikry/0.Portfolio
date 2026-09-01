@@ -1,12 +1,15 @@
-export const translations = {
+﻿export const translations = {
     en: {
         nav: {
             home: "Home",
             profile: "Profile",
+            profileV2: "Profile 2.0",
             projects: "Projects",
-            caseStudies: "Ideas",
+            caseStudies: "Goals",
             lab: "Lab",
+            game: "Game",
             tools: "Tools",
+            blog: "Insights",
             projectsTitle: "Selected Works",
             projectsSubtitle: "A collection of design & development projects.",
             gridView: "Grid",
@@ -14,11 +17,16 @@ export const translations = {
             ariaGrid: "Grid View",
             ariaList: "List View"
         },
+        blog: {
+            title: "Insights",
+            kicker: "Manufacturing Discipline, Applied to Design",
+            subtitle: "Kaizen principles, design process reflections, and ways of working drawn from the factory floor â€” written for product and design teams."
+        },
         footer: {
             builtBy: "Designed & Built by"
         },
         hero: {
-            role: "Sulthan Abdi Dzikry / Product Designer",
+            role: "Sulthan Abdi Dzikry / Software Engineer",
             word1: "CRAFTING",
             word2: "STRATEGIC",
             word3: "ECOSYSTEMS",
@@ -42,6 +50,12 @@ export const translations = {
             subtitle: "Strategic challenges at the intersection of logic and creativity.",
             metaTitle: "Lab & Digital Playground",
             metaDesc: "Digital Playground and experimental projects: 2048 Game, Widgets, and more."
+        },
+        game: {
+            title: "Alien Shooter",
+            subtitle: "A retro arcade space shooter. Defend Earth from the invading aliens!",
+            metaTitle: "Alien Shooter Game",
+            metaDesc: "Retro arcade space shooter built with HTML5 Canvas. Move with arrow keys and blast aliens to level up."
         },
         tools: {
             title: "Tools",
@@ -135,19 +149,61 @@ export const translations = {
                 nowPlaying: "Now Playing",
                 githubActivity: "GitHub Activity",
                 youtubePlaylist: "YouTube Playlist"
+            },
+            notes: {
+                title: "Notes",
+                subtitle: "Quick sticky notes for ideas and reminders",
+                placeholder: "Write a note...",
+                noNotes: "No notes yet. Jot down an idea!",
+                colors: "Color",
+                delete: "Delete",
+                pinned: "pinned"
+            },
+            expense: {
+                title: "Expense Tracker",
+                subtitle: "Track spending and monthly budget",
+                addExpense: "Add expense...",
+                amount: "Amount",
+                category: "Category",
+                note: "Note (optional)",
+                date: "Date",
+                add: "Add",
+                cancel: "Cancel",
+                delete: "Delete",
+                categories: ["Food", "Transport", "Shopping", "Bills", "Entertainment", "Other"],
+                total: "Total Expenses",
+                budget: "Monthly Budget",
+                remaining: "Remaining",
+                spent: "Spent",
+                setBudget: "Set monthly budget",
+                save: "Save",
+                noData: "No expenses yet this month",
+                labelBudget: "Budget"
+            },
+            goals: {
+                title: "Goals",
+                subtitle: "Long-term goals with progress tracking",
+                addGoal: "Add a new goal...",
+                noGoals: "No goals yet. Set a long-term goal!",
+                target: "Target",
+                deadline: "Deadline",
+                progress: "Progress",
+                delete: "Delete",
+                completed: "Completed!",
+                due: "Due"
             }
         },
         chat: {
             greet: "Hello! I'm Ningsih, Sulthan Abdi Dzikry's Digital Partner. How can I help you today?",
             online: "Online",
             inputPlaceholder: "Ask Ningsih...",
-            poweredBy: "Powered by Sulthan AI • Responses may be generated",
+            poweredBy: "Powered by Sulthan AI â€¢ Responses may be generated",
             expand: "Expand to Sidebar",
             collapse: "Collapse"
         },
         profile: {
             title: "My Profile",
-            role: "Product Designer",
+            role: "Software Engineer",
             bio: "An adaptive professional offering a unique blend of strategic design insights and strong technical foundations.",
             bioSub: "I don't just create aesthetic designs, I build functional and technical solutions. Ready to innovate.",
             contact: "Contact Me",
@@ -166,7 +222,7 @@ export const translations = {
             industries: "Industries",
             info: "Information",
             jobs: [
-                { company: "PT Dharma Polimetal Tbk.", role: "Product Designer", desc: "Manufacturing Digitalization projects.", period: "Oct 2025 - Present" },
+                { company: "PT Dharma Polimetal Tbk.", role: "Human Resources Information Specialist", desc: "Manufacturing Digitalization projects.", period: "Oct 2025 - Apr 2026" },
                 { company: "Codetag Studio", role: "Product Designer", desc: "Handling 5 projects end-to-end.", period: "Jul 2025 - Present" },
                 { company: "Telkom Digital Amoeba", role: "UX Researcher Intern", desc: "End-to-end research, quantitative & qualitative analysis.", period: "Dec 2023 - Jan 2024" },
                 { company: "Rakamin Academy", role: "UI/UX Designer Intern", desc: "Optimized travel app UX with 79% feasibility score.", period: "Aug 2023 - Jan 2024" },
@@ -212,7 +268,7 @@ export const translations = {
             thinkingTitle: "Design Thinking",
             techTitle: "Technical Approach",
             solTitle: "Solution",
-            solSub: "Problem → Solution mapping",
+            solSub: "Problem â†’ Solution mapping",
             researchTitle: "Research & UX Results",
             impactTitle: "Impact & Results",
             toolsTitle: "Design Tools & Methods",
@@ -249,10 +305,13 @@ export const translations = {
         nav: {
             home: "Beranda",
             profile: "Profil",
+            profileV2: "Profil 2.0",
             projects: "Proyek",
-            caseStudies: "Ide",
+            caseStudies: "Goals",
             lab: "Lab",
+            game: "Game",
             tools: "Tools",
+            blog: "Wawasan",
             projectsTitle: "Karya Terpilih",
             projectsSubtitle: "Kumpulan proyek desain & pengembangan.",
             gridView: "Grid",
@@ -260,11 +319,16 @@ export const translations = {
             ariaGrid: "Tampilan Grid",
             ariaList: "Tampilan Daftar"
         },
+        blog: {
+            title: "Wawasan",
+            kicker: "Disiplin Manufaktur, Diterapkan pada Desain",
+            subtitle: "Prinsip Kaizen, refleksi proses desain, dan cara bekerja yang diambil dari lantai pabrik â€” ditulis untuk tim produk dan desain."
+        },
         footer: {
             builtBy: "Didesain & Dibangun oleh"
         },
         hero: {
-            role: "Sulthan Abdi Dzikry / Product Designer",
+            role: "Sulthan Abdi Dzikry / Software Engineer",
             word1: "MEMBANGUN",
             word2: "EKOSISTEM",
             word3: "STRATEGIS",
@@ -288,6 +352,12 @@ export const translations = {
             subtitle: "Tantangan strategis di persimpangan logika dan kreativitas.",
             metaTitle: "Lab & Eksperimen Digital",
             metaDesc: "Taman bermain digital dan proyek eksperimental: Game 2048, Widget, dan lainnya."
+        },
+        game: {
+            title: "Alien Shooter",
+            subtitle: "Shooter arcade retro. Pertahankan Bumi dari invasi alien!",
+            metaTitle: "Permainan Alien Shooter",
+            metaDesc: "Shooter ruang angkasa arcade retro dibangun dengan HTML5 Canvas. Gerakkan dengan tombol panah dan tembak alien untuk naik level."
         },
         tools: {
             title: "Tools",
@@ -381,19 +451,61 @@ export const translations = {
                 nowPlaying: "Sedang Diputar",
                 githubActivity: "Aktivitas GitHub",
                 youtubePlaylist: "Playlist YouTube"
+            },
+            notes: {
+                title: "Catatan",
+                subtitle: "Catatan tempel cepat untuk ide dan pengingat",
+                placeholder: "Tulis catatan...",
+                noNotes: "Belum ada catatan. Tuliskan sebuah ide!",
+                colors: "Warna",
+                delete: "Hapus",
+                pinned: "disematkan"
+            },
+            expense: {
+                title: "Lacak Pengeluaran",
+                subtitle: "Lacak pengeluaran dan budget bulanan",
+                addExpense: "Tambah pengeluaran...",
+                amount: "Jumlah",
+                category: "Kategori",
+                note: "Catatan (opsional)",
+                date: "Tanggal",
+                add: "Tambah",
+                cancel: "Batal",
+                delete: "Hapus",
+                categories: ["Makanan", "Transportasi", "Belanja", "Tagihan", "Hiburan", "Lainnya"],
+                total: "Total Pengeluaran",
+                budget: "Budget Bulanan",
+                remaining: "Sisa",
+                spent: "Terpakai",
+                setBudget: "Atur budget bulanan",
+                save: "Simpan",
+                noData: "Belum ada pengeluaran bulan ini",
+                labelBudget: "Budget"
+            },
+            goals: {
+                title: "Goal",
+                subtitle: "Goal jangka panjang dengan pelacakan progres",
+                addGoal: "Tambah goal baru...",
+                noGoals: "Belum ada goal. Tetapkan goal jangka panjang!",
+                target: "Target",
+                deadline: "Tenggat",
+                progress: "Progres",
+                delete: "Hapus",
+                completed: "Selesai!",
+                due: "Jatuh tempo"
             }
         },
         chat: {
             greet: "Halo! Saya Ningsih, Partner Digital dari Sulthan Abdi Dzikry. Ada yang bisa saya bantu diskusikan hari ini?",
             online: "Online",
             inputPlaceholder: "Tanya Ningsih...",
-            poweredBy: "Didukung oleh Gemini AI • Jawaban dapat diolah",
+            poweredBy: "Didukung oleh Gemini AI â€¢ Jawaban dapat diolah",
             expand: "Perluas ke Samping",
             collapse: "Sembunyikan"
         },
         profile: {
             title: "Profil Saya",
-            role: "Product Designer",
+            role: "Software Engineer",
             bio: "Seorang profesional adaptif yang menawarkan perpaduan unik antara wawasan desain strategis dan fondasi teknis yang kuat.",
             bioSub: "Saya tidak hanya membuat desain estetis, saya membangun solusi fungsional dan teknis. Siap berinovasi.",
             contact: "Hubungi Saya",
@@ -412,7 +524,7 @@ export const translations = {
             industries: "Industri",
             info: "Informasi",
             jobs: [
-                { company: "PT Dharma Polimetal Tbk.", role: "Product Designer", desc: "Proyek Digitalisasi Manufaktur.", period: "Okt 2025 - Sekarang" },
+                { company: "PT Dharma Polimetal Tbk.", role: "Human Resources Information Specialist", desc: "Proyek Digitalisasi Manufaktur.", period: "Okt 2025 - Apr 2026" },
                 { company: "Codetag Studio", role: "Product Designer", desc: "Menangani 5 proyek secara end-to-end.", period: "Jul 2025 - Sekarang" },
                 { company: "Telkom Digital Amoeba", role: "UX Researcher Intern", desc: "Riset end-to-end, analisis kuantitatif & kualitatif.", period: "Des 2023 - Jan 2024" },
                 { company: "Rakamin Academy", role: "UI/UX Designer Intern", desc: "Optimasi UX aplikasi travel dengan skor kelayakan 79%.", period: "Agu 2023 - Jan 2024" },
@@ -458,7 +570,7 @@ export const translations = {
             thinkingTitle: "Design Thinking",
             techTitle: "Pendekatan Teknis",
             solTitle: "Solusi",
-            solSub: "Pemetaan Masalah → Solusi",
+            solSub: "Pemetaan Masalah â†’ Solusi",
             researchTitle: "Riset & Hasil UX",
             impactTitle: "Dampak & Hasil",
             toolsTitle: "Alat & Metode Desain",

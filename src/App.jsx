@@ -9,10 +9,15 @@ import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import ProfileV2 from './pages/ProfileV2';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
+import ProjectKaizen from './pages/ProjectKaizen';
 import CaseStudies from './pages/CaseStudies';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import Lab from './pages/Lab';
+import Game from './pages/Game';
 import Presentation from './pages/Presentation';
 import Tools from './pages/Tools';
 import { AnimatePresence } from 'framer-motion';
@@ -31,10 +36,15 @@ function AppContent() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<PageTransition><Home /></PageTransition>} />
             <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
+            <Route path="/profile-v2" element={<PageTransition><ProfileV2 /></PageTransition>} />
             <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
             <Route path="/projects/:id" element={<PageTransition><ProjectDetail /></PageTransition>} />
+            <Route path="/projects/:id/kaizen" element={<PageTransition><ProjectKaizen /></PageTransition>} />
             <Route path="/case-studies" element={<PageTransition><CaseStudies /></PageTransition>} />
+            <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
+            <Route path="/blog/:id" element={<PageTransition><BlogPost /></PageTransition>} />
             <Route path="/lab" element={<PageTransition><Lab /></PageTransition>} />
+            <Route path="/game" element={<PageTransition><Game /></PageTransition>} />
             <Route path="/tools" element={<PageTransition><Tools /></PageTransition>} />
             <Route path="/presentation" element={<Presentation />} />
           </Routes>

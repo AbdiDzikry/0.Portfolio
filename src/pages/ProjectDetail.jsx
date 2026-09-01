@@ -11,6 +11,7 @@ import { translations } from '../utils/translations';
 import { generatePrdPdf } from '../utils/generatePrdPdf';
 import { generateBrdPdf } from '../utils/generateBrdPdf';
 import { generateApiDocPdf } from '../utils/generateApiDocPdf';
+import { downloadKaizenPdf } from '../utils/loadKaizenIcons';
 import SEO from '../components/SEO';
 
 /* ─────────── helpers ─────────── */
@@ -338,7 +339,7 @@ const ProjectDetail = () => {
     }
 
     const showcaseImages = project.showcaseImages || [project.image];
-    const isUiUx = project.category?.toLowerCase().includes('ui') || project.category?.toLowerCase().includes('design');
+    const isUiUx = project.id === 'doors' || project.category?.toLowerCase().includes('ui') || project.category?.toLowerCase().includes('design');
 
     return (
         <motion.div
@@ -482,14 +483,6 @@ const ProjectDetail = () => {
                                 <Download size={13} /> Download BRD
                             </button>
 
-                            {/* Download API Doc */}
-                            <button
-                                onClick={() => generateApiDocPdf(project)}
-                                className="flex items-center gap-2 px-5 py-2.5 bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-full text-xs font-bold hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all shadow-md"
-                            >
-                                <Download size={13} /> Download API Doc
-                            </button>
-
                             {/* Live Link */}
                             {project.liveLink && (
                                 <a
@@ -500,6 +493,24 @@ const ProjectDetail = () => {
                                 >
                                     <ExternalLink size={13} /> {t.livePreview}
                                 </a>
+                            )}
+
+                            {/* Kaizen View — only for doors */}
+                            {project.id === 'doors' && (
+                                <>
+                                    <button
+                                        onClick={() => downloadKaizenPdf(project)}
+                                        className="flex items-center gap-2 px-5 py-2.5 bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-full text-xs font-bold hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all shadow-md"
+                                    >
+                                        <Download size={13} /> Download Kaizen PDF
+                                    </button>
+                                    <Link
+                                        to={`/projects/${project.id}/kaizen`}
+                                        className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 text-white rounded-full text-xs font-bold hover:bg-emerald-700 transition-all shadow-md"
+                                    >
+                                        <TrendingUp size={13} /> Kaizen View
+                                    </Link>
+                                </>
                             )}
                         </div>
                     </div>

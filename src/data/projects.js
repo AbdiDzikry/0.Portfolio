@@ -2,7 +2,7 @@ export const projectsData = [
     {
         id: 'doors',
         title: 'Doors',
-        category: 'UI/UX Design',
+        category: 'Digital Transformation',
         image: '/projects/doors/Presentasi Doors-1.webp',
         showcaseImages: [
             '/projects/doors/Presentasi Doors-1.webp',

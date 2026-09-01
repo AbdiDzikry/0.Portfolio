@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react';
 import { Github, GitCommit, Star, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const GitHubWidget = ({ username = 'AbdiDzikry' }) => {
+const GitHubWidget = ({ username = 'AbdiDzikry', followers }) => {
     const [stats, setStats] = useState(null);
     const [recentActivity, setRecentActivity] = useState(null);
     const [contributions, setContributions] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        let cancelled = false;
+
         const fetchGitHubData = async () => {
             try {
                 // Fetch user stats
@@ -16,71 +18,71 @@ const GitHubWidget = ({ username = 'AbdiDzikry' }) => {
                 if (!userResponse.ok) throw new Error('User not found');
                 const userData = await userResponse.json();
 
-                // Fetch recent events (last 100 for contribution tracking)
-                const eventsResponse = await fetch(`https://api.github.com/users/${username}/events/public?per_page=100`);
-                if (!eventsResponse.ok) throw new Error('Events not found');
-                const eventsData = await eventsResponse.json();
-
-                setStats({
-                    repos: userData.public_repos,
-                    followers: userData.followers,
-                    following: userData.following,
-                    avatar: userData.avatar_url,
-                    bio: userData.bio,
-                    url: userData.html_url
-                });
-
-                // Process contribution data (last 52 weeks)
-                if (Array.isArray(eventsData)) {
-                    const contributionMap = {};
-                    const now = new Date();
-
-                    // Initialize last 52 weeks with 0
-                    for (let i = 0; i < 364; i++) {
-                        const d = new Date(now);
-                        d.setDate(d.getDate() - i);
-                        const dateStr = d.toISOString().split('T')[0];
-                        contributionMap[dateStr] = 0;
-                    }
-
-                    // Count contributions per day
-                    eventsData.forEach(event => {
-                        const dateStr = new Date(event.created_at).toISOString().split('T')[0];
-                        if (contributionMap.hasOwnProperty(dateStr)) {
-                            contributionMap[dateStr] += 1;
+                // Fetch recent events (last 100) for latest push activity
+                let recentActivity = null;
+                try {
+                    const eventsResponse = await fetch(`https://api.github.com/users/${username}/events/public?per_page=100`);
+                    if (eventsResponse.ok) {
+                        const eventsData = await eventsResponse.json();
+                        const latestPush = (Array.isArray(eventsData) ? eventsData : []).find(event => event.type === 'PushEvent');
+                        if (latestPush) {
+                            recentActivity = {
+                                repo: latestPush.repo.name,
+                                message: latestPush.payload.commits?.[0]?.message || 'Recent commit',
+                                time: new Date(latestPush.created_at),
+                                url: `https://github.com/${latestPush.repo.name}`
+                            };
                         }
-                    });
-
-                    // Convert to array for rendering
-                    const contribArray = Object.entries(contributionMap)
-                        .map(([date, count]) => ({ date, count }))
-                        .sort((a, b) => new Date(a.date) - new Date(b.date));
-
-                    setContributions(contribArray);
-
-                    // Get latest push event
-                    const latestPush = eventsData.find(event => event.type === 'PushEvent');
-                    if (latestPush) {
-                        setRecentActivity({
-                            repo: latestPush.repo.name,
-                            message: latestPush.payload.commits?.[0]?.message || 'Recent commit',
-                            time: new Date(latestPush.created_at),
-                            url: `https://github.com/${latestPush.repo.name}`
-                        });
                     }
+                } catch (e) {
+                    // Events are optional; continue without them
                 }
 
-                setLoading(false);
+                // Fetch real contribution calendar (52 weeks) from GitHub GraphQL proxy
+                let contributions = [];
+                try {
+                    const contribResponse = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`);
+                    if (contribResponse.ok) {
+                        const contribData = await contribResponse.json();
+                        const raw = Array.isArray(contribData) ? contribData : contribData.contributions;
+                        if (Array.isArray(raw)) {
+                            contributions = raw
+                                .filter(c => c && c.date && c.level > 0)
+                                .map(c => ({ date: c.date, count: c.count || 0 }));
+                        }
+                    }
+                } catch (e) {
+                    // Fall through with empty contributions if service is unavailable
+                }
+
+                if (!cancelled) {
+                    setStats({
+                        repos: userData.public_repos,
+                        followers: followers != null ? followers : userData.followers,
+                        following: userData.following,
+                        avatar: userData.avatar_url,
+                        bio: userData.bio,
+                        url: userData.html_url
+                    });
+                    setRecentActivity(recentActivity);
+                    setContributions(contributions);
+                    setLoading(false);
+                }
             } catch (err) {
                 console.error('GitHub fetch error:', err);
-                setStats(null);
-                setLoading(false);
+                if (!cancelled) {
+                    setStats(null);
+                    setLoading(false);
+                }
             }
         };
 
         fetchGitHubData();
         const interval = setInterval(fetchGitHubData, 300000);
-        return () => clearInterval(interval);
+        return () => {
+            cancelled = true;
+            clearInterval(interval);
+        };
     }, [username]);
 
     if (loading) {
@@ -125,24 +127,51 @@ const GitHubWidget = ({ username = 'AbdiDzikry' }) => {
         return 'just now';
     };
 
-    // Contribution level colors
-    const getContributionColor = (count) => {
-        if (count === 0) return 'bg-white/20 dark:bg-black/20';
-        if (count <= 2) return 'bg-green-200/60 dark:bg-green-900/40';
-        if (count <= 4) return 'bg-green-300/70 dark:bg-green-700/50';
-        if (count <= 6) return 'bg-green-400/80 dark:bg-green-600/60';
-        return 'bg-green-500 dark:bg-green-500';
-    };
-
     // Group contributions by week for grid layout
     const renderContributionGrid = () => {
         if (contributions.length === 0) return null;
 
-        // Group into weeks (7 days each)
+        // Build a full 52-week day map, zero-filling missing/inactive days
+        const map = {};
+        contributions.forEach(c => { map[c.date] = c.count; });
+
         const weeks = [];
-        for (let i = 0; i < contributions.length; i += 7) {
-            weeks.push(contributions.slice(i, i + 7));
+        const totalDays = 364;
+        const start = new Date();
+        start.setDate(start.getDate() - (totalDays - 1));
+        const startOffset = start.getDay();
+
+        // Pad the beginning so week 1 starts on Sunday
+        const padded = [];
+        for (let i = 0; i < startOffset; i++) padded.push(0);
+        for (let i = 0; i < totalDays; i++) {
+            const d = new Date(start);
+            d.setDate(start.getDate() + i);
+            const str = d.toISOString().split('T')[0];
+            padded.push(map[str] || 0);
         }
+
+        for (let i = 0; i < padded.length; i += 7) {
+            weeks.push(padded.slice(i, i + 7));
+        }
+
+        const maxCount = Math.max(1, ...contributions.map(c => c.count));
+        const levelOf = (count) => {
+            if (count === 0) return 0;
+            const ratio = count / maxCount;
+            if (ratio <= 0.25) return 1;
+            if (ratio <= 0.5) return 2;
+            if (ratio <= 0.75) return 3;
+            return 4;
+        };
+
+        const levelClass = [
+            'bg-white/20 dark:bg-black/20',
+            'bg-green-200/60 dark:bg-green-900/40',
+            'bg-green-300/70 dark:bg-green-700/50',
+            'bg-green-400/80 dark:bg-green-600/60',
+            'bg-green-500 dark:bg-green-500'
+        ];
 
         return (
             <div className="mt-3">
@@ -151,16 +180,12 @@ const GitHubWidget = ({ username = 'AbdiDzikry' }) => {
                     <div className="flex gap-[2px] min-w-fit">
                         {weeks.map((week, weekIndex) => (
                             <div key={weekIndex} className="flex flex-col gap-[2px]">
-                                {week.map((day, dayIndex) => (
+                                {week.map((count, dayIndex) => (
                                     <div
                                         key={`${weekIndex}-${dayIndex}`}
-                                        className={`w-[10px] h-[10px] rounded-sm ${getContributionColor(day.count)} hover:ring-1 hover:ring-accent-green/50 transition-all cursor-pointer`}
-                                        title={`${day.date}: ${day.count} contributions`}
+                                        className={`w-[10px] h-[10px] rounded-sm ${levelClass[levelOf(count)]} hover:ring-1 hover:ring-accent-green/50 transition-all cursor-pointer`}
+                                        title={`${count} contributions`}
                                     />
-                                ))}
-                                {/* Fill empty cells if week has less than 7 days */}
-                                {Array.from({ length: 7 - week.length }).map((_, i) => (
-                                    <div key={`empty-${i}`} className="w-[10px] h-[10px] rounded-sm bg-transparent" />
                                 ))}
                             </div>
                         ))}
@@ -169,11 +194,9 @@ const GitHubWidget = ({ username = 'AbdiDzikry' }) => {
                 {/* Legend */}
                 <div className="flex items-center gap-1 mt-2 text-[9px] text-text-muted">
                     <span>Less</span>
-                    <div className="w-[10px] h-[10px] rounded-sm bg-white/20 dark:bg-black/20" />
-                    <div className="w-[10px] h-[10px] rounded-sm bg-green-200/60 dark:bg-green-900/40" />
-                    <div className="w-[10px] h-[10px] rounded-sm bg-green-300/70 dark:bg-green-700/50" />
-                    <div className="w-[10px] h-[10px] rounded-sm bg-green-400/80 dark:bg-green-600/60" />
-                    <div className="w-[10px] h-[10px] rounded-sm bg-green-500 dark:bg-green-500" />
+                    {levelClass.map((cls, i) => (
+                        <div key={i} className={`w-[10px] h-[10px] rounded-sm ${cls}`} />
+                    ))}
                     <span>More</span>
                 </div>
             </div>

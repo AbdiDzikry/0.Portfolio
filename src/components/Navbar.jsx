@@ -78,8 +78,11 @@ const Navbar = ({ onChatToggle }) => {
                     <div className="hidden md:flex items-center gap-6">
                         <NavLink to="/" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.home}</NavLink>
                         <NavLink to="/profile" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.profile}</NavLink>
+                        <NavLink to="/profile-v2" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-emerald-600' : 'text-zinc-400 hover:text-emerald-600'} transition-colors`}>{t.nav.profileV2}</NavLink>
                         <NavLink to="/projects" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.projects}</NavLink>
                         <NavLink to="/case-studies" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.caseStudies}</NavLink>
+                        <NavLink to="/blog" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.blog}</NavLink>
+                        <NavLink to="/game" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.game}</NavLink>
                         <NavLink to="/tools" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.tools}</NavLink>
                     </div>
 
@@ -139,8 +142,11 @@ const Navbar = ({ onChatToggle }) => {
                         >
                             <MobileNavItem to="/">{t.nav.home}</MobileNavItem>
                             <MobileNavItem to="/profile">{t.nav.profile}</MobileNavItem>
+                            <MobileNavItem to="/profile-v2">{t.nav.profileV2}</MobileNavItem>
                             <MobileNavItem to="/projects">{t.nav.projects}</MobileNavItem>
                             <MobileNavItem to="/case-studies">{t.nav.caseStudies}</MobileNavItem>
+                            <MobileNavItem to="/blog">{t.nav.blog}</MobileNavItem>
+                            <MobileNavItem to="/game">{t.nav.game}</MobileNavItem>
                             <MobileNavItem to="/tools">{t.nav.tools}</MobileNavItem>
                         </motion.div>
                     )}
