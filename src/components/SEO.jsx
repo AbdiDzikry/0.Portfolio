@@ -12,14 +12,14 @@ const SEO = ({
     const { language } = useLanguage();
 
     const defaultTitle = language === 'id'
-        ? 'Sulthan Abdi Dzikry - UI/UX Designer & Business Analyst'
-        : 'Sulthan Abdi Dzikry - UI/UX Designer & Business Analyst';
+        ? 'Sulthan Abdi Dzikry - IT Digitalisasi & Software Engineer'
+        : 'Sulthan Abdi Dzikry - IT Digitalization & Software Engineer';
 
     const defaultDescription = language === 'id'
-        ? 'Portfolio profesional Sulthan Abdi Dzikry - UI/UX Designer dan Business Analyst dengan pengalaman di berbagai industri. Lihat proyek dan case study saya.'
-        : 'Professional portfolio of Sulthan Abdi Dzikry - UI/UX Designer and Business Analyst with experience across various industries. View my projects and case studies.';
+        ? 'Portfolio profesional Sulthan Abdi Dzikry - IT Digitalisasi dan Software Engineer dengan pengalaman Smart Factory (WMS & Sistem Kualitas) di industri manufaktur. Lihat proyek dan case study saya.'
+        : 'Professional portfolio of Sulthan Abdi Dzikry - IT Digitalization and Software Engineer with Smart Factory (WMS & Quality Systems) experience in manufacturing. View my projects and case studies.';
 
-    const defaultKeywords = 'Sulthan Abdi Dzikry, UI/UX Designer, Business Analyst, Product Designer, Portfolio, Web Development, Figma, React, Case Studies';
+    const defaultKeywords = 'Sulthan Abdi Dzikry, IT Digitalization, Software Engineer, Smart Factory, WMS, Portfolio, Web Development, Laravel, React, Case Studies';
 
     const siteUrl = 'https://sulthanabdi.vercel.app';
     const fullTitle = title ? `${title} | Sulthan Abdi Dzikry` : defaultTitle;
@@ -68,10 +68,10 @@ const SEO = ({
                     "name": "Sulthan Abdi Dzikry",
                     "url": siteUrl,
                     "image": ogImageUrl,
-                    "jobTitle": "UI/UX Designer & Business Analyst",
+                    "jobTitle": "IT Digitalization & Software Engineer",
                     "worksFor": {
                         "@type": "Organization",
-                        "name": "Freelance"
+                        "name": "PT Dharma Controlcable Ind"
                     },
                     "alumniOf": {
                         "@type": "EducationalOrganization",

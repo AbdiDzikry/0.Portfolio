@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     ArrowLeft, Download, ChevronRight, Lightbulb, Target,
-    Wrench, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink, MessageSquare, BarChart, ShieldCheck, LayoutGrid
+    Wrench, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink, MessageSquare, BarChart, ShieldCheck, LayoutGrid, AlertTriangle
 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
@@ -73,6 +73,22 @@ const ProjectDetail = () => {
                     <Link to="/projects" className="inline-flex items-center gap-1.5 text-text-muted hover:text-text-primary transition-colors text-xs font-mono uppercase tracking-widest mb-4">
                         <ArrowLeft size={13} /> {t.allProjects}
                     </Link>
+
+                    {project.isTrialData && (
+                        <motion.div 
+                            initial={{ opacity: 0, y: -10 }} 
+                            animate={{ opacity: 1, y: 0 }}
+                            className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-start sm:items-center gap-3 text-amber-800 dark:text-amber-200 shadow-sm backdrop-blur-sm mb-4"
+                        >
+                            <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-500 mt-0.5 sm:mt-0" />
+                            <div className="text-xs md:text-sm leading-relaxed">
+                                <span className="font-bold font-mono uppercase tracking-wider text-[10px] bg-amber-500/20 text-amber-700 dark:text-amber-300 px-2.5 py-0.5 rounded-full mr-2 inline-block mb-1 sm:mb-0">
+                                    TRIAL DATA
+                                </span>
+                                {t.trialDataWarning}
+                            </div>
+                        </motion.div>
+                    )}
                     <div className="flex gap-3">
                         <Tag>{project.category}</Tag>
                         <Tag>6 Months</Tag>
@@ -359,6 +375,22 @@ const ProjectDetail = () => {
                     <ArrowLeft size={13} className="group-hover:-translate-x-0.5 transition-transform" />
                     {t.allProjects}
                 </Link>
+
+                {project.isTrialData && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: -10 }} 
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mb-8 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-start sm:items-center gap-3 text-amber-800 dark:text-amber-200 shadow-sm backdrop-blur-sm"
+                    >
+                        <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-500 mt-0.5 sm:mt-0" />
+                        <div className="text-xs md:text-sm leading-relaxed">
+                            <span className="font-bold font-mono uppercase tracking-wider text-[10px] bg-amber-500/20 text-amber-700 dark:text-amber-300 px-2.5 py-0.5 rounded-full mr-2 inline-block mb-1 sm:mb-0">
+                                TRIAL DATA
+                            </span>
+                            {t.trialDataWarning}
+                        </div>
+                    </motion.div>
+                )}
 
                 {/* ══════════════════════════════════════════
                     HERO SECTION — Left: Meta | Right: Image

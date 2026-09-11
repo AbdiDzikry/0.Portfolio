@@ -16,4 +16,4 @@ export const LanguageProvider = ({ children }) => {
     );
 };
 
-export const useLanguage = () => useContext(LanguageContext);
+export const useLanguage = () => useContext(LanguageContext) || { language: 'en', toggleLanguage: () => {} };

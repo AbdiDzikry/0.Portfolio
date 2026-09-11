@@ -65,7 +65,7 @@ const buildPortfolioContext = () => {
     ${profileSummary}
 
     === SKILLS & EXPERTISE ===
-    - Tech Arsenal: React, Tailwind, Figma, Angular, UX Research, Prototyping
+    - Tech Arsenal: PHP, JavaScript/TypeScript, Laravel, Next.js, Node.js, React, Tailwind CSS, MongoDB, SQL, Cloud & DevOps
     - Product Frameworks: Agile, Scrum, Design Thinking, PRD, Jira
     - Industry Focus: Manufacturing, SaaS / B2B, EdTech, Telco
 

@@ -37,20 +37,37 @@ const HeroShooter = () => {
         const vw = window.innerWidth;
         const vh = s.H;
 
-        const fontSize = Math.min(0.12 * vw, 0.095 * vh);
-        ctx.font = `bold ${fontSize}px Manrope`;
-        ctx.textBaseline = 'alphabetic';
-        ctx.textAlign = 'left';
+        // Editorial typographic design — each word has its own size + weight
+        const baseFontSize = Math.min(0.10 * vw, 0.085 * vh);
 
-        const lineHeight = fontSize * 0.9;
-        const startY = s.H * 0.23; // well below navbar / role label, with space
-
-        // word layout: fraction indents, color
+        // Three words with distinct visual treatment
         const layout = [
-            { text: (t.word1 || '').toUpperCase(), indent: 0, outline: false },
-            { text: (t.word2 || '').toUpperCase(), indent: 0.10, outline: true },
-            { text: (t.word3 || '').toUpperCase(), indent: 0.20, outline: false },
+            {
+                text: (t.word1 || '').toUpperCase(),
+                outline: false,
+                scale: 1.0,       // solid headline
+            },
+            {
+                text: (t.word2 || '').toUpperCase(),
+                outline: true,
+                scale: 0.95,      // same ballpark size, outline style — clean
+            },
+            {
+                text: (t.word3 || '').toUpperCase(),
+                outline: false,
+                scale: 1.08,      // largest solid — focal point
+            },
         ];
+
+        const lineGap = baseFontSize * 0.30; // vertical gap between lines
+        const startY = Math.max(170, s.H * 0.24); // below role subheader
+
+        // Pre-measure each line's height so we can stack them
+        const lineHeights = layout.map(w => baseFontSize * w.scale);
+        const lineOffsets = [0];
+        for (let i = 1; i < layout.length; i++) {
+            lineOffsets.push(lineOffsets[i - 1] + lineHeights[i - 1] + lineGap);
+        }
 
         s.words = layout.filter(w => w.text && w.text.trim().length > 0);
 
@@ -59,28 +76,33 @@ const HeroShooter = () => {
         s.parts = parts;
 
         s.words.forEach((w, li) => {
+            const fontSize = baseFontSize * w.scale;
+            const font = `bold ${fontSize}px Manrope`;
+            ctx.font = font; // update ctx.font for measureText
+            const textWidth = ctx.measureText(w.text).width;
+            const lineX = (W - textWidth) / 2; // horizontally centered
+
+            const pad = 50;
+            const lineH = Math.ceil(fontSize * 1.3 + pad * 2);
+            const lineW = Math.ceil(textWidth + pad * 2);
             const off = document.createElement('canvas');
-            const pad = 40;
-            const lineW = Math.ceil(W + pad * 2);
-            const lineH = Math.ceil(lineHeight + pad * 2);
             off.width = lineW;
             off.height = lineH;
             const octx = off.getContext('2d');
-            octx.font = ctx.font;
+            octx.font = font;
             octx.textBaseline = 'alphabetic';
             octx.textAlign = 'left';
 
-            const lineX = w.indent * W;
-
-            const baseYLine = startY + li * lineHeight;
-            const offTextY = pad + fontSize * 0.82;
+            const baseYLine = startY + lineOffsets[li];
+            const offTextY = pad + fontSize * 0.85;
 
             const colorPrimary = isDark ? '#ffffff' : '#111111';
-            const colorAccent = isDark ? '#dce0d3' : '#7d8260';
+            const colorAccent = isDark ? '#c8ccbf' : '#7d8260';
 
             if (w.outline) {
+                // Outline stroke — needs sufficient lineWidth for particles to sample cleanly
                 octx.strokeStyle = colorAccent;
-                octx.lineWidth = Math.max(1.5, fontSize * 0.015);
+                octx.lineWidth = Math.max(2.5, fontSize * 0.022);
                 octx.strokeText(w.text, pad, offTextY);
             } else {
                 octx.fillStyle = colorPrimary;
@@ -90,12 +112,12 @@ const HeroShooter = () => {
             // sample pixels
             const img = octx.getImageData(0, 0, lineW, lineH);
             const data = img.data;
-            const step = Math.max(3, Math.round(fontSize * 0.03)); // sparse sampling
+            const step = Math.max(3, Math.round(fontSize * 0.03));
             for (let py = 0; py < lineH; py += step) {
                 for (let px = 0; px < lineW; px += step) {
                     const idx = (py * lineW + px) * 4;
                     const a = data[idx + 3];
-                    if (a > 120) {
+                    if (a > 100) {
                         const r = data[idx], g = data[idx + 1], b = data[idx + 2];
                         parts.push({
                             baseX: lineX + (px - pad),
@@ -133,7 +155,8 @@ const HeroShooter = () => {
         s.W = W;
         s.H = H;
         s.dpr = dpr;
-        s.planeBaseY = H * 0.52;
+        // Position plane slightly higher for more comfortable play area
+        s.planeBaseY = Math.max(H * 0.40, H - 300);
 
         if (!s.initialized) {
             s.initialized = true;
@@ -319,7 +342,8 @@ const HeroShooter = () => {
     }, [language, t.word1, t.word2, t.word3]);
 
     return (
-        <section ref={containerRef} className="relative min-h-screen bg-bg-primary overflow-hidden">
+        <section ref={containerRef} className="relative bg-bg-primary overflow-hidden">
+            {/* Full-screen interactive game area */}
             <div className="sticky top-0 h-screen w-full">
                 {/* Canvas responsible for words + plane + effects */}
                 <canvas
@@ -327,45 +351,15 @@ const HeroShooter = () => {
                     className="absolute inset-0 w-full h-full block touch-none select-none cursor-crosshair"
                 />
 
-                {/* Brand + role label (top-left, with space below navbar) */}
-                <div className="absolute top-28 left-6 md:left-20 z-10 pointer-events-none">
-                    <span className="text-accent-pink font-mono text-xs md:text-sm tracking-[0.3em] uppercase block">
+                {/* Brand + role label — clear gap below navbar */}
+                <div className="absolute top-[8.5rem] inset-x-0 text-center z-10 pointer-events-none px-6">
+                    <span className="text-accent-pink font-mono text-xs md:text-sm tracking-[0.3em] uppercase inline-block">
                         {t.role}
                     </span>
                 </div>
 
-                {/* Experience / Execution stats (below the plane) */}
-                <div className="absolute inset-x-0 bottom-0 z-10 px-6 md:px-20 pb-14 pointer-events-none">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 border-t border-border pt-6">
-                        <div className="flex flex-col gap-1.5">
-                            <span className="font-mono text-[10px] text-text-muted uppercase tracking-widest">{t.expLabel}</span>
-                            <div className="flex items-baseline gap-2">
-                                <span className="text-4xl md:text-5xl font-bold text-text-primary">{t.expValue || '2.5'}</span>
-                                <span className="text-base md:text-lg font-medium text-text-secondary uppercase">{t.expUnits}</span>
-                            </div>
-                            <p className="text-xs text-text-muted leading-relaxed max-w-[280px]">{t.expDesc}</p>
-                        </div>
-                        <div className="flex flex-col gap-1.5">
-                            <span className="font-mono text-[10px] text-text-muted uppercase tracking-widest">{t.collabLabel}</span>
-                            <div className="flex items-baseline gap-2">
-                                <span className="text-4xl md:text-5xl font-bold text-text-primary">06</span>
-                                <span className="text-base md:text-lg font-medium text-text-secondary uppercase">{t.collabUnits}</span>
-                            </div>
-                            <p className="text-xs text-text-muted leading-relaxed max-w-[280px]">{t.collabDesc}</p>
-                        </div>
-                        <div className="flex flex-col gap-1.5">
-                            <span className="font-mono text-[10px] text-text-muted uppercase tracking-widest">{t.execLabel}</span>
-                            <div className="flex items-baseline gap-2">
-                                <span className="text-4xl md:text-5xl font-bold text-text-primary">05+</span>
-                                <span className="text-base md:text-lg font-medium text-text-secondary uppercase">{t.execUnits}</span>
-                            </div>
-                            <p className="text-xs text-text-muted leading-relaxed max-w-[280px]">{t.execDesc}</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Instructions pill (left above stats / bottom-left) */}
-                <div className="absolute bottom-6 left-6 md:left-20 z-10 pointer-events-none hidden sm:flex flex-col gap-1">
+                {/* Instructions pill (bottom-left, inside game area) */}
+                <div className="absolute bottom-8 left-6 md:left-20 z-10 pointer-events-none hidden sm:flex flex-col gap-1">
                     <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted">
                         {language === 'en' ? 'Shoot the words with your ship' : 'Tembak kata-kata dengan pesawatmu'}
                     </span>
@@ -373,14 +367,42 @@ const HeroShooter = () => {
                         {language === 'en' ? 'Desktop: ← → + Space · Mobile: touch / drag' : 'Desktop: ← → + Spasi · Mobile: sentuh / seret'}
                     </span>
                 </div>
+
+                {/* Scroll hint bottom-center */}
+                <div className="absolute bottom-8 inset-x-0 text-center z-10 pointer-events-none">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-muted opacity-60">
+                        {language === 'en' ? '↓ Scroll for stats' : '↓ Gulir untuk statistik'}
+                    </span>
+                </div>
             </div>
 
-            {/* Lower spacer section after the hero screen */}
-            <div className="relative z-10 bg-bg-primary py-20 px-6 md:px-20">
-                <div className="text-center">
-                    <p className="font-mono text-xs uppercase tracking-[0.3em] text-text-muted">
-                        {language === 'en' ? 'Scroll to explore the projects below' : 'Gulir untuk menjelajahi proyek di bawah'}
-                    </p>
+            {/* Stats section — below the game viewport */}
+            <div className="relative z-10 bg-bg-primary px-6 md:px-20 py-16 border-t border-border">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-16 max-w-5xl">
+                    <div className="flex flex-col gap-1.5">
+                        <span className="font-mono text-[10px] text-text-muted uppercase tracking-widest">{t.expLabel}</span>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-4xl md:text-5xl font-bold text-text-primary">{t.expValue || '2.5'}</span>
+                            <span className="text-base md:text-lg font-medium text-text-secondary uppercase">{t.expUnits}</span>
+                        </div>
+                        <p className="text-xs text-text-muted leading-relaxed max-w-[280px]">{t.expDesc}</p>
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                        <span className="font-mono text-[10px] text-text-muted uppercase tracking-widest">{t.collabLabel}</span>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-4xl md:text-5xl font-bold text-text-primary">06</span>
+                            <span className="text-base md:text-lg font-medium text-text-secondary uppercase">{t.collabUnits}</span>
+                        </div>
+                        <p className="text-xs text-text-muted leading-relaxed max-w-[280px]">{t.collabDesc}</p>
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                        <span className="font-mono text-[10px] text-text-muted uppercase tracking-widest">{t.execLabel}</span>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-4xl md:text-5xl font-bold text-text-primary">05+</span>
+                            <span className="text-base md:text-lg font-medium text-text-secondary uppercase">{t.execUnits}</span>
+                        </div>
+                        <p className="text-xs text-text-muted leading-relaxed max-w-[280px]">{t.execDesc}</p>
+                    </div>
                 </div>
             </div>
 
@@ -417,7 +439,7 @@ function drawPlane(ctx, x, y, tilt, frame, firing, isDark) {
     const sprite = PLANE_SPRITE;
     const rows = sprite.length;
     const cols = sprite[0].length;
-    const ps = 4; // pixel size
+    const ps = 2.5; // pixel size (smaller plane)
 
     ctx.save();
     ctx.translate(x, y);
@@ -436,7 +458,7 @@ function drawPlane(ctx, x, y, tilt, frame, firing, isDark) {
     const y0 = -((rows * ps) / 2);
 
     ctx.shadowColor = 'rgba(140,140,150,0.5)';
-    ctx.shadowBlur = 12;
+    ctx.shadowBlur = 8;
 
     for (let r = 0; r < rows; r++) {
         const row = sprite[r];

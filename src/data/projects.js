@@ -1,4 +1,9 @@
+import { aisBackendProject } from './projects/aisBackend';
+import { portalAduanProject } from './projects/portalAduan';
+
 export const projectsData = [
+    aisBackendProject,
+    portalAduanProject,
     {
         id: 'doors',
         title: 'Doors',
@@ -364,7 +369,8 @@ export const projectsData = [
         background: 'During my work with LMK projects, I identified that quality control reporting lacked standardization across different sites. This inconsistency made it challenging to maintain quality standards and track improvement areas. I designed a unified QC reporting system to address these gaps.',
         strategicAlignment: 'Demonstrates ability to optimize operational processes through thoughtful documentation design and standardization.',
         investmentRequired: '4 Weeks Design & Implementation / 1 Product Designer',
-        assumptions: '1. Inspectors will benefit from structured templates over free-form reporting.\n2. Centralized documentation will improve cross-site quality visibility.',
+        assumptions: `1. Inspectors will benefit from structured templates over free-form reporting.
+2. Centralized documentation will improve cross-site quality visibility.`,
         productArchitecture: 'Figma (Template Design), Google Workspace (Documentation & Sharing)',
         coreFeatures: [
             { name: 'Standardized Template', desc: 'Unified QC report format with mandatory fields and visual guidelines.' },
@@ -436,7 +442,8 @@ export const projectsData = [
                 background: 'Selama bekerja dengan proyek LMK, saya mengidentifikasi bahwa pelaporan quality control kurang standarisasi di berbagai lokasi. Inkonsistensi ini menyulitkan menjaga standar kualitas dan melacak area perbaikan. Saya mendesain sistem pelaporan QC terpadu untuk mengatasi celah-celah ini.',
                 strategicAlignment: 'Menunjukkan kemampuan mengoptimasi proses operasional melalui desain dokumentasi yang thoughtfull dan standarisasi.',
                 investmentRequired: '4 Minggu Desain & Implementasi',
-                assumptions: '1. Inspektur akan mendapat manfaat dari template terstruktur dibanding pelaporan bebas.\n2. Dokumentasi terpusat akan meningkatkan visibilitas kualitas lintas lokasi.',
+                assumptions: `1. Inspektur akan mendapat manfaat dari template terstruktur dibanding pelaporan bebas.
+2. Dokumentasi terpusat akan meningkatkan visibilitas kualitas lintas lokasi.`,
                 productArchitecture: 'Figma (Desain Template), Google Workspace (Dokumentasi & Sharing)',
                 coreFeatures: [
                     { name: 'Template Terstandarisasi', desc: 'Format laporan QC terpadu dengan field wajib dan panduan visual.' },

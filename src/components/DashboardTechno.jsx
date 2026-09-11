@@ -102,13 +102,14 @@ const DashboardTechno = () => {
 
                         <div className="flex justify-between items-start mb-6 relative z-10 border-b border-stone-800 pb-2">
                             <h3 className="text-sm font-mono text-accent-green font-bold uppercase tracking-widest">[ EXPERIENCE_LOG ]</h3>
-                            <span className="text-xs text-stone-500 font-mono">6_ENTRIES_FOUND</span>
+                            <span className="text-xs text-stone-500 font-mono">7_ENTRIES_FOUND</span>
                         </div>
 
                         <div className="space-y-4 relative z-10 flex-1 overflow-y-auto pr-2 custom-scrollbar">
                             {[
-                                { company: "PT Dharma Polimetal Tbk.", role: t.profile.role, desc: "Manufacturing Digitalization projects.", period: "Oct 2025 - Present" },
-                                { company: "Codetag Studio", role: t.profile.role, desc: "Handling 5 projects end-to-end.", period: "Jul 2025 - Present" },
+                                { company: "PT Dharma Controlcable Ind", role: "IT Support & Digitalization", desc: "Quality portal, WMS tracking, meeting-room booking.", period: "Jun 2026 - Present" },
+                                { company: "PT Dharma Polimetal Tbk.", role: "IT Support & Digitalization", desc: "HRMS revamp (+50%), digital LMK QC, hazard & AC monitoring.", period: "Oct 2025 - Apr 2026" },
+                                { company: "Codetag Studio", role: "Software Engineer", desc: "End-to-end web dev & BRD — 100% on-time.", period: "Jul 2025 - Oct 2025" },
                                 { company: "Telkom Digital Amoeba", role: "UX Researcher Intern", desc: "End-to-end research, quantitative & qualitative analysis.", period: "Dec 2023 - Jan 2024" },
                                 { company: "Rakamin Academy", role: "UI/UX Designer Intern", desc: "Optimized travel app UX with 79% feasibility score.", period: "Aug 2023 - Jan 2024" },
                                 { company: "Korea Orient Technology", role: "Internship", desc: "Assisted in technical operations.", period: "Oct 2019 - Mar 2020" },
@@ -234,7 +235,7 @@ const DashboardTechno = () => {
                         accentColor="border-accent-green"
                     >
                         <div className="grid grid-cols-2 gap-2 mt-4">
-                            {['Figma', 'React', 'Tailwind', 'Notion'].map((tool, i) => (
+                            {['PHP', 'Laravel', 'React', 'Tailwind'].map((tool, i) => (
                                 <div key={i} className="bg-black/40 border border-stone-700 rounded-sm p-2 text-center text-[10px] font-mono text-stone-400 hover:text-accent-green hover:border-accent-green transition-colors cursor-crosshair">
                                     {tool}
                                 </div>

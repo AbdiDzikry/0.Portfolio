@@ -13,10 +13,21 @@ import {
 import NowPlayingWidget from '../components/NowPlayingWidget';
 import GitHubWidget from '../components/GitHubWidget';
 import YouTubeWidget from '../components/YouTubeWidget';
+import AlienShooter from '../components/AlienShooter';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area } from 'recharts';
 
 /* ── helpers ── */
 const getToday = () => new Date().toISOString().split('T')[0];
+const safeJsonParse = (key, fallback) => {
+    try {
+        const saved = localStorage.getItem(key);
+        if (!saved || saved === 'undefined' || saved === 'null') return fallback;
+        const parsed = JSON.parse(saved);
+        return parsed !== null && parsed !== undefined ? parsed : fallback;
+    } catch {
+        return fallback;
+    }
+};
 const getWeekDates = () => {
     const dates = [];
     const today = new Date();
@@ -45,6 +56,7 @@ const Tools = () => {
     const [collapsedNotes, setCollapsedNotes] = useState(false);
     const [collapsedExpense, setCollapsedExpense] = useState(false);
     const [collapsedGoals, setCollapsedGoals] = useState(false);
+    const [collapsedGame, setCollapsedGame] = useState(false);
 
     return (
         <motion.div
@@ -63,6 +75,7 @@ const Tools = () => {
 
             {/* All Tools in One Page - Bento Grid Layout */}
             <div className="max-w-7xl mx-auto space-y-6">
+
 
                 {/* Music Section - Full Width Top */}
                 <section className="bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-orange-500/5 border border-purple-500/20 rounded-3xl p-6 md:p-8 transition-all">
@@ -423,10 +436,7 @@ const Tools = () => {
    TASK TRACKER
 ═══════════════════════════════════════════ */
 const TaskTracker = ({ t }) => {
-    const [tasks, setTasks] = useState(() => {
-        const saved = localStorage.getItem('tools_tasks');
-        return saved ? JSON.parse(saved) : [];
-    });
+    const [tasks, setTasks] = useState(() => safeJsonParse('tools_tasks', []));
     const [newTask, setNewTask] = useState('');
     const [showNoteInput, setShowNoteInput] = useState(null);
     const [noteText, setNoteText] = useState('');
@@ -765,10 +775,7 @@ const TaskTracker = ({ t }) => {
    HABIT TRACKER
 ═══════════════════════════════════════════ */
 const HabitTracker = ({ t }) => {
-    const [habits, setHabits] = useState(() => {
-        const saved = localStorage.getItem('tools_habits');
-        return saved ? JSON.parse(saved) : [];
-    });
+    const [habits, setHabits] = useState(() => safeJsonParse('tools_habits', []));
     const [newHabit, setNewHabit] = useState('');
     const inputRef = useRef(null);
 
@@ -1043,10 +1050,7 @@ const HabitTracker = ({ t }) => {
    JOB TRACKER
 ═══════════════════════════════════════════ */
 const JobTracker = ({ t }) => {
-    const [subjects, setSubjects] = useState(() => {
-        const saved = localStorage.getItem('tools_jobs');
-        return saved ? JSON.parse(saved) : [];
-    });
+    const [subjects, setSubjects] = useState(() => safeJsonParse('tools_jobs', []));
     const [showAddForm, setShowAddForm] = useState(false);
     const [newSubject, setNewSubject] = useState({ name: '', count: 0 });
     const [expandedHistory, setExpandedHistory] = useState(null);
@@ -1525,12 +1529,9 @@ const FocusTimer = ({ t }) => {
     };
 
     useEffect(() => {
-        const saved = localStorage.getItem('tools_timer');
-        if (saved) {
-            const data = JSON.parse(saved);
-            setSessions(data.sessions || 0);
-            setTotalFocusTime(data.totalFocusTime || 0);
-        }
+        const data = safeJsonParse('tools_timer', { sessions: 0, totalFocusTime: 0 });
+        setSessions(data.sessions || 0);
+        setTotalFocusTime(data.totalFocusTime || 0);
     }, []);
 
     useEffect(() => {
@@ -1748,10 +1749,7 @@ const WidgetsSection = ({ t }) => {
 const NOTES_COLORS = ['#fde68a', '#d9f99d', '#a5f3fc', '#fbcfe8', '#ddd6fe'];
 
 const NotesTool = ({ t }) => {
-    const [notes, setNotes] = useState(() => {
-        const saved = localStorage.getItem('tools_notes');
-        return saved ? JSON.parse(saved) : [];
-    });
+    const [notes, setNotes] = useState(() => safeJsonParse('tools_notes', []));
     const [text, setText] = useState('');
     const [color, setColor] = useState(NOTES_COLORS[0]);
 
@@ -1863,10 +1861,7 @@ const NotesTool = ({ t }) => {
    GOALS TOOL
 ═══════════════════════════════════════════ */
 const GoalsTool = ({ t }) => {
-    const [goals, setGoals] = useState(() => {
-        const saved = localStorage.getItem('tools_goals');
-        return saved ? JSON.parse(saved) : [];
-    });
+    const [goals, setGoals] = useState(() => safeJsonParse('tools_goals', []));
     const [showForm, setShowForm] = useState(false);
     const [title, setTitle] = useState('');
     const [deadline, setDeadline] = useState('');
@@ -2017,17 +2012,13 @@ const EXPENSE_COLORS = ['#60a5fa', '#fca5a5', '#fcd34d', '#34d399', '#a78bfa', '
 
 const ExpenseTracker = ({ t }) => {
     const { language } = useLanguage();
-    const [expenses, setExpenses] = useState(() => {
-        const saved = localStorage.getItem('tools_expenses');
-        return saved ? JSON.parse(saved) : [];
-    });
-    const [budget, setBudget] = useState(() => {
-        const saved = localStorage.getItem('tools_budget');
-        return saved ? JSON.parse(saved) : 0;
-    });
+    const [expenses, setExpenses] = useState(() => safeJsonParse('tools_expenses', []));
+    const [budget, setBudget] = useState(() => safeJsonParse('tools_budget', 0));
     const [showForm, setShowForm] = useState(false);
     const [amount, setAmount] = useState('');
-    const [category, setCategory] = useState(t.categories[0]);
+    const defaultCategories = ['Food', 'Transport', 'Shopping', 'Bills', 'Entertainment', 'Other'];
+    const categoriesList = t?.categories || defaultCategories;
+    const [category, setCategory] = useState(categoriesList[0] || 'Food');
     const [note, setNote] = useState('');
     const [date, setDate] = useState(getToday());
 
@@ -2143,7 +2134,7 @@ const ExpenseTracker = ({ t }) => {
                                 onChange={(e) => setCategory(e.target.value)}
                                 className="bg-bg-primary border border-border rounded-lg px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-violet-500 transition-colors"
                             >
-                                {t.categories.map(c => <option key={c} value={c}>{c}</option>)}
+                                {categoriesList.map(c => <option key={c} value={c}>{c}</option>)}
                             </select>
                             <input
                                 type="date"
@@ -2189,7 +2180,7 @@ const ExpenseTracker = ({ t }) => {
                     {monthExpenses.map(e => (
                         <div key={e.id} className="flex items-center gap-3 bg-bg-secondary border border-border rounded-xl px-4 py-3 group hover:border-violet-500/40 transition-colors">
                             <span className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
-                                style={{ backgroundColor: EXPENSE_COLORS[Math.max(0, t.categories.indexOf(e.category)) % EXPENSE_COLORS.length] }}
+                                style={{ backgroundColor: EXPENSE_COLORS[Math.max(0, categoriesList.indexOf(e.category)) % EXPENSE_COLORS.length] }}
                             >
                                 {e.category[0]}
                             </span>
@@ -2242,6 +2233,47 @@ const ExpenseTracker = ({ t }) => {
                     </div>
                 )}
             </div>
+
+                {/* Game Section — Paling Bawah */}
+                <section className="bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-indigo-500/5 border border-cyan-500/20 rounded-3xl p-6 md:p-8 transition-all hover:border-cyan-500/40">
+                    <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center">
+                                <span className="text-xl">🎮</span>
+                            </div>
+                            <div>
+                                <h2 className="text-xl font-bold text-text-primary">
+                                    {language === 'en' ? 'Mini Game' : 'Mini Game'}
+                                </h2>
+                                <p className="text-xs text-text-muted">
+                                    {language === 'en' ? 'Shoot the alien invaders — WASD / Arrow keys + Space' : 'Tembak alien penyerang — WASD / Tombol arah + Spasi'}
+                                </p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={() => setCollapsedGame(!collapsedGame)}
+                            className={`p-2 rounded-lg transition-all ${collapsedGame ? 'bg-cyan-500/10 text-cyan-500' : 'hover:bg-cyan-500/10 text-text-muted hover:text-cyan-500'}`}
+                        >
+                            {collapsedGame ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                        </button>
+                    </div>
+                    <AnimatePresence>
+                        {!collapsedGame && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                                className="overflow-hidden"
+                            >
+                                <div className="flex items-center justify-center">
+                                    <AlienShooter />
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </section>
+
         </div>
     );
 };

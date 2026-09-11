@@ -4,297 +4,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Sulthan Abdi Dzikry (ATS Friendly)</title>
+    <title>CV - Sulthan Abdi Dzikry</title>
     <style>
-        :root {
-            --primary: #000000;
-            --text-dark: #000000;
-            --text-gray: #444444;
-            --border-color: #cccccc;
-        }
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Arial', 'Inter', sans-serif;
-            /* Web-safe font for ATS */
+            font-family: 'Calibri', 'Arial', sans-serif;
+            font-size: 9pt;
+            line-height: 1.35;
+            color: #000000;
             background: #ffffff;
-            color: var(--text-dark);
-            line-height: 1.5;
-            font-size: 11pt;
-            display: flex;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .page {
             max-width: 210mm;
-            width: 100%;
-            padding: 0;
             margin: 0 auto;
+            padding: 3mm 8mm;
         }
 
-        /* ATS Friendly Layout: Single Column, High Contrast */
-
-        /* Header */
-        header {
-            border-bottom: 2px solid var(--text-dark);
-            padding-bottom: 1rem;
-            margin-bottom: 1.5rem;
+        .header {
             text-align: center;
+            margin-bottom: 5px;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 5px;
         }
 
-        h1 {
-            font-size: 24pt;
+        .name {
+            font-size: 18pt;
             font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 0.25rem;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
         }
 
-        h2 {
-            font-size: 14pt;
-            font-weight: normal;
-            margin-bottom: 0.5rem;
-            color: var(--text-gray);
+        .title {
+            font-size: 10.5pt;
+            color: #333333;
+            margin-bottom: 4px;
         }
 
-        .contact-info {
-            font-size: 10pt;
-            margin-top: 0.5rem;
+        .contact {
+            font-size: 9pt;
+            color: #333333;
         }
 
-        .contact-info span {
-            margin: 0 0.25rem;
-        }
+        .contact span { margin: 0 5px; }
 
-        .contact-info a {
-            color: var(--text-dark);
+        .contact a {
+            color: #0066cc;
             text-decoration: none;
         }
 
-        /* Sections */
-        section {
-            margin-bottom: 1.5rem;
-        }
+        .section { margin-bottom: 6px; }
 
-        h3 {
-            font-size: 12pt;
+        .section-title {
+            font-size: 10pt;
             font-weight: bold;
             text-transform: uppercase;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.25rem;
+            border-bottom: 1px solid #000000;
+            padding-bottom: 2px;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+            page-break-after: avoid;
+            break-after: avoid;
         }
 
-        /* Items */
-        .item {
-            margin-bottom: 1rem;
+        .entry {
+            margin-bottom: 4px;
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
 
-        .item-header {
+        .entry-header {
             display: flex;
             justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 1px;
+        }
+
+        .entry-title {
             font-weight: bold;
+            font-size: 9.5pt;
         }
 
-        .item-sub {
+        .entry-company {
             font-style: italic;
-            margin-bottom: 0.25rem;
+            font-size: 9pt;
+            margin-bottom: 2px;
         }
 
-        .description {
+        .entry-date {
+            font-size: 9pt;
+            color: #333333;
+        }
+
+        .entry-details {
+            margin-left: 0;
+            padding-left: 14px;
+        }
+
+        .entry-details li {
+            margin-bottom: 2px;
             text-align: justify;
         }
 
-        ul {
-            list-style-position: inside;
-            margin-left: 0.5rem;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 3px 10px;
         }
 
-        li {
-            margin-bottom: 0.25rem;
-        }
+        .skill-category { font-weight: bold; }
+        .skill-items { text-align: left; }
 
-        /* Skills specific */
-        .skills-list {
-            margin-bottom: 0.5rem;
-        }
-
-        .skills-label {
-            font-weight: bold;
-        }
-
-        /* Print Override */
         @media print {
-            body {
-                padding: 0;
-                margin: 0;
-            }
+            body { padding: 5mm 8mm; }
+            .contact a { color: #000000; }
         }
     </style>
 </head>
 
 <body>
-    <div class="page">
-        <!-- HEADER -->
-        <header>
-            <h1>Sulthan Abdi Dzikry</h1>
-            <h2>Product Designer / Manajer Produk</h2>
-            <div class="contact-info">
-                <a href="mailto:sulthanabdi1@gmail.com">sulthanabdi1@gmail.com</a>
-                <span>|</span>
-                <a href="tel:+6288291449821">+6288291449821</a>
-                <span>|</span>
-                <a href="https://www.linkedin.com/in/sulthan-abdi-dzikry/">linkedin.com/in/sulthan-abdi-dzikry</a>
-                <span>|</span>
-                <span>Bekasi, Indonesia</span>
+    <!-- Header -->
+    <header class="header">
+        <h1 class="name">SULTHAN ABDI DZIKRY</h1>
+        <p class="title">IT Digitalisasi</p>
+        <p class="contact">
+            <span>Bekasi, Indonesia</span> |
+            <span><a href="mailto:sulthanabdi1@gmail.com">sulthanabdi1@gmail.com</a></span> |
+            <span><a href="https://wa.me/6288291449821" target="_blank">+6288291449821</a></span>
+        </p>
+        <p class="contact">
+            <a href="https://linkedin.com/in/sulthan-abdi-dzikry">linkedin.com/in/sulthan-abdi-dzikry</a> |
+            <a href="https://website-sulthan.vercel.app/">website-sulthan.vercel.app</a>
+        </p>
+    </header>
+
+    <!-- Profil Profesional -->
+    <section class="section">
+        <h2 class="section-title">Profil Profesional</h2>
+        <p style="text-align: justify;">
+            Lulusan S1 Teknik Informatika Telkom University (IPK 3.52) dengan pengalaman di bidang IT &amp; Digitalisasi. Terbukti sukses mendigitalisasi proses bisnis industri melalui pengembangan ekosistem <i>Smart Factory</i> (WMS &amp; Sistem Manajemen Kualitas), serta membangun berbagai sistem informasi korporat yang memfasilitasi kebutuhan 1.000+ pengguna lintas departemen. Memiliki sertifikasi BNSP Junior Web Developer dengan kemampuan analisis bisnis dan pemecahan masalah yang tinggi.
+        </p>
+    </section>
+
+    <!-- Pengalaman Kerja -->
+    <section class="section">
+        <h2 class="section-title">Pengalaman Kerja</h2>
+
+        <!-- Dharma Controlcable -->
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">IT Support &amp; Digitalisasi</span>
+                <span class="entry-date">Jun 2026 – Saat ini</span>
             </div>
-        </header>
-
-        <!-- SUMMARY -->
-        <section>
-            <h3>Profil Profesional</h3>
-            <p class="description">
-                Seorang profesional adaptif yang menawarkan perpaduan unik antara wawasan desain strategis dan fondasi
-                teknis yang kuat. Saya tidak hanya membuat desain estetis, tetapi membangun solusi fungsional dan teknis
-                yang siap berinovasi. Berpengalaman dalam memimpin proyek digitalisasi, manajemen produk end-to-end, dan
-                riset UX yang mendalam.
-            </p>
-        </section>
-
-        <!-- EXPERIENCE -->
-        <section>
-            <h3>Pengalaman Kerja</h3>
-
-            <div class="item">
-                <div class="item-header">
-                    <span>PT Dharma Polimetal Tbk.</span>
-                    <span>Okt 2025 - Sekarang</span>
-                </div>
-                <div class="item-sub">Product Designer</div>
-                <p class="description">Memimpin proyek digitalisasi manufaktur untuk meningkatkan efisiensi operasional
-                    dan menjembatani kesenjangan antara lantai produksi dan sistem manajemen digital.</p>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <span>Codetag Studio</span>
-                    <span>Jul 2025 - Sekarang</span>
-                </div>
-                <div class="item-sub">Product Designer</div>
-                <p class="description">Menangani 5 proyek secara end-to-end. Bertanggung jawab atas roadmap produk,
-                    deliverables desain UI/UX, dan koordinasi dengan tim pengembang untuk memastikan pengiriman tepat
-                    waktu.</p>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <span>Telkom Digital Amoeba</span>
-                    <span>Des 2023 - Jan 2024</span>
-                </div>
-                <div class="item-sub">UX Researcher Intern</div>
-                <p class="description">Melakukan riset end-to-end termasuk survei kuantitatif dan wawancara kualitatif
-                    untuk memvalidasi asumsi produk dan meningkatkan kepuasan pengguna.</p>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <span>Rakamin Academy</span>
-                    <span>Agu 2023 - Jan 2024</span>
-                </div>
-                <div class="item-sub">Magang Desainer UI/UX</div>
-                <p class="description">Mengoptimalkan UX aplikasi travel dengan skor kelayakan 79% melalui pengujian
-                    kegunaan yang ketat dan iterasi desain berbasis data.</p>
-            </div>
-        </section>
-
-        <!-- PROJECTS -->
-        <section>
-            <h3>Proyek Unggulan</h3>
-
-            <div class="item">
-                <div class="item-header">
-                    <span>CBL Property (Aplikasi Mobile)</span>
-                </div>
-                <p class="description">Merancang UI yang bersih dan minimalis yang berfokus pada penyaringan canggih dan
-                    fitur &quot;Chat dengan Agen&quot; untuk membangun kepercayaan. Fitur ini bertujuan mengurangi
-                    masalah kualitas prospek (lead) sebesar 60%.</p>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <span>Grand Telar Residence (Sistem Web)</span>
-                </div>
-                <p class="description">Mengembangkan sistem antarmuka ganda: situs web publik responsif untuk pameran
-                    unit dan dasbor admin aman. Berhasil mengurangi kesalahan administrasi manual hingga ~40%.</p>
-            </div>
-
-            <div class="item">
-                <div class="item-header">
-                    <span>Joki In Rush (Platform Layanan)</span>
-                </div>
-                <p class="description">Membangun situs web profil perusahaan yang memprofesionalkan layanan bantuan
-                    akademik, meningkatkan tingkat pertanyaan sebesar 30% melalui alur pemesanan terstruktur.</p>
-            </div>
-        </section>
-
-        <!-- EDUCATION -->
-        <section>
-            <h3>Pendidikan</h3>
-
-            <div class="item">
-                <div class="item-header">
-                    <span>Telkom University</span>
-                    <span>2021 - 2025</span>
-                </div>
-                <div class="item-sub">Sarjana (S1) Teknik Informatika</div>
-                <p>IPK: 3.52 / 4.00</p>
-            </div>
-        </section>
-
-        <!-- SKILLS -->
-        <section>
-            <h3>Keahlian & Kompetensi</h3>
-            <div class="skills-list">
-                <span class="skills-label">Keahlian Inti:</span> Manajemen Produk, Desain UI/UX, Riset Pengguna (UX
-                Research), Agile Methodology, Pengembangan Frontend.
-            </div>
-            <div class="skills-list">
-                <span class="skills-label">Alat & Teknologi:</span> Figma, Jira, React.js, Tailwind CSS, Notion, Maze,
-                Adobe Creative Cloud.
-            </div>
-            <div class="skills-list">
-                <span class="skills-label">Bahasa:</span> Indonesia (Native), Inggris (Professional - ECT Score: 490).
-            </div>
-        </section>
-
-        <!-- CERTIFICATIONS -->
-        <section>
-            <h3>Sertifikasi</h3>
-            <ul>
-                <li><strong>Junior Web Developer</strong> - BNSP (Badan Nasional Sertifikasi Profesi) | Jan 2025 - 2028
-                </li>
-                <li><strong>ITTP English Competency Test (ECT)</strong> - Telkom University Purwokerto (Skor: 490) | Des
-                    2024</li>
+            <div class="entry-company">PT Dharma Controlcable Ind · Bekasi, Jawa Barat</div>
+            <ul class="entry-details">
+                <li><strong>Portal Manajemen Kualitas:</strong> Berhasil meningkatkan transparansi dan kecepatan penanganan masalah kecacatan produk lintas departemen dengan cara membangun platform pelaporan digital terpusat yang dilengkapi <i>dashboard</i> pemantauan kinerja secara <i>real-time</i>.</li>
+                <li><strong>Sistem Manajemen Gudang &amp; Rantai Pasok:</strong> Berhasil meminimalisir risiko selisih stok dan mengotomatisasi alur operasional gudang dengan cara mengembangkan sistem pelacakan inventaris akurat berbasis integrasi QR Code/Barcode.</li>
+                <li><strong>Aplikasi Penjadwalan Meeting:</strong> Berhasil mengefisiensikan alur koordinasi peminjaman fasilitas antar departemen dengan cara merancang aplikasi pemesanan ruang meeting terpadu sesuai standar grup perusahaan.</li>
             </ul>
-        </section>
+        </div>
 
-        <!-- ORGANIZATIONS -->
-        <section>
-            <h3>Pengalaman Organisasi</h3>
-            <ul>
-                <li><strong>Dies Natalis Informatics</strong> - Staf Logistik (2024)</li>
-                <li><strong>PRECOM TELCOMNICA</strong> - Staf Anggaran (2023)</li>
-                <li><strong>KPR Fakultas Informatika</strong> - Staf Pendukung (2023)</li>
+        <!-- Dharma Polimetal -->
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">IT Support &amp; Digitalisasi</span>
+                <span class="entry-date">Okt 2025 – Apr 2026</span>
+            </div>
+            <div class="entry-company">PT Dharma Polimetal Tbk. · Bekasi, Jawa Barat</div>
+            <ul class="entry-details">
+                <li><strong>Revitalisasi HRMS:</strong> Berhasil meningkatkan frekuensi pemakaian aplikasi Pemesanan Ruang Meeting sebesar <strong>50%</strong> bagi <strong>1.000+ pengguna</strong> dengan cara merancang ulang antarmuka dan mengoptimalkan alur pengguna.</li>
+                <li><strong>Sistem LMK Digital:</strong> Berhasil mendigitalisasi pemrosesan <strong>30+ laporan QC per bulan</strong> secara real-time dengan cara membangun platform Laporan Masalah Kualitas (LMK) terpusat yang dilengkapi fitur otomatisasi laporan.</li>
+                <li><strong>Sistem Duga Bahaya:</strong> Berhasil mempercepat respons mitigasi risiko kecelakaan kerja dengan cara mengembangkan aplikasi sistem duga bahaya berbasis pelaporan terintegrasi di area pabrik.</li>
+                <li><strong>Dashboard Monitoring AC:</strong> Berhasil memangkas waktu birokrasi persetujuan vendor pemeliharaan secara signifikan dengan cara membuat dashboard pemantauan terpadu untuk <strong>190 unit AC</strong> lintas gedung.</li>
             </ul>
-        </section>
-    </div>
+        </div>
+        
+        <!-- Codetag Studio -->
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">Software Engineer</span>
+                <span class="entry-date">Jul 2025 – Okt 2025</span>
+            </div>
+            <div class="entry-company">Codetag Studio · Remote · Bekasi, Jawa Barat</div>
+            <ul class="entry-details">
+                <li><strong>Pengembangan Web End-to-End:</strong> Merancang dan mengembangkan aplikasi web interaktif untuk klien mulai dari tahap analisis, pembuatan prototipe UI/UX, hingga implementasi <i>front-end</i> dan <i>back-end</i> dengan tingkat keberhasilan <strong>100%</strong> sesuai tenggat waktu.</li>
+                <li><strong>Analisis Kebutuhan &amp; Kolaborasi:</strong> Berkolaborasi erat dengan Project Manager dalam penyusunan <i>Business Requirements Document</i> (BRD) guna memastikan seluruh spesifikasi teknis dan tujuan bisnis tercapai dengan baik.</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- Pendidikan -->
+    <section class="section">
+        <h2 class="section-title">Pendidikan</h2>
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">S1 Teknik Informatika – Telkom University</span>
+            </div>
+            <p style="margin-top: 2px;"><strong>IPK:</strong> 3.52/4.00</p>
+            <p style="margin-top: 2px;"><strong>Skripsi:</strong> Pengembangan Aplikasi Jual Beli Barang Bekas Berbasis Web dengan Metode Extreme Programming</p>
+        </div>
+    </section>
+
+    <!-- Sertifikasi -->
+    <section class="section">
+        <h2 class="section-title">Sertifikasi</h2>
+        <div class="skills-grid" style="grid-template-columns: 1fr; gap: 2px;">
+            <span>• <strong>Conversion Optimization Certification Exam:</strong> Skillshop by Google – 2025</span>
+            <span>• <strong>Learn Advanced Excel (Formulas, Functions, VBA, Macros):</strong> Learnify IT – 2025</span>
+            <span>• <strong>Sertifikat Kompetensi BNSP:</strong> Pengembang Web Pratama (Junior Web Developer) – Jan 2025</span>
+            <span>• <strong>UI/UX Intensive Bootcamp:</strong> Rakamin Academy – Jan 2024</span>
+            <span>• <strong>UX Researcher Intern Certificate:</strong> Digital Amoeba – Jan 2024</span>
+            <span>• <strong>TOEFL:</strong> Skor 490 – 2024</span>
+        </div>
+    </section>
+
+    <!-- Keahlian -->
+    <section class="section">
+        <h2 class="section-title">Keahlian &amp; Alat</h2>
+        <div class="skills-grid">
+            <span class="skill-category">Hard Skills:</span>
+            <span class="skill-items">PHP, JavaScript/TypeScript, Laravel, Next.js, Node.js, React, Tailwind CSS, MongoDB, SQL, Cloud &amp; DevOps</span>
+
+            <span class="skill-category">Soft Skills:</span>
+            <span class="skill-items">Adaptif, Komunikasi Efektif, Problem Solving, Analisis Kebutuhan Bisnis</span>
+
+            <span class="skill-category">Bahasa:</span>
+            <span class="skill-items">Indonesia (Native), Inggris (TOEFL: 490)</span>
+        </div>
+    </section>
+
 </body>
 
 </html>

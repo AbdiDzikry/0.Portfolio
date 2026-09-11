@@ -33,7 +33,7 @@ const Blog = () => {
             />
 
             <header className="mb-12">
-                <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-emerald-600 mb-3">
+                <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-stone-500 mb-3">
                     改善 ・ {t.blog.kicker}
                 </p>
                 <h1 className="text-4xl md:text-5xl font-black tracking-tight text-text-primary mb-3">
@@ -52,7 +52,7 @@ const Blog = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.06 }}
-                        className="group border border-border dark:border-zinc-800 rounded-2xl overflow-hidden bg-bg-card hover:border-emerald-600/50 transition-colors"
+                        className="group border border-border dark:border-zinc-800 rounded-2xl overflow-hidden bg-bg-card hover:border-stone-400/60 dark:hover:border-stone-500/40 transition-colors"
                     >
                         <Link to={`/blog/${post.id}`} className="flex flex-col md:flex-row">
                             <div className="relative md:w-56 lg:w-64 h-44 md:h-auto flex-shrink-0 overflow-hidden bg-bg-secondary">
@@ -86,14 +86,14 @@ const Blog = () => {
                                         {formatDate(post.date, language)}
                                     </span>
                                 </div>
-                                <h2 className="text-xl md:text-2xl font-bold text-text-primary group-hover:text-emerald-600 transition-colors mb-2">
+                                <h2 className="text-xl md:text-2xl font-bold text-text-primary group-hover:text-stone-600 dark:group-hover:text-stone-300 transition-colors mb-2">
                                     {post.title}
                                 </h2>
                                 <p className="text-sm text-text-secondary leading-relaxed">
                                     {post.excerpt}
                                 </p>
                             </div>
-                            <ArrowUpRight className="text-emerald-600 w-6 h-6 md:rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform flex-shrink-0 mt-4 mr-6 md:self-center" />
+                            <ArrowUpRight className="text-stone-400 dark:text-stone-500 w-6 h-6 md:rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform flex-shrink-0 mt-4 mr-6 md:self-center" />
                         </Link>
                     </motion.article>
                 ))}

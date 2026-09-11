@@ -122,7 +122,7 @@ const YouTubeWidget = ({
                             </div>
                             <div>
                                 <h4 className="text-[9px] font-mono text-text-muted font-bold uppercase tracking-widest leading-none mb-1">
-                                    {t.profile.youtubeHeader || "YOUTUBE_TRACKS"}
+                                    {t?.profile?.youtubeHeader || "YOUTUBE_TRACKS"}
                                 </h4>
                                 <span className={`flex items-center gap-1 text-[8px] font-bold uppercase tracking-tighter transition-colors ${isPlaying ? 'text-zinc-900 dark:text-zinc-100' : 'text-text-muted'}`}>
                                     <span className={`w-1 h-1 rounded-full ${isPlaying ? 'bg-zinc-900 dark:bg-zinc-100 animate-ping' : 'bg-text-muted opacity-40'}`} />
@@ -176,7 +176,7 @@ const YouTubeWidget = ({
                     {/* Action Bar */}
                     <div className="flex items-center justify-between px-1">
                         <span className="text-[9px] font-bold text-text-muted uppercase tracking-[0.1em] group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors">
-                            {t.profile.youtubeTitle || "My Playlist"}
+                            {t?.profile?.youtubeTitle || "My Playlist"}
                         </span>
                         <div className="flex gap-2">
                             <div className={`w-1 h-1 rounded-full transition-colors duration-500 ${isPlaying ? 'bg-red-500' : 'bg-zinc-700'}`} />

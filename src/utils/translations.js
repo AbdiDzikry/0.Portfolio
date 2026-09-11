@@ -1,4 +1,4 @@
-﻿export const translations = {
+export const translations = {
     en: {
         nav: {
             home: "Home",
@@ -203,9 +203,9 @@
         },
         profile: {
             title: "My Profile",
-            role: "Software Engineer",
-            bio: "An adaptive professional offering a unique blend of strategic design insights and strong technical foundations.",
-            bioSub: "I don't just create aesthetic designs, I build functional and technical solutions. Ready to innovate.",
+            role: "IT Digitalization",
+            bio: "Informatics Engineering graduate from Telkom University (GPA 3.52) with experience in IT & Digitalization. Proven in digitizing industrial business processes through the Smart Factory ecosystem (WMS & Quality Management Systems), and building corporate information systems serving 1,000+ users across departments.",
+            bioSub: "BNSP-certified Junior Web Developer with strong business analysis and problem-solving skills. Ready to innovate.",
             contact: "Contact Me",
             downloadCv: "Download CV",
             resume: "Resume",
@@ -222,8 +222,9 @@
             industries: "Industries",
             info: "Information",
             jobs: [
-                { company: "PT Dharma Polimetal Tbk.", role: "Human Resources Information Specialist", desc: "Manufacturing Digitalization projects.", period: "Oct 2025 - Apr 2026" },
-                { company: "Codetag Studio", role: "Product Designer", desc: "Handling 5 projects end-to-end.", period: "Jul 2025 - Present" },
+                { company: "PT Dharma Controlcable Ind", role: "IT Support & Digitalization", desc: "Quality portal, WMS & supply chain tracking, meeting-room booking — Smart Factory ecosystem.", period: "Jun 2026 - Present" },
+                { company: "PT Dharma Polimetal Tbk.", role: "IT Support & Digitalization", desc: "HRMS revamp (+50% usage, 1,000+ users), digital LMK QC reports, hazard & AC monitoring.", period: "Oct 2025 - Apr 2026" },
+                { company: "Codetag Studio", role: "Software Engineer", desc: "End-to-end web development & BRD collaboration — 100% on-time delivery.", period: "Jul 2025 - Oct 2025" },
                 { company: "Telkom Digital Amoeba", role: "UX Researcher Intern", desc: "End-to-end research, quantitative & qualitative analysis.", period: "Dec 2023 - Jan 2024" },
                 { company: "Rakamin Academy", role: "UI/UX Designer Intern", desc: "Optimized travel app UX with 79% feasibility score.", period: "Aug 2023 - Jan 2024" },
                 { company: "Korea Orient Technology", role: "Internship", desc: "Assisted in technical operations.", period: "Oct 2019 - Mar 2020" },
@@ -237,12 +238,14 @@
                 { org: "UKM Catur ITTP", role: "Public Relations Staff", desc: "Managed documents & external comms.", period: "Oct 22 - Jan 23" }
             ],
             certs: [
+                { name: "Conversion Optimization Certification Exam", issuer: "Skillshop by Google", date: "2025", desc: "Conversion rate optimization competence." },
+                { name: "Learn Advanced Excel (Formulas, Functions, VBA, Macros)", issuer: "Learnify IT", date: "2025", desc: "Advanced Excel including VBA & Macros." },
                 { name: "Junior Web Developer", issuer: "BNSP (National Professional Certification Board)", date: "Jan 2025 - Jan 2028", desc: "Competence in Software Development & Programming." },
-                { name: "ITTP English Competency Test (ECT)", issuer: "Telkom University Purwokerto", date: "Dec 2024 - Dec 2026", desc: "Overall Score: 490" },
-                { name: "Certificate of Completion", issuer: "Telkom Digital Amoeba", date: "Jan 2024", desc: "Successful completion of UX Researcher Internship program." },
-                { name: "UI/UX Intensive Bootcamp", issuer: "Rakamin Academy", date: "Jan 2024", desc: "Comprehensive training in UI/UX Design and Product Thinking." }
+                { name: "UI/UX Intensive Bootcamp", issuer: "Rakamin Academy", date: "Jan 2024", desc: "Comprehensive training in UI/UX Design and Product Thinking." },
+                { name: "UX Researcher Intern Certificate", issuer: "Digital Amoeba", date: "Jan 2024", desc: "Successful completion of UX Researcher Internship program." },
+                { name: "TOEFL", issuer: "Telkom University Purwokerto", date: "2024", desc: "Overall Score: 490" }
             ],
-            skills: ['React', 'Tailwind CSS', 'Framer Motion', 'Figma', 'TypeScript', 'Node.js', 'PostgreSQL', 'UI/UX', 'Next.js', 'Vite'],
+            skills: ['PHP', 'JavaScript/TypeScript', 'Laravel', 'Next.js', 'Node.js', 'React', 'Tailwind CSS', 'MongoDB', 'SQL', 'Cloud & DevOps'],
             industriesList: ['Manufacturing', 'Digital Agency', 'EdTech', 'Enterprise', 'Hardware', 'E-Commerce'],
             youtubeHeader: "YOUTUBE_TRACKS",
             youtubeTitle: "My Curated Tracks",
@@ -252,6 +255,7 @@
             back: "Back to Projects",
             allProjects: "All Projects",
             notFound: "Project not found",
+            trialDataWarning: "Notice: The data displayed in this project is trial / simulation data used for company data security purposes.",
             featured: "Featured",
             role: "Role",
             timeline: "Timeline",
@@ -505,9 +509,9 @@
         },
         profile: {
             title: "Profil Saya",
-            role: "Software Engineer",
-            bio: "Seorang profesional adaptif yang menawarkan perpaduan unik antara wawasan desain strategis dan fondasi teknis yang kuat.",
-            bioSub: "Saya tidak hanya membuat desain estetis, saya membangun solusi fungsional dan teknis. Siap berinovasi.",
+            role: "IT Digitalisasi",
+            bio: "Lulusan S1 Teknik Informatika Telkom University (IPK 3.52) dengan pengalaman di bidang IT & Digitalisasi. Terbukti mendigitalisasi proses bisnis industri melalui ekosistem Smart Factory (WMS & Sistem Manajemen Kualitas), serta membangun sistem informasi korporat untuk 1.000+ pengguna lintas departemen.",
+            bioSub: "Tersertifikasi BNSP Junior Web Developer dengan kemampuan analisis bisnis dan pemecahan masalah yang kuat. Siap berinovasi.",
             contact: "Hubungi Saya",
             downloadCv: "Unduh CV",
             resume: "Resume",
@@ -524,8 +528,9 @@
             industries: "Industri",
             info: "Informasi",
             jobs: [
-                { company: "PT Dharma Polimetal Tbk.", role: "Human Resources Information Specialist", desc: "Proyek Digitalisasi Manufaktur.", period: "Okt 2025 - Apr 2026" },
-                { company: "Codetag Studio", role: "Product Designer", desc: "Menangani 5 proyek secara end-to-end.", period: "Jul 2025 - Sekarang" },
+                { company: "PT Dharma Controlcable Ind", role: "IT Support & Digitalisasi", desc: "Portal kualitas, pelacakan WMS & rantai pasok, booking ruang meeting — ekosistem Smart Factory.", period: "Jun 2026 - Sekarang" },
+                { company: "PT Dharma Polimetal Tbk.", role: "IT Support & Digitalisasi", desc: "Revitalisasi HRMS (+50% pemakaian, 1.000+ pengguna), LMK QC digital, duga bahaya & monitoring AC.", period: "Okt 2025 - Apr 2026" },
+                { company: "Codetag Studio", role: "Software Engineer", desc: "Pengembangan web end-to-end & kolaborasi BRD — 100% tepat waktu.", period: "Jul 2025 - Okt 2025" },
                 { company: "Telkom Digital Amoeba", role: "UX Researcher Intern", desc: "Riset end-to-end, analisis kuantitatif & kualitatif.", period: "Des 2023 - Jan 2024" },
                 { company: "Rakamin Academy", role: "UI/UX Designer Intern", desc: "Optimasi UX aplikasi travel dengan skor kelayakan 79%.", period: "Agu 2023 - Jan 2024" },
                 { company: "Korea Orient Technology", role: "Magang", desc: "Membantu operasional teknis.", period: "Okt 2019 - Mar 2020" },
@@ -539,12 +544,14 @@
                 { org: "UKM Catur ITTP", role: "Staf Humas", desc: "Mengelola dokumen & komunikasi eksternal.", period: "Okt 22 - Jan 23" }
             ],
             certs: [
-                { name: "Junior Web Developer", issuer: "BNSP (Badan Nasional Sertifikasi Profesi)", date: "Jan 2025 - Jan 2028", desc: "Kompetensi dalam Pengembangan Perangkat Lunak & Pemrograman." },
-                { name: "ITTP English Competency Test (ECT)", issuer: "Telkom University Purwokerto", date: "Des 2024 - Des 2026", desc: "Skor Keseluruhan: 490" },
-                { name: "Sertifikat Kelulusan", issuer: "Telkom Digital Amoeba", date: "Jan 2024", desc: "Keberhasilan menyelesaikan program Magang UX Researcher." },
-                { name: "UI/UX Intensive Bootcamp", issuer: "Rakamin Academy", date: "Jan 2024", desc: "Pelatihan komprehensif dalam Desain UI/UX dan Product Thinking." }
+                { name: "Conversion Optimization Certification Exam", issuer: "Skillshop by Google", date: "2025", desc: "Kompetensi optimasi tingkat konversi." },
+                { name: "Learn Advanced Excel (Formulas, Functions, VBA, Macros)", issuer: "Learnify IT", date: "2025", desc: "Excel lanjutan termasuk VBA & Macro." },
+                { name: "Sertifikat Kompetensi BNSP", issuer: "BNSP (Badan Nasional Sertifikasi Profesi)", date: "Jan 2025 - Jan 2028", desc: "Kompetensi dalam Pengembangan Perangkat Lunak & Pemrograman." },
+                { name: "UI/UX Intensive Bootcamp", issuer: "Rakamin Academy", date: "Jan 2024", desc: "Pelatihan komprehensif dalam Desain UI/UX dan Product Thinking." },
+                { name: "Sertifikat UX Researcher Intern", issuer: "Digital Amoeba", date: "Jan 2024", desc: "Keberhasilan menyelesaikan program Magang UX Researcher." },
+                { name: "TOEFL", issuer: "Telkom University Purwokerto", date: "2024", desc: "Skor Keseluruhan: 490" }
             ],
-            skills: ['React', 'Tailwind CSS', 'Framer Motion', 'Figma', 'TypeScript', 'Node.js', 'PostgreSQL', 'UI/UX', 'Next.js', 'Vite'],
+            skills: ['PHP', 'JavaScript/TypeScript', 'Laravel', 'Next.js', 'Node.js', 'React', 'Tailwind CSS', 'MongoDB', 'SQL', 'Cloud & DevOps'],
             industriesList: ['Manufaktur', 'Agensi Digital', 'EdTech', 'Enterprise', 'Hardware', 'E-Commerce'],
             youtubeHeader: "TRACK_YOUTUBE",
             youtubeTitle: "Playlist Pilihan",
@@ -554,6 +561,7 @@
             back: "Kembali ke Proyek",
             allProjects: "Semua Proyek",
             notFound: "Proyek tidak ditemukan",
+            trialDataWarning: "Perhatian: Data yang ditampilkan pada proyek ini adalah data trial / simulasi demi menjaga keamanan data perusahaan.",
             featured: "Unggulan",
             role: "Peran",
             timeline: "Waktu Pengerjaan",
