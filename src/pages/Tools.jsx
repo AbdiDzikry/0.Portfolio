@@ -43,10 +43,59 @@ const formatDate = (dateStr) => {
     return d.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long' });
 };
 
+/* ── Error Boundary ── */
+import React from 'react';
+
+class ToolsErrorBoundary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { hasError: false, error: null };
+    }
+    static getDerivedStateFromError(error) {
+        return { hasError: true, error };
+    }
+    componentDidCatch(error, errorInfo) {
+        console.error("Tools page error caught by ErrorBoundary:", error, errorInfo);
+    }
+    render() {
+        if (this.state.hasError) {
+            return (
+                <div className="min-h-screen pt-32 pb-24 px-6 flex flex-col items-center justify-center text-center bg-bg-primary">
+                    <div className="max-w-md bg-bg-secondary border border-border p-8 rounded-3xl space-y-4">
+                        <span className="text-4xl">🛠️</span>
+                        <h2 className="text-xl font-bold text-text-primary">Terjadi Kendala Memuat Tools</h2>
+                        <p className="text-xs text-text-muted leading-relaxed">
+                            Data lokal tools yang tersimpan di browser Anda mengalami masalah format. Klik tombol di bawah untuk membersihkan data cache tools dan memuat ulang.
+                        </p>
+                        <button
+                            onClick={() => {
+                                localStorage.removeItem('tools_tasks');
+                                localStorage.removeItem('tools_habits');
+                                localStorage.removeItem('tools_jobs');
+                                localStorage.removeItem('tools_timer');
+                                localStorage.removeItem('tools_notes');
+                                localStorage.removeItem('tools_goals');
+                                localStorage.removeItem('tools_expenses');
+                                localStorage.removeItem('tools_budget');
+                                window.location.reload();
+                            }}
+                            className="w-full py-3 bg-text-primary text-bg-primary rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-opacity"
+                        >
+                            Reset Data Tools & Reload
+                        </button>
+                    </div>
+                </div>
+            );
+        }
+        return this.props.children;
+    }
+}
+
 /* ── Main Component ── */
 const Tools = () => {
     const { language } = useLanguage();
-    const t = translations[language].tools;
+    const currentTrans = translations[language] || translations['id'] || translations['en'];
+    const t = currentTrans?.tools || {};
     const [collapsedTask, setCollapsedTask] = useState(false);
     const [collapsedHabit, setCollapsedHabit] = useState(false);
     const [collapsedMusic, setCollapsedMusic] = useState(false);
@@ -64,13 +113,13 @@ const Tools = () => {
             animate={{ opacity: 1 }}
             className="bg-bg-primary min-h-screen pt-28 pb-24 px-6 md:px-12 lg:px-16 transition-colors"
         >
-            <SEO title={t.title} description={t.subtitle} />
+            <SEO title={t?.title || "Tools"} description={t?.subtitle || "Productivity Tools"} />
 
             {/* Header */}
             <div className="max-w-7xl mx-auto mb-12">
-                <span className="font-mono text-xs text-text-muted uppercase tracking-[0.3em]">{t.title}</span>
-                <h1 className="text-4xl md:text-5xl font-bold text-text-primary mt-2">{t.title}</h1>
-                <p className="text-text-secondary mt-2 max-w-xl">{t.subtitle}</p>
+                <span className="font-mono text-xs text-text-muted uppercase tracking-[0.3em]">{t?.title || "Tools"}</span>
+                <h1 className="text-4xl md:text-5xl font-bold text-text-primary mt-2">{t?.title || "Tools"}</h1>
+                <p className="text-text-secondary mt-2 max-w-xl">{t?.subtitle}</p>
             </div>
 
             {/* All Tools in One Page - Bento Grid Layout */}
@@ -2288,4 +2337,10 @@ function formatMoney(value, language) {
     }).format(value || 0);
 }
 
-export default Tools;
+const ToolsWrapper = () => (
+    <ToolsErrorBoundary>
+        <Tools />
+    </ToolsErrorBoundary>
+);
+
+export default ToolsWrapper;
