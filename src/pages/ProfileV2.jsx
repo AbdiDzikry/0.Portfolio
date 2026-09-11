@@ -278,7 +278,7 @@ const ProfileV2 = () => {
                                 <a href="https://linkedin.com/in/sulthan-abdi-dzikry" target="_blank" rel="noreferrer" className={`inline-flex items-center gap-2 px-6 py-3 rounded-2xl border text-sm font-bold transition-colors ${isDark ? 'border-white/10 text-white hover:bg-white/5' : 'border-black/10 text-zinc-900 hover:bg-black/5'}`}>
                                     <Linkedin size={16} /> LinkedIn
                                 </a>
-                                <a href="/profile/CV_Sulthan_Abdi_Dzikry_2025.pdf" download="CV_Sulthan_Abdi_Dzikry.pdf" target="_blank" rel="noreferrer" className={`inline-flex items-center gap-2 px-6 py-3 rounded-2xl border text-sm font-bold transition-colors ${isDark ? 'border-white/10 text-white hover:bg-white/5' : 'border-black/10 text-zinc-900 hover:bg-black/5'}`}>
+                                <a href="/profile/CV_Sulthan_Abdi_Dzikry_Master.pdf" download="CV_Sulthan_Abdi_Dzikry_Master.pdf" target="_blank" rel="noreferrer" className={`inline-flex items-center gap-2 px-6 py-3 rounded-2xl border text-sm font-bold transition-colors ${isDark ? 'border-white/10 text-white hover:bg-white/5' : 'border-black/10 text-zinc-900 hover:bg-black/5'}`}>
                                     <Download size={16} /> {p.resume}
                                 </a>
                             </motion.div>

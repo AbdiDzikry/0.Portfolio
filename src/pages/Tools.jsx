@@ -192,8 +192,8 @@ const Tools = () => {
                                 <Briefcase size={20} className="text-indigo-500" />
                             </div>
                             <div>
-                                <h2 className="text-lg font-bold text-text-primary">{t.jobs.title}</h2>
-                                <p className="text-xs text-text-muted">{t.jobs.subtitle}</p>
+                                <h2 className="text-lg font-bold text-text-primary">{t?.jobs?.title || "Job Tracker"}</h2>
+                                <p className="text-xs text-text-muted">{t?.jobs?.subtitle || "Track your job applications"}</p>
                             </div>
                         </div>
                         <button
@@ -212,7 +212,7 @@ const Tools = () => {
                                 transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
                                 className="overflow-hidden"
                             >
-                                <JobTracker t={t.jobs} />
+                                <JobTracker t={t?.jobs || {}} />
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -229,8 +229,8 @@ const Tools = () => {
                                     <Check size={20} className="text-blue-500" />
                                 </div>
                                 <div>
-                                    <h2 className="text-lg font-bold text-text-primary">{t.tasks.title}</h2>
-                                    <p className="text-xs text-text-muted">{t.tasks.subtitle}</p>
+                                    <h2 className="text-lg font-bold text-text-primary">{t?.tasks?.title || "Task Tracker"}</h2>
+                                    <p className="text-xs text-text-muted">{t?.tasks?.subtitle || "Track daily tasks"}</p>
                                 </div>
                             </div>
                             <button
@@ -250,7 +250,7 @@ const Tools = () => {
                                     className="overflow-hidden"
                                 >
                                     <div className="h-[580px] flex flex-col">
-                                        <TaskTracker t={t.tasks} />
+                                        <TaskTracker t={t?.tasks || {}} />
                                     </div>
                                 </motion.div>
                             )}
@@ -265,8 +265,8 @@ const Tools = () => {
                                     <Flame size={20} className="text-orange-500" />
                                 </div>
                                 <div>
-                                    <h2 className="text-lg font-bold text-text-primary">{t.habits.title}</h2>
-                                    <p className="text-xs text-text-muted">{t.habits.subtitle}</p>
+                                    <h2 className="text-lg font-bold text-text-primary">{t?.habits?.title || "Habit Tracker"}</h2>
+                                    <p className="text-xs text-text-muted">{t?.habits?.subtitle || "Track habits"}</p>
                                 </div>
                             </div>
                             <button
@@ -286,7 +286,7 @@ const Tools = () => {
                                     className="overflow-hidden"
                                 >
                                     <div className="h-[580px] flex flex-col">
-                                        <HabitTracker t={t.habits} />
+                                        <HabitTracker t={t?.habits || {}} />
                                     </div>
                                 </motion.div>
                             )}
@@ -301,8 +301,8 @@ const Tools = () => {
                                     <Clock size={20} className="text-pink-500" />
                                 </div>
                                 <div>
-                                    <h2 className="text-lg font-bold text-text-primary">{t.timer.title}</h2>
-                                    <p className="text-xs text-text-muted">{t.timer.subtitle}</p>
+                                    <h2 className="text-lg font-bold text-text-primary">{t?.timer?.title || "Focus Timer"}</h2>
+                                    <p className="text-xs text-text-muted">{t?.timer?.subtitle || "Track focus time"}</p>
                                 </div>
                             </div>
                             <button
@@ -321,7 +321,7 @@ const Tools = () => {
                                     transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
                                     className="overflow-hidden"
                                 >
-                                    <FocusTimer t={t.timer} />
+                                    <FocusTimer t={t?.timer || {}} />
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -376,8 +376,8 @@ const Tools = () => {
                                     <StickyNote size={20} className="text-amber-500" />
                                 </div>
                                 <div>
-                                    <h2 className="text-lg font-bold text-text-primary">{t.notes.title}</h2>
-                                    <p className="text-xs text-text-muted">{t.notes.subtitle}</p>
+                                    <h2 className="text-lg font-bold text-text-primary">{t?.notes?.title || "Notes"}</h2>
+                                    <p className="text-xs text-text-muted">{t?.notes?.subtitle || "Quick notes"}</p>
                                 </div>
                             </div>
                             <button
@@ -397,7 +397,7 @@ const Tools = () => {
                                     className="overflow-hidden"
                                 >
                                     <div className="h-[420px] flex flex-col">
-                                        <NotesTool t={t.notes} />
+                                        <NotesTool t={t?.notes || {}} />
                                     </div>
                                 </motion.div>
                             )}
@@ -412,8 +412,8 @@ const Tools = () => {
                                     <Target size={20} className="text-teal-500" />
                                 </div>
                                 <div>
-                                    <h2 className="text-lg font-bold text-text-primary">{t.goals.title}</h2>
-                                    <p className="text-xs text-text-muted">{t.goals.subtitle}</p>
+                                    <h2 className="text-lg font-bold text-text-primary">{t?.goals?.title || "Goals"}</h2>
+                                    <p className="text-xs text-text-muted">{t?.goals?.subtitle || "Long term goals"}</p>
                                 </div>
                             </div>
                             <button
@@ -433,7 +433,7 @@ const Tools = () => {
                                     className="overflow-hidden"
                                 >
                                     <div className="h-[420px] flex flex-col">
-                                        <GoalsTool t={t.goals} />
+                                        <GoalsTool t={t?.goals || {}} />
                                     </div>
                                 </motion.div>
                             )}
@@ -450,8 +450,8 @@ const Tools = () => {
                                 <Wallet size={20} className="text-violet-500" />
                             </div>
                             <div>
-                                <h2 className="text-lg font-bold text-text-primary">{t.expense.title}</h2>
-                                <p className="text-xs text-text-muted">{t.expense.subtitle}</p>
+                                <h2 className="text-lg font-bold text-text-primary">{t?.expense?.title || "Expense Tracker"}</h2>
+                                <p className="text-xs text-text-muted">{t?.expense?.subtitle || "Track spending & budget"}</p>
                             </div>
                         </div>
                         <button
@@ -470,7 +470,47 @@ const Tools = () => {
                                 transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
                                 className="overflow-hidden"
                             >
-                                <ExpenseTracker t={t.expense} />
+                                <ExpenseTracker t={t?.expense || {}} />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </section>
+
+                {/* Game Section — Paling Bawah */}
+                <section className="bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-indigo-500/5 border border-cyan-500/20 rounded-3xl p-6 md:p-8 transition-all hover:border-cyan-500/40">
+                    <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center">
+                                <span className="text-xl">🎮</span>
+                            </div>
+                            <div>
+                                <h2 className="text-xl font-bold text-text-primary">
+                                    {language === 'en' ? 'Mini Game' : 'Mini Game'}
+                                </h2>
+                                <p className="text-xs text-text-muted">
+                                    {language === 'en' ? 'Shoot the alien invaders — WASD / Arrow keys + Space' : 'Tembak alien penyerang — WASD / Tombol arah + Spasi'}
+                                </p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={() => setCollapsedGame(!collapsedGame)}
+                            className={`p-2 rounded-lg transition-all ${collapsedGame ? 'bg-cyan-500/10 text-cyan-500' : 'hover:bg-cyan-500/10 text-text-muted hover:text-cyan-500'}`}
+                        >
+                            {collapsedGame ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                        </button>
+                    </div>
+                    <AnimatePresence>
+                        {!collapsedGame && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                                className="overflow-hidden"
+                            >
+                                <div className="flex items-center justify-center">
+                                    <AlienShooter />
+                                </div>
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -2282,47 +2322,6 @@ const ExpenseTracker = ({ t }) => {
                     </div>
                 )}
             </div>
-
-                {/* Game Section — Paling Bawah */}
-                <section className="bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-indigo-500/5 border border-cyan-500/20 rounded-3xl p-6 md:p-8 transition-all hover:border-cyan-500/40">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center">
-                                <span className="text-xl">🎮</span>
-                            </div>
-                            <div>
-                                <h2 className="text-xl font-bold text-text-primary">
-                                    {language === 'en' ? 'Mini Game' : 'Mini Game'}
-                                </h2>
-                                <p className="text-xs text-text-muted">
-                                    {language === 'en' ? 'Shoot the alien invaders — WASD / Arrow keys + Space' : 'Tembak alien penyerang — WASD / Tombol arah + Spasi'}
-                                </p>
-                            </div>
-                        </div>
-                        <button
-                            onClick={() => setCollapsedGame(!collapsedGame)}
-                            className={`p-2 rounded-lg transition-all ${collapsedGame ? 'bg-cyan-500/10 text-cyan-500' : 'hover:bg-cyan-500/10 text-text-muted hover:text-cyan-500'}`}
-                        >
-                            {collapsedGame ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
-                        </button>
-                    </div>
-                    <AnimatePresence>
-                        {!collapsedGame && (
-                            <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                                className="overflow-hidden"
-                            >
-                                <div className="flex items-center justify-center">
-                                    <AlienShooter />
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </section>
-
         </div>
     );
 };

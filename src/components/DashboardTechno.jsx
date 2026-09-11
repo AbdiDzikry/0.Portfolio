@@ -85,8 +85,8 @@ const DashboardTechno = () => {
                                     LinkedIn
                                 </a>
                                 <a
-                                    href="/profile/CV_Sulthan_Abdi_Dzikry_2025.pdf"
-                                    download="CV_Sulthan_Abdi_Dzikry.pdf"
+                                    href="/profile/CV_Sulthan_Abdi_Dzikry_Master.pdf"
+                                    download="CV_Sulthan_Abdi_Dzikry_Master.pdf"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="px-4 py-2 border border-stone-600 text-stone-300 rounded-sm text-xs font-medium hover:border-accent-green hover:text-accent-green transition-colors uppercase tracking-wider bg-black/50"
