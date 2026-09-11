@@ -83,7 +83,7 @@ const Dashboard = () => {
                                     <a href="https://linkedin.com/in/sulthan-abdi-dzikry" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 px-5 py-2 border border-border rounded-full text-[9px] font-bold hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all">
                                         <Linkedin size={9} /> LinkedIn
                                     </a>
-                                    <a href="/profile/CV_Sulthan_Abdi_Dzikry_ATS.html" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 px-5 py-2 border border-border rounded-full text-[9px] font-bold hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all">
+                                    <a href="/profile/CV_Sulthan_Abdi_Dzikry_2025.pdf" download="CV_Sulthan_Abdi_Dzikry.pdf" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 px-5 py-2 border border-border rounded-full text-[9px] font-bold hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all">
                                         <Download size={9} /> {t.profile.resume}
                                     </a>
                                 </div>
