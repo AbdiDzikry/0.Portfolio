@@ -5,6 +5,25 @@ export const projectsData = [
     aisBackendProject,
     portalAduanProject,
     {
+        id: 'nonconformity-presentation',
+        title: 'Presentasi Nonconformity Integrated System',
+        category: 'Presentasi',
+        image: '/projects/12-portal-aduan/12.png',
+        tagline: 'Quality Issue Tracking & Resolution System - Interactive Presentation',
+        description: 'Sebuah presentasi interaktif mengenai sistem terintegrasi pengelolaan ketidaksesuaian kualitas, mencakup latar belakang, alur solusi, fitur, dampak, hingga next target.',
+        tags: ['Presentation', 'Quality Management', 'Report'],
+        size: 'large',
+        path: '/presentation/nonconformity',
+        translations: {
+            id: {
+                title: 'Presentasi Nonconformity Integrated System',
+                category: 'Presentasi',
+                tagline: 'Quality Issue Tracking & Resolution System - Interactive Presentation',
+                description: 'Sebuah presentasi interaktif mengenai sistem terintegrasi pengelolaan ketidaksesuaian kualitas, mencakup latar belakang, alur solusi, fitur, dampak, hingga next target.'
+            }
+        }
+    },
+    {
         id: 'doors',
         title: 'Doors',
         category: 'Digital Transformation',

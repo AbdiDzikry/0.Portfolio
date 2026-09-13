@@ -12,8 +12,8 @@ const SEO = ({
     const { language } = useLanguage();
 
     const defaultTitle = language === 'id'
-        ? 'Sulthan Abdi Dzikry - IT Digitalisasi & Software Engineer'
-        : 'Sulthan Abdi Dzikry - IT Digitalization & Software Engineer';
+        ? 'S. Abdi Dzikry - IT Digitalisasi & Software Engineer'
+        : 'S. Abdi Dzikry - IT Digitalization & Software Engineer';
 
     const defaultDescription = language === 'id'
         ? 'Portfolio profesional Sulthan Abdi Dzikry - IT Digitalisasi dan Software Engineer dengan pengalaman Smart Factory (WMS & Sistem Kualitas) di industri manufaktur. Lihat proyek dan case study saya.'
@@ -22,7 +22,7 @@ const SEO = ({
     const defaultKeywords = 'Sulthan Abdi Dzikry, IT Digitalization, Software Engineer, Smart Factory, WMS, Portfolio, Web Development, Laravel, React, Case Studies';
 
     const siteUrl = 'https://sulthanabdi.vercel.app';
-    const fullTitle = title ? `${title} | Sulthan Abdi Dzikry` : defaultTitle;
+    const fullTitle = title ? `${title} | S. Abdi Dzikry` : defaultTitle;
     const metaDescription = description || defaultDescription;
     const metaKeywords = keywords || defaultKeywords;
     const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
@@ -34,7 +34,7 @@ const SEO = ({
             <meta name="title" content={fullTitle} />
             <meta name="description" content={metaDescription} />
             <meta name="keywords" content={metaKeywords} />
-            <meta name="author" content="Sulthan Abdi Dzikry" />
+            <meta name="author" content="S. Abdi Dzikry" />
             <link rel="canonical" href={siteUrl} />
 
             {/* Open Graph / Facebook */}
@@ -43,7 +43,7 @@ const SEO = ({
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={metaDescription} />
             <meta property="og:image" content={ogImageUrl} />
-            <meta property="og:site_name" content="Sulthan Abdi Dzikry Portfolio" />
+            <meta property="og:site_name" content="Portfolio | S. Abdi Dzikry" />
             <meta property="og:locale" content={language === 'id' ? 'id_ID' : 'en_US'} />
 
             {/* Twitter */}
@@ -81,6 +81,21 @@ const SEO = ({
                         "https://www.linkedin.com/in/sulthan-abdi-dzikry/",
                         "https://github.com/AbdiDzikry"
                     ]
+                })}
+            </script>
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    "name": "Portfolio S. Abdi Dzikry",
+                    "alternateName": "S. Abdi Dzikry",
+                    "url": siteUrl,
+                    "inLanguage": language === 'id' ? 'id-ID' : 'en-US',
+                    "description": defaultDescription,
+                    "publisher": {
+                        "@type": "Person",
+                        "name": "S. Abdi Dzikry"
+                    }
                 })}
             </script>
         </Helmet>

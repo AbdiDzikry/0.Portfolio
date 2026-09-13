@@ -122,17 +122,40 @@ const Projects = () => {
                 description="Explore Sulthan Abdi Dzikry's portfolio of design and development projects."
             />
 
-            <div className="container mx-auto px-6 md:px-12 lg:px-16 pt-32 min-h-screen">
+            <div className="container relative mx-auto px-6 md:px-12 lg:px-16 pt-32 min-h-screen">
+
+                {/* ── Japanese ornaments — visible only in the Japanese theme ── */}
+                <div aria-hidden="true" className="jp-ornament-layer jp-only">
+                    <div className="jp-dotgrid" />
+                    <div className="jp-sun" />
+                    <span className="jp-kanji-side jp-kanji-left">実績</span>
+                    <span className="jp-kanji-side jp-kanji-right">作品</span>
+                    <div className="jp-hanko">印</div>
+                </div>
 
                 {/* ── Header ── */}
                 <motion.header
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
-                    className="page-header mb-12"
+                    className="page-header relative z-10 mb-12"
                 >
+                    {/* Corner registration marks */}
+                    <span className="jp-corner jp-corner-tl jp-only" />
+                    <span className="jp-corner jp-corner-tr jp-only" />
+                    <span className="jp-corner jp-corner-bl jp-only" />
+                    <span className="jp-corner jp-corner-br jp-only" />
+
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                         <div className="text-center md:text-left">
+                            {/* Kanji eyebrow */}
+                            <div className="jp-only mb-5">
+                                <div className="flex items-center justify-center md:justify-start gap-3">
+                                    <span className="h-px w-8" style={{ backgroundColor: 'var(--accent-green)' }} />
+                                    <span className="text-[10px] font-mono font-black uppercase tracking-[0.6em]" style={{ color: 'var(--accent-green)' }}>作 品 一 覧</span>
+                                    <span className="h-px w-8" style={{ backgroundColor: 'var(--accent-pink)' }} />
+                                </div>
+                            </div>
                             <h1 className="page-title">{t.nav.projectsTitle}</h1>
                             <p className="page-subtitle">{t.nav.projectsSubtitle}</p>
                         </div>
@@ -166,7 +189,7 @@ const Projects = () => {
                             initial="hidden"
                             animate="visible"
                             exit={{ opacity: 0, y: -10, transition: { duration: 0.2 } }}
-                            className="projects-grid"
+                            className="projects-grid relative z-10"
                         >
                             {projects.map((proj, index) => (
                                 <motion.div key={proj.id ?? index} variants={itemVariants} layout>
@@ -184,7 +207,7 @@ const Projects = () => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10, transition: { duration: 0.2 } }}
                             transition={{ duration: 0.3 }}
-                            className="flex gap-8 items-start"
+                            className="flex gap-8 items-start relative z-10"
                         >
                             {/* Left: project list */}
                             <div className="flex-1 min-w-0 pb-20">

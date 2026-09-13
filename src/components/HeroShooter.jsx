@@ -343,13 +343,21 @@ const HeroShooter = () => {
 
     return (
         <section ref={containerRef} className="relative bg-bg-primary overflow-hidden">
-            {/* Full-screen interactive game area */}
+            {/* Sticky game viewport */}
             <div className="sticky top-0 h-screen w-full">
                 {/* Canvas responsible for words + plane + effects */}
                 <canvas
                     ref={canvasRef}
                     className="absolute inset-0 w-full h-full block touch-none select-none cursor-crosshair"
                 />
+
+                {/* Japanese ornaments — visible only in the Japanese theme */}
+                <div aria-hidden="true" className="jp-ornament-layer jp-ornament-layer-top jp-only">
+                    <div className="jp-sun" />
+                    <span className="jp-kanji-side jp-kanji-left">匠</span>
+                    <span className="jp-kanji-side jp-kanji-right">魂</span>
+                    <div className="jp-hanko jp-hanko-hero">創</div>
+                </div>
 
                 {/* Brand + role label — clear gap below navbar */}
                 <div className="absolute top-[8.5rem] inset-x-0 text-center z-10 pointer-events-none px-6">
@@ -378,7 +386,8 @@ const HeroShooter = () => {
 
             {/* Stats section — below the game viewport */}
             <div className="relative z-10 bg-bg-primary px-6 md:px-20 py-16 border-t border-border">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-16 max-w-5xl">
+                <div className="jp-dotgrid jp-only" />
+                <div className="grid relative z-10 grid-cols-1 sm:grid-cols-3 gap-8 md:gap-16 max-w-5xl">
                     <div className="flex flex-col gap-1.5">
                         <span className="font-mono text-[10px] text-text-muted uppercase tracking-widest">{t.expLabel}</span>
                         <div className="flex items-baseline gap-2">

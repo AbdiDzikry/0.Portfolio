@@ -19,13 +19,13 @@ import BlogPost from './pages/BlogPost';
 import Lab from './pages/Lab';
 import Game from './pages/Game';
 import Presentation from './pages/Presentation';
+import NonconformityPresentation from './pages/NonconformityPresentation';
 import Tools from './pages/Tools';
 import { AnimatePresence } from 'framer-motion';
 import PageTransition from './components/PageTransition';
 
 function AppContent() {
   const location = useLocation();
-  const isStoneBg = location.pathname === '/profile' || location.pathname === '/';
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
@@ -47,6 +47,7 @@ function AppContent() {
             <Route path="/game" element={<PageTransition><Game /></PageTransition>} />
             <Route path="/tools" element={<PageTransition><Tools /></PageTransition>} />
             <Route path="/presentation" element={<Presentation />} />
+            <Route path="/presentation/nonconformity" element={<NonconformityPresentation />} />
           </Routes>
         </AnimatePresence>
       </div>

@@ -50,6 +50,30 @@
     --navbar-border: rgba(255, 255, 255, 0.05);
   }
 
+  .japanese {
+    /* Japanese Manufacturing Light Mode (Washi Paper & Sumi Ink) —
+       palette mirrored from the Nonconformity presentation deck */
+    --bg-primary: #f1eee4;
+    --bg-secondary: #f6f3eb;
+    --bg-card: #fbf9f3;
+
+    --text-primary: #16181d;
+    --text-secondary: #5b564d;
+    --text-muted: #8a857a;
+
+    --accent-blue: #7a756a;
+    --accent-pink: #a8823c;
+    --accent-green: #c9413b;
+    --accent-yellow: #e7dfcc;
+
+    --border-color: #e4ddcb;
+
+    /* Navbar (Minimalist) */
+    --navbar-bg: rgba(246, 243, 235, 0.85);
+    --navbar-text: #16181d;
+    --navbar-border: rgba(22, 24, 29, 0.08);
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -88,5 +112,9 @@
 
   .dark .text-glow-blue {
     text-shadow: 0 0 20px rgba(164, 172, 134, 0.3);
+  }
+
+  .japanese .text-glow-blue {
+    text-shadow: 0 0 20px rgba(201, 65, 59, 0.22);
   }
 }

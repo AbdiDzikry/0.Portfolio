@@ -44,7 +44,9 @@ const NavbarVertical = ({ onChatToggle }) => {
                     onClick={toggleTheme}
                     className="w-10 h-10 flex items-center justify-center text-zinc-500 hover:text-black transition-colors"
                 >
-                    {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                    {theme === 'dark' ? <Sun size={18} /> : theme === 'japanese' ? (
+                        <span className="w-[14px] h-[14px] rounded-full bg-[#C9413B] inline-block border-2 border-[#A8823C]" />
+                    ) : <Moon size={18} />}
                 </button>
             </div>
         </motion.nav>

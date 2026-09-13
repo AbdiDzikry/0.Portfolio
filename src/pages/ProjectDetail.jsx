@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     ArrowLeft, Download, ChevronRight, Lightbulb, Target,
-    Wrench, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink, MessageSquare, BarChart, ShieldCheck, LayoutGrid, AlertTriangle
+    Wrench, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink, MessageSquare, BarChart, ShieldCheck, LayoutGrid, AlertTriangle, Play
 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
@@ -109,6 +109,11 @@ const ProjectDetail = () => {
                          <button onClick={() => generateApiDocPdf(project)} className="px-5 py-2.5 bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-full font-bold text-xs shadow-xl flex items-center gap-2 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
                             <Download size={13} /> Download API Doc
                          </button>
+                         {project.id === 'portal-aduan' && (
+                            <Link to="/presentation/nonconformity" className="px-5 py-2.5 bg-emerald-600 text-white rounded-full font-bold text-xs shadow-xl flex items-center gap-2 hover:bg-emerald-700 transition-colors">
+                                <Play size={13} /> View Presentation
+                            </Link>
+                         )}
                     </div>
                 </div>
                 <div className="relative group">

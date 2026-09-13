@@ -14,12 +14,35 @@ const Dashboard = () => {
     const innerCardStyles = "bg-zinc-50 dark:bg-zinc-800 border border-border rounded-[1.5rem] p-5 flex flex-col relative overflow-hidden";
 
     return (
-        <section className="bg-white dark:bg-bg-primary text-text-primary px-6 md:px-12 lg:px-16 pt-32 pb-40 transition-colors duration-300 relative overflow-hidden min-h-screen">
+        <section className="bg-bg-primary text-text-primary px-6 md:px-12 lg:px-16 pt-32 pb-40 transition-colors duration-300 relative overflow-hidden min-h-screen">
+            {/* Japanese ornaments — visible only in the Japanese theme */}
+            <div aria-hidden="true" className="jp-ornament-layer jp-only">
+                <div className="jp-sun" />
+                <span className="jp-kanji-side jp-kanji-left">経歴</span>
+                <span className="jp-kanji-side jp-kanji-right">技能</span>
+                <div className="jp-hanko jp-hanko-profile">志</div>
+            </div>
+
             <div className="container mx-auto relative z-10">
 
                 {/* Section Header */}
                 <ScrollReveal>
-                    <div className="mb-16">
+                    <div className="mb-16 relative">
+                        {/* Corner registration marks */}
+                        <span className="jp-corner jp-corner-tl jp-only" />
+                        <span className="jp-corner jp-corner-tr jp-only" />
+                        <span className="jp-corner jp-corner-bl jp-only" />
+                        <span className="jp-corner jp-corner-br jp-only" />
+
+                        {/* Kanji eyebrow */}
+                        <div className="jp-only mb-5">
+                            <div className="flex items-center gap-3">
+                                <span className="h-px w-10" style={{ backgroundColor: 'var(--accent-green)' }} />
+                                <span className="text-[10px] font-mono font-black uppercase tracking-[0.6em]" style={{ color: 'var(--accent-green)' }}>自 己 紹 介</span>
+                                <span className="h-px w-10" style={{ backgroundColor: 'var(--accent-pink)' }} />
+                            </div>
+                        </div>
+
                         <span className="text-accent-pink font-mono text-sm tracking-[0.3em] uppercase mb-4 block">{t.profile.info}</span>
                         <h2 className="text-6xl md:text-8xl font-bold tracking-tighter uppercase mb-2">{t.nav.profile}</h2>
                     </div>

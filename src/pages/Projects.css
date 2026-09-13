@@ -44,3 +44,155 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+/* ─────────────────────────────────────────────────────────
+   Japanese ornaments — rendered only in the "japanese" theme
+   (html.japanese is toggled by ThemeContext)
+───────────────────────────────────────────────────────── */
+.jp-only {
+    display: none;
+}
+
+html.japanese .jp-only {
+    display: block;
+}
+
+.jp-ornament-layer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Layer variant that floats above game canvases / full-bleed art */
+.jp-ornament-layer-top {
+    z-index: 30;
+}
+
+/* Hanko position variants for other pages */
+.jp-hanko-hero {
+    bottom: 36px;
+    right: 26px;
+    width: 46px;
+    height: 46px;
+    font-size: 21px;
+}
+
+.jp-hanko-profile {
+    top: 230px;
+    right: 22px;
+    bottom: auto;
+}
+
+/* Fine washi dot grid */
+.jp-dotgrid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.55;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+}
+
+/* Rising sun disc */
+.jp-sun {
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 260px;
+    height: 260px;
+    border-radius: 9999px;
+    background: var(--accent-green);
+    opacity: 0.1;
+    animation: jp-float 9s ease-in-out infinite;
+}
+
+.jp-sun::after {
+    content: '';
+    position: absolute;
+    inset: 30px;
+    border-radius: 9999px;
+    border: 1px dashed var(--accent-pink);
+    opacity: 0.7;
+}
+
+.jp-sun::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    box-shadow:
+        0 0 0 14px rgba(201, 65, 59, 0.08),
+        0 0 0 30px rgba(201, 65, 59, 0.045);
+}
+
+@keyframes jp-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(14px); }
+}
+
+/* Vertical kanji rails */
+.jp-kanji-side {
+    position: absolute;
+    top: 180px;
+    writing-mode: vertical-rl;
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 0.4em;
+    line-height: 1;
+}
+
+.jp-kanji-left {
+    left: 6px;
+    color: var(--accent-green);
+    opacity: 0.16;
+}
+
+.jp-kanji-right {
+    right: 6px;
+    color: var(--accent-pink);
+    opacity: 0.2;
+}
+
+/* Hanko (seal stamp) */
+.jp-hanko {
+    position: absolute;
+    bottom: 70px;
+    right: 26px;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--accent-green);
+    border-radius: 9px;
+    color: var(--accent-green);
+    font-size: 24px;
+    font-weight: 900;
+    transform: rotate(-7deg);
+    opacity: 0.5;
+    letter-spacing: 0;
+}
+
+/* Corner registration marks around the header */
+.jp-corner {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-color: var(--accent-green);
+    opacity: 0.7;
+}
+
+.jp-corner-tl { top: -8px; left: 0; border-top: 2px solid; border-left: 2px solid; }
+.jp-corner-tr { top: -8px; right: 0; border-top: 2px solid; border-right: 2px solid; }
+.jp-corner-bl { bottom: -8px; left: 0; border-bottom: 2px solid; border-left: 2px solid; }
+.jp-corner-br { bottom: -8px; right: 0; border-bottom: 2px solid; border-right: 2px solid; }
+
+@media (max-width: 767px) {
+    .jp-kanji-side,
+    .jp-sun {
+        display: none;
+    }
+}

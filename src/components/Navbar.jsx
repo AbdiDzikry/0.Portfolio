@@ -112,6 +112,8 @@ const Navbar = ({ onChatToggle }) => {
                         >
                             {theme === 'dark' ? (
                                 <Sun className="w-5 h-5 text-amber-500" />
+                            ) : theme === 'japanese' ? (
+                                <span className="w-[14px] h-[14px] rounded-full bg-[#C9413B] inline-block border-2 border-[#A8823C]" />
                             ) : (
                                 <Moon className="w-5 h-5 text-zinc-500" />
                             )}
