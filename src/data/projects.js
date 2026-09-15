@@ -346,10 +346,10 @@ export const projectsData = [
             '/projects/10. LMK QC Report/5.qc.png'
         ],
         tagline: 'Quality Control Reporting & Documentation System.',
-        description: 'A structured quality control reporting system for LMK (Lembaga Masyarakat Kecamatan) to streamline inspection processes and ensure consistent quality documentation across projects.',
+        description: 'A structured quality control reporting system for LMK (Lembar Masalah Kualitas) to streamline inspection processes and ensure consistent quality documentation across projects.',
         problem: 'QC reporting was fragmented and inconsistent, making it difficult to track quality metrics and maintain standardized documentation across different project sites.',
         solution: 'Designed a unified QC reporting template with standardized metrics, visual documentation workflow, and centralized tracking for quality assurance compliance.',
-        impact: 'Improved QC documentation consistency, reduced reporting time, and enabled better quality tracking across all LMK project sites.',
+        impact: 'Improved QC documentation consistency, reduced reporting time, and enabled better quality tracking across all LMK (Lembar Masalah Kualitas) reports.',
         tags: ['Quality Control', 'Website', 'Documentation', 'Process Optimization', 'Figma', 'Standardization'],
         size: 'medium',
         problemMap: [
@@ -401,10 +401,10 @@ export const projectsData = [
             { aspect: 'Issue Tracking', before: 'Manual follow-up required', after: 'Real-time visibility and alerts' },
             { aspect: 'Compliance', before: 'Inconsistent quality records', after: 'Standardized audit-ready documentation' }
         ],
-        vision: 'To establish a culture of consistent quality control through standardized documentation and transparent reporting across all LMK project sites.',
+        vision: 'To establish a culture of consistent quality control through standardized documentation and transparent reporting of quality issues (Lembar Masalah Kualitas).',
         status: 'COMPLETED',
         team: 'Sulthan Abdi Dzikry (Product Designer)',
-        background: 'During my work with LMK projects, I identified that quality control reporting lacked standardization across different sites. This inconsistency made it challenging to maintain quality standards and track improvement areas. I designed a unified QC reporting system to address these gaps.',
+        background: 'During my work on quality control digitalization, I identified that quality issue reporting (LMK - Lembar Masalah Kualitas) lacked standardization across different lines and project sites. This inconsistency made it challenging to maintain quality standards and track improvement areas. I designed a unified QC reporting system to address these gaps.',
         strategicAlignment: 'Demonstrates ability to optimize operational processes through thoughtful documentation design and standardization.',
         investmentRequired: '4 Weeks Design & Implementation / 1 Product Designer',
         assumptions: `1. Inspectors will benefit from structured templates over free-form reporting.
@@ -423,10 +423,10 @@ export const projectsData = [
         translations: {
             id: {
                 tagline: 'Sistem Pelaporan & Dokumentasi Quality Control.',
-                description: 'Sistem pelaporan quality control terstruktur untuk LMK (Lembaga Masyarakat Kecamatan) untuk merampingkan proses inspeksi dan memastikan dokumentasi kualitas yang konsisten di seluruh proyek.',
+                description: 'Sistem pelaporan quality control terstruktur untuk LMK (Lembar Masalah Kualitas) untuk merampingkan proses inspeksi dan memastikan dokumentasi kualitas yang konsisten di seluruh proyek.',
                 problem: 'Pelaporan QC terfragmentasi dan tidak konsisten, menyulitkan pelacakan metrik kualitas dan menjaga dokumentasi standar di berbagai lokasi proyek.',
                 solution: 'Mendesain template pelaporan QC terpadu dengan metrik standar, alur kerja dokumentasi visual, dan pelacakan terpusat untuk kepatuhan jaminan kualitas.',
-                impact: 'Meningkatkan konsistensi dokumentasi QC, mengurangi waktu pelaporan, dan memungkinkan pelacakan kualitas yang lebih baik di seluruh lokasi proyek LMK.',
+                impact: 'Meningkatkan konsistensi dokumentasi QC, mengurangi waktu pelaporan, dan memungkinkan pelacakan kualitas yang lebih baik untuk LMK (Lembar Masalah Kualitas).',
                 problemMap: [
                     {
                         problem: 'Pelaporan Tidak Konsisten',
@@ -460,7 +460,7 @@ export const projectsData = [
                 ],
                 mitigationPlans: [
                     { risk: 'Penolakan Adopsi', action: 'Mengadakan sesi pelatihan dan memberikan dukungan hands-on selama transisi.' },
-                    { risk: 'Konsistensi Data', action: 'Menerapkan aturan validasi dan field wajib di template pelaporan.' }
+                    { risk: 'Data Consistency', action: 'Menerapkan aturan validasi dan field wajib di template pelaporan.' }
                 ],
                 personas: [
                     { role: 'Inspektur QC', pain: 'Template tidak konsisten membuat pelaporan melelahkan dan rawan error.', goal: 'Proses yang efisien dengan panduan jelas.' },
@@ -476,8 +476,8 @@ export const projectsData = [
                     { aspect: 'Pelacakan Masalah', before: 'Follow-up manual diperlukan', after: 'Visibilitas real-time dan alert' },
                     { aspect: 'Kepatuhan', before: 'Rekaman kualitas tidak konsisten', after: 'Dokumentasi standar siap audit' }
                 ],
-                vision: 'Membangun budaya quality control yang konsisten melalui dokumentasi standar dan pelaporan transparan di seluruh lokasi proyek LMK.',
-                background: 'Selama bekerja dengan proyek LMK, saya mengidentifikasi bahwa pelaporan quality control kurang standarisasi di berbagai lokasi. Inkonsistensi ini menyulitkan menjaga standar kualitas dan melacak area perbaikan. Saya mendesain sistem pelaporan QC terpadu untuk mengatasi celah-celah ini.',
+                vision: 'Membangun budaya quality control yang konsisten melalui dokumentasi standar dan pelaporan Lembar Masalah Kualitas (LMK) yang transparan.',
+                background: 'Selama bekerja pada digitalisasi quality control, saya mengidentifikasi bahwa pelaporan masalah kualitas (LMK - Lembar Masalah Kualitas) kurang terstandarisasi di berbagai lini dan lokasi proyek. Inkonsistensi ini menyulitkan menjaga standar kualitas dan melacak area perbaikan. Saya mendesain sistem pelaporan QC terpadu untuk mengatasi celah-celah ini.',
                 strategicAlignment: 'Menunjukkan kemampuan mengoptimasi proses operasional melalui desain dokumentasi yang thoughtfull dan standarisasi.',
                 investmentRequired: '4 Minggu Desain & Implementasi',
                 assumptions: `1. Inspektur akan mendapat manfaat dari template terstruktur dibanding pelaporan bebas.
