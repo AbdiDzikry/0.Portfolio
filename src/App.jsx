@@ -20,6 +20,7 @@ import Lab from './pages/Lab';
 import Game from './pages/Game';
 import Presentation from './pages/Presentation';
 import NonconformityPresentation from './pages/NonconformityPresentation';
+import StoryPresentation from './pages/StoryPresentation';
 import Tools from './pages/Tools';
 import { AnimatePresence } from 'framer-motion';
 import PageTransition from './components/PageTransition';
@@ -48,6 +49,7 @@ function AppContent() {
             <Route path="/tools" element={<PageTransition><Tools /></PageTransition>} />
             <Route path="/presentation" element={<Presentation />} />
             <Route path="/presentation/nonconformity" element={<NonconformityPresentation />} />
+            <Route path="/presentation/who-i-become" element={<StoryPresentation />} />
           </Routes>
         </AnimatePresence>
       </div>

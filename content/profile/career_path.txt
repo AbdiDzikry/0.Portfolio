@@ -1,0 +1,41 @@
+TAHUN 0
+DIGITALISASI & SISTEM
+│
+│  Membuat sistem nyata.
+│  Memahami masalah operasional.
+│  HRMS • AIS • Nonconformity
+│
+▼
+TAHUN 2–3
+SOFTWARE / SYSTEM DEVELOPER
+│
+│  Memperkuat engineering.
+│  Coding • Database • API • Git
+│  Testing • Deployment • Architecture
+│
+▼
+TAHUN 4–5
+SENIOR DEVELOPER / TECHNICAL OWNER
+│
+│  Memiliki ownership terhadap sistem.
+│  Architecture • Code Review
+│  Technical Decision • Mentoring
+│
+▼
+TAHUN 6–7
+TECH LEAD
+│
+│  Memimpin developer.
+│  Menentukan technical direction.
+│  Menjaga kualitas dan reliability.
+│
+▼
+TAHUN 8–10
+TECH LEAD — DIGITAL INNOVATION
+│
+│  Memimpin tim yang menciptakan
+│  solusi baru untuk bisnis/manufaktur.
+│
+▼
+10+ TAHUN
+?

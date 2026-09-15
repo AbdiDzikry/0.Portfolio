@@ -24,6 +24,25 @@ export const projectsData = [
         }
     },
     {
+        id: 'who-i-become',
+        title: 'I Am Known As?',
+        category: 'Presentasi',
+        image: '/projects/story-presentation/cover.svg',
+        tagline: 'Identity & Purpose - A Personal Presentation',
+        description: 'Presentasi perkenalan interview 5 tahun ke depan: jembatan diri bangga dikenal sebagai pembangun sistem digital di bidang digitalisasi manufaktur, lengkap dengan bukti ciptaan nyata.',
+        tags: ['Presentation', 'Identity', 'Career', 'Digitalization'],
+        size: 'large',
+        path: '/presentation/who-i-become',
+        translations: {
+            id: {
+                title: 'I Am Known As?',
+                category: 'Presentasi',
+                tagline: 'Identity & Purpose - A Personal Presentation',
+                description: 'Presentasi perkenalan interview 5 tahun ke depan: jembatan diri bangga dikenal sebagai pembangun sistem digital di bidang digitalisasi manufaktur, lengkap dengan bukti ciptaan nyata.'
+            }
+        }
+    },
+    {
         id: 'doors',
         title: 'Doors',
         category: 'Digital Transformation',

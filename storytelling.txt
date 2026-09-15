@@ -1,84 +1,402 @@
-saya akan buat naskah dan urutan slide nya sedikit berbeda berdasarkan naskah dan urutan story telling presentasi saya, jadi anda tolong bantu sesuaika
+Ya. Dan setelah kamu menambahkan bagian ini, menurut saya jawabannya sebenarnya menjadi jauh lebih jelas.
 
-===slide 1 sudah sesuai===
+Ada satu hal yang saya ingin lakukan: kita jangan hanya bertanya “mana yang lebih saya suka?”, tetapi membuat serangkaian pertanyaan yang memaksa kamu melihat versi dirimu 5–10 tahun dari sekarang.
 
- naskah: 
- 
-Selamat Siang, Bapak dan kakak sekalian yang telah hadir pada hari ini 
-dan meluangkan waktunya untuk mendengarkan presentasi saya.
+Dan saya suka sekali kalimatmu:
 
-saya ucapkan terima kasih atas kehadiran Bapak Lukman selaku departemen head HR Management System 
-Bapak Bagas selaku pembimbing magang dan juga staff departemen HRMS
-tidak lupa dengan kak Esi selaku Penyelenggara program magang nasional di PT Dharma Polimetal
+“Saya bangga mengucapkan yang digitalisasi karena saya berhasil menciptakan sesuatu yang bermanfaat bagi yang lain dan ada sesuatu yang bisa saya tunjukkan.”
 
-pada hari ini saya akan mempresentasikan laporan akhir program magang nasional 
-yang saya jalani selama kurang dari enam bulan di PT Dharma Polimetal.
+Menurut saya, ini bukan sekadar passion. Ini sudah menyentuh identitas profesional.
 
-sebelum masuk ke topik utama, saya akan memperkenalkan sedikit tentang
-saya terlebih dahulu
+1. Pertanyaan pertama: "Apa yang sebenarnya ingin saya banggakan?"
 
+Bayangkan kamu berumur 30 tahun.
 
-===slide 2: sudah sesuai===
+Kamu sedang bertemu seseorang yang bertanya:
 
+“Sekarang kerja sebagai apa?”
 
-Perkenalkan saya sulthan abdi dzikry yang merupakan lulusan telkom university 
-dari jurusan teknik informatika 
-yang memiliki spesialisasi dalam mengoptimasi proses konvesional
-menjadi ekosistem digital yang efisien.
-saya memiliki keunggulan dalam menerjemahkan visi klien menjadi solusi desain yang integratif
-dan fungsional
+Versi A
 
+“Saya sudah sekitar 5–6 tahun di digitalisasi proses manufaktur. Saya pernah membuat beberapa sistem untuk HR, produksi, quality, dan operasional. Beberapa sistem tersebut masih digunakan perusahaan.”
 
+Kemudian orang itu bertanya:
 
-tanggung jawab saya selama magang di Dharma Polimetal adalah
-mengidentifikasi proses bisnis serta operasional yang dilakukan di perusahaan, lalu merancang
-dan mengimplementasikan solusi digitalnya.
+“Contohnya?”
 
+Kamu bisa buka laptop.
 
-===Slide 3 sesuai===
+“Ini sistem yang saya buat.”
 
-naskah: 
-Selama magang di Dharma Polimetal saya ditempatkan di departemen HR management System dengan 
-struktur organisasinya
+“Ini workflow sebelum dan sesudahnya.”
 
-Bapak Lukman Sebagai departemen head
-lalu juga ada ketiga pembimbing saya yaitu
-kak Listia, Bapak Bagas, dan juga bapak Rohim sebagai staff HR Management System.
+“Ini masalah yang diselesaikan.”
 
-===slide 4===
-Latar belakang projek doors dan Projek AC Monitoring
+“Ini user-nya.”
 
-naskah: 
-Bersama TIM HR management system saya membantu dalam merancang ulang sistem yang 
-dimiliki oleh dharma polimetal yang bernama doors, doors merupakan
-sistem manajemen pemesanan ruang meeting yang berguna untuk meminjam ruangan 
-yang tersedia di perusahaan untuk berbagai keperluan meeting atau bertemu dengan tamu. 
+“Ini impact-nya.”
 
-Namun fitur pada sistem doors
-saat ini sudah tidak relevan dengan kebutuhan pengguna saat ini. 
+Ada artefak nyata.
 
-ini dibuktikan dengan analisis serta validasi saya selama satu bulan
-terhadap sistem doors yang sudah ada, ditemukan 8 paint point atau kesulitan
-yang dialami oleh pengguna sebagai berikut.
+Ada sesuatu yang bisa kamu tunjuk.
 
-Proses Lambat; Sistem lama menghadapi kendala operasional karena alur pemesanan yang terlalu panjang dan tidak efisien.
+Versi B
 
-UI Tidak Informatif; Hal ini diperparah oleh tampilan antarmuka yang tidak memberikan informasi cukup bagi pengguna dalam mengambil keputusan.
+“Saya sudah sekitar 5 tahun sebagai Purchasing Staff.”
 
-Tanpa Visualisasi; Akibatnya, pengguna kesulitan memantau ketersediaan karena tidak adanya visualisasi ruangan sehingga pengecekan harus dilakukan manual satu per satu.
+“Ngapain saja?”
 
-Laptop Only; Keterbatasan aksesibilitas juga menjadi masalah utama sebab sistem hanya bisa diakses lewat laptop dan tidak mendukung penggunaan ponsel.
+Kamu mungkin menjawab:
 
-Absensi Manual; Di sisi lain, sisi administrasi masih sangat konvensional di mana pencatatan daftar hadir masih menggunakan kertas dan belum terintegrasi ke sistem.
+“Mengurus purchase order, follow up supplier, cek harga, material, dokumen, Excel, koordinasi…”
 
-Ghost meeting; Kondisi ketika ada pemesanan ruangan tetapi tidak digunakan oleh pemesannya sehingga menimbulkan konflik dengan pengguna lain yang ingin menggunakan ruangan tersebut
+Semua itu pekerjaan valid.
 
-Tanpa On-the-Spot; Selain itu, terdapat kesenjangan teknologi di lokasi karena pengguna tidak bisa memesan atau melihat status ruangan langsung di depan pintu.
+Tetapi pertanyaan berikutnya:
 
-Tidak Bisa Edit; Masalah terakhir adalah kekakuan sistem yang tidak menyediakan fitur untuk mengubah atau mengedit jadwal meeting yang sudah terlanjur dibuat.
+“Apa sesuatu yang kamu bangun?”
 
-serta mengembangkan sistem AC Monitorng yaitu sistem pemantauan unit AC serta maintenance berkala 
-untuk departemen General Affair
+Di sinilah menurut saya kamu akan mulai merasakan perbedaannya.
 
-Masuk
+Bukan berarti Purchasing tidak menghasilkan achievement.
 
+Tetapi jenis achievement-nya berbeda.
+
+2. Pertanyaan kedua: "Saya ingin menjadi siapa, bukan hanya bekerja sebagai apa?"
+
+Ini pertanyaan yang lebih dalam.
+
+Jangan tanyakan:
+
+“Saya mau kerja IT atau Purchasing?”
+
+Tanyakan:
+
+“Saya ingin dikenal sebagai orang seperti apa?”
+
+Apakah kamu ingin suatu hari dikenal sebagai:
+
+“Orang yang kalau perusahaan punya proses yang berantakan, dia bisa datang, memahami masalahnya, kemudian membuat sistem untuk memperbaikinya.”
+
+Atau:
+
+“Orang yang sangat ahli mengelola procurement dan supplier.”
+
+Keduanya bagus.
+
+Tetapi dari cerita yang kamu berikan, saya merasa identitas pertama jauh lebih dekat dengan dirimu.
+
+3. Pertanyaan ketiga: "Masalah seperti apa yang membuat saya rela capek?"
+
+Ini penting karena passion bukan berarti pekerjaan tidak melelahkan.
+
+Bayangkan:
+
+Jam 20.00
+
+Kamu masih bekerja.
+
+Ada dua kemungkinan.
+
+Scenario A — Digitalisasi
+
+User bilang:
+
+“Bang, sistemnya error.”
+
+Kamu buka laptop.
+
+Debug.
+
+Cari masalah.
+
+Perbaiki.
+
+Deploy.
+
+Kemudian user bilang:
+
+“Wah, sudah bisa.”
+
+Atau:
+
+“Sekarang kami tidak perlu input Excel manual lagi.”
+
+Kamu capek.
+
+Tapi di dalam diri ada:
+
+“Akhirnya jadi.”
+
+Scenario B — Purchasing
+
+Jam 20.00.
+
+Ada supplier yang belum mengirim material.
+
+Ada PO yang harus diperbaiki.
+
+Ada material ID yang salah.
+
+Ada Excel.
+
+Ada follow-up.
+
+Ada dokumen.
+
+Ada urgent request.
+
+Besok pagi harus selesai.
+
+Kamu juga bisa menyelesaikannya.
+
+Tetapi setelah selesai:
+
+“Akhirnya selesai.”
+
+Bukan:
+
+“Saya menciptakan sesuatu.”
+
+Perbedaannya halus.
+
+Tapi untuk seseorang seperti kamu, itu bisa sangat besar.
+
+4. Pertanyaan keempat: "Saya lebih suka menyelesaikan atau menciptakan?"
+
+Coba perhatikan dua kata ini.
+
+Purchasing
+
+Sebagian besar value berasal dari:
+
+menjalankan proses dengan benar.
+
+Digitalisasi
+
+Value bisa berasal dari:
+
+menciptakan proses baru yang lebih baik.
+
+Dan dari cara kamu bercerita, saya menduga kamu mendapatkan energi lebih besar dari:
+
+creation → improvement → impact
+
+daripada:
+
+execution → repetition → maintenance
+
+Ini bukan berarti kamu tidak bisa melakukan pekerjaan repetitif.
+
+Kamu pasti bisa.
+
+Pertanyaannya:
+
+Apakah kamu ingin 5–10 tahun hidup profesionalmu didominasi oleh itu?
+
+5. Pertanyaan kelima: "Kalau tidak ada yang memuji saya, apakah saya tetap ingin melakukan ini?"
+
+Ini sangat relevan karena kamu mengatakan kamu people-pleaser dan haus validasi.
+
+Coba hilangkan validasinya.
+
+Bayangkan:
+
+Tidak ada atasan yang bilang:
+
+“Bagus.”
+
+Tidak ada user yang bilang:
+
+“Terima kasih.”
+
+Tidak ada LinkedIn post.
+
+Tidak ada orang yang tahu kamu yang membuat sistem.
+
+Apakah kamu masih tertarik:
+
+memahami masalah → membuat solusi → melihat solusi itu digunakan?
+
+Kalau jawabannya iya, itu lebih dekat ke passion yang genuine.
+
+Kalau ternyata jawabannya:
+
+“Saya suka karena orang memuji saya.”
+
+maka kita perlu hati-hati.
+
+Tetapi dari cerita kamu, saya justru melihat bahwa validasi yang kamu cari bukan sekadar:
+
+“Saya ingin dipuji.”
+
+Melainkan:
+
+“Saya ingin merasa bahwa keberadaan saya menghasilkan sesuatu yang berarti.”
+
+Itu berbeda.
+
+6. Pertanyaan keenam: "Kalau saya kehilangan IT, apa yang sebenarnya saya kehilangan?"
+
+Jangan jawab:
+
+“Saya kehilangan pekerjaan IT.”
+
+Lebih dalam.
+
+Kamu kehilangan:
+
+1. Kemampuan menciptakan sesuatu
+
+Dari ide → menjadi sistem.
+
+2. Bukti konkret
+
+Ada aplikasi.
+
+Ada workflow.
+
+Ada database.
+
+Ada dashboard.
+
+Ada automation.
+
+3. Sense of impact
+
+“Orang lain menggunakan sesuatu yang saya buat.”
+
+4. Continuous learning
+
+Teknologi berubah.
+
+Cara berpikir berkembang.
+
+5. Autonomy
+
+Ada ruang untuk berpikir:
+
+“Bagaimana kalau dibuat seperti ini?”
+
+Menurut saya, lima hal ini yang sebenarnya kamu takut kehilangan.
+
+7. Sekarang pertanyaan Purchasing yang lebih adil
+
+Jangan bertanya:
+
+“Apakah Purchasing passion saya?”
+
+Tanyakan:
+
+“Kalau saya menjadi Purchasing selama 5 tahun, keahlian apa yang akan saya miliki yang sulit digantikan?”
+
+Misalnya:
+
+Setelah 5 tahun:
+
+supplier negotiation
+procurement strategy
+sourcing
+cost analysis
+material planning
+vendor management
+purchasing system
+supply chain
+contract
+purchasing analytics
+
+Itu semua valuable.
+
+Kemudian tanyakan:
+
+“Apakah saya ingin menjadi sangat hebat di bidang tersebut?”
+
+Bukan:
+
+“Apakah saya bisa mengerjakannya?”
+
+Kamu mungkin bisa menjadi Purchasing yang bagus.
+
+Pertanyaannya bukan kemampuan.
+
+Pertanyaannya:
+
+Apakah kamu ingin menjadi expert-nya?
+
+8. Pertanyaan yang menurut saya paling powerful
+
+Coba bayangkan dua orang ini.
+
+Orang A — umur 29
+
+“Saya sudah sekitar 5 tahun di digitalisasi manufaktur.”
+
+“Saya membuat beberapa sistem.”
+
+“Saya pernah mengubah proses manual menjadi digital.”
+
+“Saya memahami produksi, quality, HR, dan operasional.”
+
+“Sekarang saya sedang menangani proyek digital transformation.”
+
+Kemudian dia menunjukkan portfolio.
+
+Ada sistem.
+
+Ada diagram.
+
+Ada before-after.
+
+Ada impact.
+
+Orang B — umur 29
+
+“Saya sudah sekitar 5 tahun Purchasing.”
+
+“Saya mengelola PO.”
+
+“Saya follow up supplier.”
+
+“Saya melakukan purchasing administration.”
+
+“Saya menangani material.”
+
+“Saya mengurus dokumen dan koordinasi.”
+
+Keduanya mungkin memiliki:
+
+gaji bagus,
+posisi tetap,
+kehidupan stabil.
+
+Tetapi siapa yang lebih membuat kamu berpikir:
+
+“Saya ingin menjadi orang itu.”
+
+Itulah pertanyaan yang perlu kamu jawab.
+
+9. Pertanyaan yang lebih ekstrem: "Apa yang saya sesali?"
+
+Sekarang jangan membayangkan keberhasilan.
+
+Bayangkan umur 35.
+
+Kamu melihat ke belakang.
+
+Ada dua kemungkinan.
+
+Penyesalan A
+
+“Dulu umur 24 saya sebenarnya punya kesempatan untuk terus mengembangkan digitalisasi. Saya sudah punya pengalaman HRMS, AIS, Nonconformity. Tapi karena takut menganggur, saya masuk Purchasing. Sekarang sudah 10 tahun dan saya semakin jauh dari IT.”
+
+Bagaimana rasanya?
+
+Penyesalan B
+
+“Dulu umur 24 saya memilih mengejar IT. Ternyata sulit. Saya sempat menganggur 6–8 bulan. Akhirnya saya mendapatkan pekerjaan digitalisasi. Sekarang saya sudah 10 tahun di bidang ini.”
+
+Yang mana yang lebih bisa kamu terima?
+
+Ini pertanyaan regret minimization.
+
+Dan menurut saya, untuk situasimu, kemungkinan penyesalan A lebih berat daripada penyesalan B.
