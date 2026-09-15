@@ -71,12 +71,13 @@ const StoryPresentation = () => {
             type: 'artifacts',
             label: 'Proof',
             title: 'Artefak yang Bisa Saya Tunjukkan',
-            intro: 'Ini sistem yang saya buat. Ini masalahnya. Ini user-nya. Ini impact-nya.',
-            items: [
-                { icon: Users, name: 'HRMS', org: 'Dharma Polimetal', desc: 'Digitalisasi proses HR' },
-                { icon: FileText, name: 'AIS', org: 'Dharma Controlcable', desc: 'Sistem informasi & alur operasional' },
-                { icon: Search, name: 'Nonconformity', org: 'Dharma Controlcable', desc: 'Alur penyelesaian masalah kualitas' },
-                { icon: Boxes, name: 'Smart Factory', org: 'WMS & Quality System', desc: 'Arah digitalisasi manufaktur' }
+            intro: 'Ini sistem yang saya buat. Ini user-nya. Ini impact-nya.',
+items: [
+                { path: '/projects/doors', image: '/projects/doors/Presentasi Doors-1.webp', icon: Boxes, name: 'DOORS', org: 'Dharma Polimetal', desc: 'Booking ruang rapat 4 langkah, 0 konflik' },
+                { path: '/projects/ac-monitoring', image: '/projects/9. AC Monitoring/ac.1.png', icon: Hammer, name: 'LaporAC', org: 'Dharma Polimetal', desc: 'Monitoring & perbaikan aset AC terpusat' },
+                { path: '/projects/portal-aduan', image: '/projects/12-portal-aduan/12.png', icon: Search, name: 'Nonconformity', org: 'Dharma Controlcable', desc: 'Alur penyelesaian masalah kualitas' },
+                { path: '/projects/ais-backend', image: '/projects/11-ais-backend/1.png', icon: FileText, name: 'AIS', org: 'Dharma Controlcable', desc: 'ERP/WMS tulang punggung Smart Factory' },
+                { path: '/projects/lmk-qc-report', image: '/projects/10. LMK QC Report/1.qc.png', icon: TrendingUp, name: 'LMK QC', org: 'Quality Control', desc: 'Pelaporan & dokumentasi QC terstandar' }
             ]
         },
         {
@@ -312,16 +313,22 @@ const StoryPresentation = () => {
                         {current.type === 'artifacts' && (
                             <div className="relative pt-10 h-full flex flex-col">
                                 <SectionHead label={current.label} title={current.title} subtitle={current.intro} />
-                                <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4 min-h-0">
+                                <div className="flex-1 grid grid-cols-2 md:grid-cols-5 gap-4 min-h-0">
                                     {current.items.map((it, i) => (
-                                        <div key={i} className="bg-[#F6F3EB] border border-[#E4DDCB] rounded-2xl p-5 flex flex-col hover:border-[#C9413B]/60 hover:bg-white transition-all group">
-                                            <div className="w-11 h-11 rounded-xl bg-[#16181D] text-[#F6F3EB] flex items-center justify-center mb-4 group-hover:bg-[#C9413B] transition-colors">
-                                                <it.icon size={18} />
+                                        <button key={i} onClick={() => navigate(it.path)} className="group text-left bg-[#F6F3EB] border border-[#E4DDCB] rounded-2xl overflow-hidden flex flex-col hover:border-[#C9413B]/60 hover:bg-white hover:shadow-lg transition-all cursor-pointer">
+                                            <div className="relative h-[92px] bg-[#16181D]">
+                                                <img src={it.image} alt={it.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                                                <span className="absolute top-2 left-2 w-7 h-7 rounded-lg bg-[#16181D]/85 text-[#FBF9F3] flex items-center justify-center backdrop-blur"><it.icon size={13} /></span>
+                                                <span className="absolute bottom-2 right-2 w-6 h-6 rounded-full bg-[#C9413B] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all">
+                                                    <ArrowRight size={11} />
+                                                </span>
                                             </div>
-                                            <h4 className="text-sm font-black uppercase tracking-widest text-[#16181D] leading-none mb-1">{it.name}</h4>
-                                            <p className="text-[9px] font-mono font-black uppercase tracking-widest text-[#A8823C] mb-2">{it.org}</p>
-                                            <p className="text-[11px] text-[#6E6A5C] font-medium leading-snug">{it.desc}</p>
-                                        </div>
+                                            <div className="p-4 flex flex-col flex-1">
+                                                <h4 className="text-sm font-black uppercase tracking-widest text-[#16181D] leading-none mb-1">{it.name}</h4>
+                                                <p className="text-[9px] font-mono font-black uppercase tracking-widest text-[#A8823C] mb-2">{it.org}</p>
+                                                <p className="text-[11px] text-[#6E6A5C] font-medium leading-snug">{it.desc}</p>
+                                            </div>
+                                        </button>
                                     ))}
                                 </div>
                                 <div className="mt-4 flex items-center gap-2.5 bg-[#FBF9F3] border border-[#E4DDCB] rounded-xl px-4 py-2.5">
