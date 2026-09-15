@@ -72,12 +72,12 @@ const StoryPresentation = () => {
             label: 'Proof',
             title: 'Artefak yang Bisa Saya Tunjukkan',
             intro: 'Ini sistem yang saya buat. Ini user-nya. Ini impact-nya.',
-items: [
-                { path: '/projects/doors', image: '/projects/doors/Presentasi Doors-1.webp', icon: Boxes, name: 'DOORS', org: 'Dharma Polimetal', desc: 'Booking ruang rapat 4 langkah, 0 konflik' },
+            items: [
+                { path: '/projects/doors', image: '/projects/doors/Presentasi Doors-1.webp', icon: Boxes, name: 'DOORS', org: 'Dharma Polimetal', desc: 'Manajemen meeting dan maintenance aset ruangan' },
                 { path: '/projects/ac-monitoring', image: '/projects/9. AC Monitoring/ac.1.png', icon: Hammer, name: 'LaporAC', org: 'Dharma Polimetal', desc: 'Monitoring & perbaikan aset AC terpusat' },
                 { path: '/projects/portal-aduan', image: '/projects/12-portal-aduan/12.png', icon: Search, name: 'Nonconformity', org: 'Dharma Controlcable', desc: 'Alur penyelesaian masalah kualitas' },
                 { path: '/projects/ais-backend', image: '/projects/11-ais-backend/1.png', icon: FileText, name: 'AIS', org: 'Dharma Controlcable', desc: 'ERP/WMS tulang punggung Smart Factory' },
-                { path: '/projects/lmk-qc-report', image: '/projects/10. LMK QC Report/1.qc.png', icon: TrendingUp, name: 'LMK QC', org: 'Quality Control', desc: 'Pelaporan & dokumentasi QC terstandar' }
+                { path: '/projects/lmk-qc-report', image: '/projects/10. LMK QC Report/1.qc.png', icon: TrendingUp, name: 'LMK QC', org: 'Dharma Polimetal', desc: 'Pelaporan & dokumentasi QC terstandar' }
             ]
         },
         {
@@ -87,7 +87,7 @@ items: [
             intro: 'Jam 20.00, masih bekerja. Dua dunia yang berbeda.',
             pairs: [
                 { title: 'Digitalisasi', tone: RED, steps: ['“Bang, sistemnya error.”', 'Buka laptop · debug · deploy', '“Sekarang tidak perlu Excel manual lagi.”', 'Capek, tapi: AKHIRNYA JADI.'] },
-                { title: 'Purchasing', tone: STEEL, steps: ['PO, supplier, material ID, Excel.', 'Follow up · dokumen · urgent request.', 'Besok pagi harus selesai.', 'Setelah selesai: AKHIRNYA SELESAI.'] }
+                { title: 'Administrasi', tone: STEEL, steps: ['Input data, rekap dokumen, cek ulang.', 'Follow up · status · persetujuan.', 'Besok pagi harus tuntas.', 'Setelah selesai: AKHIRNYA SELESAI.'] }
             ]
         },
         {
