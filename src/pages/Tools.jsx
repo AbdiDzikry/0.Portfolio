@@ -8,7 +8,8 @@ import {
     Music, Github, Clock, Calendar, TrendingUp, Flame,
     Download, Upload, Settings, Briefcase, Building2,
     MapPin, ExternalLink, FileText, ChevronDown, ChevronUp,
-    StickyNote, Wallet, Target, Pin
+    StickyNote, Wallet, Target, Pin, Search, Filter,
+    CheckCircle2, Edit3, ArrowUpRight
 } from 'lucide-react';
 import NowPlayingWidget from '../components/NowPlayingWidget';
 import GitHubWidget from '../components/GitHubWidget';
@@ -1138,18 +1139,181 @@ const HabitTracker = ({ t }) => {
 /* ═══════════════════════════════════════════
    JOB TRACKER
 ═══════════════════════════════════════════ */
+const defaultApplications = [
+    {
+        id: 1711000001,
+        company: 'PT Telkom Indonesia (Persero) Tbk',
+        role: 'Frontend / Full Stack Developer',
+        source: 'LinkedIn',
+        stage: 'interview',
+        appliedDate: '2026-03-12',
+        salary: 'IDR 12.000.000 - 18.000.000',
+        location: 'Jakarta (Hybrid)',
+        url: 'https://careers.telkom.co.id',
+        notes: 'Interview user terjadwal. Presentasi arsitektur WMS & Smart Factory ecosystem.'
+    },
+    {
+        id: 1711000002,
+        company: 'Astra International',
+        role: 'Digitalization & IT Engineer',
+        source: 'JobStreet',
+        stage: 'tech_test',
+        appliedDate: '2026-03-15',
+        salary: 'IDR 11.000.000 - 16.000.000',
+        location: 'Sunter, Jakarta (Onsite)',
+        url: 'https://www.astra.co.id/Career',
+        notes: 'Take-home assignment: REST API integration dan database query optimization.'
+    },
+    {
+        id: 1711000003,
+        company: 'Bank Mandiri (Livin’ by Mandiri)',
+        role: 'Web Application Engineer',
+        source: 'LinkedIn',
+        stage: 'screening',
+        appliedDate: '2026-03-18',
+        salary: 'IDR 14.000.000 - 20.000.000',
+        location: 'Plaza Mandiri, Jakarta',
+        url: 'https://mandiri.workable.com',
+        notes: 'Screening HR selesai. Menunggu konfirmasi jadwal user interview.'
+    },
+    {
+        id: 1711000004,
+        company: 'Traveloka',
+        role: 'Frontend Engineer (React / Next.js)',
+        source: 'Glints',
+        stage: 'applied',
+        appliedDate: '2026-03-20',
+        salary: 'IDR 15.000.000 - 22.000.000',
+        location: 'BSD City / Remote',
+        url: 'https://www.traveloka.com/en-id/careers',
+        notes: 'Melampirkan portfolio showcase live demo dan sertifikasi BNSP.'
+    }
+];
+
+const STAGE_CONFIG = {
+    applied: { label: 'Terkirim', badge: 'bg-blue-500/10 text-blue-400 border-blue-500/30 hover:bg-blue-500/20' },
+    screening: { label: 'HR Screening', badge: 'bg-amber-500/10 text-amber-400 border-amber-500/30 hover:bg-amber-500/20' },
+    tech_test: { label: 'Tech Test', badge: 'bg-purple-500/10 text-purple-400 border-purple-500/30 hover:bg-purple-500/20' },
+    interview: { label: 'Interview', badge: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30 hover:bg-cyan-500/20' },
+    offered: { label: 'Offering', badge: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/20' },
+    rejected: { label: 'Rejected', badge: 'bg-rose-500/10 text-rose-400 border-rose-500/30 hover:bg-rose-500/20' }
+};
+
+const STAGE_KEYS = ['applied', 'screening', 'tech_test', 'interview', 'offered', 'rejected'];
+
 const JobTracker = ({ t }) => {
+    // Tab State: 'pipeline' | 'analytics'
+    const [activeTab, setActiveTab] = useState('pipeline');
+
+    // Individual Application Records
+    const [applications, setApplications] = useState(() => safeJsonParse('tools_applications', defaultApplications));
+
+    // Source Counters & Daily Logs (Preserved Legacy & Analytics)
     const [subjects, setSubjects] = useState(() => safeJsonParse('tools_jobs', []));
-    const [showAddForm, setShowAddForm] = useState(false);
+    const [showAddSubjectForm, setShowAddSubjectForm] = useState(false);
     const [newSubject, setNewSubject] = useState({ name: '', count: 0 });
     const [expandedHistory, setExpandedHistory] = useState(null);
     const [newLog, setNewLog] = useState({ subjectId: null, date: getToday(), count: 1, note: '' });
     const [showLogForm, setShowLogForm] = useState(null);
 
+    // Pipeline Filter & Search
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedStage, setSelectedStage] = useState('all');
+
+    // Add / Edit Application Form Modal/Card
+    const [showAppForm, setShowAppForm] = useState(false);
+    const [editingAppId, setEditingAppId] = useState(null);
+    const [appForm, setAppForm] = useState({
+        company: '',
+        role: '',
+        source: 'LinkedIn',
+        stage: 'applied',
+        appliedDate: getToday(),
+        salary: '',
+        location: '',
+        url: '',
+        notes: ''
+    });
+
+    // LocalStorage sync
+    useEffect(() => {
+        localStorage.setItem('tools_applications', JSON.stringify(applications));
+    }, [applications]);
+
     useEffect(() => {
         localStorage.setItem('tools_jobs', JSON.stringify(subjects));
     }, [subjects]);
 
+    /* ── Pipeline Operations ── */
+    const resetAppForm = () => {
+        setAppForm({
+            company: '',
+            role: '',
+            source: 'LinkedIn',
+            stage: 'applied',
+            appliedDate: getToday(),
+            salary: '',
+            location: '',
+            url: '',
+            notes: ''
+        });
+        setEditingAppId(null);
+        setShowAppForm(false);
+    };
+
+    const handleSaveApplication = (e) => {
+        e.preventDefault();
+        if (!appForm.company.trim() || !appForm.role.trim()) return;
+
+        if (editingAppId) {
+            setApplications(applications.map(app =>
+                app.id === editingAppId ? { ...app, ...appForm } : app
+            ));
+        } else {
+            const newApp = {
+                id: Date.now(),
+                ...appForm
+            };
+            setApplications([newApp, ...applications]);
+        }
+        resetAppForm();
+    };
+
+    const handleEditApplication = (app) => {
+        setAppForm({
+            company: app.company,
+            role: app.role,
+            source: app.source || 'LinkedIn',
+            stage: app.stage || 'applied',
+            appliedDate: app.appliedDate || getToday(),
+            salary: app.salary || '',
+            location: app.location || '',
+            url: app.url || '',
+            notes: app.notes || ''
+        });
+        setEditingAppId(app.id);
+        setShowAppForm(true);
+    };
+
+    const handleDeleteApplication = (id) => {
+        setApplications(applications.filter(app => app.id !== id));
+    };
+
+    const handleCycleStage = (id, currentStage) => {
+        const currentIndex = STAGE_KEYS.indexOf(currentStage);
+        const nextStage = STAGE_KEYS[(currentIndex + 1) % STAGE_KEYS.length];
+        setApplications(applications.map(app =>
+            app.id === id ? { ...app, stage: nextStage } : app
+        ));
+    };
+
+    const handleSetStage = (id, nextStage) => {
+        setApplications(applications.map(app =>
+            app.id === id ? { ...app, stage: nextStage } : app
+        ));
+    };
+
+    /* ── Source/Subject Operations (Preserved) ── */
     const addSubject = () => {
         if (!newSubject.name.trim()) return;
         const subject = {
@@ -1161,7 +1325,7 @@ const JobTracker = ({ t }) => {
         };
         setSubjects([subject, ...subjects]);
         setNewSubject({ name: '', count: 0 });
-        setShowAddForm(false);
+        setShowAddSubjectForm(false);
     };
 
     const handleCountChange = (id, newCount) => {
@@ -1195,7 +1359,6 @@ const JobTracker = ({ t }) => {
                 note: newLog.note.trim(),
                 createdAt: new Date().toISOString()
             }];
-            // Sort logs by date descending
             updatedLogs.sort((a, b) => new Date(b.date) - new Date(a.date));
             return { ...subject, logs: updatedLogs, count: subject.count + parseInt(newLog.count) };
         }));
@@ -1207,20 +1370,33 @@ const JobTracker = ({ t }) => {
         setSubjects(subjects.map(subject => {
             if (subject.id !== subjectId) return subject;
             const updatedLogs = subject.logs.filter((_, i) => i !== logIndex);
-            // Recalculate total from remaining logs
             const newTotal = updatedLogs.reduce((sum, log) => sum + log.count, 0);
             return { ...subject, logs: updatedLogs, count: newTotal };
         }));
     };
 
-    const totalApplications = subjects.reduce((sum, s) => sum + s.count, 0);
-    const totalSubjects = subjects.length;
-    const topSource = subjects.length > 0 ? subjects.reduce((max, s) => s.count > max.count ? s : max) : null;
+    /* ── Metrics & Stats ── */
+    const totalApps = applications.length;
+    const activePipelineCount = applications.filter(a => ['applied', 'screening', 'tech_test', 'interview'].includes(a.stage)).length;
+    const interviewAndTestCount = applications.filter(a => ['tech_test', 'interview'].includes(a.stage)).length;
+    const offerCount = applications.filter(a => a.stage === 'offered').length;
 
-    // Chart data preparation
-    // Aggregate all logs by date for line chart
+    // Filtered Applications
+    const filteredApplications = applications.filter(app => {
+        const matchesStage = selectedStage === 'all' || app.stage === selectedStage;
+        const query = searchQuery.toLowerCase().trim();
+        const matchesSearch = !query ||
+            app.company.toLowerCase().includes(query) ||
+            app.role.toLowerCase().includes(query) ||
+            (app.source && app.source.toLowerCase().includes(query)) ||
+            (app.location && app.location.toLowerCase().includes(query)) ||
+            (app.notes && app.notes.toLowerCase().includes(query));
+        return matchesStage && matchesSearch;
+    });
+
+    // Analytics Chart Data (Legacy logs + Subject counts)
+    const totalSourceApplications = subjects.reduce((sum, s) => sum + s.count, 0);
     const allLogs = subjects.flatMap(s => (s.logs || []).map(l => ({ date: l.date, count: l.count })));
-    const todayApplications = allLogs.filter(l => l.date === getToday()).reduce((sum, l) => sum + l.count, 0);
     const dailyDataMap = {};
     allLogs.forEach(l => {
         dailyDataMap[l.date] = (dailyDataMap[l.date] || 0) + l.count;
@@ -1233,7 +1409,6 @@ const JobTracker = ({ t }) => {
         }))
         .sort((a, b) => new Date(a.date) - new Date(b.date));
 
-    // Pastel soft colors
     const PASTEL_COLORS = [
         '#a78bfa', '#f9a8d4', '#86efac', '#fcd34d', '#93c5fd', '#c4b5fd',
         '#fdba74', '#86efac', '#67e8f9', '#f0abfc', '#a5b4fc', '#818cf8'
@@ -1250,327 +1425,706 @@ const JobTracker = ({ t }) => {
         .slice(0, 6);
 
     return (
-        <div className="flex flex-col h-full">
-            {/* Stats - Compact */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+        <div className="flex flex-col h-full space-y-4">
+            {/* Top Stat Banner */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div className="bg-bg-primary border border-border rounded-xl p-3">
-                    <div className="text-xl font-bold text-text-primary">{totalSubjects}</div>
-                    <div className="text-[10px] text-text-muted mt-1">{t.totalSources}</div>
+                    <div className="text-2xl font-bold text-text-primary">{totalApps}</div>
+                    <div className="text-[11px] text-text-muted mt-0.5">Total Terlacak</div>
                 </div>
                 <div className="bg-bg-primary border border-border rounded-xl p-3">
-                    <div className="text-xl font-bold text-text-primary">{totalApplications}</div>
-                    <div className="text-[10px] text-text-muted mt-1">{t.totalApplications}</div>
+                    <div className="text-2xl font-bold text-amber-400">{activePipelineCount}</div>
+                    <div className="text-[11px] text-text-muted mt-0.5">Pipeline Aktif</div>
                 </div>
                 <div className="bg-bg-primary border border-border rounded-xl p-3">
-                    <div className="text-xl font-bold text-text-primary">{topSource ? topSource.name.substring(0, 8) + (topSource.name.length > 8 ? '...' : '') : '-'}</div>
-                    <div className="text-[10px] text-text-muted mt-1">{t.topSource}</div>
+                    <div className="text-2xl font-bold text-cyan-400">{interviewAndTestCount}</div>
+                    <div className="text-[11px] text-text-muted mt-0.5">Test & Interview</div>
                 </div>
                 <div className="bg-bg-primary border border-border rounded-xl p-3">
-                    <div className="text-xl font-bold text-text-primary">{todayApplications}</div>
-                    <div className="text-[10px] text-text-muted mt-1">{t.today}</div>
+                    <div className="text-2xl font-bold text-emerald-400">{offerCount}</div>
+                    <div className="text-[11px] text-text-muted mt-0.5">Offering Stage</div>
                 </div>
             </div>
 
-            {/* Charts Section */}
-            {subjects.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    {/* Line Chart - Daily Activity */}
-                    <div className="bg-bg-primary border border-border rounded-xl p-4">
-                        <h3 className="text-sm font-semibold text-text-primary mb-3">{t.chartDailyActivity}</h3>
-                        {lineChartData.length > 0 ? (
-                            <ResponsiveContainer width="100%" height={200}>
-                                <AreaChart data={lineChartData} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
-                                    <defs>
-                                        <linearGradient id="colorApps" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="5%" stopColor="#a78bfa" stopOpacity={0.6} />
-                                            <stop offset="95%" stopColor="#a78bfa" stopOpacity={0} />
-                                        </linearGradient>
-                                    </defs>
-                                    <CartesianGrid strokeDasharray="3 3" stroke="#444" strokeOpacity={0.3} />
-                                    <XAxis dataKey="label" tick={{ fontSize: 10, fill: '#888' }} />
-                                    <YAxis tick={{ fontSize: 10, fill: '#888' }} allowDecimals={false} />
-                                    <Tooltip
-                                        contentStyle={{ backgroundColor: '#1a1a2e', border: '1px solid #444', borderRadius: '8px', fontSize: '12px' }}
-                                        labelStyle={{ color: '#ccc' }}
-                                        formatter={(value) => [`${value} ${t.applications}`, t.chartDailyActivity]}
-                                        labelFormatter={(label) => label}
-                                    />
-                                    <Area type="monotone" dataKey="applications" stroke="#a78bfa" strokeWidth={2} fill="url(#colorApps)" />
-                                </AreaChart>
-                            </ResponsiveContainer>
-                        ) : (
-                            <div className="h-[200px] flex items-center justify-center text-text-muted text-sm">
-                                {t.noDataToShow}
+            {/* Navigation Tabs */}
+            <div className="flex items-center justify-between border-b border-border/80 pb-2">
+                <div className="flex gap-1.5 p-1 bg-bg-secondary rounded-xl border border-border/50 text-xs">
+                    <button
+                        onClick={() => setActiveTab('pipeline')}
+                        className={`px-3.5 py-1.5 rounded-lg font-medium transition-all flex items-center gap-1.5 ${
+                            activeTab === 'pipeline'
+                                ? 'bg-bg-primary text-text-primary shadow-sm border border-border/60'
+                                : 'text-text-muted hover:text-text-primary'
+                        }`}
+                    >
+                        <Target size={13} />
+                        <span>Pipeline Lamaran</span>
+                        <span className="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-accent-blue/10 text-accent-blue font-bold">
+                            {applications.length}
+                        </span>
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('analytics')}
+                        className={`px-3.5 py-1.5 rounded-lg font-medium transition-all flex items-center gap-1.5 ${
+                            activeTab === 'analytics'
+                                ? 'bg-bg-primary text-text-primary shadow-sm border border-border/60'
+                                : 'text-text-muted hover:text-text-primary'
+                        }`}
+                    >
+                        <TrendingUp size={13} />
+                        <span>Analisis & Sumber</span>
+                        <span className="ml-1 px-1.5 py-0.2 rounded-full text-[10px] bg-purple-500/10 text-purple-400 font-bold">
+                            {subjects.length}
+                        </span>
+                    </button>
+                </div>
+
+                {activeTab === 'pipeline' && (
+                    <button
+                        onClick={() => {
+                            resetAppForm();
+                            setShowAppForm(true);
+                        }}
+                        className="px-3.5 py-1.5 bg-accent-blue hover:opacity-90 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm"
+                    >
+                        <Plus size={14} />
+                        <span>Tambah Lamaran</span>
+                    </button>
+                )}
+            </div>
+
+            {/* TAB 1: PIPELINE VIEW */}
+            {activeTab === 'pipeline' && (
+                <div className="space-y-4">
+                    {/* Add / Edit Form Modal or Card */}
+                    {showAppForm && (
+                        <div className="bg-bg-primary border border-border/80 rounded-2xl p-4 shadow-lg animate-in fade-in slide-in-from-top-2 duration-200">
+                            <div className="flex items-center justify-between pb-3 mb-3 border-b border-border">
+                                <h3 className="text-sm font-semibold text-text-primary flex items-center gap-2">
+                                    <Briefcase size={15} className="text-accent-blue" />
+                                    {editingAppId ? 'Edit Catatan Lamaran' : 'Tambah Lamaran Baru'}
+                                </h3>
+                                <button
+                                    onClick={resetAppForm}
+                                    className="p-1 rounded-lg text-text-muted hover:text-text-primary hover:bg-bg-secondary"
+                                >
+                                    <X size={15} />
+                                </button>
                             </div>
-                        )}
+
+                            <form onSubmit={handleSaveApplication} className="space-y-3">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <label className="text-[11px] text-text-muted block mb-1">Perusahaan *</label>
+                                        <input
+                                            type="text"
+                                            required
+                                            value={appForm.company}
+                                            onChange={(e) => setAppForm({ ...appForm, company: e.target.value })}
+                                            placeholder="cth. PT Telkom Indonesia"
+                                            className="w-full bg-bg-secondary border border-border rounded-lg px-3 py-1.5 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="text-[11px] text-text-muted block mb-1">Posisi / Role *</label>
+                                        <input
+                                            type="text"
+                                            required
+                                            value={appForm.role}
+                                            onChange={(e) => setAppForm({ ...appForm, role: e.target.value })}
+                                            placeholder="cth. Frontend Developer"
+                                            className="w-full bg-bg-secondary border border-border rounded-lg px-3 py-1.5 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                    <div>
+                                        <label className="text-[11px] text-text-muted block mb-1">Platform / Sumber</label>
+                                        <select
+                                            value={appForm.source}
+                                            onChange={(e) => setAppForm({ ...appForm, source: e.target.value })}
+                                            className="w-full bg-bg-secondary border border-border rounded-lg px-3 py-1.5 text-xs text-text-primary focus:outline-none focus:border-accent-blue"
+                                        >
+                                            <option value="LinkedIn">LinkedIn</option>
+                                            <option value="JobStreet">JobStreet</option>
+                                            <option value="Glints">Glints</option>
+                                            <option value="Kalibrr">Kalibrr</option>
+                                            <option value="Dealls">Dealls</option>
+                                            <option value="TechInAsia">Tech in Asia</option>
+                                            <option value="Career Site">Career Site Perusahaan</option>
+                                            <option value="Referral">Referral / Rekomendasi</option>
+                                            <option value="Lainnya">Lainnya</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="text-[11px] text-text-muted block mb-1">Tahapan Saat Ini</label>
+                                        <select
+                                            value={appForm.stage}
+                                            onChange={(e) => setAppForm({ ...appForm, stage: e.target.value })}
+                                            className="w-full bg-bg-secondary border border-border rounded-lg px-3 py-1.5 text-xs text-text-primary focus:outline-none focus:border-accent-blue"
+                                        >
+                                            {STAGE_KEYS.map(key => (
+                                                <option key={key} value={key}>{STAGE_CONFIG[key].label}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="text-[11px] text-text-muted block mb-1">Tanggal Melamar</label>
+                                        <input
+                                            type="date"
+                                            value={appForm.appliedDate}
+                                            onChange={(e) => setAppForm({ ...appForm, appliedDate: e.target.value })}
+                                            className="w-full bg-bg-secondary border border-border rounded-lg px-3 py-1.5 text-xs text-text-primary focus:outline-none focus:border-accent-blue"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <label className="text-[11px] text-text-muted block mb-1">Range Gaji / Ekspektasi</label>
+                                        <input
+                                            type="text"
+                                            value={appForm.salary}
+                                            onChange={(e) => setAppForm({ ...appForm, salary: e.target.value })}
+                                            placeholder="cth. IDR 10.000.000 - 15.000.000"
+                                            className="w-full bg-bg-secondary border border-border rounded-lg px-3 py-1.5 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="text-[11px] text-text-muted block mb-1">Lokasi & Tipe Kerja</label>
+                                        <input
+                                            type="text"
+                                            value={appForm.location}
+                                            onChange={(e) => setAppForm({ ...appForm, location: e.target.value })}
+                                            placeholder="cth. Jakarta (Hybrid) / Remote"
+                                            className="w-full bg-bg-secondary border border-border rounded-lg px-3 py-1.5 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label className="text-[11px] text-text-muted block mb-1">Link Lowongan / Portal</label>
+                                    <input
+                                        type="url"
+                                        value={appForm.url}
+                                        onChange={(e) => setAppForm({ ...appForm, url: e.target.value })}
+                                        placeholder="https://..."
+                                        className="w-full bg-bg-secondary border border-border rounded-lg px-3 py-1.5 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="text-[11px] text-text-muted block mb-1">Catatan / Kontak HR / Info Wawancara</label>
+                                    <textarea
+                                        rows={2}
+                                        value={appForm.notes}
+                                        onChange={(e) => setAppForm({ ...appForm, notes: e.target.value })}
+                                        placeholder="Jadwal tes teknis, nama interviewer, feedback atau checklist berkas..."
+                                        className="w-full bg-bg-secondary border border-border rounded-lg px-3 py-1.5 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue resize-none"
+                                    />
+                                </div>
+
+                                <div className="flex gap-2 pt-1">
+                                    <button
+                                        type="submit"
+                                        className="flex-1 bg-accent-blue text-white py-2 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity"
+                                    >
+                                        {editingAppId ? 'Perbarui Lamaran' : 'Simpan Lamaran'}
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={resetAppForm}
+                                        className="px-4 py-2 bg-bg-secondary border border-border text-text-muted hover:text-text-primary rounded-lg text-xs"
+                                    >
+                                        Batal
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    )}
+
+                    {/* Filter & Search Bar */}
+                    <div className="flex flex-col sm:flex-row gap-2.5 items-center justify-between">
+                        {/* Search Input */}
+                        <div className="relative w-full sm:w-72">
+                            <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                placeholder="Cari perusahaan, posisi, lokasi..."
+                                className="w-full bg-bg-secondary border border-border rounded-xl pl-8 pr-3 py-1.5 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
+                            />
+                            {searchQuery && (
+                                <button
+                                    onClick={() => setSearchQuery('')}
+                                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary"
+                                >
+                                    <X size={12} />
+                                </button>
+                            )}
+                        </div>
+
+                        {/* Stage Filter Pills */}
+                        <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
+                            <button
+                                onClick={() => setSelectedStage('all')}
+                                className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all whitespace-nowrap ${
+                                    selectedStage === 'all'
+                                        ? 'bg-text-primary text-bg-primary font-semibold'
+                                        : 'bg-bg-secondary border border-border text-text-muted hover:text-text-primary'
+                                }`}
+                            >
+                                Semua ({applications.length})
+                            </button>
+                            {STAGE_KEYS.map(key => {
+                                const count = applications.filter(a => a.stage === key).length;
+                                const isSelected = selectedStage === key;
+                                return (
+                                    <button
+                                        key={key}
+                                        onClick={() => setSelectedStage(key)}
+                                        className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all whitespace-nowrap border ${
+                                            isSelected
+                                                ? STAGE_CONFIG[key].badge + ' ring-1 ring-white/20 font-bold'
+                                                : 'bg-bg-secondary border-border text-text-muted hover:text-text-primary'
+                                        }`}
+                                    >
+                                        {STAGE_CONFIG[key].label} ({count})
+                                    </button>
+                                );
+                            })}
+                        </div>
                     </div>
 
-                    {/* Pie Chart */}
-                    <div className="bg-bg-primary border border-border rounded-xl p-4">
-                        <h3 className="text-sm font-semibold text-text-primary mb-3">{t.chartDistribution}</h3>
-                        {pieChartData.length > 0 ? (
-                            <div className="flex items-center gap-2">
-                                <ResponsiveContainer width="60%" height={200}>
-                                    <PieChart>
-                                        <Pie
-                                            data={pieChartData}
-                                            cx="50%"
-                                            cy="50%"
-                                            labelLine={false}
-                                            outerRadius={80}
-                                            fill="#8884d8"
-                                            dataKey="value"
-                                        >
-                                            {pieChartData.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill={PASTEL_COLORS[index % PASTEL_COLORS.length]} />
-                                            ))}
-                                        </Pie>
-                                        <Tooltip
-                                            contentStyle={{ backgroundColor: '#1a1a2e', border: '1px solid #444', borderRadius: '8px', fontSize: '12px' }}
-                                            formatter={(value) => {
-                                                const percentage = Math.round((value / totalApplications) * 100);
-                                                return [`${value} applications (${percentage}%)`];
-                                            }}
-                                            labelFormatter={(label) => {
-                                                const item = pieChartData.find(d => d.name === label);
-                                                return item ? item.fullName : label;
-                                            }}
-                                        />
-                                    </PieChart>
-                                </ResponsiveContainer>
-                                {/* Legend */}
-                                <div className="flex-1 space-y-1">
-                                    {pieChartData.map((entry, index) => (
-                                        <div key={index} className="flex items-center gap-2 text-xs">
-                                            <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: PASTEL_COLORS[index % PASTEL_COLORS.length] }}></div>
-                                            <span className="text-text-muted truncate">{entry.fullName}</span>
-                                            <span className="text-text-primary font-medium ml-auto">{entry.value}</span>
-                                        </div>
-                                    ))}
-                                </div>
+                    {/* Applications List */}
+                    <div className="space-y-3">
+                        {filteredApplications.length === 0 ? (
+                            <div className="text-center py-12 bg-bg-primary border border-border/60 rounded-2xl">
+                                <Briefcase size={36} className="mx-auto mb-2.5 opacity-20 text-text-muted" />
+                                <p className="text-xs text-text-muted">
+                                    {searchQuery || selectedStage !== 'all'
+                                        ? 'Tidak ada lamaran yang cocok dengan filter pencarian.'
+                                        : 'Belum ada data lamaran. Mulai tambahkan lamaran pekerjaan Anda!'}
+                                </p>
                             </div>
                         ) : (
-                            <div className="h-[200px] flex items-center justify-center text-text-muted text-sm">
-                                {t.noDataToShow}
-                            </div>
+                            filteredApplications.map(app => {
+                                const currentConfig = STAGE_CONFIG[app.stage] || STAGE_CONFIG.applied;
+
+                                return (
+                                    <div
+                                        key={app.id}
+                                        className="bg-bg-primary border border-border/80 rounded-xl p-4 hover:border-accent-blue/50 transition-all shadow-sm group"
+                                    >
+                                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                                            {/* Company & Role Details */}
+                                            <div className="space-y-1.5 flex-1 min-w-0">
+                                                <div className="flex items-center gap-2 flex-wrap">
+                                                    <h4 className="text-sm font-bold text-text-primary">{app.company}</h4>
+                                                    {/* Stage Cycle Pill */}
+                                                    <button
+                                                        onClick={() => handleCycleStage(app.id, app.stage)}
+                                                        title="Klik untuk maju ke tahapan berikutnya"
+                                                        className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-full border transition-all cursor-pointer ${currentConfig.badge}`}
+                                                    >
+                                                        {currentConfig.label} ↻
+                                                    </button>
+                                                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-bg-secondary border border-border text-text-muted">
+                                                        {app.source}
+                                                    </span>
+                                                </div>
+
+                                                <p className="text-xs font-medium text-text-secondary flex items-center gap-1.5">
+                                                    <Briefcase size={12} className="text-accent-blue flex-shrink-0" />
+                                                    {app.role}
+                                                </p>
+
+                                                {/* Meta Info (Salary, Location, Date) */}
+                                                <div className="flex items-center gap-3 text-[11px] text-text-muted flex-wrap pt-0.5">
+                                                    {app.appliedDate && (
+                                                        <span className="flex items-center gap-1">
+                                                            <Calendar size={11} />
+                                                            {new Date(app.appliedDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
+                                                        </span>
+                                                    )}
+                                                    {app.location && (
+                                                        <span className="flex items-center gap-1">
+                                                            <MapPin size={11} />
+                                                            {app.location}
+                                                        </span>
+                                                    )}
+                                                    {app.salary && (
+                                                        <span className="flex items-center gap-1 font-mono text-text-secondary">
+                                                            <Wallet size={11} />
+                                                            {app.salary}
+                                                        </span>
+                                                    )}
+                                                </div>
+
+                                                {/* Notes Snippet */}
+                                                {app.notes && (
+                                                    <p className="text-[11px] text-text-muted bg-bg-secondary/60 rounded-lg p-2 border border-border/40 mt-1.5 leading-relaxed">
+                                                        {app.notes}
+                                                    </p>
+                                                )}
+                                            </div>
+
+                                            {/* Action Buttons & Stage Selector */}
+                                            <div className="flex items-center sm:flex-col items-end gap-2 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/40">
+                                                {/* Stage Direct Select */}
+                                                <select
+                                                    value={app.stage}
+                                                    onChange={(e) => handleSetStage(app.id, e.target.value)}
+                                                    className="bg-bg-secondary border border-border rounded-lg px-2 py-1 text-[11px] text-text-primary focus:outline-none focus:border-accent-blue"
+                                                >
+                                                    {STAGE_KEYS.map(key => (
+                                                        <option key={key} value={key}>{STAGE_CONFIG[key].label}</option>
+                                                    ))}
+                                                </select>
+
+                                                <div className="flex items-center gap-1.5 ml-auto sm:ml-0">
+                                                    {app.url && (
+                                                        <a
+                                                            href={app.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="p-1.5 rounded-lg bg-bg-secondary border border-border text-text-muted hover:text-accent-blue transition-colors"
+                                                            title="Buka Link Lowongan"
+                                                        >
+                                                            <ArrowUpRight size={13} />
+                                                        </a>
+                                                    )}
+                                                    <button
+                                                        onClick={() => handleEditApplication(app)}
+                                                        className="p-1.5 rounded-lg bg-bg-secondary border border-border text-text-muted hover:text-text-primary transition-colors"
+                                                        title="Edit Data"
+                                                    >
+                                                        <Edit3 size={13} />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleDeleteApplication(app.id)}
+                                                        className="p-1.5 rounded-lg bg-bg-secondary border border-border text-text-muted hover:text-rose-400 transition-colors"
+                                                        title="Hapus Lamaran"
+                                                    >
+                                                        <Trash2 size={13} />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })
                         )}
                     </div>
                 </div>
             )}
 
-            {/* Add Subject Button / Form */}
-            <div className="mb-4">
-                {!showAddForm ? (
-                    <button
-                        onClick={() => setShowAddForm(true)}
-                        className="w-full bg-bg-primary border border-border border-dashed rounded-xl p-4 text-sm text-text-muted hover:text-text-primary hover:border-accent-blue transition-all flex items-center justify-center gap-2"
-                    >
-                        <Plus size={16} /> {t.addSubject}
-                    </button>
-                ) : (
-                    <div className="bg-bg-primary border border-border rounded-xl p-4 space-y-3">
-                        <div className="grid grid-cols-2 gap-3">
-                            <input
-                                type="text"
-                                value={newSubject.name}
-                                onChange={(e) => setNewSubject({ ...newSubject, name: e.target.value })}
-                                placeholder={t.sourceName}
-                                className="bg-bg-secondary border border-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
-                            />
-                            <input
-                                type="number"
-                                value={newSubject.count}
-                                onChange={(e) => setNewSubject({ ...newSubject, count: e.target.value })}
-                                placeholder={t.applicationCount}
-                                min="0"
-                                className="bg-bg-secondary border border-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
-                            />
-                        </div>
-                        <div className="flex gap-2">
-                            <button
-                                onClick={addSubject}
-                                className="flex-1 bg-accent-blue text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90"
-                            >
-                                {t.addSource}
-                            </button>
-                            <button
-                                onClick={() => setShowAddForm(false)}
-                                className="px-4 py-2 bg-bg-secondary border border-border rounded-lg text-sm text-text-muted hover:text-text-primary"
-                            >
-                                {t.cancel}
-                            </button>
-                        </div>
-                    </div>
-                )}
-            </div>
-
-            {/* Subjects List */}
-            <div className="flex-1 space-y-2 mb-4 overflow-y-auto">
-                {subjects.length === 0 && (
-                    <div className="text-center py-12 text-text-muted">
-                        <Briefcase size={40} className="mx-auto mb-3 opacity-20" />
-                        <p>{t.noSubjects}</p>
-                    </div>
-                )}
-
-                {subjects.map(subject => {
-                    const subjectLogs = subject.logs || [];
-                    const isHistoryExpanded = expandedHistory === subject.id;
-                    const isLogFormOpen = showLogForm === subject.id;
-
-                    return (
-                        <div key={subject.id} className="bg-bg-primary border border-border rounded-xl group hover:border-accent-blue/50 transition-colors">
-                            {/* Card Header */}
-                            <div className="p-3">
-                                <div className="flex items-center justify-between mb-2">
-                                    <div className="flex items-center gap-3 flex-1">
-                                        <Building2 size={16} className="text-text-muted flex-shrink-0" />
-                                        <h3 className="text-sm font-semibold text-text-primary">{subject.name}</h3>
-                                        <div className="flex items-center gap-2">
-                                            <input
-                                                type="number"
-                                                value={subject.count}
-                                                onChange={(e) => handleCountChange(subject.id, parseInt(e.target.value) || 0)}
-                                                min="0"
-                                                className="bg-bg-secondary border border-border rounded-lg px-2 py-1 text-xs text-text-primary focus:outline-none focus:border-accent-blue w-20"
+            {/* TAB 2: ANALYTICS & SOURCE LOGS (PRESERVED) */}
+            {activeTab === 'analytics' && (
+                <div className="space-y-4">
+                    {/* Charts Section */}
+                    {subjects.length > 0 && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {/* Area Chart - Daily Activity */}
+                            <div className="bg-bg-primary border border-border rounded-xl p-4">
+                                <h3 className="text-sm font-semibold text-text-primary mb-3">{t.chartDailyActivity || 'Aktivitas Harian'}</h3>
+                                {lineChartData.length > 0 ? (
+                                    <ResponsiveContainer width="100%" height={200}>
+                                        <AreaChart data={lineChartData} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
+                                            <defs>
+                                                <linearGradient id="colorApps" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="5%" stopColor="#a78bfa" stopOpacity={0.6} />
+                                                    <stop offset="95%" stopColor="#a78bfa" stopOpacity={0} />
+                                                </linearGradient>
+                                            </defs>
+                                            <CartesianGrid strokeDasharray="3 3" stroke="#444" strokeOpacity={0.3} />
+                                            <XAxis dataKey="label" tick={{ fontSize: 10, fill: '#888' }} />
+                                            <YAxis tick={{ fontSize: 10, fill: '#888' }} allowDecimals={false} />
+                                            <Tooltip
+                                                contentStyle={{ backgroundColor: '#1a1a2e', border: '1px solid #444', borderRadius: '8px', fontSize: '12px' }}
+                                                labelStyle={{ color: '#ccc' }}
+                                                formatter={(value) => [`${value} ${t.applications || 'lamaran'}`, t.chartDailyActivity || 'Aktivitas']}
                                             />
-                                            <span className="text-xs text-text-secondary">
-                                                {subject.count === 1 ? t.applicationSingular : t.applicationPlural}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                        <button
-                                            onClick={() => openLogForm(subject.id)}
-                                            className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-green-500/10 text-text-muted hover:text-green-500 transition-all"
-                                            title={t.addLogEntry}
-                                        >
-                                            <Plus size={14} />
-                                        </button>
-                                        <button
-                                            onClick={() => toggleHistory(subject.id)}
-                                            className={`p-1.5 rounded-lg transition-all flex items-center gap-1 ${isHistoryExpanded ? 'bg-accent-blue/10 text-accent-blue' : 'opacity-0 group-hover:opacity-100 hover:bg-blue-500/10 text-text-muted hover:text-blue-500'}`}
-                                        >
-                                            {isHistoryExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-                                            {subjectLogs.length > 0 && (
-                                                <span className="text-[10px]">{subjectLogs.length}</span>
-                                            )}
-                                        </button>
-                                        <button
-                                            onClick={() => deleteSubject(subject.id)}
-                                            className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-red-500/10 text-text-muted hover:text-red-500 transition-all"
-                                        >
-                                            <Trash2 size={14} />
-                                        </button>
-                                    </div>
-                                </div>
-
-                                {/* Log Form */}
-                                {isLogFormOpen && (
-                                    <div className="mt-3 pt-3 border-t border-border bg-bg-secondary/30 rounded-lg p-3">
-                                        <div className="grid grid-cols-3 gap-2 mb-2">
-                                            <input
-                                                type="date"
-                                                value={newLog.date}
-                                                onChange={(e) => setNewLog({ ...newLog, date: e.target.value })}
-                                                className="bg-bg-secondary border border-border rounded-lg px-2 py-1.5 text-xs text-text-primary focus:outline-none focus:border-accent-blue"
-                                            />
-                                            <input
-                                                type="number"
-                                                value={newLog.count}
-                                                onChange={(e) => setNewLog({ ...newLog, count: e.target.value })}
-                                                min="1"
-                                                placeholder={t.count}
-                                                className="bg-bg-secondary border border-border rounded-lg px-2 py-1.5 text-xs text-text-primary focus:outline-none focus:border-accent-blue"
-                                            />
-                                            <input
-                                                type="text"
-                                                value={newLog.note}
-                                                onChange={(e) => setNewLog({ ...newLog, note: e.target.value })}
-                                                placeholder={t.logNote}
-                                                className="bg-bg-secondary border border-border rounded-lg px-2 py-1.5 text-xs text-text-primary focus:outline-none focus:border-accent-blue"
-                                            />
-                                        </div>
-                                        <div className="flex gap-2">
-                                            <button
-                                                onClick={addLog}
-                                                className="flex-1 bg-accent-blue text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:opacity-90"
-                                            >
-                                                {t.saveLog}
-                                            </button>
-                                            <button
-                                                onClick={() => setShowLogForm(null)}
-                                                className="px-3 py-1.5 bg-bg-secondary border border-border rounded-lg text-xs text-text-muted hover:text-text-primary"
-                                            >
-                                                {t.cancel}
-                                            </button>
-                                        </div>
+                                            <Area type="monotone" dataKey="applications" stroke="#a78bfa" strokeWidth={2} fill="url(#colorApps)" />
+                                        </AreaChart>
+                                    </ResponsiveContainer>
+                                ) : (
+                                    <div className="h-[200px] flex items-center justify-center text-text-muted text-xs">
+                                        {t.noDataToShow || 'Tambahkan log untuk melihat analitik.'}
                                     </div>
                                 )}
                             </div>
 
-                            {/* History Dropdown */}
-                            {isHistoryExpanded && (
-                                <div className="border-t border-border px-3 pb-3">
-                                    {subjectLogs.length === 0 ? (
-                                        <div className="py-6 text-center text-xs text-text-muted">
-                                            {t.noLogs}
-                                        </div>
-                                    ) : (
-                                        <div className="space-y-2 mt-3 max-h-48 overflow-y-auto">
-                                            {subjectLogs.map((log, index) => (
-                                                <div key={index} className="flex items-center justify-between bg-bg-secondary/50 rounded-lg px-3 py-2 group/log">
-                                                    <div className="flex items-center gap-3 flex-1">
-                                                        <Calendar size={12} className="text-text-muted flex-shrink-0" />
-                                                        <div>
-                                                            <div className="flex items-center gap-2">
-                                                                <span className="text-xs font-medium text-text-primary">
-                                                                    {new Date(log.date).toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })}
-                                                                </span>
-                                                                <span className="bg-accent-blue/10 text-accent-blue px-2 py-0.5 rounded-full text-[10px] font-bold">
-                                                                    +{log.count}
-                                                                </span>
-                                                            </div>
-                                                            {log.note && (
-                                                                <p className="text-[10px] text-text-muted mt-0.5">{log.note}</p>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                    <button
-                                                        onClick={() => deleteLog(subject.id, index)}
-                                                        className="p-1 rounded opacity-0 group-hover/log:opacity-100 hover:bg-red-500/10 text-text-muted hover:text-red-500 transition-all"
-                                                    >
-                                                        <X size={12} />
-                                                    </button>
+                            {/* Pie Chart - Source Distribution */}
+                            <div className="bg-bg-primary border border-border rounded-xl p-4">
+                                <h3 className="text-sm font-semibold text-text-primary mb-3">{t.chartDistribution || 'Distribusi Sumber'}</h3>
+                                {pieChartData.length > 0 ? (
+                                    <div className="flex items-center gap-2">
+                                        <ResponsiveContainer width="60%" height={200}>
+                                            <PieChart>
+                                                <Pie
+                                                    data={pieChartData}
+                                                    cx="50%"
+                                                    cy="50%"
+                                                    labelLine={false}
+                                                    outerRadius={75}
+                                                    fill="#8884d8"
+                                                    dataKey="value"
+                                                >
+                                                    {pieChartData.map((_entry, index) => (
+                                                        <Cell key={`cell-${index}`} fill={PASTEL_COLORS[index % PASTEL_COLORS.length]} />
+                                                    ))}
+                                                </Pie>
+                                                <Tooltip
+                                                    contentStyle={{ backgroundColor: '#1a1a2e', border: '1px solid #444', borderRadius: '8px', fontSize: '12px' }}
+                                                    formatter={(value) => {
+                                                        const percentage = Math.round((value / Math.max(1, totalSourceApplications)) * 100);
+                                                        return [`${value} lamaran (${percentage}%)`];
+                                                    }}
+                                                />
+                                            </PieChart>
+                                        </ResponsiveContainer>
+                                        {/* Legend */}
+                                        <div className="flex-1 space-y-1">
+                                            {pieChartData.map((entry, index) => (
+                                                <div key={index} className="flex items-center gap-2 text-xs">
+                                                    <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: PASTEL_COLORS[index % PASTEL_COLORS.length] }}></div>
+                                                    <span className="text-text-muted truncate">{entry.fullName}</span>
+                                                    <span className="text-text-primary font-medium ml-auto">{entry.value}</span>
                                                 </div>
                                             ))}
                                         </div>
+                                    </div>
+                                ) : (
+                                    <div className="h-[200px] flex items-center justify-center text-text-muted text-xs">
+                                        {t.noDataToShow || 'Tambahkan data sumber untuk melihat distribusi.'}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Add Source Button / Form */}
+                    <div>
+                        {!showAddSubjectForm ? (
+                            <button
+                                onClick={() => setShowAddSubjectForm(true)}
+                                className="w-full bg-bg-primary border border-border border-dashed rounded-xl p-3 text-xs text-text-muted hover:text-text-primary hover:border-accent-blue transition-all flex items-center justify-center gap-2"
+                            >
+                                <Plus size={14} /> {t.addSubject || 'Tambah Sumber / Portal Lowongan'}
+                            </button>
+                        ) : (
+                            <div className="bg-bg-primary border border-border rounded-xl p-4 space-y-3">
+                                <div className="grid grid-cols-2 gap-3">
+                                    <input
+                                        type="text"
+                                        value={newSubject.name}
+                                        onChange={(e) => setNewSubject({ ...newSubject, name: e.target.value })}
+                                        placeholder={t.sourceName || 'Nama sumber (e.g. LinkedIn, JobStreet)'}
+                                        className="bg-bg-secondary border border-border rounded-lg px-3 py-2 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
+                                    />
+                                    <input
+                                        type="number"
+                                        value={newSubject.count}
+                                        onChange={(e) => setNewSubject({ ...newSubject, count: e.target.value })}
+                                        placeholder={t.applicationCount || 'Jumlah lamaran awal'}
+                                        min="0"
+                                        className="bg-bg-secondary border border-border rounded-lg px-3 py-2 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-blue"
+                                    />
+                                </div>
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={addSubject}
+                                        className="flex-1 bg-accent-blue text-white px-3 py-1.5 rounded-lg text-xs font-semibold hover:opacity-90"
+                                    >
+                                        {t.addSource || 'Tambah Sumber'}
+                                    </button>
+                                    <button
+                                        onClick={() => setShowAddSubjectForm(false)}
+                                        className="px-3 py-1.5 bg-bg-secondary border border-border rounded-lg text-xs text-text-muted hover:text-text-primary"
+                                    >
+                                        {t.cancel || 'Batal'}
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Sources List with Daily Log Dropdown */}
+                    <div className="space-y-2 max-h-96 overflow-y-auto">
+                        {subjects.length === 0 && (
+                            <div className="text-center py-8 text-text-muted text-xs border border-border/60 rounded-xl bg-bg-primary">
+                                <Briefcase size={32} className="mx-auto mb-2 opacity-20" />
+                                <p>{t.noSubjects || 'Belum ada portal sumber lamaran.'}</p>
+                            </div>
+                        )}
+
+                        {subjects.map(subject => {
+                            const subjectLogs = subject.logs || [];
+                            const isHistoryExpanded = expandedHistory === subject.id;
+                            const isLogFormOpen = showLogForm === subject.id;
+
+                            return (
+                                <div key={subject.id} className="bg-bg-primary border border-border rounded-xl group hover:border-accent-blue/50 transition-colors">
+                                    <div className="p-3">
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center gap-3 flex-1">
+                                                <Building2 size={15} className="text-text-muted flex-shrink-0" />
+                                                <h3 className="text-xs font-semibold text-text-primary">{subject.name}</h3>
+                                                <div className="flex items-center gap-1.5">
+                                                    <input
+                                                        type="number"
+                                                        value={subject.count}
+                                                        onChange={(e) => handleCountChange(subject.id, parseInt(e.target.value) || 0)}
+                                                        min="0"
+                                                        className="bg-bg-secondary border border-border rounded-lg px-2 py-0.5 text-xs text-text-primary focus:outline-none focus:border-accent-blue w-16"
+                                                    />
+                                                    <span className="text-[11px] text-text-secondary">
+                                                        {subject.count === 1 ? (t.applicationSingular || 'lamaran') : (t.applicationPlural || 'lamaran')}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-1">
+                                                <button
+                                                    onClick={() => openLogForm(subject.id)}
+                                                    className="p-1 rounded-lg hover:bg-green-500/10 text-text-muted hover:text-green-500 transition-all"
+                                                    title={t.addLogEntry || 'Tambah Log Harian'}
+                                                >
+                                                    <Plus size={13} />
+                                                </button>
+                                                <button
+                                                    onClick={() => toggleHistory(subject.id)}
+                                                    className={`p-1 rounded-lg transition-all flex items-center gap-1 ${isHistoryExpanded ? 'bg-accent-blue/10 text-accent-blue' : 'hover:bg-blue-500/10 text-text-muted hover:text-blue-500'}`}
+                                                >
+                                                    {isHistoryExpanded ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
+                                                    {subjectLogs.length > 0 && (
+                                                        <span className="text-[10px] font-mono">{subjectLogs.length}</span>
+                                                    )}
+                                                </button>
+                                                <button
+                                                    onClick={() => deleteSubject(subject.id)}
+                                                    className="p-1 rounded-lg hover:bg-rose-500/10 text-text-muted hover:text-rose-500 transition-all"
+                                                >
+                                                    <Trash2 size={13} />
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        {isLogFormOpen && (
+                                            <div className="mt-3 pt-3 border-t border-border bg-bg-secondary/40 rounded-lg p-2.5 space-y-2">
+                                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                                                    <input
+                                                        type="date"
+                                                        value={newLog.date}
+                                                        onChange={(e) => setNewLog({ ...newLog, date: e.target.value })}
+                                                        className="bg-bg-secondary border border-border rounded-lg px-2 py-1 text-xs text-text-primary focus:outline-none focus:border-accent-blue"
+                                                    />
+                                                    <input
+                                                        type="number"
+                                                        value={newLog.count}
+                                                        onChange={(e) => setNewLog({ ...newLog, count: e.target.value })}
+                                                        min="1"
+                                                        placeholder={t.count || 'Jumlah'}
+                                                        className="bg-bg-secondary border border-border rounded-lg px-2 py-1 text-xs text-text-primary focus:outline-none focus:border-accent-blue"
+                                                    />
+                                                    <input
+                                                        type="text"
+                                                        value={newLog.note}
+                                                        onChange={(e) => setNewLog({ ...newLog, note: e.target.value })}
+                                                        placeholder={t.logNote || 'Catatan opsional'}
+                                                        className="bg-bg-secondary border border-border rounded-lg px-2 py-1 text-xs text-text-primary focus:outline-none focus:border-accent-blue"
+                                                    />
+                                                </div>
+                                                <div className="flex gap-2">
+                                                    <button
+                                                        onClick={addLog}
+                                                        className="flex-1 bg-accent-blue text-white px-3 py-1 rounded-lg text-xs font-semibold hover:opacity-90"
+                                                    >
+                                                        {t.saveLog || 'Simpan Log'}
+                                                    </button>
+                                                    <button
+                                                        onClick={() => setShowLogForm(null)}
+                                                        className="px-3 py-1 bg-bg-secondary border border-border rounded-lg text-xs text-text-muted hover:text-text-primary"
+                                                    >
+                                                        {t.cancel || 'Batal'}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* History Dropdown */}
+                                    {isHistoryExpanded && (
+                                        <div className="border-t border-border px-3 pb-3">
+                                            {subjectLogs.length === 0 ? (
+                                                <div className="py-4 text-center text-xs text-text-muted">
+                                                    {t.noLogs || 'Belum ada riwayat aktivitas untuk sumber ini.'}
+                                                </div>
+                                            ) : (
+                                                <div className="space-y-1.5 mt-2.5 max-h-40 overflow-y-auto">
+                                                    {subjectLogs.map((log, index) => (
+                                                        <div key={index} className="flex items-center justify-between bg-bg-secondary/60 rounded-lg px-3 py-1.5 group/log">
+                                                            <div className="flex items-center gap-2.5 flex-1 min-w-0">
+                                                                <Calendar size={11} className="text-text-muted flex-shrink-0" />
+                                                                <div className="truncate">
+                                                                    <span className="text-xs font-medium text-text-primary">
+                                                                        {new Date(log.date).toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short' })}
+                                                                    </span>
+                                                                    <span className="ml-2 bg-accent-blue/10 text-accent-blue px-1.5 py-0.5 rounded text-[10px] font-bold">
+                                                                        +{log.count}
+                                                                    </span>
+                                                                    {log.note && (
+                                                                        <span className="text-[11px] text-text-muted ml-2 truncate">({log.note})</span>
+                                                                    )}
+                                                                </div>
+                                                            </div>
+                                                            <button
+                                                                onClick={() => deleteLog(subject.id, index)}
+                                                                className="p-1 rounded opacity-0 group-hover/log:opacity-100 hover:bg-rose-500/10 text-text-muted hover:text-rose-500 transition-all"
+                                                            >
+                                                                <X size={11} />
+                                                            </button>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
                                     )}
                                 </div>
-                            )}
-                        </div>
-                    );
-                })}
-            </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            )}
 
-            {/* Export/Import */}
-            <div className="flex gap-3 pt-4 border-t border-border flex-shrink-0">
+            {/* Unified Export/Import Backup */}
+            <div className="flex flex-wrap gap-2.5 pt-3 border-t border-border/70 flex-shrink-0">
                 <button
                     onClick={() => {
-                        const dataStr = JSON.stringify(subjects, null, 2);
+                        const backupData = {
+                            version: 2,
+                            exportDate: new Date().toISOString(),
+                            sources: subjects,
+                            applications: applications
+                        };
+                        const dataStr = JSON.stringify(backupData, null, 2);
                         const blob = new Blob([dataStr], { type: 'application/json' });
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement('a');
                         a.href = url;
-                        a.download = `jobs-backup-${getToday()}.json`;
+                        a.download = `job-tracker-backup-${getToday()}.json`;
                         a.click();
+                        URL.revokeObjectURL(url);
                     }}
-                    className="flex items-center gap-2 px-4 py-2 bg-bg-secondary border border-border rounded-lg text-sm text-text-muted hover:text-text-primary transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-1.5 bg-bg-secondary border border-border rounded-lg text-xs text-text-muted hover:text-text-primary transition-colors"
                 >
-                    <Download size={14} /> Export JSON
+                    <Download size={13} /> Export Backup (JSON)
                 </button>
-                <label className="flex items-center gap-2 px-4 py-2 bg-bg-secondary border border-border rounded-lg text-sm text-text-muted hover:text-text-primary transition-colors cursor-pointer">
-                    <Upload size={14} /> Import JSON
+
+                <label className="flex items-center gap-1.5 px-3 py-1.5 bg-bg-secondary border border-border rounded-lg text-xs text-text-muted hover:text-text-primary transition-colors cursor-pointer">
+                    <Upload size={13} /> Import Backup (JSON)
                     <input
                         type="file"
                         accept=".json"
@@ -1583,12 +2137,21 @@ const JobTracker = ({ t }) => {
                                 try {
                                     const imported = JSON.parse(event.target.result);
                                     if (Array.isArray(imported)) {
-                                        setSubjects(imported);
+                                        if (imported.length > 0 && ('company' in imported[0] || 'role' in imported[0])) {
+                                            setApplications(imported);
+                                        } else {
+                                            setSubjects(imported);
+                                        }
+                                        alert('Data berhasil di-import!');
+                                    } else if (imported && typeof imported === 'object') {
+                                        if (Array.isArray(imported.sources)) setSubjects(imported.sources);
+                                        if (Array.isArray(imported.applications)) setApplications(imported.applications);
+                                        alert('Data aplikasi dan sumber berhasil di-import!');
                                     } else {
-                                        alert('Invalid file format');
+                                        alert('Format file JSON tidak valid.');
                                     }
-                                } catch (err) {
-                                    alert('Invalid file format');
+                                } catch {
+                                    alert('Gagal membaca file JSON.');
                                 }
                             };
                             reader.readAsText(file);

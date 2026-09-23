@@ -1,25 +1,27 @@
 import { aisBackendProject } from './projects/aisBackend';
 import { portalAduanProject } from './projects/portalAduan';
+import { creativeMarketingProject } from './projects/creativeMarketing';
 
 export const projectsData = [
+    creativeMarketingProject,
     aisBackendProject,
     portalAduanProject,
     {
         id: 'nonconformity-presentation',
-        title: 'Presentasi Nonconformity Integrated System',
+        title: 'Presentasi Digital PICA (Problem Identification Corrective Action)',
         category: 'Presentasi',
-        image: '/projects/12-portal-aduan/12.png',
-        tagline: 'Quality Issue Tracking & Resolution System - Interactive Presentation',
-        description: 'Sebuah presentasi interaktif mengenai sistem terintegrasi pengelolaan ketidaksesuaian kualitas, mencakup latar belakang, alur solusi, fitur, dampak, hingga next target.',
+        image: '/projects/12-portal-aduan/2. dashboard.png',
+        tagline: 'Digital PICA - Quality Issue Tracking & Resolution System Interactive Presentation',
+        description: 'Sebuah presentasi interaktif mengenai sistem terintegrasi Digital PICA (Problem Identification Corrective Action), mencakup latar belakang, alur solusi, fitur, dampak, hingga next target.',
         tags: ['Presentation', 'Quality Management', 'Report'],
         size: 'large',
         path: '/presentation/nonconformity',
         translations: {
             id: {
-                title: 'Presentasi Nonconformity Integrated System',
+                title: 'Presentasi Digital PICA (Problem Identification Corrective Action)',
                 category: 'Presentasi',
-                tagline: 'Quality Issue Tracking & Resolution System - Interactive Presentation',
-                description: 'Sebuah presentasi interaktif mengenai sistem terintegrasi pengelolaan ketidaksesuaian kualitas, mencakup latar belakang, alur solusi, fitur, dampak, hingga next target.'
+                tagline: 'Digital PICA - Quality Issue Tracking & Resolution System Interactive Presentation',
+                description: 'Sebuah presentasi interaktif mengenai sistem terintegrasi Digital PICA (Problem Identification Corrective Action), mencakup latar belakang, alur solusi, fitur, dampak, hingga next target.'
             }
         }
     },
@@ -716,7 +718,6 @@ export const projectsData = [
         // New PRD Fields
         vision: 'To create a seamless property management ecosystem that bridges digital marketing with operational efficiency.',
         status: 'COMPLETED',
-        team: 'Sulthan Abdi Dzikry (Full Stack Developer)',
         background: 'Marketing housing units involves complex data synchronization. Manual methods led to double bookings and slow reporting, necessitating a digital transformation.',
         strategicAlignment: 'Demonstrates Full Stack capabilities (Laravel + React) and ability to build complex internal tools.',
         investmentRequired: '2 Months / 1 Full Stack Developer',
@@ -1428,12 +1429,6 @@ export const projectsData = [
         tags: ['Product Management', 'UI/UX Design', 'Full-stack Dev'],
         size: 'medium',
         uxTemplate: 'internship', // Custom UX template identification
-        team: [
-            { name: 'Lukman Hawari Pratama', role: 'Department Head', id: '99122022' },
-            { name: 'Listia Ningtias', role: 'Staff', id: '11240196' },
-            { name: 'Bagas Ardhi Pratama', role: 'Staff', id: '11195854' },
-            { name: 'Abdul Rohim', role: 'Staff', id: '11185354' }
-        ],
         journey: [
             { month: 'Bulan 1', title: 'Adaptasi & Research', desc: 'Memahami proses bisnis HRGA Dharma Polimetal dan melakukan observasi terhadap sistem yang sedang berjalan.' },
             { month: 'Bulan 2', title: 'Doors Improvement', desc: 'Mendesain konsep perancangan ulang sistem Doors berdasarkan kesulitan pengguna ' },

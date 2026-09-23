@@ -1,9 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     ArrowLeft, Download, ChevronRight, Lightbulb, Target,
-    Wrench, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink, MessageSquare, BarChart, ShieldCheck, LayoutGrid, AlertTriangle, Play
+    Wrench, TrendingUp, Clock, Users, CheckCircle, ArrowRight, ExternalLink, MessageSquare, BarChart, ShieldCheck, LayoutGrid, AlertTriangle, Play, Maximize2
 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
@@ -13,6 +13,7 @@ import { generateBrdPdf } from '../utils/generateBrdPdf';
 import { generateApiDocPdf } from '../utils/generateApiDocPdf';
 import { downloadKaizenPdf } from '../utils/loadKaizenIcons';
 import SEO from '../components/SEO';
+import InteractiveShowcase from '../components/InteractiveShowcase';
 
 /* ─────────── helpers ─────────── */
 const Tag = ({ children }) => (
@@ -552,26 +553,33 @@ const ProjectDetail = () => {
                         </div>
                     </div>
 
-                    {/* Right: Image Showcase */}
+                    {/* Right: Image Showcase / Cover Thumbnail */}
                     <div className="flex flex-col gap-3">
                         <div className="relative rounded-3xl overflow-hidden bg-bg-card border border-border/50 aspect-video flex items-center justify-center p-4">
-                            {/* Reduced GPU strain: removed blur-2xl background layer */}
-                            <AnimatePresence mode="popLayout" initial={false}>
-                                <motion.img
-                                    key={selectedImage}
-                                    src={showcaseImages[selectedImage]}
+                            {project.galleryItems && project.galleryItems.length > 0 ? (
+                                <img
+                                    src={project.image || showcaseImages[0]}
                                     alt={project.title}
                                     className="relative z-10 w-full h-full object-contain shadow-xl rounded-xl"
-                                    initial={{ opacity: 0, scale: 0.98 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 1.02 }}
-                                    transition={{ duration: 0.3 }}
                                 />
-                            </AnimatePresence>
+                            ) : (
+                                <AnimatePresence mode="popLayout" initial={false}>
+                                    <motion.img
+                                        key={selectedImage}
+                                        src={showcaseImages[selectedImage]}
+                                        alt={project.title}
+                                        className="relative z-10 w-full h-full object-contain shadow-xl rounded-xl"
+                                        initial={{ opacity: 0, scale: 0.98 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 1.02 }}
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                </AnimatePresence>
+                            )}
                         </div>
 
-                        {/* Thumbnails */}
-                        {showcaseImages.length > 1 && (
+                        {/* Thumbnails (only displayed when InteractiveShowcase is not present below) */}
+                        {(!project.galleryItems || project.galleryItems.length === 0) && showcaseImages.length > 1 && (
                             <div className="flex gap-2 overflow-x-auto pb-1">
                                 {showcaseImages.map((img, idx) => (
                                     <button
@@ -587,6 +595,13 @@ const ProjectDetail = () => {
                             </div>
                         )}
                     </div>
+                </div>
+
+                {/* ══════════════════════════════════════════
+                    PILOT INTERACTIVE SHOWCASE COMPONENT
+                ══════════════════════════════════════════ */}
+                <div className="mb-14">
+                    <InteractiveShowcase project={project} language={language} />
                 </div>
 
                 {/* ══════════════════════════════════════════

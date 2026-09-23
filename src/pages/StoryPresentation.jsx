@@ -75,7 +75,7 @@ const StoryPresentation = () => {
             items: [
                 { path: '/projects/doors', image: '/projects/doors/Presentasi Doors-1.webp', icon: Boxes, name: 'DOORS', org: 'Dharma Polimetal', desc: 'Manajemen meeting dan maintenance aset ruangan' },
                 { path: '/projects/ac-monitoring', image: '/projects/9. AC Monitoring/ac.1.png', icon: Hammer, name: 'LaporAC', org: 'Dharma Polimetal', desc: 'Monitoring & perbaikan aset AC terpusat' },
-                { path: '/projects/portal-aduan', image: '/projects/12-portal-aduan/12.png', icon: Search, name: 'Nonconformity', org: 'Dharma Controlcable', desc: 'Alur penyelesaian masalah kualitas' },
+                { path: '/projects/portal-aduan', image: '/projects/12-portal-aduan/2. dashboard.png', icon: Search, name: 'Digital PICA', org: 'Dharma Controlcable', desc: 'Problem Identification Corrective Action' },
                 { path: '/projects/ais-backend', image: '/projects/11-ais-backend/1.png', icon: FileText, name: 'AIS', org: 'Dharma Controlcable', desc: 'ERP/WMS tulang punggung Smart Factory' },
                 { path: '/projects/lmk-qc-report', image: '/projects/10. LMK QC Report/1.qc.png', icon: TrendingUp, name: 'LMK QC', org: 'Dharma Polimetal', desc: 'Pelaporan & dokumentasi QC terstandar' }
             ]
