@@ -14,6 +14,7 @@ import { generateApiDocPdf } from '../utils/generateApiDocPdf';
 import { downloadKaizenPdf } from '../utils/loadKaizenIcons';
 import SEO from '../components/SEO';
 import InteractiveShowcase from '../components/InteractiveShowcase';
+import CreativeMarketingStudio from '../components/CreativeMarketingStudio';
 
 /* ─────────── helpers ─────────── */
 const Tag = ({ children }) => (
@@ -358,6 +359,10 @@ const ProjectDetail = () => {
                 {renderInternshipTemplate()}
             </motion.div>
         );
+    }
+
+    if (project.id === 'creative-marketing' || project.uxTemplate === 'creative-studio') {
+        return <CreativeMarketingStudio project={project} language={language} />;
     }
 
     const showcaseImages = project.showcaseImages || [project.image];
