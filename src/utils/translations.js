@@ -15,7 +15,8 @@ export const translations = {
             gridView: "Grid",
             listView: "List",
             ariaGrid: "Grid View",
-            ariaList: "List View"
+            ariaList: "List View",
+            filterByExperience: "Filter by Experience"
         },
         blog: {
             title: "Insights",
@@ -321,7 +322,8 @@ export const translations = {
             gridView: "Grid",
             listView: "Daftar",
             ariaGrid: "Tampilan Grid",
-            ariaList: "Tampilan Daftar"
+            ariaList: "Tampilan Daftar",
+            filterByExperience: "Filter berdasarkan Pengalaman"
         },
         blog: {
             title: "Wawasan",

@@ -1,13 +1,199 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import ProjectCard from '../components/ProjectCard';
 import { projectsData } from '../data/projects';
+import { experiences, getExperience } from '../data/experiences';
 import { translations } from '../utils/translations';
 import SEO from '../components/SEO';
-import { LayoutGrid, List, ArrowRight } from 'lucide-react';
+import { LayoutGrid, List, ArrowRight, Briefcase, ChevronDown, Check } from 'lucide-react';
 import './Projects.css';
+
+/* ─────────────────────────────────────────────────────────
+   SMALL VIEWPORT HELPER — lets the filter panel pick a
+   different axis/anchor per breakpoint.
+   ───────────────────────────────────────────────────────── */
+const useIsDesktop = () => {
+    const [isDesktop, setIsDesktop] = useState(
+        () => typeof window !== 'undefined' && window.matchMedia('(min-width: 640px)').matches
+    );
+    useEffect(() => {
+        const mq = window.matchMedia('(min-width: 640px)');
+        const onChange = (e) => setIsDesktop(e.matches);
+        mq.addEventListener('change', onChange);
+        return () => mq.removeEventListener('change', onChange);
+    }, []);
+    return isDesktop;
+};
+
+/* ─────────────────────────────────────────────────────────
+   EXPERIENCE FILTER — custom dropdown
+   Trigger stays compact (short code + count); the panel
+   carries the full company / role / period so the header
+   never blows out on narrow screens.
+   `layout` + `layoutId` make the button and the active
+   pill animate whenever the selection — and thus the
+   trigger's size — changes.
+   ───────────────────────────────────────────────────────── */
+const ExperienceFilter = ({ filters, activeId, onChange, label }) => {
+    const [open, setOpen] = useState(false);
+    const [cursor, setCursor] = useState(0);
+    const wrapRef = useRef(null);
+    const listRef = useRef(null);
+    const isDesktop = useIsDesktop();
+
+    const activeIndex = Math.max(0, filters.findIndex(f => f.id === activeId));
+    const active = filters[activeIndex] ?? filters[0];
+
+    // Close on outside click
+    useEffect(() => {
+        if (!open) return;
+        const onPointerDown = (e) => {
+            if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(false);
+        };
+        document.addEventListener('mousedown', onPointerDown);
+        return () => document.removeEventListener('mousedown', onPointerDown);
+    }, [open]);
+
+    const select = useCallback((id) => {
+        onChange(id);
+        setOpen(false);
+    }, [onChange]);
+
+    const onKeyDown = (e) => {
+        if (e.key === 'Escape') { setOpen(false); return; }
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (!open) { setOpen(true); setCursor(activeIndex); return; }
+            const dir = e.key === 'ArrowDown' ? 1 : -1;
+            setCursor((c) => (c + dir + filters.length) % filters.length);
+            return;
+        }
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            if (open) select(filters[cursor].id);
+            else { setOpen(true); setCursor(activeIndex); }
+        }
+    };
+
+    // Keep the highlighted option scrolled into view
+    useEffect(() => {
+        if (!open || !listRef.current) return;
+        const el = listRef.current.querySelector(`[data-idx="${cursor}"]`);
+        el?.scrollIntoView({ block: 'nearest' });
+    }, [cursor, open]);
+
+    return (
+        <div ref={wrapRef} className="relative w-full sm:w-auto">
+            {/* ── Trigger ── */}
+            <motion.button
+                type="button"
+                layout
+                layoutId="exp-filter-trigger"
+                transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+                onClick={() => { setOpen(o => !o); setCursor(activeIndex); }}
+                onKeyDown={onKeyDown}
+                aria-haspopup="listbox"
+                aria-expanded={open}
+                aria-label={label}
+                className={`flex w-full sm:w-auto items-center gap-2 h-8 px-2.5 sm:px-3 rounded-lg border text-[11px] font-bold transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 ${
+                    open
+                        ? 'bg-white dark:bg-zinc-700 border-zinc-400 dark:border-zinc-500 text-zinc-900 dark:text-zinc-50'
+                        : 'bg-zinc-100 dark:bg-zinc-800 border-border/50 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
+                }`}
+            >
+                <Briefcase size={12} className="flex-shrink-0" />
+                <span className="truncate max-w-[70px] sm:max-w-[110px]">{active?.short}</span>
+                <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-900/50 text-zinc-500 dark:text-zinc-400 flex-shrink-0">
+                    {active?.count}
+                </span>
+                <motion.span
+                    animate={{ rotate: open ? 180 : 0 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                    className="flex-shrink-0"
+                >
+                    <ChevronDown size={12} />
+                </motion.span>
+            </motion.button>
+
+            {/* ── Panel — slides out sideways on desktop, drops down on mobile ── */}
+            <AnimatePresence>
+                {open && (
+                    <div
+                        className={`absolute z-50 w-[min(300px,calc(100vw-3rem))] ${
+                            isDesktop
+                                ? 'right-full mr-2 top-1/2 -translate-y-1/2'
+                                : 'left-0 top-full mt-2'
+                        }`}
+                    >
+                        <motion.div
+                            key="panel"
+                            initial={{ opacity: 0, scale: 0.94, x: isDesktop ? 14 : 0 }}
+                            animate={{ opacity: 1, scale: 1, x: 0 }}
+                            exit={{ opacity: 0, scale: 0.94, x: isDesktop ? 14 : 0 }}
+                            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                            style={{ originX: isDesktop ? 1 : 0.5, originY: isDesktop ? 0.5 : 0 }}
+                            className="rounded-2xl bg-white dark:bg-zinc-900 border border-border shadow-2xl overflow-hidden"
+                        >
+                            <ul ref={listRef} role="listbox" className="p-1.5 max-h-[min(320px,60vh)] overflow-y-auto">
+                                {filters.map((f, i) => {
+                                    const isActive = f.id === activeId;
+                                    const isCursor = i === cursor;
+                                    return (
+                                        <li key={f.id} data-idx={i} role="option" aria-selected={isActive}>
+                                            <button
+                                                type="button"
+                                                onMouseEnter={() => setCursor(i)}
+                                                onClick={() => select(f.id)}
+                                                className="relative w-full text-left px-3 py-2.5 rounded-xl transition-colors duration-150"
+                                            >
+                                                {/* Sliding active pill — animates position + size */}
+                                                {isActive && (
+                                                    <motion.span
+                                                        layoutId="exp-filter-pill"
+                                                        transition={{ type: 'spring', stiffness: 420, damping: 36 }}
+                                                        className="absolute inset-0 rounded-xl bg-zinc-100 dark:bg-zinc-800"
+                                                    />
+                                                )}
+                                                <span
+                                                    className={`relative flex items-center gap-2 transition-colors duration-150 ${
+                                                        isActive
+                                                            ? 'text-zinc-900 dark:text-zinc-50'
+                                                            : isCursor
+                                                                ? 'text-zinc-800 dark:text-zinc-100'
+                                                                : 'text-zinc-500 dark:text-zinc-400'
+                                                    }`}
+                                                >
+                                                    <span className="flex-1 min-w-0">
+                                                        <span className="block text-[11px] font-bold truncate">
+                                                            {f.label}
+                                                        </span>
+                                                        {(f.role || f.period) && (
+                                                            <span className="block text-[9px] font-mono opacity-60 truncate mt-0.5">
+                                                                {[f.role, f.period].filter(Boolean).join(' · ')}
+                                                            </span>
+                                                        )}
+                                                    </span>
+                                                    <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 flex-shrink-0">
+                                                        {f.count}
+                                                    </span>
+                                                    <span className="w-3 flex-shrink-0">
+                                                        {isActive && <Check size={12} />}
+                                                    </span>
+                                                </span>
+                                            </button>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
 
 /* ─────────────────────────────────────────────────────────
    LIST VIEW ROW — interactive, weareflow-style
@@ -85,22 +271,10 @@ const ListRow = ({ proj, index, onHover, isActive }) => {
 const Projects = () => {
     const { language } = useLanguage();
     const t = translations[language];
-    const rawProjects = projectsData;
-
-    // Projects kept accessible via direct URL only (hidden from listing)
-    const hiddenProjectIds = ['anti-fraud-doors', 'internship-detail'];
-    const visibleProjects = rawProjects.filter(p => !hiddenProjectIds.includes(p.id));
-
-    // Map translations if ID is selected
-    const projects = visibleProjects.map(p => {
-        if (language === 'id' && p.translations?.id) {
-            return { ...p, ...p.translations.id };
-        }
-        return p;
-    });
 
     const [viewMode, setViewMode] = useState('list');
     const [hoveredProject, setHoveredProject] = useState(null);
+    const [activeExperience, setActiveExperience] = useState('all');
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -111,6 +285,42 @@ const Projects = () => {
         hidden: { y: 20, opacity: 0 },
         visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100, damping: 15 } }
     };
+
+    // ── Experience filter ──
+    const isId = language === 'id';
+    const activeExp = getExperience(activeExperience);
+
+    // Projects kept accessible via direct URL only (hidden from listing)
+    const hiddenProjectIds = ['anti-fraud-doors', 'internship-detail'];
+    const listedProjects = projectsData.filter(p => !hiddenProjectIds.includes(p.id));
+
+    // Map translations if ID is selected
+    const withTranslations = listedProjects.map(p => {
+        if (isId && p.translations?.id) {
+            return { ...p, ...p.translations.id };
+        }
+        return p;
+    });
+
+    // Only keep filters that actually have projects
+    const filters = experiences
+        .filter(exp => exp.id === 'all' || listedProjects.some(p => (p.experience ?? 'other') === exp.id))
+        .map(exp => ({
+            ...exp,
+            short: isId ? exp.shortId : exp.short,
+            label: exp.id === 'all'
+                ? (isId ? exp.shortId : exp.short)
+                : (isId ? exp.companyId : exp.company),
+            role: isId ? exp.roleId : exp.role,
+            period: isId ? exp.periodId : exp.period,
+            count: exp.id === 'all'
+                ? listedProjects.length
+                : listedProjects.filter(p => (p.experience ?? 'other') === exp.id).length
+        }));
+
+    const projects = activeExperience === 'all'
+        ? withTranslations
+        : withTranslations.filter(p => (p.experience ?? 'other') === activeExperience);
 
     // Default thumbnail for list view when nothing is hovered
     const activeThumbnail = hoveredProject?.image ?? projects[0]?.image;
@@ -138,7 +348,7 @@ const Projects = () => {
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
-                    className="page-header relative z-10 mb-12"
+                    className="page-header relative z-30 mb-12"
                 >
                     {/* Corner registration marks */}
                     <span className="jp-corner jp-corner-tl jp-only" />
@@ -160,25 +370,50 @@ const Projects = () => {
                             <p className="page-subtitle">{t.nav.projectsSubtitle}</p>
                         </div>
 
-                        {/* View toggle */}
-                        <div className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-800 p-1 rounded-xl border border-border/50 mx-auto md:mx-0">
-                            <button
-                                onClick={() => setViewMode('grid')}
-                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all ${viewMode === 'grid' ? 'bg-white dark:bg-zinc-700 shadow text-zinc-900 dark:text-white' : 'text-zinc-500 hover:text-zinc-800'}`}
-                                aria-label={t.nav.ariaGrid}
-                            >
-                                <LayoutGrid size={14} /> {t.nav.gridView}
-                            </button>
-                            <button
-                                onClick={() => setViewMode('list')}
-                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all ${viewMode === 'list' ? 'bg-white dark:bg-zinc-700 shadow text-zinc-900 dark:text-white' : 'text-zinc-500 hover:text-zinc-800'}`}
-                                aria-label={t.nav.ariaList}
-                            >
-                                <List size={14} /> {t.nav.listView}
-                            </button>
+                        {/* Experience filter + view toggle */}
+                        <div className="flex items-center gap-2 w-full md:w-auto">
+                            <ExperienceFilter
+                                filters={filters}
+                                activeId={activeExperience}
+                                onChange={(id) => { setActiveExperience(id); setHoveredProject(null); }}
+                                label={t.nav.filterByExperience}
+                            />
+
+                            <div className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-800 p-1 rounded-xl border border-border/50 flex-shrink-0">
+                                <button
+                                    onClick={() => setViewMode('grid')}
+                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all ${viewMode === 'grid' ? 'bg-white dark:bg-zinc-700 shadow text-zinc-900 dark:text-white' : 'text-zinc-500 hover:text-zinc-800'}`}
+                                    aria-label={t.nav.ariaGrid}
+                                >
+                                    <LayoutGrid size={14} /> {t.nav.gridView}
+                                </button>
+                                <button
+                                    onClick={() => setViewMode('list')}
+                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all ${viewMode === 'list' ? 'bg-white dark:bg-zinc-700 shadow text-zinc-900 dark:text-white' : 'text-zinc-500 hover:text-zinc-800'}`}
+                                    aria-label={t.nav.ariaList}
+                                >
+                                    <List size={14} /> {t.nav.listView}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </motion.header>
+
+                {/* Active filter context line */}
+                <AnimatePresence mode="wait">
+                    {activeExperience !== 'all' && (activeExp.role || activeExp.period) && (
+                        <motion.p
+                            key={activeExperience}
+                            initial={{ opacity: 0, y: -4 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -4 }}
+                            transition={{ duration: 0.2 }}
+                            className="relative z-10 mb-6 text-right text-[11px] font-mono text-text-muted"
+                        >
+                            {activeExp.role}{activeExp.role && activeExp.period ? ' · ' : ''}{activeExp.period}
+                        </motion.p>
+                    )}
+                </AnimatePresence>
 
                 {/* ── GRID VIEW ── */}
                 <AnimatePresence mode="wait">
