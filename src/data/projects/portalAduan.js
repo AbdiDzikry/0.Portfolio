@@ -1,6 +1,7 @@
 export const portalAduanProject = {
     id: 'portal-aduan',
     title: 'Digital PICA (Problem Identification Corrective Action)',
+    experience: 'dharma-controlcable',
     isTrialData: true,
     category: 'Quality Management',
     image: '/projects/12-portal-aduan/1. login.png',

@@ -1,6 +1,7 @@
 export const aisBackendProject = {
     id: 'ais-backend',
     title: 'Automated Integrated System',
+    experience: 'dharma-controlcable',
     isTrialData: true,
     category: 'Smart Factory',
     image: '/projects/11-ais-backend/1.png',

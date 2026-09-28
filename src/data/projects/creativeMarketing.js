@@ -1,6 +1,7 @@
 export const creativeMarketingProject = {
     id: 'creative-marketing',
     title: 'Portfolio Creative Marketing',
+    experience: 'other',
     uxTemplate: 'creative-studio',
     isTrialData: false,
     category: 'Creative Marketing & Design',

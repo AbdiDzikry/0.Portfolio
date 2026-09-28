@@ -1,14 +1,17 @@
 import { aisBackendProject } from './projects/aisBackend';
 import { portalAduanProject } from './projects/portalAduan';
 import { creativeMarketingProject } from './projects/creativeMarketing';
+import { orderTrackingProject } from './projects/orderTracking';
 
 export const projectsData = [
     creativeMarketingProject,
     aisBackendProject,
     portalAduanProject,
+    orderTrackingProject,
     {
         id: 'nonconformity-presentation',
         title: 'Presentasi Digital PICA (Problem Identification Corrective Action)',
+        experience: 'dharma-controlcable',
         category: 'Presentasi',
         image: '/projects/12-portal-aduan/2. dashboard.png',
         tagline: 'Digital PICA - Quality Issue Tracking & Resolution System Interactive Presentation',
@@ -28,6 +31,7 @@ export const projectsData = [
     {
         id: 'who-i-become',
         title: 'I Am Known As?',
+        experience: 'other',
         category: 'Presentasi',
         image: '/projects/story-presentation/cover.svg',
         tagline: 'Identity & Purpose - A Personal Presentation',
@@ -47,6 +51,7 @@ export const projectsData = [
     {
         id: 'doors',
         title: 'Doors',
+        experience: 'dharma-polimetal',
         category: 'Digital Transformation',
         image: '/projects/doors/Presentasi Doors-1.webp',
         showcaseImages: [
@@ -172,6 +177,7 @@ export const projectsData = [
     {
         id: 'ac-monitoring',
         title: 'LaporAC',
+        experience: 'dharma-polimetal',
         category: 'UI/UX Design',
         image: '/projects/9. AC Monitoring/ac.1.png',
         showcaseImages: [
@@ -338,6 +344,7 @@ export const projectsData = [
     {
         id: 'lmk-qc-report',
         title: 'LMK QC',
+        experience: 'dharma-polimetal',
         category: 'Quality Control',
         image: '/projects/10. LMK QC Report/1.qc.png',
         showcaseImages: [
@@ -501,6 +508,7 @@ export const projectsData = [
     {
         id: 'cbl-property',
         title: 'CBL Property',
+        experience: 'codetag-studio',
         category: 'UI/UX Design',
         image: '/projects/cbl_new_thumb_v2.png',
         showcaseImages: [
@@ -655,6 +663,7 @@ export const projectsData = [
     {
         id: 'grand-telar',
         title: 'Grand Telar Residence',
+        experience: 'codetag-studio',
         category: 'Web Development',
         image: '/projects/gtr_new_thumb_v2.png',
         showcaseImages: [
@@ -803,6 +812,7 @@ export const projectsData = [
     {
         id: 'joki-in-rush',
         title: 'Joki In Rush',
+        experience: 'codetag-studio',
         category: 'Service Platform',
         image: '/projects/jir_new_thumb_v2.png',
         showcaseImages: [
@@ -921,6 +931,7 @@ export const projectsData = [
     {
         id: 'lanyard-design',
         title: 'Event Lanyard',
+        experience: 'other',
         category: 'Graphic Design',
         image: '/projects/lanyard_cover.png',
         showcaseImages: [
@@ -1035,6 +1046,7 @@ export const projectsData = [
     {
         id: 'telkommerce',
         title: 'Telkommerce',
+        experience: 'other',
         category: 'Web Application',
         image: '/projects/telkommerce_new_thumb_v2.png',
         showcaseImages: [
@@ -1158,6 +1170,7 @@ export const projectsData = [
     {
         id: 'jalan-app',
         title: 'Jalan',
+        experience: 'other',
         category: 'Mobile App',
         image: '/projects/jalan_new_thumb_v2.png',
         showcaseImages: [
@@ -1274,6 +1287,7 @@ export const projectsData = [
     {
         id: 'pheromone-perfume',
         title: 'Pheromone',
+        experience: 'codetag-studio',
         category: 'Web Design',
         image: '/projects/pheromone_thumb_v2.webp',
         showcaseImages: [
@@ -1388,6 +1402,7 @@ export const projectsData = [
     {
         id: 'internship-report',
         title: 'Laporan Akhir Magang',
+        experience: 'dharma-polimetal',
         category: 'Presentation',
         image: '/projects/doors/Presentasi Doors-1.webp', // Using Doors thumb as requested
         tagline: 'Laporan Akhir Magang Nasional - Sulthan Abdi Dzikry',
@@ -1407,6 +1422,7 @@ export const projectsData = [
     {
         id: 'internship-detail',
         title: 'Case Study: Magang Nasional',
+        experience: 'dharma-polimetal',
         category: 'UI/UX & System Dev',
         image: '/projects/doors/Presentasi Doors-1.webp',
         showcaseImages: [
@@ -1511,6 +1527,7 @@ export const projectsData = [
     {
         id: 'anti-fraud-doors',
         title: 'Case Study: Anti-Fraud & Vendor Audit System',
+        experience: 'dharma-polimetal',
         category: 'Risk Management',
         image: '/projects/doors/Presentasi Doors-1.webp',
         showcaseImages: [

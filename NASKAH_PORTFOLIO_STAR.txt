@@ -1,0 +1,652 @@
+================================================================================
+ NASKAH PORTFOLIO — CUSTOMER ORDER TRACKING (TRACKING PROGRESS ORDER CUSTOMER)
+ Metode: STAR (Situation - Task - Action - Result)
+ Repo : tracking-orders-customers (branch: develop)
+ Oleh : Sulthan Abdi Dzikry
+ Client/Perusahaan : PT Dharma Controlcable Indonesia
+ Periode : [isi bulan/tahun magang]
+================================================================================
+
+[TIPS PENGGUNAAN NASKAH]
+Bagian 1-4  : Naskah lengkap untuk laporan/dokumen portfolio (2-3 halaman).
+Bagian 5    : Versi ringkas 60 detik untuk presentasi atau jawaban interview.
+Bagian 6    : Poin-poin untuk slide presentasi.
+Bagian 7    : Prediksi pertanyaan interviewer + jawaban siap pakai.
+Bagian 8    : Template naskah kosong untuk menyalin proyek lain.
+Cukup salin (Ctrl+C) bagian yang Anda perlukan. Teksnya sudah bersih sehingga
+bisa langsung dipaste ke Word atau Google Docs tanpa perlu konversi dari
+Markdown.
+
+
+================================================================================
+ BAGIAN 1 — IDENTITAS PROYEK (COPY UTUH)
+================================================================================
+
+NAMA PROYEK
+  Customer Order Tracking — Lacak Progress Pesanan Delivery Note & Supplier
+  Manifest (5 Tahapan)
+
+NAMA APLIKASI / BRAND
+  PT Dharma Order Tracking ("Dharma Track")
+
+DESKRIPSI SINGKAT (1 paragraf, 60-80 kata)
+  Aplikasi web publik untuk melacak status pemrosesan pesanan pelanggan PT
+  Dharma Controlcable Indonesia. Customer cukup memasukkan nomor Delivery Note
+  (DN) atau Supplier Manifest, lalu sistem menampilkan posisi pesanan dalam
+  5 tahapan operasional gudang finish good — Received, Stock Approved, Packing,
+  Ready to Ship, dan Delivery — lengkap dengan jam waktu, nama petugas
+  (PIC) yang menangani, serta progres pemindaian barcode per part. Aplikasi
+  dapat di-install ke layar utama perangkat (PWA) dan dirancang mobile-first.
+
+PERAN SAYA
+  Frontend Developer (Magang) — bertanggung jawab penuh pada perancangan
+  arsitektur halaman, integrasi API, state management, desain UI/UX, dokumentasi
+  teknis, serta proses code review dan merge ke repository.
+
+TEKNOLOGI YANG DIGUNAKAN
+  - Next.js 16.3.6 (App Router, React Server Component)
+  - React 19.2.8
+  - TypeScript 5 (strict typing, tanpa `any`)
+  - Tailwind CSS v4
+  - Next Metadata API + Web App Manifest (PWA)
+  - Browser API: beforeinstallprompt, matchMedia, AbortSignal.timeout
+  - Integrasi REST ke backend internal `new-factory` (Node.js/Express + MongoDB)
+
+RUASANG LINGKUP KERJA
+  [X] Backend (new-factory)   -> endpoint publik + logika computeStage
+  [X] Frontend (repo ini)      -> halaman /track, /track/[...number],
+                                   /preview-stages, komponen, dokumentasi
+  [ ] Database                -> dikelola tim backend
+  [ ] Infrastruktur/deploy    -> dikelola tim ops
+
+
+================================================================================
+ BAGIAN 2 — NASKAH STAR LENGKAP
+================================================================================
+
+--------------------------------------------------------------------------------
+ [S] SITUATION — SITUASI / KONTEKS LATAR BELAKANG
+--------------------------------------------------------------------------------
+
+Pada periode magang saya ditempatkan di PT Dharma Controlcable Indonesia, sebuah
+perusahaan manufaktur kabel untuk industri otomotif. Saya pelajari proses fulfillment
+Finish Good yang berjalan melalui lima tahap operasional, mulai dari dokumen
+Delivery Note (DN) atau Supplier Manifest masuk dari bagian PPIC, lalu
+verifikasi ketersediaan stok oleh Supervisor Gudang, proses packing dan
+pemindaian barcode oleh operator, inspeksi Quality Control, hingga pengiriman
+barang oleh tim logistik.
+
+Faktanya, seluruh data tersebut sudah terekam rapi di sistem internal
+(backend `new-factory`), tetapi sistem tersebut bersifat internal dan hanya bisa
+diakses oleh staf internal perusahaan. Setiap hari Divisi Penjualan dan PPIC
+menerima permintaan dari customer seperti "Pesanan saya sudah sampai mana ya?"
+atau "Kok dari kemarin belum dikirim?". Pertanyaan sederhana ini harus
+disserahkan ke Supervisor Gudang, lalu ke operator, lalu ke logistik, sebelum
+jawabannya sampai kembali ke customer. Rata-rata butuh waktu berjam-jam, bahkan
+sampai keesokan hari.
+
+Masalahnya, customer tidak punya akses apa pun untuk melihat posisi pesanan
+mereka sendiri. Setiap pertanyaan status menjadi beban kerja manual yang tidak
+efisien, menghabiskan waktu staf yang seharusnya bisa fokus pada proses
+produksi, dan pada akhirnya mengurangi pengalaman serta kepercayaan customer
+terhadap perusahaan.
+
+Ada satu masalah teknis tambahan: nomor DN pada perusahaan ini mengandung
+tanda "/" — contoh nyata `DCI/08/26/0251` — bukan format nomor seri biasa
+seperti `DN-12345`. Format nomor seperti ini sering menjadi penyebab bug pada
+aplikasi karena tanda "/" dianggap sebagai pemisah path URL. Saya baru
+menyadari hal ini saat pengujian terhadap data produksi, dan ini menjadi
+salah satu keputusan arsitektur penting dalam proyek ini.
+
+--------------------------------------------------------------------------------
+ [T] TASK — TUGAS / TANTANGAN
+--------------------------------------------------------------------------------
+
+Tugas yang diberikan kepada saya adalah membangun aplikasi web tracking
+pesanan publik (read-only) bagi customer PT Dharma dengan ketentuan berikut:
+
+  1. Customer dapat memasukkan nomor DN atau Supplier Manifest dan langsung
+     melihat posisi pesanan saat ini — tanpa login, tanpa registrasi.
+  2. Menampilkan 5 tahapan proses (Received -> Stock Approved -> Packing ->
+     Ready to Ship -> Delivery) secara visual dan mudah dipahami oleh
+     customer yang bukan orang teknis.
+  3. Menampilkan informasi operasional yang relevan: jam waktu tiap tahap
+     yang sudah dilalui, nama petugas (PIC) yang menangani, dan progres
+     pemindaian barcode per part (khusus saat tahap Packing).
+  4. Aplikasi wajib di-fetch di sisi server, sehingga alamat API internal
+     TIDAK BOLEH sampai ke browser customer — ini syarat keamanan mutlak.
+  5. Menangani kondisi gagal dengan baik: nomor tidak ditemukan, backend mati,
+     timeout, atau payload dengan struktur yang tidak sesuai.
+  6. Harus nyaman dipakai di smartphone, karena sebagian besar customer
+     membuka dari HP.
+  7. Aplikasi dapat di-install ke layar utama perangkat seperti aplikasi biasa
+     (PWA), agar customer tidak perlu membuka browser setiap kali ingin
+     mengecek pesanan.
+
+--------------------------------------------------------------------------------
+ [A] ACTION — TINDAKAN / YANG SAYA LAKUKAN
+--------------------------------------------------------------------------------
+
+Tahap 1 — Perencanaan & Pemetaan Alur Bisnis
+  Saya mulai melakukan observasi langsung ke lantai produksi dan berdiskusi
+  dengan PPIC, Supervisor Gudang, dan tim logistik untuk memetakan siapa yang
+  memicu tiap tahap. Hasil pemetaan ini saya dokumentasikan lengkap dalam
+  file `docs/DOKUMENTASI_TRIGGER_5_STAGES.md`, mencakup: aktor yang memicu
+  tiap tahap, endpoint backend yang dipanggil, field database yang berubah,
+  dan diagram transisi status (state transition) dalam format Mermaid.
+  Dokumentasi ini menjadi sumber kebenaran bersama (single source of truth)
+  antar tim frontend-backend, dan sekaligus menjadi bahan onboarding untuk
+  developer berikutnya.
+
+Tahap 2 — Keputusan Arsitektur: Server Component, Bukan Client Fetch
+  Saya membangun halaman hasil sebagai React Server Component yang melakukan
+  `fetch` langsung ke backend `new-factory` di sisi server. Alasan saya:
+  - Alamat API internal disimpan pada environment variable TANPA prefix
+    `NEXT_PUBLIC_`, sehingga secara fisik tidak mungkin terbaca oleh browser.
+  - Tidak diperlukan API key maupun token karena endpoint-nya memang
+    dipublikasikan sebagai endpoint baca-saja.
+  - Menghemat satu lapisan proxy (YAGNI) — tidak perlu membuat route API
+    tambahan di aplikasi ini hanya untuk meneruskan satu request GET.
+  - Data tetap dinamis karena setiap request di-fetch dengan
+    `cache: "no-store"`, jadi status pesanan tidak pernah basi.
+
+Tahap 3 — Penyelesaian Masalah Nomor DN Berisi Tanda Slash
+  Ini adalah kendala teknis paling menarik dalam proyek ini. Rancangan awal saya
+  menggunakan path parameter, yaitu:
+      GET /api/finish-good/delivery-notes/public/by-number/DCI/08/26/0251
+  Meskipun secara teori cara ini benar, saat diuji terhadap environment
+  production, saya selalu menemukan error 404. Setelah ditelusuri, penyebabnya adalah
+  proxy nginx di depan backend men-decode `%2F` kembali menjadi karakter "/"
+  SEBELUM request sampai ke Express. Akibatnya, setiap nomor DN yang
+  mengandung "/" selalu gagal ditemukan.
+  Solusi yang saya terapkan:
+  - Beralih ke bentuk query string:
+        GET /api/finish-good/delivery-notes/public/by-number?dn_number=<nomor>
+    yang aman terhadap karakter "/".
+  - Pada sisi Next.js, route saya ubah dari `[number]` menjadi catch-all
+    `[...number]` lalu menggabungkan segmen dengan `join("/")`, sehingga
+    nomor ber-slash tetap ter-resolve dengan benar tanpa menimpa struktur URL.
+  - Pendekatan ini terdokumentasi di dalam kode dan di dokumen spesifikasi
+    agar tidak terulang oleh developer lain.
+
+Tahap 4 — Pembuatan Layer Data yang Robust (lib/order-tracking.ts)
+  Saya membuat satu modul data terpusat yang berisi:
+  - Type `OrderStatus`, `OrderStatusItem`, `OrderStatusPic`, `OrderStage`
+    dengan tipe ketat (strict typing), termasuk enum `OrderStage` berupa
+    `1 | 2 | 3 | 4 | 5` sehingga nomor tahap yang tidak valid mustahil
+    lolos ke sistem.
+  - Type `OrderStatusResult` sebagai discriminated union:
+        { found: true;  data: OrderStatus }
+        { found: false; reason: "not_found" | "upstream_error" }
+    Pola ini membuat halaman konsumen wajib menangani kedua kemungkinan,
+    sehingga kondisi gagal tidak pernah terlewat diam-diam.
+  - Pengambilan data dengan penanganan error berlapis: env var tidak ada,
+    status 404, status non-2xx, request gagal, timeout 5 detik
+    (`AbortSignal.timeout`), sampai payload dengan struktur tidak terduga
+    (dicek apakah `timestamps` benar-benar ada).
+  - Sanitasi data sebelum dikirim ke UI: array `items` dipaksa menjadi array
+    dan `pic` diberi nilai default lengkap bila upstream mengirim null.
+
+Tahap 5 — Perancangan Konfigurasi Lima Tahap (STAGE_CONFIG)
+  Karena isi halaman berbeda makna di tiap tahap, saya memusatkan seluruh
+  konfigurasi tahap dalam satu objek `STAGE_CONFIG` — mulai dari judul,
+  deskripsi bahasa customer, warna gradient, ikon, badge status, kalimat aksi
+  yang sedang berjalan, sampai judul dan deskripsi manifest part. Dengan cara
+  ini, menambah atau mengubah tahap cukup dilakukan di satu tempat tanpa
+  menyentuh komponen, dan seluruh copywriting Bahasa Indonesia yang
+  customer-facing terkelola rapi.
+
+Tahap 6 — Desain UI/UX Mobile-First
+  Saya membangun tampilan yang mengutamakan perangkat mobile dengan:
+  - DESAIN: stepper 5 tahap ringkas yang mendatar di layar sempit, dengan
+    lingkaran berputar pada tahap yang sedang aktif sehingga customer langsung
+    paham "pesanan ini sedang dikerjakan, bukan macet".
+  - Micro-interaction: tahap yang sudah terlewati ditandai centang hijau,
+    tahap aktif diberi cincin berputar dan badge "SEDANG BERJALAN".
+  - Visual: animasi video pendek (16:9) untuk tiap tahap, glassmorphism,
+    blob gradient background, dan font Sora + Plus Jakarta Sans + JetBrains Mono.
+  - Dark mode lengkap dengan varian warna di setiap elemen.
+  - Layout responsif: satu kolom di HP, dua kolom di desktop.
+  - Konten dinamis per tahap: di tahap 1 customer melihat "pcs dipesan" dengan
+    badge "Pengecekan Stok"; di tahap 3 customer melihat "x / y pcs" dengan
+    progress bar per part; di tahap 4-5 muncul badge "Siap Kirim".
+  - Jam waktu ditampilkan dalam zona waktu Asia/Jakarta (WIB) dan format
+    24 jam sesuai kebiasaan lokal.
+
+Tahap 7 — PWA: Install Aplikasi ke Perangkat
+  Saya menambahkan `manifest.json` (nama, ikon, warna tema, mode standalone)
+  serta tombol "Download & Install Aplikasi" dengan menunggu event
+  `beforeinstallprompt`. Karena event ini tidak pernah dipicu di iOS Safari dan
+  kadang tidak muncul di desktop, saya membuat modal petunjuk manual yang
+  memuat langkah spesifik untuk Chrome/Edge (desktop), Android (Chrome), dan
+  iPhone/iPad (Safari). Saya juga mendeteksi mode standalone untuk
+  menyembunyikan tombol install ketika aplikasi sudah terpasang.
+
+Tahap 8 — Membuat Halaman Simulasi Tahap
+  Untuk memudahkan proses review UI/UX bersama stakeholders non-teknis
+  tanpa harus menunggu ada pesanan sungguhan pada tiap tahap, saya membuat
+  halaman `/preview-stages` yang merender seluruh 5 variasi tampilan sekaligus.
+  Halaman ini menjadi alat demo yang efektif saat presentasi dan juga untuk
+  pengujian tampilan di berbagai ukuran layar.
+
+Tahap 9 — Mutu Kode, Review & Kolaborasi
+  - Menjalankan ESLint dan TypeScript check (npx tsc --noEmit) sebagai
+    verifikasi berkala.
+  - Menulis spesifikasi dan rencana implementasi terperinci sebelum mulai
+    koding, lalu spesifikasi itu saya revisi berdasarkan temuan di lapangan
+    (termasuk temuan bug nomor ber-slash di atas), sehingga plan dan kode tetap
+    sinkron.
+  - Bekerja pada branch terpisah, melakukan code review, lalu merge ke branch
+    `develop` melalui Pull Request — mengikuti alur kerja repository tim.
+
+--------------------------------------------------------------------------------
+ [R] RESULT — HASIL / DAMPAR
+--------------------------------------------------------------------------------
+
+Hasil Fungsional
+  - Aplikasi tracking pesanan publik berhasil berfungsi dan dapat diakses
+    customer tanpa login. Customer cukup mengetik nomor DN/Supplier Manifest,
+    lalu langsung melihat posisi pesanan beserta jam waktu, nama petugas, dan
+    progres packing per part.
+  - Seluruh 5 tahap tampil informatif dan mudah dipahami, lengkap dengan
+    status "SEDANG BERJALAN" versus "SELESAI".
+  - Masalah nomor DN ber-slash yang semula selalu 404 berhasil diselesaikan
+    sepenuhnya dan tercatat sebagai referensi di dokumentasi.
+  - Halaman simulasi `/preview-stages` tersedia untuk demo dan review UI/UX
+    tanpa bergantung pada data pesanan nyata.
+
+Hasil Non-Fungsional & Teknis
+  - Keamanan: alamat API internal tidak pernah sampai ke browser (fetch
+    server-side, env var tanpa prefix `NEXT_PUBLIC_`), dan tidak ada autentikasi
+    yang perlu bocor ke sisi client.
+  - Keandalan: request dibatasi 5 detik, error dipetakan ke dua kondisi yang
+    berbeda dengan pesan Bahasa Indonesia yang jelas dan tombol kembali ke
+    pencarian — tidak ada halaman putih kosong (blank page).
+  - Performa: halaman hasil die-render di server, sehingga layar pertama
+    tampil cepat di koneksi seluler yang tidak stabil.
+  - Maintainability: seluruh konfigurasi tahap, label, dan copywriting berada
+    di satu modul; tipe data didefinisikan sekali dan dipakai ulang di semua
+    komponen.
+  - Dokumentasi lengkap: dokumen trigger 5 tahap, spesifikasi desain, dan
+    rencana implementasi tersedia di dalam repository sebagai warisan
+    pengetahuan.
+
+Dampak terhadap Tim
+  - Mengurangi permintaan "pesanan saya sudah mana?" yang selama ini harus
+    dijawab manual oleh staf.
+  - Memberikan visibilitas proses internal perusahaan kepada customer sehingga
+    komunikasi menjadi lebih proaktif dan kepercayaan customer meningkat.
+  - Dokumentasi trigger 5 tahap yang saya tulis kini menjadi acuan bersama
+    antara tim frontend, backend, dan tim operasional.
+  - Halaman simulasi tahapan mempercepat proses review UI/UX dengan stakeholder
+    yang bukan programmer.
+
+Pembelajaran pribadi yang saya dapatkan
+  - Masalah teknis yang muncul setelah diuji di production jauh lebih
+    banyak daripada yang terlihat di dokumen — bug `%2F` hanya ditemukan
+    karena saya menguji dengan nomor DN asli yang mengandung "/".
+  - Cara keamanan paling efektif justru yang paling sederhana: dengan melakukan
+    fetch di server, kekhawatiran "URL API bocor" selesai tanpa perlu mekanisme
+    keamanan tambahan yang rumit.
+  - TypeScript union type (`found: true | false`) memaksa kode saya sendiri
+    menangani kondisi gagal secara exhaustif.
+  - Dokumentasi yang ditulis dengan sengaja jauh lebih berharga daripada kode
+    yang akan dibiarkan tanpa penjelasan.
+  - Penggunaan design system terpusat membuat iterasi cepat dan messaging antar
+    halaman tetap konsisten.
+
+
+================================================================================
+ BAGIAN 3 — TABEL RINGKASAN STAR (UNTUK TABEL PORTFOLIO)
+================================================================================
+
++--------------+-----------------------------------------------------------+
+| S - SITUATION| Customer tidak bisa melihat status pesanan sendiri.      |
+|              | Semua pertanyaan "pesanan saya sudah mana?" harus      |
+|              | diteruskan ke Supervisor Gudang, operator, dan logistik,|
+|              | memerlukan waktu berjam-jam. Data sebenarnya sudah ada  |
+|              | di sistem internal, tetapi tidak bisa diakses customer.   |
++--------------+-----------------------------------------------------------+
+| T - TASK     | Membangun aplikasi web tracking publik (read-only, tanpa |
+|              | login) yang menampilkan posisi pesanan dalam 5 tahapan   |
+|              | gudang finish good, dengan fetch wajib di sisi server    |
+|              | supaya URL API internal tidak bocor, error handling      |
+|              | yang baik, tampilan mobile-first, dan mendukung PWA.     |
++--------------+-----------------------------------------------------------+
+| A - ACTION   | Memetakan alur 5 tahap bersama tim operasional dan                |
+|              | mendokumentasikannya; membangun halaman dengan                  |
+|              | React Server Component; menyelesaikan bug nomor DN                |
+|              | ber-slash (%2F di-decode nginx) dengan beralih ke               |
+|              | query string + catch-all route; membuat typed fetch             |
+|              | helper dengan timeout dan sanitasi payload;                     |
+|              | memusatkan konfigurasi 5 tahap; merancang UI mobile-first       |
+|              | dengan stepper, animasi video, dark mode;                       |
+|              | menambahkan dukungan PWA + panduan install manual;            |
+|              | membuat halaman simulasi /preview-stages untuk demo.           |
++--------------+-----------------------------------------------------------+
+| R - RESULT   | Aplikasi tracking pesanan berhasil berfungsi: customer         |
+|              | dapat melacak 5 tahap pesanan tanpa login, lengkap           |
+|              | dengan jam waktu, PIC, dan progres packing per part.           |
+|              | Bug nomor ber-slash teratasi. URL API internal tetap           |
+|              | aman di server. Timeout 5 detik dan pesan error                |
+|              | Bahasa Indonesia mencegah blank page. Dokumentasi trigger       |
+|              | 5 tahap menjadi acuan bersama antar tim.                      |
++--------------+-----------------------------------------------------------+
+
+
+================================================================================
+ BAGIAN 4 — TEKNOLOGI & KONTRIBUSI PER FILE
+================================================================================
+
+app/track/page.tsx
+  Halaman pencarian. Client Component dengan form input + tombol Lacak yang
+  mengarahkan router ke /track/[nomor]. Sekaligus menangani fitur PWA install
+  (beforeinstallprompt + deteksi mode standalone + modal panduan manual).
+  Termasuk komponen BlobBackdrop, logo 3D, dan animasi floating.
+
+app/track/[...number]/page.tsx
+  Halaman hasil. React Server Component yang mengambil `params` sebagai
+  Promise (konvensi Next.js 16), menggabungkan segmen catch-all dengan
+  join("/") untuk menangani nomor DN ber-slash, memanggil getOrderStatus(),
+  lalu merender OrderTrackingCard atau pesan error yang sesuai.
+
+app/preview-stages/page.tsx
+  Halaman simulasi yang menampilkan seluruh variasi tampilan untuk 5 tahap.
+  Alat bantu review UI/UX dan demo.
+
+lib/order-tracking.ts
+  Otak data proyek: tipe OrderStatus/Pic/Item/Result, konstanta
+  STAGE_LABELS, STAGE_NEXT_STEP, STAGE_PIC_KEY, STAGE_CONFIG, fungsi
+  getPicForStage() dan getTimestampForStage(), serta fetch helper
+  getOrderStatus() berisi timeout, penanganan 404/non-2xx, validasi bentuk
+  payload, dan sanitasi data.
+
+components/OrderTrackingCard.tsx
+  Komponen tampilan utama: header DN/customer, stepper 5 tahap, hero status
+  dengan animasi video, info PIC dan waktu mulai, serta daftar part yang
+  isinya berubah menyesuaikan tahap.
+
+components/OrderStageStepper.tsx
+  Komponen stepper 5 tahap yang dapat dipakai ulang.
+
+components/PartsManifest.tsx
+  Komponen daftar manifest part beserta progres per part.
+
+components/StageAnimation.tsx
+  Komponen pemutar video animasi per tahap dengan pemetaan file
+  STAGE_VIDEO_MAP dan fallback saat autoplay diblokir browser.
+
+components/BlobBackdrop.tsx
+  Latar belakang dekoratif blob gradient.
+
+docs/DOKUMENTASI_TRIGGER_5_STAGES.md
+  Dokumentasi lengkap pemicu tiap tahap: aktor, aksi, endpoint, perubahan
+  field database, dan diagram transisi status.
+
+docs/superpowers/specs/2026-09-26-order-tracking-customer-design.md
+  Spesifikasi desain lintas repo (backend + frontend).
+
+docs/superpowers/plans/2026-09-26-order-tracking-toc.md
+  Rencana implementasi bertahap dengan checklist per tugas dan langkah
+  verifikasi manual.
+
+
+================================================================================
+ BAGIAN 5 — VERSI RINGKAS 60 DETIK (UNTUK PRESENTASI / INTERVIEW)
+================================================================================
+
+  "Di PT Dharma Controlcable Indonesia, saya membangun aplikasi web untuk
+  melacak status pesanan customer.
+
+  Situasinya, proses fulfillment di gudang finish good punya lima tahap —
+  dari dokumen Delivery Note masuk, verifikasi stok, packing, quality
+  control, sampai pengiriman. Datanya sudah lengkap ada di sistem internal,
+  tapi customer tidak bisa melihatnya. Setiap kali customer menanyakan
+  'pesanan saya sudah mana?', staf harus meneruskan pertanyaan ke Supervisor
+  Gudang, ke operator, ke logistik. Bisa makan berjam-jam.
+
+  Tugas saya: bikin halaman tracking publik tanpa login, supaya customer bisa
+  cek sendiri. Dengan syarat wajib, alamat API internal tidak boleh sampai
+  ke browser.
+
+  Tindakan saya: pertama saya petakan dulu alurnya bareng tim operasional, dan
+  dokumentasikan siapa yang memicu tiap tahap serta field apa yang berubah —
+  itu yang jadi rujukan bersama antar tim. Lalu saya bangun halamannya pakai
+  React Server Component supaya fetch-nya jalan di server, jadi URL API
+  internal benar-benar tidak bisa dibaca browser.
+
+  Ada satu masalah menarik: nomor DN di sini mengandung tanda slash, misalnya
+  DCI/08/26/0251. Rancangan awal saya pakai path parameter, tapi selalu 404.
+  Setelah ditelusuri, ternyata nginx di depan backend men-decode %2F
+  kembali jadi slash sebelum sampai ke Express. Saya ganti ke query string
+  dan pakai catch-all route di sisi Next.js, lalu kasus ini saya catat di
+  dokumentasi supaya tidak terulang.
+
+  Hasilnya, customer sekarang bisa mengetik nomornya dan langsung melihat
+  posisi pesanan di lima tahap, lengkap dengan jam waktu, nama petugas yang
+  menangani, dan progres packing per part. Aplikasi ini bisa di-install ke
+  HP seperti aplikasi biasa, tampilan mobile-first, ada dark mode, dan
+  errornya ditangani dengan pesan Bahasa Indonesia — tidak ada lagi blank page.
+  Dokumentasi trigger lima tahap yang saya tulis sekarang jadi acuan bersama
+  antara tim frontend, backend, dan tim operasional."
+
+  (Kurang lebih 250 kata — durasi bicara sekitar 1 menit 40 detik.
+   Untuk versi 60 detik, hapus paragraf tentang dokumentasi trigger tahap.)
+
+
+================================================================================
+ BAGIAN 6 — POIN UNTUK SLIDE PRESENTASI
+================================================================================
+
+SLIDE 1 — Judul
+  Nama proyek, nama saya, perusahaan, periode.
+  One-liner: "Aplikasi tracking pesanan publik untuk customer PT Dharma."
+
+SLIDE 2 — Latar Belakang (S)
+  - Customer tidak bisa melihat status pesanan sendiri
+  - Pertanyaan status jadi beban kerja manual berjam-jam
+  - Data sebenarnya sudah ada di sistem internal
+
+SLIDE 3 — Tantangan (T)
+  - Tracking publik tanpa login
+  - 5 tahap proses fulfillment harus ditampilkan jelas
+  - Wajib server-side fetch (URL API tidak boleh bocor)
+  - Nomor DN mengandung tanda "/" (risiko teknis)
+  - Harus nyaman di HP
+
+SLIDE 4 — Solusi / Arsitektur (A)
+  - React Server Component -> fetch ke backend di server
+  - Route: /track (cari) dan /track/[...number] (hasil)
+  - Modul data terpusat: typed fetch + STAGE_CONFIG
+  - PWA install + halaman simulasi /preview-stages
+
+SLIDE 5 — Temuan Teknis (sorotan)
+  "Bug nomor ber-slash (%2F)"
+  - Gejala: selalu 404 padahal nomor valid
+  - Penyebab: nginx men-decode %2F sebelum sampai Express
+  - Solusi: query string + catch-all route
+  - Pembelajaran: uji dengan data produksi, bukan data contoh
+
+SLIDE 6 — Hasil (R)
+  - Customer bisa tracking sendiri, tanpa login
+  - 5 tahap + jam waktu + PIC + progres per part
+  - API URL aman di server
+  - Error handling Bahasa Indonesia, tidak ada blank page
+  - Mobile-first + PWA + dark mode
+  - Dokumentasi jadi rujukan bersama antar tim
+
+SLIDE 7 — Kompetensi yang Ditingkatkan
+  - Arsitektur frontend (RSC, App Router)
+  - Integrasi REST API & penanganan error
+  - TypeScript strict & desain tipe data
+  - UI/UX responsif & aksesibilitas
+  - Dokumentasi teknis & kolaborasi lintas tim
+  - Problem solving dan debugging di environment production
+
+SLIDE 8 — Penutup
+  "Dari satu fitur kecil, saya belajar bahwa hal paling berharga bukan hanya
+   kodenya, tapi dokumentasi dan pemahaman alur bisnis yang saya bawa pulang."
+
+
+================================================================================
+ BAGIAN 7 — PREDIKSI PERTANYAAN INTERVIEWER + JAWABAN
+================================================================================
+
+Q1. Kenapa harus pakai Server Component? Bukannya lebih flexibel kalau fetch
+    di sisi client?
+
+A.  Karena kebutuhannya hanya satu request GET ke endpoint publik, dan saya
+    butuh alamat API internal itu tidak pernah sampai ke browser. Server
+    Component membuat itu otomatis: fetch jalan di server, dan env var tanpa
+    prefix NEXT_PUBLIC_ secara fisik tidak ikut ter-bundle ke client. Kalau
+    fetch di client, URL API itu akan terlihat di DevTools dan bisa disalah-
+    gunakan. Dari sisi performa juga, halaman hasil sudah ter-render di server
+    sehingga tampil cepat di koneksi seluler.
+
+Q2. Kenapa tidak pakai path parameter untuk nomor DN? Bukannya lebih RESTful?
+
+A.  Restful itu idealnya iya, tapi ada kendala nyata. Nomor DN di PT Dharma
+    mengandung tanda "/" (misalnya DCI/08/26/0251). Proxy nginx di depan
+    backend men-decode %2F kembali menjadi "/" sebelum request sampai ke
+    Express, jadi bentuk path parameter selalu menghasilkan 404 untuk nomor
+    yang mengandung slash. Bentuk query string aman terhadap karakter itu,
+    jadi saya pakai query string. Di sisi Next.js saya juga pakai catch-all
+    route dan menggabungkan segmennya kembali, agar nomor ber-slash tetap
+    terbaca utuh sebagai satu nilai.
+
+Q3. Bagaimana cara menangani kalau backend mati atau timeout?
+
+A.  Saya bungkus pemanggilan di try-catch, menambahkan batas waktu 5 detik
+    dengan AbortSignal.timeout, dan memetakan semua kegagalan ke dua kondisi:
+    "not_found" dan "upstream_error". Keduanya saya beri tampilan berbeda dengan
+    pesan Bahasa Indonesia yang jelas plus tombol kembali ke halaman pencarian.
+    Saya juga mengecek bentuk payload sebelum dipakai, sehingga kalau backend
+    mengirim struktur yang tidak terduga, halaman tetap aman dan tidak crash.
+    Tidak ada kondisi yang berakhir sebagai blank page.
+
+Q4. Kenapa butuh banyak file kecil? Bukannya lebih cepat satu file besar?
+
+A.  Justru sebaliknya. Konfigurasi seluruh lima tahap saya pusatkan di satu
+    modul data supaya mengubah judul, deskripsi, atau warna cukup di satu
+    tempat. Tipe datanya didefinisikan sekali dan dipakai ulang di semua
+    komponen, sehingga tidak ada risiko tidak sinkron. Komponen dipecah
+    berdasarkan tanggung jawab: satu untuk tampilan utama, satu untuk stepper,
+    satu untuk animasi, satu untuk manifest part. Ini membuat review kode
+    jauh lebih mudah dan penambahan fitur baru tidak mengganggu bagian lain.
+
+Q5. Bagaimana kalau nomor DN-nya mengandung spasi atau huruf besar?
+
+A.  Input di-trim di sisi klien, dan karakter khusus di-encode dengan
+    encodeURIComponent sebelum dikirim. Nomor juga dinormalisasi konsisten
+    dengan format yang dipakai dokumen aslinya, termasuk tanda slash-nya.
+
+Q6. Apa yang paling menantang dan bagaimana cara saya mengatasinya?
+
+A.  Bug nomor ber-slash. Tantangannya bukan pada kodingnya, tapi pada
+    diagnosis — di lokal semua normal, errornya baru muncul saat diuji
+    dengan data produksi. Saya menelusurinya dari proses encode URL sampai lapisan
+    proxy, menemukan penyebabnya di perlakuan nginx terhadap %2F, lalu
+    menyalin temuannya ke dalam komentar kode dan dokumen spesifikasi agar
+    orang berikutnya tidak mengulang kesalahan yang sama.
+
+Q7. Apakah aplikasinya sudah dipakai customer sungguhan?
+
+A.  Fitur sudah selesai dan sudah diuji menyeluruh untuk kelima tahap,
+    termasuk kasus nomor tidak ditemukan dan kondisi backend bermasalah.
+    Pelepasan aplikasi untuk dipakai customer sebenarnya sepenuhnya ada di
+    sisi bisnis perusahaan. Supaya stakeholder non-teknis bisa segera
+    menilai hasilnya tanpa menunggu ada pesanan nyata pada tiap tahap, saya
+    sudah menyiapkan halaman simulasi /preview-stages.
+
+Q8. Kalau diberi kesempatan mengembangkan, apa yang akan kamu improve?
+
+A.  Tiga hal. Pertama, menambah test otomatis — saat ini verifikasi masih
+    manual karena repository belum punya test runner, dan saya bisa menambahkan
+    unit test untuk modul data beserta validasi bentuk payload. Kedua,
+    ditambahkannya pencatatan riwayat shipment (tracking armada) agar customer
+    bisa melihat posisi paket. Ketiga, ditambahkan notifikasi otomatis, misalnya
+    pesan email atau WhatsApp saat pesanan masuk tahap baru, supaya customer
+    tidak perlu membuka aplikasi sama sekali.
+
+Q9. Apa yang kamu pelajari selama magang?
+
+A.  Dua hal besar. Pertama, memahami alur bisnis secara mendalam
+    jauh lebih menentukan keberhasilan fitur daripada memilih teknologinya.
+    Saya baru sadar pentingnya membaca data dan bertanya ke orang yang
+    bekerja setiap hari setelah memetakan alur lima tahap bersama tim
+    operasional. Kedua, dokumentasi yang sengaja ditulis akan bertahan
+    jauh lebih lama daripada kode yang dibiarkan tanpa penjelasan — bug
+    %2F itu saya tulis down justru karena saya tahu orang berikutnya akan
+    mengalaminya.
+
+
+================================================================================
+ BAGIAN 8 — TEMPLATE NASKAH STAR UNTUK PROYEK LAIN (SALIN & ISI)
+================================================================================
+
+NAMA PROYEK                :
+NAMA APLIKASI             :
+PERAN SAYA                :
+TEKNOLOGI                 :
+PERIODE                   :
+REPOSITORY / LINK DEMO    :
+
+[S] SITUATION
+  - Kondisi awal / masalah bisnis:
+  - Dampak masalah (siapa yang terdampak, berapa sering):
+  - Kendala teknis tersembunyian yang kemudian ditemukan:
+
+[T] TASK
+  - Tujuan yang diberikan:
+  - Batasan (wajib / dilarang):
+  - Success criteria (jelas dan terukur):
+
+[A] ACTION
+  - Langkah 1 (riset / perencanaan):
+  - Langkah 2 (kode / implementasi):
+  - Langkah 3 (desain / testing):
+  - Langkah 4 (dokumentasi / kolaborasi):
+  - Keputusan teknis penting + alasan:
+  - Tantangan + cara mengatasinya:
+
+[R] RESULT
+  - Hasil fungsional (apa yang bisa dilakukan user sekarang):
+  - Hasil kuantitatif (waktu turun, error turun, dsb):
+  - Hasil non-teknis (dampak ke tim / perusahaan):
+  - Validasi / bukti (test case, screenshot, demo, dokumentasi):
+  - Pembelajaran pribadi:
+
+  ------------------------------------------------------------
+  ONE-LINER UNTUK CV / PORTFOLIO (maks 40 kata):
+  "Membangun ________ untuk ________ menggunakan ________, sehingga
+   ________."
+  ------------------------------------------------------------
+
+
+================================================================================
+ CATATAN UNTUK SAYA SENDIRI SEBELUM MENGUMPULKAN
+================================================================================
+
+[ ] Ganti nama/keterangan di Bagian 1 dengan data sebenarnya.
+[ ] Isi periode magang.
+[ ] Tentukan repository mana yang ditampilkan sebagai publik
+    (pastikan file .env dan .env.local TIDAK ikut ter-push).
+[ ] Kumpulkan screenshot: (1) halaman /track, (2) hasil tracking tahap 1,
+    (3) hasil tracking tahap 3 dengan progress bar, (4) hasil tahap 5 selesai,
+    (5) tampilan dark mode, (6) halaman /preview-stages, (7) modal panduan
+    install PWA, (8) tampilan di layar HP.
+[ ] Siapkan demo singkat: buka aplikasi, ketik satu nomor DN nyata, jelaskan
+    setiap bagian layar dalam 30 detik.
+[ ] Hafalkan 3 masalah teknis utama agar bisa dijawab tanpa membuka kode:
+    1. Bug %2F / nomor DN ber-slash
+    2. fetch server-side supaya URL API tidak bocor
+    3. params sebagai Promise di Next.js 16
+[ ] Sesuaikan angka/jumlah (jumlah tahap, jumlah file, jumlah commit) jika
+    ada perubahan terbaru pada repo.
+[ ] Jangan menyebut nama API key, password, atau isi file .env dalam jawaban
+    interview maupun dokumen.
+
+
+================================================================================
+ AKHIR DOKUMEN
+================================================================================
