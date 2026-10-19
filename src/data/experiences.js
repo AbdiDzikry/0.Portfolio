@@ -21,8 +21,8 @@ export const experiences = [
         companyId: 'PT Dharma Controlcable Indonesia',
         role: 'IT Support & Digitalization',
         roleId: 'IT Support & Digitalisasi',
-        period: 'Jun 2026 - Present',
-        periodId: 'Jun 2026 - Sekarang'
+        period: 'Aug 2026 - Oct 2026',
+        periodId: 'Agu 2026 - Okt 2026'
     },
     {
         id: 'dharma-polimetal',

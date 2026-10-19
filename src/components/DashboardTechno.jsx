@@ -108,7 +108,7 @@ const DashboardTechno = () => {
 
                         <div className="space-y-4 relative z-10 flex-1 overflow-y-auto pr-2 custom-scrollbar">
                             {[
-                                { company: "PT Dharma Controlcable Ind", role: "IT Support & Digitalization", desc: "Quality portal, WMS tracking, meeting-room booking.", period: "Jun 2026 - Present" },
+                                { company: "PT Dharma Controlcable Ind", role: "IT Support & Digitalization", desc: "Quality portal, WMS tracking, meeting-room booking.", period: "Aug 2026 - Oct 2026" },
                                 { company: "PT Dharma Polimetal Tbk.", role: "IT Support & Digitalization", desc: "HRMS revamp (+50%), digital LMK QC, hazard & AC monitoring.", period: "Oct 2025 - Apr 2026" },
                                 { company: "Codetag Studio", role: "Software Engineer", desc: "End-to-end web dev & BRD — 100% on-time.", period: "Jul 2025 - Oct 2025" },
                                 { company: "Telkom Digital Amoeba", role: "UX Researcher Intern", desc: "End-to-end research, quantitative & qualitative analysis.", period: "Dec 2023 - Jan 2024" },

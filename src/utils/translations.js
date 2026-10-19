@@ -223,7 +223,7 @@ export const translations = {
             industries: "Industries",
             info: "Information",
             jobs: [
-                { company: "PT Dharma Controlcable Ind", role: "IT Support & Digitalization", desc: "Quality portal, WMS & supply chain tracking, meeting-room booking — Smart Factory ecosystem.", period: "Jun 2026 - Present" },
+                { company: "PT Dharma Controlcable Ind", role: "IT Support & Digitalization", desc: "Quality portal, WMS & supply chain tracking, meeting-room booking — Smart Factory ecosystem.", period: "Aug 2026 - Oct 2026" },
                 { company: "PT Dharma Polimetal Tbk.", role: "IT Support & Digitalization", desc: "HRMS revamp (+50% usage, 1,000+ users), digital LMK QC reports, hazard & AC monitoring.", period: "Oct 2025 - Apr 2026" },
                 { company: "Codetag Studio", role: "Software Engineer", desc: "End-to-end web development & BRD collaboration — 100% on-time delivery.", period: "Jul 2025 - Oct 2025" },
                 { company: "Telkom Digital Amoeba", role: "UX Researcher Intern", desc: "End-to-end research, quantitative & qualitative analysis.", period: "Dec 2023 - Jan 2024" },
@@ -530,7 +530,7 @@ export const translations = {
             industries: "Industri",
             info: "Informasi",
             jobs: [
-                { company: "PT Dharma Controlcable Ind", role: "IT Support & Digitalisasi", desc: "Portal kualitas, pelacakan WMS & rantai pasok, booking ruang meeting — ekosistem Smart Factory.", period: "Jun 2026 - Sekarang" },
+                { company: "PT Dharma Controlcable Ind", role: "IT Support & Digitalisasi", desc: "Portal kualitas, pelacakan WMS & rantai pasok, booking ruang meeting — ekosistem Smart Factory.", period: "Agu 2026 - Okt 2026" },
                 { company: "PT Dharma Polimetal Tbk.", role: "IT Support & Digitalisasi", desc: "Revitalisasi HRMS (+50% pemakaian, 1.000+ pengguna), LMK QC digital, duga bahaya & monitoring AC.", period: "Okt 2025 - Apr 2026" },
                 { company: "Codetag Studio", role: "Software Engineer", desc: "Pengembangan web end-to-end & kolaborasi BRD — 100% tepat waktu.", period: "Jul 2025 - Okt 2025" },
                 { company: "Telkom Digital Amoeba", role: "UX Researcher Intern", desc: "Riset end-to-end, analisis kuantitatif & kualitatif.", period: "Des 2023 - Jan 2024" },

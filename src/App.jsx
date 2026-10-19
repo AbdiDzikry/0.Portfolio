@@ -19,6 +19,7 @@ import BlogPost from './pages/BlogPost';
 import Lab from './pages/Lab';
 import Game from './pages/Game';
 import Presentation from './pages/Presentation';
+import DciPresentation from './pages/DciPresentation';
 import NonconformityPresentation from './pages/NonconformityPresentation';
 import StoryPresentation from './pages/StoryPresentation';
 import Tools from './pages/Tools';
@@ -28,10 +29,11 @@ import PageTransition from './components/PageTransition';
 function AppContent() {
   const location = useLocation();
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const isPresentationMode = location.pathname.startsWith('/presentation');
 
   return (
     <div className="bg-white dark:bg-bg-primary min-h-screen text-text-primary transition-colors duration-300 font-sans flex flex-col relative">
-      <Navbar onChatToggle={() => setIsChatOpen(!isChatOpen)} />
+      {!isPresentationMode && <Navbar onChatToggle={() => setIsChatOpen(!isChatOpen)} />}
       <div className="flex-grow">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
@@ -48,13 +50,16 @@ function AppContent() {
             <Route path="/game" element={<PageTransition><Game /></PageTransition>} />
             <Route path="/tools" element={<PageTransition><Tools /></PageTransition>} />
             <Route path="/presentation" element={<Presentation />} />
+            <Route path="/presentation/dci" element={<DciPresentation />} />
             <Route path="/presentation/nonconformity" element={<NonconformityPresentation />} />
             <Route path="/presentation/who-i-become" element={<StoryPresentation />} />
           </Routes>
         </AnimatePresence>
       </div>
-      <Footer />
-      <ChatWidget isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} onToggle={() => setIsChatOpen(!isChatOpen)} />
+      {!isPresentationMode && <Footer />}
+      {!isPresentationMode && (
+        <ChatWidget isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} onToggle={() => setIsChatOpen(!isChatOpen)} />
+      )}
     </div>
   );
 }

@@ -4,30 +4,9 @@ import { creativeMarketingProject } from './projects/creativeMarketing';
 import { orderTrackingProject } from './projects/orderTracking';
 
 export const projectsData = [
-    creativeMarketingProject,
     aisBackendProject,
     portalAduanProject,
     orderTrackingProject,
-    {
-        id: 'nonconformity-presentation',
-        title: 'Presentasi Digital PICA (Problem Identification Corrective Action)',
-        experience: 'dharma-controlcable',
-        category: 'Presentasi',
-        image: '/projects/12-portal-aduan/2. dashboard.png',
-        tagline: 'Digital PICA - Quality Issue Tracking & Resolution System Interactive Presentation',
-        description: 'Sebuah presentasi interaktif mengenai sistem terintegrasi Digital PICA (Problem Identification Corrective Action), mencakup latar belakang, alur solusi, fitur, dampak, hingga next target.',
-        tags: ['Presentation', 'Quality Management', 'Report'],
-        size: 'large',
-        path: '/presentation/nonconformity',
-        translations: {
-            id: {
-                title: 'Presentasi Digital PICA (Problem Identification Corrective Action)',
-                category: 'Presentasi',
-                tagline: 'Digital PICA - Quality Issue Tracking & Resolution System Interactive Presentation',
-                description: 'Sebuah presentasi interaktif mengenai sistem terintegrasi Digital PICA (Problem Identification Corrective Action), mencakup latar belakang, alur solusi, fitur, dampak, hingga next target.'
-            }
-        }
-    },
     {
         id: 'who-i-become',
         title: 'I Am Known As?',
@@ -1401,20 +1380,20 @@ export const projectsData = [
     },
     {
         id: 'internship-report',
-        title: 'Laporan Akhir Magang',
+        title: 'Laporan Presentasi Magang DPM',
         experience: 'dharma-polimetal',
         category: 'Presentation',
         image: '/projects/doors/Presentasi Doors-1.webp', // Using Doors thumb as requested
-        tagline: 'Laporan Akhir Magang Nasional - Sulthan Abdi Dzikry',
+        tagline: 'Laporan Presentasi Magang DPM - Sulthan Abdi Dzikry',
         description: 'Sebuah presentasi interaktif mengenai perjalanan magang nasional, mencakup profil, struktur organisasi, hingga insight dan target karir.',
         tags: ['Presentation', 'Internship', 'Report'],
         size: 'large',
         path: '/presentation', // Custom path for presentation mode
         translations: {
             id: {
-                title: 'Laporan Akhir Magang',
+                title: 'Laporan Presentasi Magang DPM',
                 category: 'Presentasi',
-                tagline: 'Laporan Akhir Magang Nasional - Sulthan Abdi Dzikry',
+                tagline: 'Laporan Presentasi Magang DPM - Sulthan Abdi Dzikry',
                 description: 'Sebuah presentasi interaktif mengenai perjalanan magang nasional, mencakup profil, struktur organisasi, hingga insight dan target karir.'
             }
         }
@@ -1599,6 +1578,47 @@ export const projectsData = [
                 category: 'Manajemen Risiko',
                 tagline: 'Memutus Monopoli Fasilitas Lewat Kontrol Log Digital.',
                 description: 'Penerapan kemampuan analitik untuk membatalkan taktik manipulasi pemesanan sistem DOORS HRGA.'
+            }
+        }
+    },
+    creativeMarketingProject,
+    {
+        id: 'nonconformity-presentation',
+        title: 'Presentasi Digital PICA',
+        experience: 'dharma-controlcable',
+        category: 'Presentasi',
+        image: '/projects/12-portal-aduan/2. dashboard.png',
+        tagline: 'Digital PICA - Quality Issue Tracking & Resolution System Interactive Presentation',
+        description: 'Sebuah presentasi interaktif mengenai sistem terintegrasi Digital PICA (Problem Identification Corrective Action), mencakup latar belakang, alur solusi, fitur, dampak, hingga next target.',
+        tags: ['Presentation', 'Quality Management', 'Report'],
+        size: 'large',
+        path: '/presentation/nonconformity',
+        translations: {
+            id: {
+                title: 'Presentasi Digital PICA',
+                category: 'Presentasi',
+                tagline: 'Digital PICA - Quality Issue Tracking & Resolution System Interactive Presentation',
+                description: 'Sebuah presentasi interaktif mengenai sistem terintegrasi Digital PICA (Problem Identification Corrective Action), mencakup latar belakang, alur solusi, fitur, dampak, hingga next target.'
+            }
+        }
+    },
+    {
+        id: 'dci-internship-report',
+        title: 'Laporan Presentasi Magang DCI',
+        experience: 'dharma-controlcable',
+        category: 'Presentation',
+        image: '/projects/11-ais-backend/1.png',
+        tagline: 'Laporan Presentasi Magang PT Dharma Controlcable Indonesia - Sulthan Abdi Dzikry',
+        description: 'Presentasi interaktif eksekutif digitalisasi Smart Factory PT Dharma Controlcable Indonesia: Digital PICA, ERP/WMS AIS, dan Tracking Order Customer.',
+        tags: ['Presentation', 'Smart Factory', 'Digital PICA', 'AIS', 'Order Tracking'],
+        size: 'large',
+        path: '/presentation/dci',
+        translations: {
+            id: {
+                title: 'Laporan Presentasi Magang DCI',
+                category: 'Presentasi',
+                tagline: 'Laporan Presentasi Magang PT Dharma Controlcable Indonesia - Sulthan Abdi Dzikry',
+                description: 'Presentasi interaktif eksekutif digitalisasi Smart Factory PT Dharma Controlcable Indonesia: Digital PICA, ERP/WMS AIS, dan Tracking Order Customer.'
             }
         }
     }

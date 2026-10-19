@@ -7,7 +7,8 @@ export const orderTrackingProject = {
     image: '/projects/order-tracking/thumbnail.png',
     showcaseImages: [
         '/projects/order-tracking/thumbnail.png',
-        '/projects/order-tracking/track-search.png',
+        '/projects/order-tracking/1.png',
+        '/projects/order-tracking/2.png',
         '/projects/order-tracking/order-stage.png',
         '/projects/order-tracking/packing-progress.png',
         '/projects/order-tracking/stage-detail.png',
@@ -17,13 +18,31 @@ export const orderTrackingProject = {
     // ── Interactive Showcase Metadata ──
     galleryItems: [
         {
-            id: 'track-search',
-            image: '/projects/order-tracking/track-search.png',
-            title: 'Pencarian Nomor Delivery Note',
-            subtitle: 'Public Read-Only Tracking Search',
-            category: 'Autentikasi',
+            id: 'track-thumbnail',
+            image: '/projects/order-tracking/thumbnail.png',
+            title: 'Overview Tracking Order Customer',
+            subtitle: 'Customer Delivery Note & Supplier Manifest Tracking',
+            category: 'Overview',
+            tech: ['Next.js', 'React 19', 'Tailwind CSS'],
+            description: 'Tampilan utama aplikasi pelacakan pengiriman customer PT Dharma Controlcable Indonesia.'
+        },
+        {
+            id: 'track-search-1',
+            image: '/projects/order-tracking/1.png',
+            title: 'Halaman Pencarian Order Tracking',
+            subtitle: 'Public Read-Only Tracking Portal',
+            category: 'Pencarian',
             tech: ['Next.js', 'React 19', 'PWA'],
-            description: 'Customer cukup memasukkan nomor Delivery Note atau Supplier Manifest tanpa login maupun registrasi, lalu diarahkan langsung ke halaman hasil pelacakan.'
+            description: 'Tampilan antarmuka pencarian nomor Delivery Note (DN) atau Supplier Manifest yang dapat diakses publik tanpa login.'
+        },
+        {
+            id: 'track-search-2',
+            image: '/projects/order-tracking/2.png',
+            title: 'Tampilan Hasil Pelacakan & Validasi',
+            subtitle: 'Real-time Tracking Result View',
+            category: 'Pelacakan',
+            tech: ['Next.js', 'React 19', 'Tailwind CSS'],
+            description: 'Tampilan hasil pelacakan pesanan beserta status validasi nomor pengiriman customer.'
         },
         {
             id: 'order-stage',
@@ -132,7 +151,7 @@ export const orderTrackingProject = {
     benefits: 'Customers & Sales/PPIC Division of PT Dharma Controlcable Indonesia',
     vision: 'Transparent, proactive order communication that removes manual status relay and builds customer trust.',
     strategicAlignment: 'Supports Smart Factory digitalization by exposing internal fulfillment data as a secure, customer-facing read-only experience.',
-    team: 'Sulthan Abdi Dzikry (Frontend Developer)',
+    team: 'Sulthan Abdi Dzikry (Developer)',
     tags: ['Next.js', 'React 19', 'TypeScript', 'Tailwind CSS', 'PWA', 'REST API'],
     size: 'large',
     problemMap: [

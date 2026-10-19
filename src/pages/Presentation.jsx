@@ -59,7 +59,7 @@ const Presentation = () => {
     const slides = [
         {
             type: 'title',
-            title: 'Laporan Akhir Magang Nasional',
+            title: 'Laporan Presentasi Magang DPM',
             subtitle: 'Sulthan Abdi Dzikry',
             icon: <Briefcase className="w-12 h-12 text-zinc-800" />
         },

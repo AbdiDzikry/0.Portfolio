@@ -1,6 +1,6 @@
 export const portalAduanProject = {
     id: 'portal-aduan',
-    title: 'Digital PICA (Problem Identification Corrective Action)',
+    title: 'Digital PICA',
     experience: 'dharma-controlcable',
     isTrialData: true,
     category: 'Quality Management',
@@ -231,7 +231,7 @@ export const portalAduanProject = {
     background: 'Before this system, quality tracking lacked transparency. I translated operational flows into an intuitive web platform with full frontend development and complex API integration to execute end-to-end Problem Identification Corrective Action (PICA).',
     translations: {
         id: {
-            title: 'Digital PICA (Problem Identification Corrective Action)',
+            title: 'Digital PICA',
             tagline: 'Sistem Pelacakan Mutu & Problem Identification Corrective Action Terintegrasi.',
             description: 'Platform digitalisasi manajemen kualitas berbasis web untuk kolaborasi lintas departemen dalam melaporkan, menganalisis akar masalah, dan mengeksekusi tindakan korektif-preventif (PICA) secara transparan dan akuntabel.',
             problem: 'Pelacakan masalah kualitas minim transparansi: sulit memantau progres, riwayat root cause hilang, dan banyak perbaikan melewati deadline.',

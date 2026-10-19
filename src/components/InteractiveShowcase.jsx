@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     Maximize2, X, ChevronLeft, ChevronRight, Filter,
     Layers, Cpu, Sparkles, RotateCcw, Info, CheckCircle2,
-    Eye, Monitor
+    Eye, Monitor, ZoomIn, ZoomOut
 } from 'lucide-react';
 
 /* ─────────────────────────────────────────────────────────────
@@ -23,20 +23,29 @@ export const ShowcaseModal = ({
 }) => {
     const [currentIndex, setCurrentIndex] = useState(initialIndex);
     const [prevInitialIndex, setPrevInitialIndex] = useState(initialIndex);
+    const [isZoomed, setIsZoomed] = useState(false);
+
+    // Reset zoom whenever current slide changes
+    useEffect(() => {
+        setIsZoomed(false);
+    }, [currentIndex]);
 
     // Sync current index when modal opens with new initialIndex
     if (isOpen && initialIndex !== prevInitialIndex) {
         setPrevInitialIndex(initialIndex);
         setCurrentIndex(initialIndex);
+        setIsZoomed(false);
     }
 
     const handlePrev = useCallback(() => {
         if (!items.length) return;
+        setIsZoomed(false);
         setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
     }, [items.length]);
 
     const handleNext = useCallback(() => {
         if (!items.length) return;
+        setIsZoomed(false);
         setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
     }, [items.length]);
 
@@ -98,7 +107,22 @@ export const ShowcaseModal = ({
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-4 flex-shrink-0">
+                    <div className="flex items-center gap-3 flex-shrink-0">
+                        {/* Zoom toggle button */}
+                        <button
+                            type="button"
+                            onClick={() => setIsZoomed(!isZoomed)}
+                            className={`p-2 rounded-full border transition-all ${
+                                isZoomed
+                                    ? 'bg-accent-pink text-white border-accent-pink shadow-md'
+                                    : 'bg-zinc-800/80 hover:bg-zinc-700 border-zinc-700/70 text-zinc-200 hover:text-white'
+                            }`}
+                            aria-label={isZoomed ? 'Kecilkan ke ukuran pas layar' : 'Perbesar ukuran asli'}
+                            title={isZoomed ? 'Fit to Screen' : 'Zoom Original'}
+                        >
+                            {isZoomed ? <ZoomOut size={16} /> : <ZoomIn size={16} />}
+                        </button>
+
                         {/* Slide counter */}
                         <div className="px-3 py-1 rounded-full bg-zinc-800/80 border border-zinc-700/60 text-xs font-mono text-zinc-300">
                             <span className="text-accent-pink font-bold">{currentIndex + 1}</span> / {items.length}
@@ -118,12 +142,12 @@ export const ShowcaseModal = ({
                 </header>
 
                 {/* ── Main Image Canvas & Navigation Controls ── */}
-                <div className="relative flex-1 flex items-center justify-center p-2 sm:p-6 md:p-8 min-h-0 overflow-hidden">
+                <div className={`relative flex-1 flex items-center justify-center p-2 sm:p-4 min-h-0 ${isZoomed ? 'overflow-auto' : 'overflow-hidden'}`}>
                     {/* Previous Button */}
                     <button
                         type="button"
                         onClick={handlePrev}
-                        className="absolute left-2 sm:left-6 z-20 p-3 rounded-full bg-black/50 hover:bg-black/80 border border-white/20 text-white/80 hover:text-white transition-all transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent-pink shadow-lg"
+                        className="fixed left-2 sm:left-6 z-30 p-3 rounded-full bg-black/50 hover:bg-black/80 border border-white/20 text-white/80 hover:text-white transition-all transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent-pink shadow-lg"
                         aria-label="Gambar sebelumnya (Panah Kiri)"
                         title="Sebelumnya (←)"
                     >
@@ -131,13 +155,18 @@ export const ShowcaseModal = ({
                     </button>
 
                     {/* Active Image Display */}
-                    <div className="relative w-full h-full flex items-center justify-center">
+                    <div className={`relative flex items-center justify-center ${isZoomed ? 'min-w-full min-h-full py-8' : 'w-full h-full'}`}>
                         <AnimatePresence mode="wait">
                             <motion.img
                                 key={currentItem.image || currentIndex}
                                 src={currentItem.image}
                                 alt={currentItem.title || `Preview ${currentIndex + 1}`}
-                                className="max-h-[60vh] sm:max-h-[68vh] md:max-h-[72vh] w-auto max-w-full object-contain rounded-xl shadow-2xl border border-white/10"
+                                onClick={() => setIsZoomed(!isZoomed)}
+                                className={`rounded-xl shadow-2xl border border-white/10 transition-all duration-300 ${
+                                    isZoomed
+                                        ? 'cursor-zoom-out max-w-none w-auto max-h-none shadow-black'
+                                        : 'cursor-zoom-in max-h-[62vh] sm:max-h-[68vh] md:max-h-[72vh] max-w-[90vw] md:max-w-[85vw] w-auto h-auto object-contain'
+                                }`}
                                 initial={{ opacity: 0, scale: 0.96 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 1.02 }}
@@ -150,7 +179,7 @@ export const ShowcaseModal = ({
                     <button
                         type="button"
                         onClick={handleNext}
-                        className="absolute right-2 sm:right-6 z-20 p-3 rounded-full bg-black/50 hover:bg-black/80 border border-white/20 text-white/80 hover:text-white transition-all transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent-pink shadow-lg"
+                        className="fixed right-2 sm:right-6 z-30 p-3 rounded-full bg-black/50 hover:bg-black/80 border border-white/20 text-white/80 hover:text-white transition-all transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent-pink shadow-lg"
                         aria-label="Gambar berikutnya (Panah Kanan)"
                         title="Berikutnya (→)"
                     >
