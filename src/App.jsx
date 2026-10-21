@@ -23,6 +23,7 @@ import DciPresentation from './pages/DciPresentation';
 import NonconformityPresentation from './pages/NonconformityPresentation';
 import StoryPresentation from './pages/StoryPresentation';
 import Tools from './pages/Tools';
+import Porto2Wrapper from './pages/Porto2Wrapper';
 import { AnimatePresence } from 'framer-motion';
 import PageTransition from './components/PageTransition';
 
@@ -48,7 +49,7 @@ function AppContent() {
             <Route path="/blog/:id" element={<PageTransition><BlogPost /></PageTransition>} />
             <Route path="/lab" element={<PageTransition><Lab /></PageTransition>} />
             <Route path="/game" element={<PageTransition><Game /></PageTransition>} />
-            <Route path="/tools" element={<PageTransition><Tools /></PageTransition>} />
+            <Route path="/tools" element={<PageTransition><Tools /></PageTransition>} />`n            <Route path="/porto-2.0" element={<Porto2Wrapper />} />`n            <Route path="/porto-2.0/*" element={<Porto2Wrapper />} />
             <Route path="/presentation" element={<Presentation />} />
             <Route path="/presentation/dci" element={<DciPresentation />} />
             <Route path="/presentation/nonconformity" element={<NonconformityPresentation />} />
@@ -79,3 +80,4 @@ function App() {
 }
 
 export default App;
+

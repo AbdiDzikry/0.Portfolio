@@ -75,7 +75,7 @@ const Navbar = ({ onChatToggle }) => {
                     </NavLink>
 
                     {/* Desktop Navigation Links (Added back) */}
-                    <div className="hidden md:flex items-center gap-6">
+                    <div className="hidden md:flex items-center gap-4 lg:gap-6 flex-nowrap">
                         <NavLink to="/" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.home}</NavLink>
                         <NavLink to="/profile" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.profile}</NavLink>
                         {/* Disembunyikan sementara dari navbar - Profile V2 tetap bisa diakses via /profile-v2 */}
@@ -84,6 +84,13 @@ const Navbar = ({ onChatToggle }) => {
                         <NavLink to="/case-studies" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.caseStudies}</NavLink>
                         <NavLink to="/blog" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.blog}</NavLink>
                         <NavLink to="/tools" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.tools}</NavLink>
+                        <a
+                            href="/porto-2.0/index.html"
+                            className="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-black dark:hover:text-white transition-colors whitespace-nowrap shrink-0"
+                            title="Buka Portofolio Tema 2.0"
+                        >
+                            Porto 2.0
+                        </a>
                     </div>
 
                     <div className="flex items-center gap-1">
@@ -150,6 +157,12 @@ const Navbar = ({ onChatToggle }) => {
                             <MobileNavItem to="/case-studies">{t.nav.caseStudies}</MobileNavItem>
                             <MobileNavItem to="/blog">{t.nav.blog}</MobileNavItem>
                             <MobileNavItem to="/tools">{t.nav.tools}</MobileNavItem>
+                            <a
+                                href="/porto-2.0/index.html"
+                                className="px-4 py-3 rounded-xl text-base font-normal text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all duration-300"
+                            >
+                                Porto 2.0
+                            </a>
                         </motion.div>
                     )}
                 </AnimatePresence>
@@ -168,3 +181,6 @@ const MobileNavItem = ({ to, children }) => (
 );
 
 export default Navbar;
+
+
+

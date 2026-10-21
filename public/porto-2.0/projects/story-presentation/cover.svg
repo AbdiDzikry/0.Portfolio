@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <!-- paper background -->
+  <rect width="1200" height="675" fill="#F1EEE4"/>
+  <rect x="40" y="40" width="1120" height="595" rx="28" fill="#FBF9F3" stroke="#E4DDCB" stroke-width="2"/>
+
+  <!-- flower watermark -->
+  <g transform="translate(120 620) scale(4.2)" opacity="0.05">
+    <path d="M 0 -26 A 10 16 0 0 1 0 26" fill="none" stroke="#C9413B" stroke-width="5"/>
+  </g>
+  <g transform="translate(170 640)" opacity="0.05">
+    <g transform="translate(0 0)">
+      <ellipse cx="0" cy="-22" rx="9" ry="15" fill="#C9413B"/>
+      <ellipse cx="0" cy="-22" rx="9" ry="15" fill="#C9413B" transform="rotate(72)"/>
+      <ellipse cx="0" cy="-22" rx="9" ry="15" fill="#C9413B" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-22" rx="9" ry="15" fill="#C9413B" transform="rotate(216)"/>
+      <ellipse cx="0" cy="-22" rx="9" ry="15" fill="#C9413B" transform="rotate(288)"/>
+      <circle r="8" fill="#A8823C"/>
+    </g>
+  </g>
+
+  <!-- heading -->
+  <g font-family="monospace" font-weight="900">
+    <text x="80" y="108" font-size="34" letter-spacing="14" fill="#A8823C">IDENTITY &amp; PURPOSE</text>
+  </g>
+
+  <!-- title -->
+  <g font-family="sans-serif" font-weight="900">
+    <text x="80" y="300" font-size="76" letter-spacing="-2" fill="#16181D">I Am <tspan fill="#C9413B">Known As?</tspan></text>
+  </g>
+
+  <!-- subtitle -->
+  <rect x="82" y="350" width="2" height="38" fill="#C9413B"/>
+  <text x="100" y="376" font-family="monospace" font-weight="700" font-size="26" letter-spacing="4" fill="#6E6A5C">DI MASA DEPAN, KAMU INGIN DIKENAL SEBAGAI APA?</text>
+
+  <!-- corner blossom -->
+  <g transform="translate(1030 150)">
+    <ellipse cx="0" cy="-24" rx="10" ry="16" fill="#C9413B"/>
+    <ellipse cx="0" cy="-24" rx="10" ry="16" fill="#C9413B" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-24" rx="10" ry="16" fill="#C9413B" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-24" rx="10" ry="16" fill="#C9413B" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-24" rx="10" ry="16" fill="#C9413B" transform="rotate(288)"/>
+    <circle r="9" fill="#A8823C"/>
+  </g>
+  <g transform="translate(960 210)">
+    <ellipse cx="0" cy="-14" rx="6" ry="10" fill="#A8823C"/>
+    <ellipse cx="0" cy="-14" rx="6" ry="10" fill="#A8823C" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-14" rx="6" ry="10" fill="#A8823C" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-14" rx="6" ry="10" fill="#A8823C" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-14" rx="6" ry="10" fill="#A8823C" transform="rotate(288)"/>
+    <circle r="6" fill="#C9413B"/>
+  </g>
+
+  <!-- footer -->
+  <g font-family="monospace" font-weight="700" letter-spacing="8">
+    <text x="80" y="588" font-size="20" fill="#16181D">S. ABDI DZIKRY</text>
+    <text x="330" y="588" font-size="20" fill="#A8823C">・</text>
+    <text x="360" y="588" font-size="20" fill="#6E6A5C">SULTHANABDI.VERCEL.APP</text>
+  </g>
+</svg>

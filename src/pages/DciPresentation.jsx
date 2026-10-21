@@ -578,31 +578,33 @@ const DciPresentation = () => {
             for (let i = 0; i < slides.length; i++) {
                 setDownloadProgress(Math.round(((i + 1) / slides.length) * 100));
                 setCurrentSlide(i);
-                // Beri jeda render dan transisi AnimatePresence agar elemen aktif stabil
-                await new Promise((resolve) => setTimeout(resolve, 800));
+                
+                // Jeda 850ms agar animasi exit/enter framer-motion selesai 100% dan gambar terload
+                await new Promise((resolve) => setTimeout(resolve, 850));
 
-                // Ambil card slide yang paling akhir (slide aktif yang baru masuk DOM)
                 const cards = document.querySelectorAll('.presentation-card');
                 const slideElement = cards.length > 0 ? cards[cards.length - 1] : null;
 
                 if (slideElement) {
                     const canvas = await html2canvas(slideElement, {
-                        scale: 2,
+                        scale: 1.5,
                         useCORS: true,
+                        allowTaint: true,
                         logging: false,
                         backgroundColor: '#ffffff'
                     });
 
-                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                    const imgData = canvas.toDataURL('image/jpeg', 0.92);
+                    
                     if (!pdf) {
                         pdf = new jsPDF({
-                            orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
+                            orientation: canvas.width >= canvas.height ? 'landscape' : 'portrait',
                             unit: 'px',
                             format: [canvas.width, canvas.height]
                         });
                         pdf.addImage(imgData, 'JPEG', 0, 0, canvas.width, canvas.height);
                     } else {
-                        pdf.addPage([canvas.width, canvas.height], canvas.width > canvas.height ? 'landscape' : 'portrait');
+                        pdf.addPage([canvas.width, canvas.height], canvas.width >= canvas.height ? 'landscape' : 'portrait');
                         pdf.addImage(imgData, 'JPEG', 0, 0, canvas.width, canvas.height);
                     }
                 }

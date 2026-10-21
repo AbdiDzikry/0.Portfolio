@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Sulthan Abdi Dzikry</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            font-size: 9pt;
+            line-height: 1.35;
+            color: #000000;
+            background: #ffffff;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 3mm 8mm;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 5px;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 5px;
+        }
+
+        .name {
+            font-size: 18pt;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .title {
+            font-size: 10.5pt;
+            color: #333333;
+            margin-bottom: 4px;
+        }
+
+        .contact {
+            font-size: 9pt;
+            color: #333333;
+        }
+
+        .contact span { margin: 0 5px; }
+
+        .contact a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .section { margin-bottom: 6px; }
+
+        .section-title {
+            font-size: 10pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000000;
+            padding-bottom: 2px;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+            page-break-after: avoid;
+            break-after: avoid;
+        }
+
+        .entry {
+            margin-bottom: 4px;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 1px;
+        }
+
+        .entry-title {
+            font-weight: bold;
+            font-size: 9.5pt;
+        }
+
+        .entry-company {
+            font-style: italic;
+            font-size: 9pt;
+            margin-bottom: 2px;
+        }
+
+        .entry-date {
+            font-size: 9pt;
+            color: #333333;
+        }
+
+        .entry-details {
+            margin-left: 0;
+            padding-left: 14px;
+        }
+
+        .entry-details li {
+            margin-bottom: 2px;
+            text-align: justify;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 3px 10px;
+        }
+
+        .skill-category { font-weight: bold; }
+        .skill-items { text-align: left; }
+
+        @media print {
+            body { padding: 5mm 8mm; }
+            .contact a { color: #000000; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1 class="name">SULTHAN ABDI DZIKRY</h1>
+        <p class="title">IT Digitalisasi</p>
+        <p class="contact">
+            <span>Bekasi, Indonesia</span> |
+            <span><a href="mailto:sulthanabdi1@gmail.com">sulthanabdi1@gmail.com</a></span> |
+            <span><a href="https://wa.me/6288291449821" target="_blank">+6288291449821</a></span>
+        </p>
+        <p class="contact">
+            <a href="https://linkedin.com/in/sulthan-abdi-dzikry">linkedin.com/in/sulthan-abdi-dzikry</a> |
+            <a href="https://website-sulthan.vercel.app/">website-sulthan.vercel.app</a>
+        </p>
+    </header>
+
+    <!-- Profil Profesional -->
+    <section class="section">
+        <h2 class="section-title">Profil Profesional</h2>
+        <p style="text-align: justify;">
+            Lulusan S1 Teknik Informatika Telkom University (IPK 3.52) dengan pengalaman di bidang IT &amp; Digitalisasi. Terbukti sukses mendigitalisasi proses bisnis industri melalui pengembangan ekosistem <i>Smart Factory</i> (WMS &amp; Sistem Manajemen Kualitas), serta membangun berbagai sistem informasi korporat yang memfasilitasi kebutuhan 1.000+ pengguna lintas departemen. Memiliki sertifikasi BNSP Junior Web Developer dengan kemampuan analisis bisnis dan pemecahan masalah yang tinggi.
+        </p>
+    </section>
+
+    <!-- Pengalaman Kerja -->
+    <section class="section">
+        <h2 class="section-title">Pengalaman Kerja</h2>
+
+        <!-- Dharma Controlcable -->
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">IT Support &amp; Digitalisasi</span>
+                <span class="entry-date">Jun 2026 – Saat ini</span>
+            </div>
+            <div class="entry-company">PT Dharma Controlcable Ind · Bekasi, Jawa Barat</div>
+            <ul class="entry-details">
+                <li><strong>Portal Manajemen Kualitas:</strong> Berhasil meningkatkan transparansi dan kecepatan penanganan masalah kecacatan produk lintas departemen dengan cara membangun platform pelaporan digital terpusat yang dilengkapi <i>dashboard</i> pemantauan kinerja secara <i>real-time</i>.</li>
+                <li><strong>Sistem Manajemen Gudang &amp; Rantai Pasok:</strong> Berhasil meminimalisir risiko selisih stok dan mengotomatisasi alur operasional gudang dengan cara mengembangkan sistem pelacakan inventaris akurat berbasis integrasi QR Code/Barcode.</li>
+                <li><strong>Aplikasi Penjadwalan Meeting:</strong> Berhasil mengefisiensikan alur koordinasi peminjaman fasilitas antar departemen dengan cara merancang aplikasi pemesanan ruang meeting terpadu sesuai standar grup perusahaan.</li>
+            </ul>
+        </div>
+
+        <!-- Dharma Polimetal -->
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">IT Support &amp; Digitalisasi</span>
+                <span class="entry-date">Okt 2025 – Apr 2026</span>
+            </div>
+            <div class="entry-company">PT Dharma Polimetal Tbk. · Bekasi, Jawa Barat</div>
+            <ul class="entry-details">
+                <li><strong>Revitalisasi HRMS:</strong> Berhasil meningkatkan frekuensi pemakaian aplikasi Pemesanan Ruang Meeting sebesar <strong>50%</strong> bagi <strong>1.000+ pengguna</strong> dengan cara merancang ulang antarmuka dan mengoptimalkan alur pengguna.</li>
+                <li><strong>Sistem LMK Digital:</strong> Berhasil mendigitalisasi pemrosesan <strong>30+ laporan QC per bulan</strong> secara real-time dengan cara membangun platform Laporan Masalah Kualitas (LMK) terpusat yang dilengkapi fitur otomatisasi laporan.</li>
+                <li><strong>Sistem Duga Bahaya:</strong> Berhasil mempercepat respons mitigasi risiko kecelakaan kerja dengan cara mengembangkan aplikasi sistem duga bahaya berbasis pelaporan terintegrasi di area pabrik.</li>
+                <li><strong>Dashboard Monitoring AC:</strong> Berhasil memangkas waktu birokrasi persetujuan vendor pemeliharaan secara signifikan dengan cara membuat dashboard pemantauan terpadu untuk <strong>190 unit AC</strong> lintas gedung.</li>
+            </ul>
+        </div>
+        
+        <!-- Codetag Studio -->
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">Software Engineer</span>
+                <span class="entry-date">Jul 2025 – Okt 2025</span>
+            </div>
+            <div class="entry-company">Codetag Studio · Remote · Bekasi, Jawa Barat</div>
+            <ul class="entry-details">
+                <li><strong>Pengembangan Web End-to-End:</strong> Merancang dan mengembangkan aplikasi web interaktif untuk klien mulai dari tahap analisis, pembuatan prototipe UI/UX, hingga implementasi <i>front-end</i> dan <i>back-end</i> dengan tingkat keberhasilan <strong>100%</strong> sesuai tenggat waktu.</li>
+                <li><strong>Analisis Kebutuhan &amp; Kolaborasi:</strong> Berkolaborasi erat dengan Project Manager dalam penyusunan <i>Business Requirements Document</i> (BRD) guna memastikan seluruh spesifikasi teknis dan tujuan bisnis tercapai dengan baik.</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- Pendidikan -->
+    <section class="section">
+        <h2 class="section-title">Pendidikan</h2>
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">S1 Teknik Informatika – Telkom University</span>
+            </div>
+            <p style="margin-top: 2px;"><strong>IPK:</strong> 3.52/4.00</p>
+            <p style="margin-top: 2px;"><strong>Skripsi:</strong> Pengembangan Aplikasi Jual Beli Barang Bekas Berbasis Web dengan Metode Extreme Programming</p>
+        </div>
+    </section>
+
+    <!-- Sertifikasi -->
+    <section class="section">
+        <h2 class="section-title">Sertifikasi</h2>
+        <div class="skills-grid" style="grid-template-columns: 1fr; gap: 2px;">
+            <span>• <strong>Conversion Optimization Certification Exam:</strong> Skillshop by Google – 2025</span>
+            <span>• <strong>Learn Advanced Excel (Formulas, Functions, VBA, Macros):</strong> Learnify IT – 2025</span>
+            <span>• <strong>Sertifikat Kompetensi BNSP:</strong> Pengembang Web Pratama (Junior Web Developer) – Jan 2025</span>
+            <span>• <strong>UI/UX Intensive Bootcamp:</strong> Rakamin Academy – Jan 2024</span>
+            <span>• <strong>UX Researcher Intern Certificate:</strong> Digital Amoeba – Jan 2024</span>
+            <span>• <strong>TOEFL:</strong> Skor 490 – 2024</span>
+        </div>
+    </section>
+
+    <!-- Keahlian -->
+    <section class="section">
+        <h2 class="section-title">Keahlian &amp; Alat</h2>
+        <div class="skills-grid">
+            <span class="skill-category">Hard Skills:</span>
+            <span class="skill-items">PHP, JavaScript/TypeScript, Laravel, Next.js, Node.js, React, Tailwind CSS, MongoDB, SQL, Cloud &amp; DevOps</span>
+
+            <span class="skill-category">Soft Skills:</span>
+            <span class="skill-items">Adaptif, Komunikasi Efektif, Problem Solving, Analisis Kebutuhan Bisnis</span>
+
+            <span class="skill-category">Bahasa:</span>
+            <span class="skill-items">Indonesia (Native), Inggris (TOEFL: 490)</span>
+        </div>
+    </section>
+
+</body>
+
+</html>
