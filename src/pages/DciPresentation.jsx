@@ -6,7 +6,7 @@ import {
     Linkedin, Mail, ArrowRight, GraduationCap, Search, Users, Rocket,
     Smartphone, Tablet, CheckCircle, BarChart, Download, Check, Maximize, Minimize,
     Laptop, ArrowRightLeft, Image as ImageIcon, Database, Server, Cpu, PackageCheck,
-    CheckCircle2, Clock, Workflow, ShieldAlert, FileText, Sparkles
+    CheckCircle2, Clock, Workflow, ShieldAlert, FileText, Sparkles, ExternalLink
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
@@ -57,8 +57,8 @@ const DciPresentation = () => {
             title: 'Profile & Spesialisasi',
             content: {
                 name: 'Sulthan Abdi Dzikry',
-                desc: 'Lulusan S1 Teknik Informatika Telkom University dengan fokus pada transformasi digital manufaktur (Smart Factory). Berpengalaman merancang arsitektur sistem end-to-end: mulai dari frontend interaktif (Next.js/React), backend skala enterprise (Laravel, Node.js), hingga integrasi data supply chain & ERP.',
-                jobDesc: 'Membangun ekosistem digital terintegrasi di PT Dharma Controlcable Indonesia: Quality Tracking (Digital PICA), Enterprise WMS/ERP (AIS), dan portal customer-facing (Tracking Order Customer).',
+                desc: 'Lulusan S1 Teknik Informatika Telkom University dengan fokus pada transformasi digital industri manufaktur. Terbiasa membangun solusi sistem secara menyeluruh: mulai dari perancangan tampilan interaktif yang mudah digunakan pengguna, pengelolaan background sistem yang andal, hingga integrasi alur data operasional pabrik.',
+                jobDesc: 'Mendukung digitalisasi proses di PT Dharma Controlcable Indonesia melalui penanganan sistem pelacakan mutu (Digital PICA), sistem operasional gudang (AIS), serta portal informasi pesanan customer (Tracking Order Customer).',
                 linkedin: 'Sulthan Abdi Dzikry',
                 email: 'abdidzikry.work@gmail.com'
             }
@@ -105,13 +105,16 @@ const DciPresentation = () => {
         {
             type: 'overview',
             title: 'Proyek yang Dikerjakan',
-            subtitle: 'Ringkasan Sistem & Aplikasi selama Magang di DCI',
+            subtitle: 'Ringkasan Sistem, Akses Domain & Aplikasi selama Magang di DCI',
             pillars: [
                 {
                     num: '01',
                     name: 'Digital PICA',
                     role: 'Quality Issue Tracking',
                     period: '11 September – 10 Oktober 2026',
+                    image: '/projects/12-portal-aduan/1. login.png',
+                    url: 'https://digital-pica.dharma-dcci.co.id/',
+                    domainLabel: 'digital-pica.dharma-dcci.co.id',
                     desc: 'Platform investigasi kualitas berbasis Problem Identification Corrective Action. Mengeliminasi kertas aduan, Why-Why analysis terarsip, dan verifikasi multi-tier berdeadline ketat.',
                     badge: 'Mutu & QC',
                     tech: ['Next.js', 'Express', 'JWT', 'Recharts']
@@ -121,6 +124,9 @@ const DciPresentation = () => {
                     name: 'Tracking Order Customer',
                     role: 'Public Read-Only Tracking',
                     period: '26 September 2026 (1 Hari)',
+                    image: '/projects/order-tracking/thumbnail.png',
+                    url: 'https://toc.dharma-dcci.co.id/',
+                    domainLabel: 'toc.dharma-dcci.co.id',
                     desc: 'Aplikasi web publik PWA mobile-first agar customer dapat memantau 5 tahapan fulfillment pesanan secara live cukup dengan nomor DN tanpa perlu login atau menelpon gudang.',
                     badge: 'Customer Facing',
                     tech: ['Next.js 16', 'React 19', 'TypeScript', 'PWA']
@@ -128,11 +134,14 @@ const DciPresentation = () => {
                 {
                     num: '03',
                     name: 'AIS (Automated Integrated System)',
-                    role: 'Enterprise ERP / WMS Backend',
+                    role: 'Enterprise ERP / WMS (Multi-Backend)',
                     period: '24 Agustus – 20 Oktober 2026',
-                    desc: 'Tulang punggung operasional rantai pasok dan gudang. Menangani Purchase Order, Inbound Receiving, pelacakan rak via QR/Barcode, hingga outbound terjadwal dan integrasi SAP.',
+                    image: '/projects/11-ais-backend/thumbnail-ais.jpeg',
+                    url: 'https://new-factory.dharma-dcci.co.id/',
+                    domainLabel: 'new-factory.dharma-dcci.co.id',
+                    desc: 'Sistem terpadu rantai pasok dan manajemen gudang. Arsitektur multi-backend (Laravel 8 + Node.js) dan SPA React 18: Inbound Receiving, alokasi rak Sloc, WMS Finish Good, hingga konektor SAP RFC 311/101.',
                     badge: 'Rantai Pasok & Gudang',
-                    tech: ['Laravel 6', 'SAP ERP Bridge', 'MongoDB', 'PHP']
+                    tech: ['React 18', 'Laravel 8', 'Node.js', 'MongoDB 7.0', 'SAP RFC']
                 }
             ]
         },
@@ -145,10 +154,10 @@ const DciPresentation = () => {
             category: 'Latar Belakang Masalah (Analisa Kondisi)',
             title: 'Digital PICA: Investigasi Mutu & Ketidaksesuaian',
             subtitle: 'Problem Identification Corrective Action Terintegrasi',
-            image: '/projects/12-portal-aduan/2. dashboard.png',
-            summary: 'Sebelum sistem ini hadir, pelacakan komplain mutu (Nonconformity) tersebar di form fisik dan chat informal. Hal ini membuat progres sulit dipantau, riwayat investigasi akar masalah sering hilang, dan perbaikan kerap melewati batas waktu (overdue).',
+            image: '/projects/12-portal-aduan/1. login.png',
+            summary: 'Sebelum sistem ini hadir, pelacakan komplain mutu (Nonconformity) tersebar di form fisik, lembar MOM (Minutes of Meeting), dan chat informal. Hal ini membuat progres sulit dipantau, riwayat investigasi akar masalah sering hilang, dan perbaikan kerap melewati batas waktu (overdue).',
             problems: [
-                { num: '01', title: 'Komplain Mutu Tersebar', desc: 'Isu kualitas dilaporkan informal lewat chat tanpa rekam jejak tiket tunggal yang akuntabel.' },
+                { num: '01', title: 'Komplain Mutu Tersebar', desc: 'Isu kualitas dilaporkan terpisah via chat dan lembar fisik MOM (Minutes of Meeting) tanpa rekam jejak tiket tunggal yang akuntabel.' },
                 { num: '02', title: 'Root Cause Hilang', desc: 'Riwayat Why-Why analysis sering terlupakan sehingga masalah berulang muncul kembali.' },
                 { num: '03', title: 'Tindakan Melewati Deadline', desc: 'Action plan perbaikan ditugaskan manual tanpa alarm atau peringatan otomatis jika overdue.' },
                 { num: '04', title: 'Verifikasi Efektifitas Lemah', desc: 'Tiket aduan ditutup sepihak tanpa adanya validasi lapangan dari pihak penjamin mutu (QA/QC).' }
@@ -160,16 +169,23 @@ const DciPresentation = () => {
             projectKey: 'pica',
             tag: 'PROJECT 01 · RENCANA & HASIL PERBAIKAN',
             planTitle: 'Rencana Perbaikan',
-            resultTitle: 'Saran & Hasil Perbaikan',
-            title: 'Digital PICA: Arsitektur Solusi & Dampak',
+            resultTitle: 'Saran & Target Hasil',
+            title: 'Digital PICA: Arsitektur Solusi & Target Dampak',
             subtitle: 'Tingkat Penyelesaian Tepat Waktu & RBAC Multi-Departemen',
             myRole: 'Membantu perancangan alur investigasi mutu, mendukung implementasi form digital Why-Why analysis terhubung jadwal rapat, serta pengujian validasi hak akses bertingkat (RBAC).',
-            myResult: 'Sistem komplain mutu kini terpusat dan transparan. Keterlambatan tindak lanjut terpangkas hingga 45%, tidak ada lagi riwayat akar masalah yang tercecer di kertas fisik, dan proses penutupan tiket diverifikasi resmi oleh QA/QC.',
+            myResult: 'Sistem komplain mutu selesai dibangun dan teruji (UAT). Memungkinkan pemantauan progres dan penanganan tiket secara real-time, meniadakan riwayat akar masalah yang tercecer di kertas fisik, serta mengunci otorisasi penutupan tiket oleh QA/QC.',
             images: [
+                { src: '/projects/12-portal-aduan/1. login.png', label: 'Gerbang Akses & Login' },
                 { src: '/projects/12-portal-aduan/2. dashboard.png', label: 'Executive Dashboard KPI' },
                 { src: '/projects/12-portal-aduan/3. List PICA.png', label: 'Pelacakan Tiket Terpusat' },
+                { src: '/projects/12-portal-aduan/4. input PICA.png', label: 'Input Registrasi Masalah' },
+                { src: '/projects/12-portal-aduan/5. Core Team.png', label: 'Penugasan Core Team' },
+                { src: '/projects/12-portal-aduan/6. Schedule Meeting.png', label: 'Jadwal Meeting Investigasi' },
+                { src: '/projects/12-portal-aduan/7. informasi pica.png', label: 'Detail & Identifikasi Kasus' },
                 { src: '/projects/12-portal-aduan/8. problem solving dan action plan.png', label: 'Why-Why & Action Plan' },
-                { src: '/projects/12-portal-aduan/9. verifikasi efektifitas.png', label: 'Verifikasi Bertingkat' }
+                { src: '/projects/12-portal-aduan/9. verifikasi efektifitas.png', label: 'Verifikasi Bertingkat' },
+                { src: '/projects/12-portal-aduan/10. role based access control.png', label: 'Konfigurasi Hak Akses RBAC' },
+                { src: '/projects/12-portal-aduan/11. list meeting diskusi.png', label: 'Daftar Notulensi & Meeting' }
             ],
             features: [
                 'Executive KPI Dashboard: Memantau tiket open, in-progress, closed, dan rasio overdue secara live.',
@@ -178,10 +194,10 @@ const DciPresentation = () => {
                 'Validasi Efektivitas Berlapis: Tiket hanya dapat ditutup setelah lolos pengujian hasil perbaikan.'
             ],
             impacts: [
-                { value: '100%', label: 'Traceability Tiket', desc: 'Semua komplain mutu terdokumentasi terpusat.' },
-                { value: '0 Missing', label: 'Root Cause Arsip', desc: 'Riwayat Why-Why analysis tersimpan permanen.' },
-                { value: '-45%', label: 'Overdue Reduction', desc: 'Tenggat waktu terpantau ketat di dashboard eksekutif.' },
-                { value: '8 Roles', label: 'Wewenang RBAC', desc: 'Approval aman sesuai hierarki manajemen.' }
+                { value: '100%', label: 'Traceability Tiket', desc: 'Target pencatatan komplain terpusat.' },
+                { value: '0 Missing', label: 'Root Cause Arsip', desc: 'Riwayat Why-Why tersimpan permanen.' },
+                { value: 'Real-time', label: 'Monitoring Overdue', desc: 'Peringatan batas waktu otomatis.' },
+                { value: '8 Roles', label: 'Wewenang RBAC', desc: 'Otorisasi sesuai hierarki manajemen.' }
             ]
         },
         // 6. Project 2: Tracking Order Customer - Latar Belakang Masalah (Analisa Kondisi)
@@ -193,12 +209,12 @@ const DciPresentation = () => {
             title: 'Tracking Order Customer: Mengapa Dibuat?',
             subtitle: 'Transparansi Status Pemesanan & Eliminasi Beban Relay Manual',
             image: '/projects/order-tracking/thumbnail.png',
-            summary: 'Data posisi pesanan customer sebenarnya sudah tercatat di sistem internal new-factory, namun hanya bisa dilihat oleh staf internal. Setiap kali customer menanyakan posisi pesanan, Sales harus menelepon Supervisor Gudang, lalu operator packing, memakan waktu hingga berjam-jam.',
+            summary: 'Data posisi pesanan customer sebenarnya sudah tercatat di sistem internal pabrik, namun hanya bisa dilihat oleh staf internal. Setiap kali customer menanyakan posisi pesanan, Sales harus menelepon Supervisor Gudang, lalu operator packing, memakan waktu hingga berjam-jam.',
             problems: [
-                { num: '01', title: 'Zero Customer Visibility', desc: 'Customer tidak memiliki sarana mandiri untuk mengecek progres produksi pesanannya.' },
-                { num: '02', title: 'Manual Relay Berjam-jam', desc: 'Pertanyaan status diteruskan berantai dari Sales → Gudang → Operator Packing.' },
-                { num: '03', title: 'Format DN Mengandung Slash', desc: 'Format nomor Delivery Note asli mengandung "/" (misal DCI/08/26/0251) yang memicu error 404 pada route standar.' },
-                { num: '04', title: 'Batas Akses Keamanan', desc: 'Alamat API backend internal tidak boleh bocor sama sekali ke publik atau browser.' }
+                { num: '01', title: 'Zero Customer Visibility', desc: 'Customer tidak memiliki sarana mandiri untuk mengecek progres produksi dan status pengiriman pesanannya secara langsung.' },
+                { num: '02', title: 'Beban Komunikasi Relay', desc: 'Pertanyaan status diteruskan berantai dari Sales → Gudang → Operator Packing, mengganggu produktivitas operasional.' },
+                { num: '03', title: 'Ketidakpastian Posisi Pesanan', desc: 'Tidak adanya kejelasan apakah pesanan masih diproduksi, proses scan packing, atau sudah dimuat ke armada ekspedisi.' },
+                { num: '04', title: 'Ketergantungan Jam Kerja', desc: 'Customer hanya bisa mengetahui kabar pesanan di jam kerja staf kantor saat telepon atau pesan WhatsApp direspons.' }
             ]
         },
         // 7. Project 2: Tracking Order Customer - Rencana & Hasil Perbaikan
@@ -207,16 +223,20 @@ const DciPresentation = () => {
             projectKey: 'tracking',
             tag: 'PROJECT 02 · RENCANA & HASIL PERBAIKAN',
             planTitle: 'Rencana Perbaikan',
-            resultTitle: 'Saran & Hasil Perbaikan',
+            resultTitle: 'Saran & Target Hasil',
             title: 'Tracking Order Customer: Alur 5 Tahap Fulfillment',
             subtitle: 'Public Read-Only Portal via React Server Components & PWA',
-            myRole: 'Membantu penyusunan UI/UX mobile-first portal pelacakan, mendukung integrasi sanitasi nomor DN berkarakter slash, serta memastikan data backend internal terlindungi di balik React Server Components.',
-            myResult: 'Aplikasi selesai dibangun dalam 1 hari. Customer kini dapat mandiri memantau pesanan dalam hitungan detik tanpa login, memotong 100% panggilan telepon relay dari Sales ke operator gudang.',
+            myRole: 'Membantu menyiapkan aset tampilan front-end yang dibutuhkan, membuat fitur pengecekan daftar keseluruhan nomor DN bagi tiap customer, serta memastikan kemudahan akses mandiri informasi pesanan secara cepat.',
+            myResult: 'Aplikasi selesai dibangun dan siap pakai dalam 1 hari kerja. Customer berpotensi memantau pesanan dalam hitungan detik tanpa login, menargetkan eliminasi panggilan telepon relay dari Sales ke operator gudang.',
             images: [
                 { src: '/projects/order-tracking/thumbnail.png', label: 'Overview Halaman Publik' },
                 { src: '/projects/order-tracking/1.png', label: 'Pencarian DN Mandiri' },
-                { src: '/projects/order-tracking/order-stage.png', label: 'Stepper 5 Tahap' },
-                { src: '/projects/order-tracking/packing-progress.png', label: 'Live Barcode Scan pcs' }
+                { src: '/projects/order-tracking/2.png', label: 'Hasil Pelacakan & Validasi' },
+                { src: '/projects/order-tracking/order-stage.png', label: 'Stepper 5 Tahap Fulfillment' },
+                { src: '/projects/order-tracking/packing-progress.png', label: 'Live Barcode Scan pcs' },
+                { src: '/projects/order-tracking/stage-detail.png', label: 'Detail PIC & Timestamp WIB' },
+                { src: '/projects/order-tracking/shipment-status.png', label: 'Status Siap Kirim & Manifest' },
+                { src: '/projects/order-tracking/mobile-view.png', label: 'Tampilan Mobile & PWA' }
             ],
             features: [
                 'Public Read-Only Access: Customer cukup memasukkan nomor DN/Manifest tanpa butuh login/akun.',
@@ -225,10 +245,10 @@ const DciPresentation = () => {
                 'Mobile-First & PWA: Dapat di-install langsung ke homescreen smartphone customer layaknya app native.'
             ],
             impacts: [
-                { value: '0 Menit', label: 'Waktu Tunggu', desc: 'Customer mengecek status mandiri secara instan.' },
-                { value: '5 Tahap', label: 'Fulfillment Flow', desc: 'Lengkap dengan nama PIC dan timestamp WIB.' },
+                { value: '0 Menit', label: 'Target Waktu Tunggu', desc: 'Akses pengecekan mandiri instan.' },
+                { value: '5 Tahap', label: 'Fulfillment Flow', desc: 'Lengkap dengan PIC & timestamp WIB.' },
                 { value: '0 Leaks', label: 'Keamanan Backend', desc: 'API internal terlindungi di balik RSC.' },
-                { value: '5 Detik', label: 'Timeout Protection', desc: 'Mencegah request menggantung jika jaringan lambat.' }
+                { value: '5 Detik', label: 'Timeout Protection', desc: 'Mencegah request menggantung di jaringan.' }
             ]
         },
         // 8. Project 3: AIS - Latar Belakang Masalah (Analisa Kondisi)
@@ -237,15 +257,15 @@ const DciPresentation = () => {
             projectKey: 'ais',
             tag: 'PROJECT 03 · 24 AGUSTUS – 20 OKTOBER 2026',
             category: 'Latar Belakang Masalah (Analisa Kondisi)',
-            title: 'AIS (Automated Integrated System): Rantai Pasok',
-            subtitle: 'Digitalisasi Rantai Pasok & Manajemen Gudang Hulu ke Hilir',
-            image: '/projects/11-ais-backend/1.png',
-            summary: 'Sebagai manufaktur komponen kontrol presisi, PT Dharma Controlcable mengelola ribuan pergerakan part per hari. Sistem lama yang terdesentralisasi rentan selisih kuantiti antara surat jalan fisik dengan stok riil di rak serta keterlambatan sinkronisasi dengan SAP ERP.',
+            title: 'AIS: Mengapa Modul Gudang & Integrasi SAP Dibutuhkan?',
+            subtitle: 'Akurasi Saldo Rak, Pencegahan Salah Taruh & Otomasi Alur Data Pabrik',
+            image: '/projects/11-ais-backend/thumbnail-ais.jpeg',
+            summary: 'Aktivitas pergudangan material otomotif di DCI melibatkan ribuan part dan perpindahan box per hari. Tanpa sistem terpadu berbasis scan barcode, tim operasional rentan menghadapi salah taruh di rak, ketidaksinkronan data penerimaan supplier terhadap PO SAP, serta proses rekapitulasi data mutasi barang yang lambat.',
             problems: [
-                { num: '01', title: 'Selisih Good Receiving', desc: 'Pencatatan penerimaan barang manual memicu diskrepansi stok material baku dengan PO.' },
-                { num: '02', title: 'Kesulitan Pelacakan Rak', desc: 'Pencarian lokasi part memakan waktu operasional akibat ketiadaan scan presisi Sloc.' },
-                { num: '03', title: 'Sinkronisasi SAP Manual', desc: 'Status transaksi gudang membutuhkan rekonsiliasi berulang ke sistem SAP induk.' },
-                { num: '04', title: 'Follow-up Supplier Lambat', desc: 'Eskalasi keterlambatan kirim vendor masih mengandalkan penagihan manual staf.' }
+                { num: '01', title: 'Verifikasi Penerimaan Rentan Selisih', desc: 'Pencocokan kuantitas surat jalan vendor terhadap Purchase Order SAP masih manual, berisiko over-delivery tanpa proteksi toleransi.' },
+                { num: '02', title: 'Part Hilang Jejak di Rak (Salah Taruh)', desc: 'Penempatan box ke rak gudang belum tersistematisasi (tanpa alokasi Bin otomatis), menyulitkan pencarian fisik saat material dibutuhkan.' },
+                { num: '03', title: 'Material NG/Reject Masih Bisa Teralokasi', desc: 'Belum ada penguncian otomatis (lock status) antara hasil inspeksi QC Incoming dengan alokasi rak reguler di gudang.' },
+                { num: '04', title: 'Pengeluaran Barang (BKB) Belum Real-time', desc: 'Pengeluaran material ke lini perakitan atau pesanan parsial membutuhkan verifikasi manual berulang yang menghambat proses produksi.' }
             ]
         },
         // 9. Project 3: AIS - Rencana & Hasil Perbaikan
@@ -254,31 +274,144 @@ const DciPresentation = () => {
             projectKey: 'ais',
             tag: 'PROJECT 03 · RENCANA & HASIL PERBAIKAN',
             planTitle: 'Rencana Perbaikan',
-            resultTitle: 'Saran & Hasil Perbaikan',
-            title: 'AIS: Arsitektur Backend & Ekosistem Gudang Presisi',
-            subtitle: 'Pelacakan Storage Location (Sloc) & Integrasi SAP ERP',
-            myRole: 'Membantu pemeliharaan dan pengembangan endpoint modul Inbound Receiving di backend Laravel, mendukung mekanisme validasi scan QR rak penyimpanan (Sloc), dan pengujian sinkronisasi data ke sistem SAP.',
-            myResult: 'Akurasi stok barang di rak gudang mencapai 100% bebas salah taruh. Integrasi dengan SAP berjalan otomatis dan sinkron tanpa jeda rekonsiliasi manual harian bagi tim gudang dan supply chain.',
+            resultTitle: 'Saran & Target Hasil',
+            title: 'AIS: Solusi Digitalisasi Gudang & Integrasi SAP',
+            subtitle: 'Eliminasi Salah Taruh Rak, Validasi PO Otomatis & Penguncian Mutu Terpadu',
+            myRole: 'Membantu pengembangan fitur modul warehouse (inbound label & alokasi bin rak), pemeliharaan backend Laravel 8 & Express.js, integrasi jembatan data SAP RFC (Movement 101 & 311), serta pengamanan scanner debounce guard.',
+            myResult: 'Modul warehouse dan pipeline data SAP selesai dikembangkan dan teruji (UAT-ready). Ditargetkan menjamin akurasi stok rak 100%, mencegah masuknya material reject ke rak, serta menghapus rekapitulasi data manual harian ke SAP ERP.',
             images: [
-                { src: '/projects/11-ais-backend/1.png', label: 'Procurement & Vendor Portal' },
-                { src: '/projects/11-ais-backend/2.png', label: 'Inbound Goods Receiving' },
-                { src: '/projects/11-ais-backend/3.png', label: 'Manajemen Rak QR/Barcode' },
+                { src: '/projects/11-ais-backend/thumbnail-ais.jpeg', label: 'Overview Sistem AIS' },
+                { src: '/projects/11-ais-backend/Fitur Scan In Label Incoming Material.png', label: 'Scan In Label Incoming' },
+                { src: '/projects/11-ais-backend/Fitur Assign Bin dan Alokasi Rak .png', label: 'Assign Bin & Alokasi Rak' },
+                { src: '/projects/11-ais-backend/menu Stock On Rack Management.png', label: 'Stock On Rack Management' },
+                { src: '/projects/11-ais-backend/Fitur Scan rack Information.png', label: 'Scan Rack Information Audit' },
+                { src: '/projects/11-ais-backend/Fitur Outgoing goods BKB.png', label: 'Outgoing Goods BKB' },
                 { src: '/projects/11-ais-backend/5.png', label: 'Sinkronisasi SAP ERP' }
             ],
             features: [
-                'Inbound Validation Engine: Pencocokan otomatis kuantiti DN supplier terhadap PO aktif.',
-                'QR/Barcode Sloc Tracking: Manajemen rak dan lot material dengan pemindaian barcode presisi.',
-                'SAP ERP Middleware Bridge: Mengalirkan data transaksi inventori secara aman dan sinkron.',
-                'Automated Notification Cron: Peringatan otomatis status pengiriman via WhatsApp & Email gateway.'
+                'Poka-Yoke Inbound & PO SAP: Validasi otomatis label vendor terhadap PO aktif guna mencegah over-delivery.',
+                'Sloc & Assign Bin Otomatis: Rekomendasi penempatan rak bertingkat digital untuk meniadakan salah taruh part.',
+                'Lock Status QC Mutu: Mengunci material reject/hold agar tidak dapat dialokasikan ke rak penyimpanan reguler.',
+                'Jembatan Data SAP RFC & BKB: Otomasi mutasi pengeluaran barang perakitan langsung terhubung sistem SAP sentral.'
             ],
             impacts: [
-                { value: '100%', label: 'Akurasi Sloc', desc: 'Pelacakan rak material berbasis QR/Barcode.' },
-                { value: '1.000+', label: 'Transaksi / Hari', desc: 'Kapasitas data throughput inventori gudang stabil.' },
-                { value: 'Real-time', label: 'SAP Sync', desc: 'Menghapus jeda rekonsiliasi malam hari.' },
-                { value: 'Otomatis', label: 'Alerting System', desc: 'Cron reminder terpicu langsung ke vendor/staf.' }
+                { value: '100%', label: 'Target Akurasi Stok', desc: 'Pencatatan rak material berbasis QR/Barcode.' },
+                { value: 'Terhubung', label: 'Konektivitas SAP', desc: 'Integrasi data transaksi langsung ke ERP.' },
+                { value: 'Otomatis', label: 'Alur Data Mutasi', desc: 'Target menghapus rekap manual harian.' },
+                { value: 'Terpusat', label: 'Modul Warehouse', desc: 'Semua pergerakan part tercatat di sistem.' }
             ]
         },
-        // 10. Timeline & Perjalanan Magang DCI
+        // 10. Detail Fitur & Kesiapan Modul AIS (Ready for UAT)
+        {
+            type: 'ais-features-breakdown',
+            tag: 'PROJECT 03 · DETAIL FITUR & TANGGUNG JAWAB TEKNIS',
+            title: 'Fitur Selesai Dikembangkan pada Modul AIS',
+            subtitle: 'Implementasi Selesai pada Kode & Basis Data · Status: Ready for UAT & Sosialisasi Lapangan',
+            statusBadge: 'Development Complete · Ready for UAT',
+            note: 'Fitur-fitur di bawah ini telah selesai dibangun dan teruji di lingkungan pengujian (development/staging), siap untuk tahapan User Acceptance Testing (UAT) dan sosialisasi pengguna akhir.',
+            sections: [
+                {
+                    category: 'A. Inbound & Receiving Dock',
+                    tagColor: 'bg-blue-50 text-blue-700 border-blue-200',
+                    items: [
+                        { name: 'Good Receipt Purchase Order', desc: 'Penarikan data PO SAP otomatis & validasi toleransi kirim vendor (Poka-Yoke).' },
+                        { name: 'Surat Jalan Supplier & Armada', desc: 'Pencatatan nomor SJ, nama supir, nopol truk, serta arsip foto fisik surat jalan.' },
+                        { name: 'Assign Bin & Scan Rak Sloc', desc: 'Rekomendasi otomatis penempatan rak fisik gudang & pemindaian barcode bin audit.' },
+                        { name: 'Rekonsiliasi GR vs QC Mutu', desc: 'Pencocokan kuantiti lolos (OK) vs tolak (NG) untuk mengunci material reject/hold.' }
+                    ]
+                },
+                {
+                    category: 'B. Warehouse Finish Good (FG)',
+                    tagColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                    items: [
+                        { name: 'Denah Layout Visual 2D Gudang', desc: 'Peta visual keterisian rak real-time berbasis zona pelanggan (AHM, TMMIN, OEM).' },
+                        { name: 'Stock Overview & Safety Alert', desc: 'Monitoring saldo per part number, riwayat mutasi keluar-masuk, & peringatan stok limit.' },
+                        { name: 'Stock Split & Opname Koreksi', desc: 'Logika pemecahan box besar untuk kirim parsial & pencocokan fisik berkala ber-audit trail.' },
+                        { name: 'Scan Packing & Dispatch Armada', desc: 'Validasi barcode 100% sebelum muat truk & pemicu status ON DELIVERY ke customer.' }
+                    ]
+                },
+                {
+                    category: 'C. Konektivitas & Jembatan Data',
+                    tagColor: 'bg-purple-50 text-purple-700 border-purple-200',
+                    items: [
+                        { name: 'Inbound Webhook QC Traceability', desc: 'Endpoint penerima semburan data lot inspeksi dengan proteksi x-api-key.' },
+                        { name: 'Idempotensi & Anti-Duplikasi Lot', desc: 'Pola updateOrCreate di Laravel untuk mencegah duplikasi data saat retry jaringan.' },
+                        { name: 'Scanner Gun Anti-Double Scan', desc: 'Proteksi debounce (<300ms) mencegah race condition penulisan ganda ke database.' },
+                        { name: 'BOM & Master Lini Produksi', desc: 'Kalkulator kebutuhan part per lini dan pemetaan target SLOC produksi pabrik.' }
+                    ]
+                }
+            ]
+        },
+        // 11. Activity & Target Impact Summary Matrix
+        {
+            type: 'impact-matrix',
+            tag: 'EXECUTIVE SUMMARY · DCI DIGITAL ECOSYSTEM',
+            title: 'Activity & Target Impact Summary Matrix',
+            subtitle: 'Rekapitulasi Aktivitas, Peran Teknis & Target Potensi Dampak Seluruh Proyek di DCI',
+            summaryStats: [
+                { label: 'Total Sistem Dikembangkan', value: '3 Proyek', sub: 'QC, WMS & Customer' },
+                { label: 'Target Efisiensi Tracking', value: '100% Cepat', sub: 'Dari jam ke detik' },
+                { label: 'Status Penanganan Overdue', value: 'Real-time', sub: 'Digital PICA system' },
+                { label: 'Target Akurasi Stok Gudang', value: '100%', sub: 'Validasi QR & SAP sync' }
+            ],
+            projects: [
+                {
+                    key: 'pica',
+                    name: 'Digital PICA',
+                    period: '11 Sep – 10 Okt 2026',
+                    role: 'Quality Issue Tracking',
+                    badge: 'Mutu & QC',
+                    badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                    activities: [
+                        'Membantu perancangan alur investigasi mutu terstruktur',
+                        'Mendukung implementasi form digital Why-Why analysis terhubung jadwal meeting',
+                        'Pengujian validasi hak akses bertingkat (8 level JWT RBAC)'
+                    ],
+                    impacts: [
+                        { label: 'Traceability Tiket', val: 'Target 100%' },
+                        { label: 'Monitoring Overdue', val: 'Real-time' },
+                        { label: 'Root Cause Loss', val: '0 Missing' }
+                    ]
+                },
+                {
+                    key: 'tracking',
+                    name: 'Tracking Order Customer',
+                    period: '26 Sep 2026 (1 Hari)',
+                    role: 'Public Read-Only Portal',
+                    badge: 'Customer Facing',
+                    badgeColor: 'bg-blue-50 text-blue-700 border-blue-200',
+                    activities: [
+                        'Membantu menyiapkan aset antarmuka (front-end) yang dibutuhkan',
+                        'Membuat fitur pengecekan daftar keseluruhan nomor DN bagi tiap customer',
+                        'Mendukung pengujian kemudahan akses mandiri agar pesanan terpantau secara instan'
+                    ],
+                    impacts: [
+                        { label: 'Akses Mandiri', val: 'Cepat & Praktis' },
+                        { label: 'Beban Telepon', val: 'Target Berkurang' },
+                        { label: 'Kesiapan Pakai', val: '1 Hari Rilis' }
+                    ]
+                },
+                {
+                    key: 'ais',
+                    name: 'AIS (Automated Integrated System)',
+                    period: '24 Ags – 20 Okt 2026',
+                    role: 'React SPA · Laravel 8 & Node.js',
+                    badge: 'Multi-Backend ERP/WMS',
+                    badgeColor: 'bg-purple-50 text-purple-700 border-purple-200',
+                    activities: [
+                        'Pengembangan fitur modul warehouse (Scan In Label, Assign Bin rak, & Stock on Rack)',
+                        'Integrasi dual-backend: Laravel 8 (Master Data/BKB/SAP RFC) & Express.js (WMS FG)',
+                        'Konektivitas SAP RFC Connector (Movement 101/311) & Webhook QC Traceability'
+                    ],
+                    impacts: [
+                        { label: 'Akurasi Stok Rak', val: 'Target 100%' },
+                        { label: 'Konektor SAP RFC', val: 'RFC 101/311' },
+                        { label: 'Dual Backend', val: 'PHP 7.4 & Node' }
+                    ]
+                }
+            ]
+        },
+        // 11. Timeline & Perjalanan Magang DCI
         {
             type: 'timeline',
             title: 'Timeline & Jadwal Pengerjaan Proyek',
@@ -292,31 +425,70 @@ const DciPresentation = () => {
                 {
                     month: '26 September 2026',
                     project: 'Tracking Order Customer (Selesai 1 Hari)',
-                    activities: 'Membantu pengembangan halaman tracking publik read-only tanpa login dengan Next.js & PWA, penanganan nomor DN bertanda slash, dan proteksi server-side.'
+                    activities: 'Membantu penyiapan aset antarmuka front-end, pembuatan fitur pengecekan daftar keseluruhan nomor DN per customer, dan kemudahan akses mandiri tanpa login.'
                 },
                 {
                     month: '24 Ags – 20 Okt 2026',
                     project: 'AIS (Automated Integrated System)',
-                    activities: 'Membantu pengembangan dan pemeliharaan backend Laravel ERP/WMS: alur Inbound Receiving, scan QR/Barcode rak Sloc material, serta integrasi sinkronisasi SAP ERP.'
+                    activities: 'Pengembangan fitur modul warehouse (pencatatan barang & pelacakan rak QR/Barcode), pemeliharaan backend Laravel, serta pengujian konektivitas dan integrasi data ke SAP ERP.'
                 }
             ]
         },
-        // 11. Refleksi & Kesan
+        // 13. Lampiran Dokumentasi Aktivitas Magang (Bento Grid)
         {
-            type: 'insight-feedback',
-            title: 'Refleksi, Pembelajaran & Dampak Nyata',
-            kesanTitle: 'Refleksi Pengalaman Magang di DCI',
-            kesan: 'Menjadi bagian dari tim IT & Digitalisasi di PT Dharma Controlcable Indonesia memberikan pemahaman mendalam tentang bagaimana perangkat lunak tidak hanya sekadar baris kode, melainkan pilar utama ketepatan pengiriman dan akuntabilitas mutu manufaktur otomotif skala besar.',
-            saranTitle: 'Apresiasi & Rekomendasi Lanjutan',
-            saran: 'Dukungan para mentor dan rekan departemen operasional (QC, Gudang, PPIC, Penjualan) sangat luar biasa. Rekomendasi saya ke depan adalah melanjutkan integrasi IoT sensor pada lini mesin produksi agar terhubung langsung dengan sistem Digital PICA dan AIS.',
-            points: [
-                { icon: <Target />, text: 'Kualitas Pabrik: Membangun sistem yang langsung dipakai tim QC di lapangan untuk audit mutu presisi.' },
-                { icon: <Workflow />, text: 'Efisiensi Gudang: Memastikan ribuan transaksi part tervalidasi otomatis tanpa jeda manual.' },
-                { icon: <Users />, text: 'Transparansi Customer: Menghadirkan portal publik yang memperkuat reputasi dan kepercayaan klien.' },
-                { icon: <Rocket />, text: 'Pertumbuhan Profesional: Mengasah keterampilan teknis full-stack dari database hingga PWA production-ready.' }
+            type: 'activity-bento',
+            tag: 'LAMPIRAN · DOKUMENTASI AKTIVITAS & KONTRIBUSI LAPANGAN',
+            title: 'Lampiran: Dokumentasi Aktivitas di DCI',
+            subtitle: 'Rekam Jejak Keterlibatan Langsung pada Pengembangan, Meeting, UAT, dan Sosialisasi Pengguna',
+            activities: [
+                {
+                    title: 'Proses Pengerjaan Projek Tracking Order',
+                    category: 'Development · Fast Track',
+                    desc: 'Pengembangan coding dan penyelesaian fitur portal pelacakan mandiri customer berbasis web PWA.',
+                    src: '/projects/dci-activities/1. Proses Pengerjaan Projek Tracking Order.jpeg',
+                    colSpan: 'md:col-span-7',
+                    rowSpan: 'md:row-span-1',
+                    badge: 'Coding & Dev'
+                },
+                {
+                    title: 'Sosialisasi Tracking Order Bersama User',
+                    category: 'User Adoption · Customer Facing',
+                    desc: 'Pendampingan langsung kepada pengguna akhir operasional untuk simulasi pencarian status order via nomor Surat Jalan.',
+                    src: '/projects/dci-activities/3. Sosialisasi Tracking Order Bersama User.jpeg',
+                    colSpan: 'md:col-span-5',
+                    rowSpan: 'md:row-span-1',
+                    badge: 'User Socialization'
+                },
+                {
+                    title: 'Meeting Mingguan Digitalisasi AIS',
+                    category: 'Coordination · Cross Department',
+                    desc: 'Diskusi sinkronisasi mingguan progress modul gudang, integrasi backend SAP, dan evaluasi kendala data.',
+                    src: '/projects/dci-activities/2. Meeting Mingguan Digitalisasi AIS.jpeg',
+                    colSpan: 'md:col-span-4',
+                    rowSpan: 'md:row-span-1',
+                    badge: 'Weekly Sync'
+                },
+                {
+                    title: 'Report Pengembangan Digital PICA',
+                    category: 'Quality System · Presentation',
+                    desc: 'Penyampaian status pengerjaan form Why-Why analysis digital dan manajemen notulensi rapat investigasi QC.',
+                    src: '/projects/dci-activities/4. Report Pengembangan Projek Digital PICA.jpeg',
+                    colSpan: 'md:col-span-4',
+                    rowSpan: 'md:row-span-1',
+                    badge: 'Progress Report'
+                },
+                {
+                    title: 'Sosialisasi & UAT Finish Good AIS',
+                    category: 'Warehouse · UAT Testing',
+                    desc: 'Uji coba penerimaan box kabel jadi (FG Put-Away) dan simulasi pemindaian barcode bersama tim PPIC/Warehouse.',
+                    src: '/projects/dci-activities/5. Sosialisasi dan UAT Finish Good.jpeg',
+                    colSpan: 'md:col-span-4',
+                    rowSpan: 'md:row-span-1',
+                    badge: 'UAT & Field Test'
+                }
             ]
         },
-        // 12. Rencana Pengembangan Karir (10 Tahun ke Depan)
+        // 14. Rencana Pengembangan Karir (10 Tahun ke Depan)
         {
             type: 'career-path',
             tag: 'TARGET & ROADMAP KARIR',
@@ -338,31 +510,40 @@ const DciPresentation = () => {
                 },
                 {
                     year: 'Tahun 4–5',
-                    name: 'Senior Developer / Technical Owner',
-                    badge: 'System Ownership',
-                    desc: 'Memegang ownership arsitektur sistem, code review, pengambilan keputusan teknis, serta mentoring developer junior.'
+                    name: 'Software Engineer II / Mid-Senior Developer',
+                    badge: 'Spesialisasi Tingkat Lanjut',
+                    desc: 'Menguasai domain sistem manufaktur, menangani fitur kompleks, optimasi performa, dan pengambilan keputusan teknis skala modul.'
                 },
                 {
-                    year: 'Tahun 6–7',
-                    name: 'Tech Lead',
-                    badge: 'Kepemimpinan Teknis',
-                    desc: 'Memimpin tim engineering manufaktur, memastikan standar kehandalan, skalabilitas, dan keselarasan teknologi dengan bisnis.'
+                    year: 'Tahun 6–10',
+                    name: 'Senior Developer / Tech Lead',
+                    badge: 'Kepemimpinan Teknis & Inovasi',
+                    desc: 'Senior engineer yang memegang arsitektur sistem, memimpin tim engineering manufaktur, dan mengawal inisiatif Smart Factory & digitalisasi modern.'
                 },
                 {
-                    year: 'Tahun 8–10',
-                    name: 'Tech Lead — Digital Innovation',
-                    badge: 'Inovasi Manufaktur',
-                    desc: 'Memimpin inisiatif transformasi digital terdepan (Smart Factory, IoT terintegrasi, AI-driven QC & Supply Chain).'
-                },
-                {
-                    year: '10+ Tahun',
-                    name: 'Next Horizon',
-                    badge: 'Masa Depan',
-                    desc: 'Terus bertumbuh dan memberikan dampak strategis bagi ekosistem industri nasional.'
+                    year: 'Usia 44 Tahun',
+                    name: 'Peternak Ayam & Petani Hidroponik',
+                    badge: 'Agribisnis & Kemandirian',
+                    desc: 'Membangun usaha mandiri berkelanjutan di sektor pangan dan peternakan, memanfaatkan otomatisasi sistem & IoT untuk efisiensi agribisnis modern.'
                 }
             ]
         },
-        // 13. Thank you
+        // 15. Refleksi & Rekomendasi Masa Depan
+        {
+            type: 'insight-feedback',
+            title: 'Refleksi & Rekomendasi Pengembangan Ekosistem DCI',
+            kesanTitle: 'Refleksi Pengalaman Magang di DCI',
+            kesan: 'Magang di PT Dharma Controlcable Indonesia memberikan wawasan berharga yang melampaui ranah teknis perangkat lunak. Saya memperoleh pemahaman nyata mengenai dinamika operasional di lantai pabrik (shop floor), mulai dari kompleksitas rantai pasok (supply chain), penjaminan mutu presisi (quality check), hingga manajemen pergudangan. Pengalaman ini menyadarkan saya bahwa solusi digital terbaik lahir dari pemahaman mendalam terhadap proses bisnis dan kebutuhan nyata pengguna di lapangan.',
+            saranTitle: 'Rekomendasi Lanjutan untuk Projek & Perusahaan (Next Level Up)',
+            saran: 'Digitalisasi yang telah dibangun saat ini sudah menjadi fondasi web & basis data yang sangat kokoh. Sebagai langkah naik kelas (level up) ke depan, sistem direkomendasikan tidak hanya berhenti di aplikasi website berbasis input/scan manual, melainkan mulai diintegrasikan dengan sensor otomatis (IoT) pada mesin produksi dan rak gudang, sehingga pencatatan komplain mutu di PICA maupun transaksi pergerakan part di AIS dapat terdeteksi secara otomatis (hands-free).',
+            points: [
+                { icon: <Target />, text: 'Sensor Mesin Otomatis: Integrasi IoT agar anomali kualitas di lini terdeteksi langsung ke Digital PICA.' },
+                { icon: <Workflow />, text: 'Smart Warehouse IoT: Level up rak gudang AIS dengan sensor penimbangan dan sensor deteksi otomatis.' },
+                { icon: <Users />, text: 'Transparansi Real-Time: Pelacakan pesanan customer bergerak otomatis berdasarkan sensor muat armada.' },
+                { icon: <Rocket />, text: 'Smart Factory 4.0: Mengubah sistem berbasis web murni menjadi ekosistem manufaktur cerdas dan mandiri.' }
+            ]
+        },
+        // 15. Thank you
         {
             type: 'thank-you',
             title: 'TERIMA KASIH!',
@@ -537,9 +718,16 @@ const DciPresentation = () => {
                                     PT DHARMA CONTROLCABLE INDONESIA
                                 </span>
                             </div>
-                            <span className="text-[10px] font-mono text-zinc-400 font-semibold tracking-wider uppercase">
-                                Smart Factory Digitalization · Magang 2026
-                            </span>
+                            <div className="flex items-center gap-3">
+                                <span className="text-[10px] font-mono text-zinc-400 font-semibold tracking-wider uppercase hidden sm:inline-block">
+                                    Smart Factory Digitalization · Magang 2026
+                                </span>
+                                <img
+                                    src="/logo-dharma.png"
+                                    alt="Dharma Group Logo"
+                                    className="h-5 md:h-6 object-contain"
+                                />
+                            </div>
                         </div>
 
                         {/* SLIDE TYPE: TITLE / COVER */}
@@ -652,35 +840,77 @@ const DciPresentation = () => {
 
                         {/* SLIDE TYPE: OVERVIEW (3 PILARS) */}
                         {slide.type === 'overview' && (
-                            <div className="space-y-6 pt-6">
+                            <div className="space-y-4 pt-3">
                                 <div className="text-center space-y-1">
                                     <h2 className="text-2xl md:text-3xl font-black text-zinc-900">{slide.title}</h2>
                                     <p className="text-xs text-zinc-500 font-mono">{slide.subtitle}</p>
                                 </div>
-                                <div className="grid md:grid-cols-3 gap-4">
+                                <div className="grid md:grid-cols-3 gap-3.5">
                                     {slide.pillars.map((p, idx) => (
                                         <motion.div
                                             key={idx}
                                             variants={itemVariants}
-                                            className="p-5 rounded-2xl bg-zinc-50 hover:bg-zinc-100/80 border border-zinc-200 transition-all flex flex-col justify-between space-y-3"
+                                            className="p-4 rounded-2xl bg-zinc-50 hover:bg-zinc-100/80 border border-zinc-200 transition-all flex flex-col justify-between space-y-2.5 shadow-sm"
                                         >
                                             <div className="space-y-2">
+                                                {/* Card Header & Badge */}
                                                 <div className="flex items-center justify-between">
-                                                    <span className="text-2xl font-black text-zinc-300 font-mono">{p.num}</span>
+                                                    <span className="text-xl font-black text-zinc-300 font-mono">{p.num}</span>
                                                     <span className="px-2 py-0.5 rounded-full bg-zinc-200 text-zinc-700 text-[10px] font-bold font-mono uppercase">
                                                         {p.badge}
                                                     </span>
                                                 </div>
-                                                <h3 className="text-base font-black text-zinc-900 leading-snug">{p.name}</h3>
-                                                <p className="text-[11px] font-bold text-emerald-600 font-mono">{p.role}</p>
-                                                <p className="text-xs text-zinc-600 leading-relaxed">{p.desc}</p>
+
+                                                {/* Project Thumbnail Preview with Blurred Background & Fit Foreground */}
+                                                {p.image && (
+                                                    <div className="w-full h-28 rounded-xl overflow-hidden bg-zinc-950 border border-zinc-200 relative group flex items-center justify-center">
+                                                        {/* Blurred ambient background */}
+                                                        <img
+                                                            src={p.image}
+                                                            alt=""
+                                                            aria-hidden="true"
+                                                            className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-50"
+                                                        />
+                                                        {/* Crisp fit foreground image */}
+                                                        <img
+                                                            src={p.image}
+                                                            alt={p.name}
+                                                            className="relative z-10 max-h-full max-w-full object-contain p-1 group-hover:scale-105 transition-transform duration-300"
+                                                        />
+                                                    </div>
+                                                )}
+
+                                                <div>
+                                                    <h3 className="text-sm font-black text-zinc-900 leading-snug">{p.name}</h3>
+                                                    <p className="text-[10px] font-bold text-emerald-600 font-mono mt-0.5">{p.role}</p>
+                                                </div>
+
+                                                <p className="text-[11px] text-zinc-600 leading-relaxed line-clamp-3">{p.desc}</p>
                                             </div>
-                                            <div className="pt-2 border-t border-zinc-200/60 flex flex-wrap gap-1">
-                                                {p.tech.map((t, i) => (
-                                                    <span key={i} className="px-2 py-0.5 rounded bg-white text-zinc-700 border border-zinc-200 text-[9px] font-mono font-semibold">
-                                                        {t}
-                                                    </span>
-                                                ))}
+
+                                            <div className="space-y-2 pt-2 border-t border-zinc-200/60">
+                                                {/* Direct Domain Link */}
+                                                {p.url && (
+                                                    <a
+                                                        href={p.url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-[10px] font-mono font-bold transition-colors w-full justify-between"
+                                                        title={`Buka ${p.url}`}
+                                                    >
+                                                        <span className="truncate">{p.domainLabel || p.url}</span>
+                                                        <ExternalLink size={11} className="shrink-0" />
+                                                    </a>
+                                                )}
+
+                                                {/* Tech Badges */}
+                                                <div className="flex flex-wrap gap-1">
+                                                    {p.tech.map((t, i) => (
+                                                        <span key={i} className="px-1.5 py-0.5 rounded bg-white text-zinc-700 border border-zinc-200 text-[8px] font-mono font-semibold">
+                                                            {t}
+                                                        </span>
+                                                    ))}
+                                                </div>
                                             </div>
                                         </motion.div>
                                     ))}
@@ -771,7 +1001,7 @@ const DciPresentation = () => {
                                             {slide.myResult && (
                                                 <div className="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80 space-y-1">
                                                     <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-emerald-700 block">
-                                                        Hasil yang Dicapai
+                                                        Luaran Sistem & Kesiapan Rilis
                                                     </span>
                                                     <p className="text-[11px] text-zinc-800 font-medium leading-relaxed">
                                                         {slide.myResult}
@@ -782,14 +1012,19 @@ const DciPresentation = () => {
                                     )}
 
                                     {/* Impact Stats Grid */}
-                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
-                                        {slide.impacts.map((imp, idx) => (
-                                            <div key={idx} className="p-2 rounded-xl bg-zinc-50 border border-zinc-200 text-center">
-                                                <div className="text-sm sm:text-base font-black text-zinc-900 font-mono leading-none">{imp.value}</div>
-                                                <div className="text-[9px] font-bold text-emerald-600 font-mono mt-0.5">{imp.label}</div>
-                                                <div className="text-[8px] text-zinc-400 truncate mt-0.5">{imp.desc}</div>
-                                            </div>
-                                        ))}
+                                    <div className="space-y-1 pt-1">
+                                        <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-zinc-400 block">
+                                            Target & Potensi Dampak:
+                                        </span>
+                                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                            {slide.impacts.map((imp, idx) => (
+                                                <div key={idx} className="p-2 rounded-xl bg-zinc-50 border border-zinc-200 text-center">
+                                                    <div className="text-sm sm:text-base font-black text-zinc-900 font-mono leading-none">{imp.value}</div>
+                                                    <div className="text-[9px] font-bold text-emerald-600 font-mono mt-0.5">{imp.label}</div>
+                                                    <div className="text-[8px] text-zinc-400 truncate mt-0.5">{imp.desc}</div>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
 
@@ -820,7 +1055,7 @@ const DciPresentation = () => {
                                     </div>
 
                                     {/* Thumbnail selector */}
-                                    <div className="grid grid-cols-4 gap-1.5">
+                                    <div className={`grid gap-1.5 ${slide.images.length > 4 ? 'grid-cols-6' : 'grid-cols-4'}`}>
                                         {slide.images.map((img, idx) => {
                                             const isActive = idx === (
                                                 slide.projectKey === 'pica' ? activePicaImage :
@@ -844,6 +1079,145 @@ const DciPresentation = () => {
                                             );
                                         })}
                                     </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* SLIDE TYPE: AIS FEATURES BREAKDOWN (READY FOR UAT) */}
+                        {slide.type === 'ais-features-breakdown' && (
+                            <div className="space-y-3.5 pt-3">
+                                <div className="space-y-1">
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <span className="text-[10px] font-mono font-bold tracking-wider text-purple-700 uppercase bg-purple-50 px-2 py-0.5 rounded border border-purple-200">
+                                            {slide.tag}
+                                        </span>
+                                        <span className="text-[10px] font-mono font-bold tracking-wider text-emerald-700 uppercase bg-emerald-50 px-2 py-0.5 rounded border border-emerald-300 flex items-center gap-1">
+                                            <Sparkles size={11} /> {slide.statusBadge}
+                                        </span>
+                                    </div>
+                                    <h2 className="text-xl md:text-2xl font-black text-zinc-900 leading-tight">{slide.title}</h2>
+                                    <p className="text-xs text-zinc-500 font-medium">{slide.subtitle}</p>
+                                </div>
+
+                                {/* Feature Groups (3 Columns) */}
+                                <div className="grid md:grid-cols-3 gap-3">
+                                    {slide.sections.map((sec, sIdx) => (
+                                        <motion.div
+                                            key={sIdx}
+                                            variants={itemVariants}
+                                            className="p-3.5 rounded-2xl bg-zinc-50/70 border border-zinc-200 flex flex-col justify-between space-y-2.5 shadow-sm"
+                                        >
+                                            <div className="space-y-2">
+                                                <div className="flex items-center justify-between pb-1.5 border-b border-zinc-200/80">
+                                                    <h3 className="text-xs font-black text-zinc-900 leading-tight">{sec.category}</h3>
+                                                    <span className={`px-2 py-0.5 rounded text-[8px] font-mono font-bold border uppercase shrink-0 ${sec.tagColor}`}>
+                                                        Built
+                                                    </span>
+                                                </div>
+
+                                                <div className="space-y-2">
+                                                    {sec.items.map((item, iIdx) => (
+                                                        <div key={iIdx} className="p-2 rounded-xl bg-white border border-zinc-200/70 space-y-0.5">
+                                                            <div className="flex items-start gap-1.5">
+                                                                <CheckCircle2 size={12} className="text-emerald-500 shrink-0 mt-0.5" />
+                                                                <h4 className="text-[11px] font-bold text-zinc-900 leading-snug">{item.name}</h4>
+                                                            </div>
+                                                            <p className="text-[10px] text-zinc-600 leading-relaxed pl-4">
+                                                                {item.desc}
+                                                            </p>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    ))}
+                                </div>
+
+                                {/* Bottom Clarification Banner */}
+                                <div className="p-2.5 rounded-xl bg-amber-50/80 border border-amber-200/90 flex items-center gap-2 text-[11px] text-amber-900">
+                                    <Clock size={14} className="text-amber-600 shrink-0" />
+                                    <span>
+                                        <strong>Catatan Kesiapan:</strong> {slide.note}
+                                    </span>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* SLIDE TYPE: ACTIVITY & IMPACT SUMMARY MATRIX */}
+                        {slide.type === 'impact-matrix' && (
+                            <div className="space-y-3.5 pt-4">
+                                <div className="space-y-1">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-[10px] font-mono font-bold tracking-wider text-emerald-700 uppercase bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                                            {slide.tag}
+                                        </span>
+                                    </div>
+                                    <h2 className="text-xl md:text-2xl font-black text-zinc-900 leading-tight">{slide.title}</h2>
+                                    <p className="text-xs text-zinc-500 font-medium">{slide.subtitle}</p>
+                                </div>
+
+                                {/* Top KPI Highlight Badges */}
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                                    {slide.summaryStats.map((stat, idx) => (
+                                        <div key={idx} className="p-2.5 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-center">
+                                            <span className="text-[10px] text-zinc-500 font-mono font-semibold uppercase">{stat.label}</span>
+                                            <span className="text-base sm:text-lg font-black text-zinc-900 font-mono leading-tight mt-0.5">{stat.value}</span>
+                                            <span className="text-[9px] text-emerald-600 font-medium truncate">{stat.sub}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Project Matrix Comparison Cards */}
+                                <div className="grid md:grid-cols-3 gap-3">
+                                    {slide.projects.map((proj, idx) => (
+                                        <motion.div
+                                            key={idx}
+                                            variants={itemVariants}
+                                            className="p-3.5 rounded-2xl bg-white border border-zinc-200 shadow-sm flex flex-col justify-between space-y-2.5 hover:border-zinc-300 transition-all"
+                                        >
+                                            <div className="space-y-2">
+                                                <div className="flex items-start justify-between gap-1 border-b border-zinc-100 pb-2">
+                                                    <div>
+                                                        <h3 className="text-xs sm:text-sm font-black text-zinc-900 leading-tight">{proj.name}</h3>
+                                                        <span className="text-[10px] font-mono font-bold text-zinc-500">{proj.period}</span>
+                                                    </div>
+                                                    <span className={`px-2 py-0.5 rounded-full text-[9px] font-mono font-bold border uppercase shrink-0 ${proj.badgeColor}`}>
+                                                        {proj.badge}
+                                                    </span>
+                                                </div>
+
+                                                {/* Key Activities */}
+                                                <div className="space-y-1">
+                                                    <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-zinc-400 block">
+                                                        Aktivitas Utama & Kontribusi:
+                                                    </span>
+                                                    <ul className="space-y-1">
+                                                        {proj.activities.map((act, aIdx) => (
+                                                            <li key={aIdx} className="flex items-start gap-1.5 text-[10px] sm:text-[11px] text-zinc-700 leading-tight">
+                                                                <CheckCircle2 size={11} className="text-emerald-500 shrink-0 mt-0.5" />
+                                                                <span>{act}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            {/* Quantifiable Impact Pills */}
+                                            <div className="pt-2 border-t border-zinc-100">
+                                                <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-emerald-700 block mb-1">
+                                                    Target & Potensi Dampak:
+                                                </span>
+                                                <div className="grid grid-cols-3 gap-1 text-center">
+                                                    {proj.impacts.map((imp, iIdx) => (
+                                                        <div key={iIdx} className="p-1 rounded-lg bg-zinc-50 border border-zinc-200/70">
+                                                            <div className="text-[10px] sm:text-[11px] font-black text-zinc-900 font-mono leading-none">{imp.val}</div>
+                                                            <div className="text-[8px] text-zinc-500 font-medium truncate mt-0.5">{imp.label}</div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    ))}
                                 </div>
                             </div>
                         )}
@@ -943,6 +1317,72 @@ const DciPresentation = () => {
                                 <p className="text-[10px] text-zinc-400 text-center font-mono italic max-w-2xl mx-auto">
                                     {slide.note}
                                 </p>
+                            </div>
+                        )}
+
+                        {/* SLIDE TYPE: ACTIVITY BENTO GRID (LAMPIRAN) */}
+                        {slide.type === 'activity-bento' && (
+                            <div className="space-y-3.5 pt-2">
+                                <div className="space-y-1">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-[10px] font-mono font-bold tracking-wider text-emerald-700 uppercase bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                                            {slide.tag}
+                                        </span>
+                                    </div>
+                                    <h2 className="text-xl md:text-2xl font-black text-zinc-900 leading-tight">{slide.title}</h2>
+                                    <p className="text-xs text-zinc-500 font-medium">{slide.subtitle}</p>
+                                </div>
+
+                                {/* Bento Grid Gallery */}
+                                <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
+                                    {slide.activities.map((act, aIdx) => (
+                                        <motion.div
+                                            key={aIdx}
+                                            variants={itemVariants}
+                                            onClick={() => {
+                                                const list = slide.activities.map(a => ({ src: a.src, label: a.title }));
+                                                setEnlargedImageList(list);
+                                                setEnlargedImageIndex(aIdx);
+                                                setEnlargedImage(act.src);
+                                            }}
+                                            className={`${act.colSpan || 'md:col-span-4'} group relative rounded-2xl overflow-hidden border border-zinc-200 bg-zinc-900 shadow-sm cursor-pointer hover:shadow-md transition-all flex flex-col justify-end min-h-[170px] sm:min-h-[190px]`}
+                                            title="Klik untuk melihat foto lebih besar"
+                                        >
+                                            {/* Full Fill Image */}
+                                            <img
+                                                src={act.src}
+                                                alt={act.title}
+                                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                                            />
+
+                                            {/* Gradient Overlay for bottom text legibility */}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent pointer-events-none" />
+
+                                            {/* Top Badge */}
+                                            <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between z-10">
+                                                <span className="px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white text-[9px] font-mono font-bold border border-white/20">
+                                                    {act.badge}
+                                                </span>
+                                                <span className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded-full bg-white/20 text-white backdrop-blur-md">
+                                                    <Maximize size={12} />
+                                                </span>
+                                            </div>
+
+                                            {/* Card Content Footer */}
+                                            <div className="relative z-10 p-3 space-y-0.5">
+                                                <span className="text-[9px] font-mono font-semibold text-emerald-400 block tracking-wide uppercase">
+                                                    {act.category}
+                                                </span>
+                                                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">
+                                                    {act.title}
+                                                </h3>
+                                                <p className="text-[10px] text-zinc-300 line-clamp-2 leading-relaxed">
+                                                    {act.desc}
+                                                </p>
+                                            </div>
+                                        </motion.div>
+                                    ))}
+                                </div>
                             </div>
                         )}
 

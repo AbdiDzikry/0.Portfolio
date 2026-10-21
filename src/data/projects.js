@@ -1607,7 +1607,7 @@ export const projectsData = [
         title: 'Laporan Presentasi Magang DCI',
         experience: 'dharma-controlcable',
         category: 'Presentation',
-        image: '/projects/11-ais-backend/1.png',
+        image: '/thumbnal-presentasi-magang-dci2.jpeg',
         tagline: 'Laporan Presentasi Magang PT Dharma Controlcable Indonesia - Sulthan Abdi Dzikry',
         description: 'Presentasi interaktif eksekutif digitalisasi Smart Factory PT Dharma Controlcable Indonesia: Digital PICA, ERP/WMS AIS, dan Tracking Order Customer.',
         tags: ['Presentation', 'Smart Factory', 'Digital PICA', 'AIS', 'Order Tracking'],

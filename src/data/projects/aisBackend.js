@@ -4,8 +4,19 @@ export const aisBackendProject = {
     experience: 'dharma-controlcable',
     isTrialData: true,
     category: 'Smart Factory',
-    image: '/projects/11-ais-backend/1.png',
+    image: '/projects/11-ais-backend/thumbnail-ais.jpeg',
     showcaseImages: [
+        '/projects/11-ais-backend/thumbnail-ais.jpeg',
+        '/projects/11-ais-backend/Fitur Scan In Label Incoming Material.png',
+        '/projects/11-ais-backend/Fitur Assign Bin dan Alokasi Rak .png',
+        '/projects/11-ais-backend/menu Stock On Rack Management.png',
+        '/projects/11-ais-backend/Fitur Scan rack Information.png',
+        '/projects/11-ais-backend/Fitur Outgoing goods BKB.png',
+        '/projects/11-ais-backend/2. Meeting Mingguan Digitalisasi AIS.jpeg',
+        '/projects/11-ais-backend/5. Sosialisasi dan UAT Finish Good.jpeg',
+        '/projects/11-ais-backend/1. Proses Pengerjaan Projek Tracking Order.jpeg',
+        '/projects/11-ais-backend/3. Sosialisasi Tracking Order Bersama User.jpeg',
+        '/projects/11-ais-backend/4. Report Pengembangan Projek Digital PICA.jpeg',
         '/projects/11-ais-backend/1.png',
         '/projects/11-ais-backend/2.png',
         '/projects/11-ais-backend/3.png',
@@ -15,137 +26,205 @@ export const aisBackendProject = {
     ],
     // ── Interactive Showcase Pilot Metadata ──
     galleryItems: [
+        // ── FITUR PROJEK AIS ──
+        {
+            id: 'scan-in-incoming',
+            image: '/projects/11-ais-backend/Fitur Scan In Label Incoming Material.png',
+            title: 'Scan In Label Incoming Material',
+            subtitle: 'Fitur Projek AIS · Validasi Label Vendor',
+            category: 'Fitur Projek',
+            tech: ['React 18', 'Laravel 8', 'MongoDB 7.0'],
+            description: 'Pencatatan dan verifikasi barcode label incoming material dari vendor terhadap surat jalan fisik dan Purchase Order aktif.'
+        },
+        {
+            id: 'assign-bin-alokasi',
+            image: '/projects/11-ais-backend/Fitur Assign Bin dan Alokasi Rak .png',
+            title: 'Assign Bin & Alokasi Rak Fisik',
+            subtitle: 'Fitur Projek AIS · Rekomendasi Rak Bertingkat',
+            category: 'Fitur Projek',
+            tech: ['Laravel 8', 'MongoDB 7.0', 'SAP RFC 101'],
+            description: 'Penarikan antrean material status GR SAP Posted dan algoritma rekomendasi alokasi box ke rak penyimpanan (Sloc) gudang.'
+        },
+        {
+            id: 'stock-on-rack',
+            image: '/projects/11-ais-backend/menu Stock On Rack Management.png',
+            title: 'Stock On Rack Management',
+            subtitle: 'Fitur Projek AIS · Monitoring Saldo Rak',
+            category: 'Fitur Projek',
+            tech: ['React 18', 'Express.js', 'Socket.IO'],
+            description: 'Dashboard pemantauan ketersediaan saldo part per slot rak gudang dengan filter lot, status inspeksi, dan kapasitas tampung.'
+        },
+        {
+            id: 'scan-rack-info',
+            image: '/projects/11-ais-backend/Fitur Scan rack Information.png',
+            title: 'Scan Rack Information Audit',
+            subtitle: 'Fitur Projek AIS · Audit Fisik Lapangan',
+            category: 'Fitur Projek',
+            tech: ['React 18', 'Laravel 8', 'Debounce Guard'],
+            description: 'Fitur audit bergerak bagi operator: scan barcode rak fisik untuk menampilkan persentase keterisian dan rincian seluruh lot tersimpan.'
+        },
+        {
+            id: 'outgoing-bkb',
+            image: '/projects/11-ais-backend/Fitur Outgoing goods BKB.png',
+            title: 'Outgoing Goods BKB (Bukti Keluar Barang)',
+            subtitle: 'Fitur Projek AIS · Rilis Perakitan & Dispatch',
+            category: 'Fitur Projek',
+            tech: ['React 18', 'Node.js', 'SAP RFC 311'],
+            description: 'Verifikasi pemindahan material ke lini perakitan (BKB) terhubung kalkulator BOM dan sinkronisasi mutasi ke sistem SAP.'
+        },
+
+        // ── AKTIVITAS & KOLABORASI MAGANG AIS & DIGITALISASI DCI ──
+        {
+            id: 'activity-weekly-meeting',
+            image: '/projects/11-ais-backend/2. Meeting Mingguan Digitalisasi AIS.jpeg',
+            title: 'Meeting Mingguan Digitalisasi AIS',
+            subtitle: 'Aktivitas Magang · Koordinasi Lintas Departemen',
+            category: 'Aktivitas Magang',
+            tech: ['Cross Department', 'Weekly Sync', 'IT Team'],
+            description: 'Sesi rapat koordinasi mingguan bersama tim IT dan perwakilan departemen operasional untuk evaluasi modul pergudangan dan integrasi SAP.'
+        },
+        {
+            id: 'activity-uat-fg',
+            image: '/projects/11-ais-backend/5. Sosialisasi dan UAT Finish Good.jpeg',
+            title: 'Sosialisasi & UAT Finish Good AIS',
+            subtitle: 'Aktivitas Magang · Pengujian Lapangan Gudang FG',
+            category: 'Aktivitas Magang',
+            tech: ['UAT Testing', 'Warehouse Team', 'PPIC'],
+            description: 'Simulasi alur penerimaan box kabel jadi (FG Put-Away) dan pengujian pemindaian barcode packing bersama tim operasional gudang Finish Good.'
+        },
+        {
+            id: 'activity-dev-tracking',
+            image: '/projects/11-ais-backend/1. Proses Pengerjaan Projek Tracking Order.jpeg',
+            title: 'Proses Pengerjaan Projek Tracking Order',
+            subtitle: 'Aktivitas Magang · Fast-Track Development',
+            category: 'Aktivitas Magang',
+            tech: ['Next.js PWA', 'Live Coding', 'Fast Delivery'],
+            description: 'Dokumentasi intensif pengembangan sistem pelacakan pesanan publik (TOC) yang diselesaikan dalam waktu 1 hari kerja.'
+        },
+        {
+            id: 'activity-socialization-tracking',
+            image: '/projects/11-ais-backend/3. Sosialisasi Tracking Order Bersama User.jpeg',
+            title: 'Sosialisasi Tracking Order Bersama User',
+            subtitle: 'Aktivitas Magang · Edukasi Pengguna Lapangan',
+            category: 'Aktivitas Magang',
+            tech: ['User Socialization', 'Operational Staff'],
+            description: 'Pendampingan langsung kepada pengguna akhir di lapangan untuk memastikan kemudahan pencarian nomor DN di portal mandiri.'
+        },
+        {
+            id: 'activity-report-pica',
+            image: '/projects/11-ais-backend/4. Report Pengembangan Projek Digital PICA.jpeg',
+            title: 'Report Pengembangan Digital PICA',
+            subtitle: 'Aktivitas Magang · Presentasi Kemajuan Mutu QC',
+            category: 'Aktivitas Magang',
+            tech: ['Progress Report', 'Quality Assurance'],
+            description: 'Pemaparan status arsitektur form digital Why-Why analysis dan sistem notulensi rapat penjaminan mutu bersama mentor IT.'
+        },
+
+        // ── SISTEM MASTER & INTEGRASI AIS ──
         {
             id: 'procurement-portal',
             image: '/projects/11-ais-backend/1.png',
             title: 'Portal Procurement & Sinkronisasi Vendor',
-            subtitle: 'Automated Purchase Order Lifecycle',
-            category: 'Procurement',
-            tech: ['Laravel 6', 'SAP ERP', 'PHP'],
+            subtitle: 'Arsitektur Sistem · Automated PO Lifecycle',
+            category: 'Fitur Projek',
+            tech: ['React 18', 'Laravel 8', 'SAP ERP'],
             description: 'Manajemen siklus hidup Purchase Order (PO), verifikasi data vendor terintegrasi, dan sinkronisasi otomatis status pemesanan barang dengan sistem SAP ERP.'
         },
         {
             id: 'inbound-receiving',
             image: '/projects/11-ais-backend/2.png',
             title: 'Inbound Receiving & Validasi Surat Jalan',
-            subtitle: 'Accurate Goods Receiving Workflow',
-            category: 'Inbound',
-            tech: ['Laravel 6', 'MongoDB', 'Backend'],
+            subtitle: 'Arsitektur Sistem · Accurate Goods Receiving',
+            category: 'Fitur Projek',
+            tech: ['Laravel 8', 'MongoDB 7.0', 'Backend'],
             description: 'Pencatatan penerimaan barang masuk (Good Receiving & Incoming Lotbook) dengan pencocokan otomatis terhadap Delivery Note untuk mencegah selisih stok awal.'
-        },
-        {
-            id: 'rack-management',
-            image: '/projects/11-ais-backend/3.png',
-            title: 'Manajemen Rak & Pelacakan QR/Barcode',
-            subtitle: 'Storage Location (Sloc) Traceability',
-            category: 'Warehouse',
-            tech: ['PHP', 'MongoDB', 'Backend'],
-            description: 'Pelacakan stok material berbasis pemindaian QR/Barcode di tingkat Storage Location (Sloc), memastikan akurasi lokasi penyimpanan part hingga 100% real-time.'
-        },
-        {
-            id: 'scheduled-outbound',
-            image: '/projects/11-ais-backend/4.png',
-            title: 'Pengiriman Terjadwal & Dokumen Jalan',
-            subtitle: 'Controlled Outbound Delivery',
-            category: 'Outbound',
-            tech: ['Laravel 6', 'PHP'],
-            description: 'Penjadwalan pengiriman material ke lini produksi atau customer, pembuatan Travel Document otomatis, dan rilis barang gudang yang terkontrol ketat.'
         },
         {
             id: 'erp-bridge',
             image: '/projects/11-ais-backend/5.png',
-            title: 'Jembatan Integrasi SAP ERP',
-            subtitle: 'Enterprise System Data Bridge',
-            category: 'Integration',
-            tech: ['SAP ERP', 'Backend', 'Laravel 6'],
+            title: 'Jembatan Integrasi SAP ERP (RFC / BAPI)',
+            subtitle: 'Arsitektur Sistem · Enterprise Data Bridge',
+            category: 'Fitur Projek',
+            tech: ['SAP RFC 311/101', 'Laravel 8', 'Port 8001'],
             description: 'Pipeline integrasi data dua arah yang menjembatani transaksi mutasi inventaris pabrik harian dengan sistem inti SAP ERP enterprise secara konsisten.'
-        },
-        {
-            id: 'auto-notifications',
-            image: '/projects/11-ais-backend/6.png',
-            title: 'Notifikasi Otomatis WhatsApp & Email',
-            subtitle: 'Twilio API & Cron Job Scheduler',
-            category: 'Automation',
-            tech: ['Twilio API', 'PHP', 'Backend'],
-            description: 'Layanan cron job scheduler yang memicu pengingat otomatis via WhatsApp (Twilio API) dan Email untuk stok kritis, approval pending, serta jadwal pengiriman.'
         }
     ],
     techStackDetails: [
         {
-            name: 'Laravel 6',
-            category: 'Backend Framework',
-            role: 'Framework backend MVC utama untuk business logic ERP/WMS, manajemen routing API, autentikasi JWT, dan orkestrasi alur supply chain.',
+            name: 'React 18 + Vite',
+            category: 'Frontend SPA',
+            role: 'Single Page Application modern berbasis React 18, Vite bundler, dan Tailwind CSS untuk antarmuka responsif operasional pabrik.',
             highlights: [
-                'Arsitektur Service-Repository Pattern',
-                'Task scheduling & cron background workers',
-                'Eloquent & Jenssegers MongoDB driver'
+                'State Management & Optimistic UI',
+                'Tailwind CSS Manufacturing Theme',
+                'Proxy Routing Port 8000 & 5559'
             ]
         },
         {
-            name: 'PHP',
-            category: 'Core Language',
-            role: 'Bahasa pemrograman inti yang menjalankan pemrosesan transaksi inventaris bervolume ribuan per hari dengan efisiensi memori teruji.',
+            name: 'Laravel 8 (PHP 7.4)',
+            category: 'Backend 1 (Port 8000)',
+            role: 'Backend inti untuk modul Master Data, alur rekomendasi Bin gudang, transaksi pengeluaran BKB, struktur BOM, dan SAP RFC Connector.',
             highlights: [
-                'Pemrosesan stream data transaksi bervolume tinggi',
-                'Integrasi API gateway pihak ketiga',
-                'Modular business rules engine'
+                'Master Data & Rekomendasi Bin Gudang',
+                'Transaksi BKB & Kalkulator BOM',
+                'SAP RFC 311 / 101 Connector'
             ]
         },
         {
-            name: 'MongoDB',
-            category: 'NoSQL Database',
-            role: 'Database bervolume tinggi untuk mencatat mutasi stok per detik, log pemindaian QR/Barcode, dan audit trail pergerakan part di gudang.',
+            name: 'Express.js (Node.js)',
+            category: 'Backend 2 (Port 5559)',
+            role: 'Microservice backend bervolume tinggi untuk WMS Finish Good (FG), logika pemecahan box (Stock Split), Dispatch, dan komunikasi live.',
             highlights: [
-                'Skema transaksi inventaris berkecepatan tinggi',
-                'Compound index untuk pencarian lokasi rak cepat',
-                'Aggregation pipeline untuk rekap mutasi harian'
+                'WMS Finish Good (FG) Engine',
+                'FG Stock Split & Scan Dispatch',
+                'Real-Time WebSocket (Socket.IO)'
             ]
         },
         {
-            name: 'SAP ERP',
-            category: 'Enterprise ERP',
-            role: 'Sistem ERP sentral perusahaan yang disinkronkan secara periodik untuk data master supplier, purchase orders, dan inventory valuation.',
+            name: 'MongoDB 7.0',
+            category: 'Distributed NoSQL Database',
+            role: 'Database multi-koleksi berkecepatan tinggi yang memisahkan transaksi operasional pabrik dan portal pemasok.',
             highlights: [
-                'Two-way data synchronization',
-                'Reconciliation logger untuk mencegah selisih buku',
-                'Standardized data interchange format'
+                'Database dci_factory_ais (Transaksi Pabrik)',
+                'Database portal_supplier_dcci (Data Vendor)',
+                'Compound index untuk pencarian instan lot & rak'
             ]
         },
         {
-            name: 'Twilio API',
-            category: 'Messaging Gateway',
-            role: 'Gateway otomasi pengiriman pesan WhatsApp untuk eskalasi stok kritis dan konfirmasi pengiriman material langsung ke nomor operasional PIC.',
+            name: 'SAP ERP Dharma Enterprise',
+            category: 'Enterprise Core System',
+            role: 'Sistem sentral grup Dharma yang terhubung via RFC / BAPI (Port 8001) untuk Movement Type 101 (GR) dan 311 (Transfer Sloc).',
             highlights: [
-                'Webhook delivery receipt verification',
-                'Template pesan dinamis multi-bahasa',
-                'Rate limiting & queue dispatching'
+                'SAP RFC / BAPI Port 8001 Integration',
+                'Movement Type 101 & 311 Automated Posting',
+                'Reconciliation Logger pencegah selisih saldo'
             ]
         },
         {
-            name: 'Backend',
-            category: 'Architecture',
-            role: 'Pondasi arsitektur micro-service & REST API yang andal, scalable, dan mematuhi standar manufaktur Smart Factory Industry 4.0.',
+            name: 'Webhook & Anti-Collision Engine',
+            category: 'Connectivity & Safety Layer',
+            role: 'Lapisan middleware penerima semburan data dari sistem QC Traceability dan pelindung penulisan ganda dari scanner gun.',
             highlights: [
-                'Spatie RBAC permission mapping',
-                'Audit logging di setiap endpoint',
-                'High availability & fault-tolerant design'
+                'Inbound Webhook Listener x-api-key',
+                'Idempotensi Lot updateOrCreate',
+                'Debounce Safety (<300ms) anti-double scan'
             ]
         }
     ],
     tagline: 'Enterprise ERP/WMS Backbone for Smart Factory Operations.',
-    description: 'Automated Information System (AIS): enterprise-scale ERP/WMS digitizing the full supply chain and warehouse operation at PT Dharma Controlcable Indonesia.',
-    problem: 'Manual disconnected processes caused stock discrepancies and slow material traceability.',
-    solution: 'Centralized Laravel + MongoDB backend: procurement portal, automated inbound, QR/Barcode rack tracking, scheduled outbound, SAP bridge, auto WA/Email reminders.',
-    impact: 'Handles thousands of inventory transactions daily with accurate real-time QR-tracked stock.',
-    status: 'IN PROGRESS',
-    benefits: 'Warehouse & Supply Chain Teams of PT Dharma Controlcable Indonesia',
-    vision: 'Reliable integrated ERP/WMS backbone for Smart Factory.',
-    strategicAlignment: 'Supports manufacturing digitalization by automating supply chain and bridging factory data with SAP ERP.',
+    description: 'Automated Information System (AIS): arsitektur multi-backend (Laravel 8 + Node.js) dan SPA React 18 yang mendigitalisasi rantai pasok, manajemen gudang bahan baku hingga Finish Good, dan integrasi SAP ERP di PT Dharma Controlcable Indonesia.',
+    problem: 'Proses pergudangan manual memicu salah taruh di rak, ketidaksinkronan PO SAP, dan kesulitan tracking mutasi part bervolume tinggi.',
+    solution: 'Arsitektur modern: Frontend React 18 + Vite, Backend Laravel 8 (Master Data, Bin, BKB, SAP RFC) & Express.js (WMS FG, Stock Split, Socket.IO), MongoDB 7.0, dan integrasi Webhook QC.',
+    impact: 'Menjamin akurasi saldo rak material 100%, otomatisasi mutasi SAP RFC, dan eliminasi rekap manual antar departemen.',
+    status: 'READY FOR UAT',
+    benefits: 'Warehouse, PPIC, QC, & Supply Chain PT Dharma Controlcable Indonesia',
+    vision: 'Pondasi ekosistem Smart Factory manufaktur kontrol presisi berskala enterprise.',
+    strategicAlignment: 'Mendukung transformasi digitalisasi industri manufaktur otomotif terhubung ERP sentral.',
     team: [
         { name: 'Sulthan Abdi Dzikry' },
         { name: 'Sahlan Muzaqi' }
     ],
-    tags: ['Laravel 6', 'PHP', 'MongoDB', 'SAP ERP', 'Twilio API', 'Backend'],
+    tags: ['React 18', 'Laravel 8', 'Express.js', 'MongoDB 7.0', 'SAP RFC', 'Socket.IO'],
     size: 'large',
     problemMap: [
         { problem: 'Manual Inbound Receiving', context: 'Incoming goods recorded manually, risking invalid stock entries.', solution: 'Automated Inbound Module', mitigation: 'Good Receiving, Incoming Lotbook, and Compare Delivery Note validate every inbound transaction.' },
@@ -182,33 +261,34 @@ export const aisBackendProject = {
         { risk: 'Stock Discrepancy', action: 'Validated endpoints with QR checkpoints at every movement.' },
         { risk: 'Complex Authorization', action: 'Granular Spatie permissions per department.' }
     ],
-    investmentRequired: 'Ongoing Backend Development / 1 Backend Developer',
-    assumptions: `1. Scan-based tracking will eliminate most stock variances.
-2. SAP bridging keeps supplier and part data synchronized.`,
-    productArchitecture: 'Laravel 6 (Backend), MongoDB (Database), SAP ERP, Twilio + SMTP',
+    investmentRequired: 'Full-Stack & Backend Integration Maintenance',
+    assumptions: `1. Pemindaian QR/Barcode presisi mengeliminasi risiko salah alokasi Bin dan ketidaksesuaian stok.
+2. SAP RFC Connector memastikan sinkronisasi data mutasi Movement Type 101 dan 311 secara konsisten.`,
+    productArchitecture: 'Frontend React 18 + Vite, Backend Laravel 8 (Master/BKB/SAP RFC), Backend Express.js (WMS FG), MongoDB 7.0, SAP ERP Port 8001',
     coreFeatures: [
-        { name: 'Procurement Portal', desc: 'PO lifecycle, vendor data, supplier sync, PO analytics.' },
-        { name: 'Inbound Receiving', desc: 'Good Receiving, Lotbook, Compare Delivery Note.' },
-        { name: 'Warehouse Tracking', desc: 'Storage/Rack QR/Barcode scan at Sloc level.' },
-        { name: 'Outbound Delivery', desc: 'Scheduling, Travel Documents, warehouse release.' }
+        { name: 'Scan In Label & Good Receipt', desc: 'Validasi label incoming material supplier terhadap PO SAP dan proteksi Poka-Yoke.' },
+        { name: 'Assign Bin & Scan Rack Sloc', desc: 'Rekomendasi otomatis penempatan rak bertingkat dan audit kapasitas fisik rak.' },
+        { name: 'Stock On Rack Management', desc: 'Monitoring saldo part per slot rak gudang dengan filter lot, status QC, dan audit trail.' },
+        { name: 'WMS Finish Good & Stock Split', desc: 'Logika pemecahan box besar untuk rilis parsial dan pemindaian barcode packing dispatch.' },
+        { name: 'SAP RFC Connector & Webhook QC', desc: 'Integrasi dua arah Movement Type 101 & 311 serta jembatan semburan data inspeksi QC.' }
     ],
-    background: 'At PT Dharma Controlcable Indonesia, supply chain and warehouse needed full digitalization. I developed and maintained the AIS backend modules.',
+    background: 'Di PT Dharma Controlcable Indonesia, digitalisasi rantai pasok dan pergudangan diwujudkan melalui arsitektur multi-backend terintegrasi (Laravel 8 + Node.js) dan SPA React 18 yang terhubung ke SAP ERP.',
     translations: {
         id: {
-            tagline: 'Tulang Punggung ERP/WMS untuk Operasi Smart Factory.',
-            description: 'Automated Information System (AIS): aplikasi ERP/WMS skala enterprise untuk digitalisasi rantai pasok dan gudang di PT Dharma Controlcable Indonesia.',
-            problem: 'Proses manual yang terpisah menimbulkan selisih stok dan ketertelusuran lambat.',
-            solution: 'Backend terpusat Laravel + MongoDB: portal procurement, inbound otomatis, tracking rak QR/Barcode, outbound terjadwal, jembatan SAP, pengingat WA/Email otomatis.',
-            impact: 'Menangani ribuan transaksi harian dengan stok akurat real-time terlacak QR.',
-            status: 'DALAM PENGERJAAN',
-            benefits: 'Tim Gudang dan Rantai Pasok PT Dharma Controlcable Indonesia',
-            vision: 'Tulang punggung ERP/WMS terintegrasi untuk Smart Factory.',
-            strategicAlignment: 'Mendukung digitalisasi manufaktur dan bridging data dengan SAP ERP.',
-            background: 'Di PT Dharma Controlcable Indonesia, rantai pasok dan gudang butuh digitalisasi penuh. Saya mengembangkan dan memelihara modul backend AIS.',
-            investmentRequired: 'Pengembangan Backend Berjalan / 1 Backend Developer',
-            assumptions: `1. Tracking scan menghilangkan sebagian besar selisih stok.
-2. Bridging SAP menjaga sinkronisasi data.`,
-            productArchitecture: 'Laravel 6 (Backend), MongoDB (Database), SAP ERP, Twilio + SMTP'
+            tagline: 'Arsitektur Multi-Backend ERP/WMS untuk Ekosistem Smart Factory.',
+            description: 'Automated Information System (AIS): sistem ERP/WMS manufaktur terintegrasi berbasis SPA React 18, Backend Laravel 8 (Master Data, Bin, BKB, SAP RFC) dan Express.js (WMS Finish Good) dengan basis data MongoDB 7.0 di PT Dharma Controlcable Indonesia.',
+            problem: 'Proses pergudangan manual memicu salah taruh di rak, ketidaksinkronan PO SAP, dan kesulitan tracking mutasi part bervolume tinggi.',
+            solution: 'Frontend SPA React 18 + Vite, Backend Laravel 8 (Port 8000), Backend Node.js Express (Port 5559), MongoDB 7.0, dan SAP RFC Connector (Port 8001).',
+            impact: 'Menjamin akurasi saldo rak material 100%, otomatisasi mutasi SAP RFC, dan eliminasi rekap manual antar departemen.',
+            status: 'READY FOR UAT',
+            benefits: 'Tim Gudang, PPIC, QC, dan Supply Chain PT Dharma Controlcable Indonesia',
+            vision: 'Pondasi ekosistem Smart Factory manufaktur kontrol presisi berskala enterprise.',
+            strategicAlignment: 'Mendukung transformasi digitalisasi industri manufaktur otomotif terhubung ERP sentral.',
+            background: 'Di PT Dharma Controlcable Indonesia, digitalisasi rantai pasok dan pergudangan diwujudkan melalui arsitektur multi-backend terintegrasi (Laravel 8 + Node.js) dan SPA React 18 yang terhubung ke SAP ERP.',
+            investmentRequired: 'Pemeliharaan Integrasi Full-Stack & Backend',
+            assumptions: `1. Pemindaian QR/Barcode presisi mengeliminasi risiko salah alokasi Bin dan ketidaksesuaian stok.
+2. SAP RFC Connector memastikan sinkronisasi data mutasi Movement Type 101 dan 311 secara konsisten.`,
+            productArchitecture: 'Frontend React 18 + Vite, Backend Laravel 8 (Master/BKB/SAP RFC), Backend Express.js (WMS FG), MongoDB 7.0, SAP ERP Port 8001'
         }
     }
 };
