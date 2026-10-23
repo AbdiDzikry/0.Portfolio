@@ -6,7 +6,8 @@ import {
     Linkedin, Mail, ArrowRight, GraduationCap, Search, Users, Rocket,
     Smartphone, Tablet, CheckCircle, BarChart, Download, Check, Maximize, Minimize,
     Laptop, ArrowRightLeft, Image as ImageIcon, Database, Server, Cpu, PackageCheck,
-    CheckCircle2, Clock, Workflow, ShieldAlert, FileText, Sparkles, ExternalLink
+    CheckCircle2, Clock, Workflow, ShieldAlert, FileText, Sparkles, ExternalLink,
+    Lock, KeyRound, AlertCircle, BookOpen
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
@@ -14,6 +15,13 @@ import { jsPDF } from 'jspdf';
 
 const DciPresentation = () => {
     const navigate = useNavigate();
+    const [isAuthenticated, setIsAuthenticated] = useState(() => {
+        return sessionStorage.getItem('dci_pres_auth') === 'true';
+    });
+    const [passwordInput, setPasswordInput] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
     const [currentSlide, setCurrentSlide] = useState(0);
     const [direction, setDirection] = useState(0);
     const [isFullscreen, setIsFullscreen] = useState(false);
@@ -25,6 +33,17 @@ const DciPresentation = () => {
     const [activePicaImage, setActivePicaImage] = useState(0);
     const [activeAisImage, setActiveAisImage] = useState(0);
     const [activeTrackingImage, setActiveTrackingImage] = useState(0);
+
+    const handlePasswordSubmit = (e) => {
+        e?.preventDefault();
+        if (passwordInput.trim() === 'magangdci123') {
+            setIsAuthenticated(true);
+            sessionStorage.setItem('dci_pres_auth', 'true');
+            setPasswordError('');
+        } else {
+            setPasswordError('Password salah! Silakan masukkan password yang valid.');
+        }
+    };
 
     const slideVariants = {
         initial: (dir) => ({ opacity: 0, x: dir > 0 ? 100 : -100 }),
@@ -141,7 +160,14 @@ const DciPresentation = () => {
                     domainLabel: 'new-factory.dharma-dcci.co.id',
                     desc: 'Sistem terpadu rantai pasok dan manajemen gudang. Arsitektur multi-backend (Laravel 8 + Node.js) dan SPA React 18: Inbound Receiving, alokasi rak Sloc, WMS Finish Good, hingga konektor SAP RFC 311/101.',
                     badge: 'Rantai Pasok & Gudang',
-                    tech: ['React 18', 'Laravel 8', 'Node.js', 'MongoDB 7.0', 'SAP RFC']
+                    tech: ['React 18', 'Laravel 8', 'Node.js', 'MongoDB 7.0', 'SAP RFC'],
+                    handoverDoc: {
+                        title: 'Dokumentasi & Manual Guide AIS',
+                        desc: 'Buku panduan arsitektur sistem & panduan operasional penerus magang.',
+                        thumbnail: '/Dokumen Serah Terima dan manual guide.png',
+                        pdfUrl: '/BUKU_PANDUAN_ARSITEKTUR_DAN_MANUAL_GUIDE_AIS_DCCI.pdf',
+                        pdfName: 'BUKU_PANDUAN_ARSITEKTUR_DAN_MANUAL_GUIDE_AIS_DCCI.pdf'
+                    }
                 }
             ]
         },
@@ -663,6 +689,106 @@ const DciPresentation = () => {
 
     const slide = slides[currentSlide];
 
+    // Password Protection Screen for Confidentiality
+    if (!isAuthenticated) {
+        return (
+            <div className="fixed inset-0 bg-zinc-950 text-white flex items-center justify-center p-4 z-[999] select-none font-sans">
+                {/* Background ambient decorative glow */}
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    className="relative w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6"
+                >
+                    {/* Header badge & title */}
+                    <div className="text-center space-y-3">
+                        <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center shadow-inner">
+                            <Lock size={26} />
+                        </div>
+                        <div className="space-y-1">
+                            <span className="text-[10px] font-mono font-bold tracking-widest text-emerald-400 uppercase bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                                DOKUMEN RAHASIA PERUSAHAAN
+                            </span>
+                            <h2 className="text-xl sm:text-2xl font-black text-white pt-1">
+                                Akses Presentasi Terbatas
+                            </h2>
+                            <p className="text-xs text-zinc-400 leading-relaxed font-sans max-w-xs mx-auto">
+                                Halaman ini memuat dokumen internal & arsitektur proyek PT Dharma Controlcable Indonesia. Masukkan password otorisasi untuk melanjutkan.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Password Form */}
+                    <form onSubmit={handlePasswordSubmit} className="space-y-4">
+                        <div className="space-y-1.5">
+                            <label className="text-[11px] font-mono font-bold text-zinc-300 block">
+                                Kata Sandi Otorisasi
+                            </label>
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
+                                    <KeyRound size={16} />
+                                </div>
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    value={passwordInput}
+                                    onChange={(e) => {
+                                        setPasswordInput(e.target.value);
+                                        if (passwordError) setPasswordError('');
+                                    }}
+                                    placeholder="Masukkan password..."
+                                    autoFocus
+                                    className="w-full pl-10 pr-16 py-3 rounded-xl bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-500 text-sm font-mono focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[10px] font-mono font-bold text-zinc-400 hover:text-zinc-200"
+                                >
+                                    {showPassword ? 'SEMBUNYIKAN' : 'LIHAT'}
+                                </button>
+                            </div>
+
+                            {/* Error Alert */}
+                            {passwordError && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -4 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="flex items-center gap-2 p-2.5 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-mono"
+                                >
+                                    <AlertCircle size={14} className="shrink-0" />
+                                    <span>{passwordError}</span>
+                                </motion.div>
+                            )}
+                        </div>
+
+                        {/* Submit Button */}
+                        <button
+                            type="submit"
+                            className="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-bold font-mono text-xs uppercase tracking-wider transition-all shadow-lg shadow-emerald-500/20 active:scale-95 flex items-center justify-center gap-2"
+                        >
+                            <span>Buka Dokumen Presentasi</span>
+                            <ArrowRight size={14} />
+                        </button>
+                    </form>
+
+                    {/* Back to Projects */}
+                    <div className="pt-2 border-t border-zinc-800/80 flex items-center justify-between text-[11px] font-mono text-zinc-500">
+                        <span>PT Dharma Controlcable Indonesia</span>
+                        <button
+                            type="button"
+                            onClick={() => navigate('/projects')}
+                            className="text-zinc-400 hover:text-white transition-colors"
+                        >
+                            ← Kembali ke Beranda
+                        </button>
+                    </div>
+                </motion.div>
+            </div>
+        );
+    }
+
     return (
         <div className="fixed inset-0 bg-[#F4F4F5] text-zinc-900 flex flex-col justify-between p-4 md:p-8 select-none overflow-hidden font-sans">
             {/* Top Navigation */}
@@ -903,6 +1029,47 @@ const DciPresentation = () => {
                                                         <span className="truncate">{p.domainLabel || p.url}</span>
                                                         <ExternalLink size={11} className="shrink-0" />
                                                     </a>
+                                                )}
+
+                                                {/* Handover Document Mini Button for AIS */}
+                                                {p.handoverDoc && (
+                                                    <div className="p-2 rounded-xl bg-zinc-900 text-white border border-zinc-800 space-y-1.5 shadow-sm">
+                                                        <div className="flex items-center justify-between gap-1.5">
+                                                            <div className="flex items-center gap-1.5 text-[9px] font-mono font-bold text-emerald-400">
+                                                                <BookOpen size={11} className="shrink-0" />
+                                                                <span className="truncate">Manual Guide & Arsitektur</span>
+                                                            </div>
+                                                            <a
+                                                                href={p.handoverDoc.pdfUrl}
+                                                                download={p.handoverDoc.pdfName}
+                                                                className="px-2 py-0.5 rounded-md bg-emerald-500 hover:bg-emerald-600 text-zinc-950 text-[9px] font-mono font-black flex items-center gap-1 shrink-0 transition-colors shadow-sm"
+                                                                title="Unduh PDF Manual Guide AIS"
+                                                            >
+                                                                <Download size={10} />
+                                                                <span>Unduh PDF</span>
+                                                            </a>
+                                                        </div>
+                                                        <div 
+                                                            className="flex items-center gap-2 cursor-pointer group/thumb hover:bg-zinc-800/60 p-1 rounded-lg transition-colors"
+                                                            onClick={() => {
+                                                                setEnlargedImageList([{ src: p.handoverDoc.thumbnail, label: p.handoverDoc.title }]);
+                                                                setEnlargedImageIndex(0);
+                                                                setEnlargedImage(p.handoverDoc.thumbnail);
+                                                            }}
+                                                            title="Klik untuk zoom thumbnail dokumen"
+                                                        >
+                                                            <div className="w-10 h-7 rounded overflow-hidden bg-zinc-950 border border-zinc-700 shrink-0">
+                                                                <img 
+                                                                    src={p.handoverDoc.thumbnail} 
+                                                                    alt="" 
+                                                                    className="w-full h-full object-cover group-hover/thumb:scale-110 transition-transform" 
+                                                                />
+                                                            </div>
+                                                            <p className="text-[9px] text-zinc-300 leading-tight font-sans line-clamp-2">
+                                                                Dokumentasi serah terima untuk penerus magang & IT DCI.
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 )}
 
                                                 {/* Tech Badges */}
@@ -1365,9 +1532,23 @@ const DciPresentation = () => {
                                                 <span className="px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white text-[9px] font-mono font-bold border border-white/20">
                                                     {act.badge}
                                                 </span>
-                                                <span className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded-full bg-white/20 text-white backdrop-blur-md">
-                                                    <Maximize size={12} />
-                                                </span>
+                                                <div className="flex items-center gap-1.5">
+                                                    {act.downloadUrl && (
+                                                        <a
+                                                            href={act.downloadUrl}
+                                                            download={act.downloadName}
+                                                            onClick={(e) => e.stopPropagation()}
+                                                            className="px-2 py-0.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white backdrop-blur-md text-[9px] font-mono font-bold flex items-center gap-1 shadow-sm transition-all"
+                                                            title="Download PDF Manual Guide"
+                                                        >
+                                                            <Download size={11} />
+                                                            <span>Unduh PDF</span>
+                                                        </a>
+                                                    )}
+                                                    <span className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded-full bg-white/20 text-white backdrop-blur-md">
+                                                        <Maximize size={12} />
+                                                    </span>
+                                                </div>
                                             </div>
 
                                             {/* Card Content Footer */}
