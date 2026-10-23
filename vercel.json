@@ -1,9 +1,9 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/porto-2.0", "destination": "/porto-2.0/index.html" },
-    { "source": "/porto-2.0/", "destination": "/porto-2.0/index.html" },
+    { "source": "/porto-2.0", "destination": "/porto-2.0/index" },
+    { "source": "/porto-2.0/", "destination": "/porto-2.0/index" },
     { "source": "/porto-2.0/(.*)", "destination": "/porto-2.0/$1" },
-    { "source": "/((?!porto-2.0).*)", "destination": "/index.html" }
+    { "source": "/((?!porto-2.0).*)", "destination": "/index" }
   ]
 }
