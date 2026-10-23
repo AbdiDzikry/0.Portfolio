@@ -58,27 +58,32 @@
   <link rel="dns-prefetch" href="https://api.web3forms.com" />
 
   <script>
-    // No-flash theme bootstrap. Reads localStorage.theme (auto | light | dark)
-    // and writes data-theme on <html> before paint so dark mode never flashes light.
+    // No-flash theme bootstrap. Reads localStorage.portfolio-theme and writes
+    // data-theme on <html> before paint so the saved palette never flashes default.
     (function () {
       try {
         var saved = localStorage.getItem('portfolio-theme');
-        var pref = saved === 'light' || saved === 'dark' || saved === 'auto' ? saved : 'auto';
+        var palettes = ['retro', 'soft', 'memphis', 'mono'];
+        var pref = palettes.indexOf(saved) >= 0
+          ? saved
+          : (saved === 'light' || saved === 'dark' || saved === 'auto' ? saved : 'retro');
         var resolved = pref === 'auto'
           ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
           : pref;
         document.documentElement.setAttribute('data-theme', resolved);
         document.documentElement.setAttribute('data-theme-pref', pref);
       } catch (_) {
-        document.documentElement.setAttribute('data-theme', 'light');
-        document.documentElement.setAttribute('data-theme-pref', 'auto');
+        document.documentElement.setAttribute('data-theme', 'retro');
+        document.documentElement.setAttribute('data-theme-pref', 'retro');
       }
     })();
   </script>
-  <script type="module" crossorigin src="/porto-2.0/assets/index-CHtv4N8_.js"></script>
-  <link rel="modulepreload" crossorigin href="/porto-2.0/assets/vendor-VOhiy4Xw.js">
+  <script type="module" crossorigin src="/porto-2.0/assets/main-DTNNr9bV.js"></script>
+  <link rel="modulepreload" crossorigin href="/porto-2.0/assets/vendor-DUEn7oym.js">
+  <link rel="modulepreload" crossorigin href="/porto-2.0/assets/style-DH5kJQUX.js">
+  <link rel="stylesheet" crossorigin href="/porto-2.0/assets/style-BRTAc2dn.css">
   <link rel="stylesheet" crossorigin href="/porto-2.0/assets/vendor-DsmJibWU.css">
-  <link rel="stylesheet" crossorigin href="/porto-2.0/assets/index-d3b2YKdD.css">
+  <link rel="stylesheet" crossorigin href="/porto-2.0/assets/main-DmINLVal.css">
 </head>
 
 <body>

@@ -1,0 +1,1 @@
+.fade-enter-active,.fade-leave-active{transition:opacity .3s ease}.fade-enter-from,.fade-leave-to{opacity:0}.fade-enter-active .spec-drawer,.fade-leave-active .spec-drawer{transition:transform .35s cubic-bezier(.25,.8,.25,1)}.fade-enter-from .spec-drawer,.fade-leave-to .spec-drawer{transform:translate(100%)}

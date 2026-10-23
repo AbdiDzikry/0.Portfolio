@@ -75,7 +75,8 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* Lenis overrides scroll-behavior; keep auto to avoid double-smoothing */
+    scroll-behavior: auto;
   }
 
   body {

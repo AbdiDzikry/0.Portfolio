@@ -155,6 +155,8 @@ export const projectsData = [
     },
     {
         id: 'ac-monitoring',
+        link: 'https://ac-monitoring.dharmagroup.co.id',
+        liveUrl: 'https://ac-monitoring.dharmagroup.co.id',
         title: 'LaporAC',
         experience: 'dharma-polimetal',
         category: 'UI/UX Design',

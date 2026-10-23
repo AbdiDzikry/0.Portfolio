@@ -85,7 +85,7 @@ const Navbar = ({ onChatToggle }) => {
                         <NavLink to="/blog" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.blog}</NavLink>
                         <NavLink to="/tools" className={({ isActive }) => `text-xs font-bold uppercase tracking-widest ${isActive ? 'text-black' : 'text-zinc-400 hover:text-black'} transition-colors`}>{t.nav.tools}</NavLink>
                         <a
-                            href="/porto-2.0/index.html"
+                            href="/porto-2.0"
                             className="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-black dark:hover:text-white transition-colors whitespace-nowrap shrink-0"
                             title="Buka Portofolio Tema 2.0"
                         >
@@ -158,7 +158,7 @@ const Navbar = ({ onChatToggle }) => {
                             <MobileNavItem to="/blog">{t.nav.blog}</MobileNavItem>
                             <MobileNavItem to="/tools">{t.nav.tools}</MobileNavItem>
                             <a
-                                href="/porto-2.0/index.html"
+                                href="/porto-2.0"
                                 className="px-4 py-3 rounded-xl text-base font-normal text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all duration-300"
                             >
                                 Porto 2.0

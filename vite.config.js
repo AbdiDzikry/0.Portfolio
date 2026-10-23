@@ -16,6 +16,20 @@ const servePorto2Plugin = () => ({
           return res.end(fs.readFileSync(filePath))
         }
       }
+      if (url === '/porto-2.0/briefs' || url === '/porto-2.0/briefs/' || url === '/porto-2.0/briefs.html') {
+        const filePath = path.resolve(__dirname, 'public/porto-2.0/briefs/index.html')
+        if (fs.existsSync(filePath)) {
+          res.setHeader('Content-Type', 'text/html; charset=utf-8')
+          return res.end(fs.readFileSync(filePath))
+        }
+      }
+      if (url === '/porto-2.0/brief-detail' || url === '/porto-2.0/brief-detail/' || url.startsWith('/porto-2.0/brief-detail?')) {
+        const filePath = path.resolve(__dirname, 'public/porto-2.0/brief-detail/index.html')
+        if (fs.existsSync(filePath)) {
+          res.setHeader('Content-Type', 'text/html; charset=utf-8')
+          return res.end(fs.readFileSync(filePath))
+        }
+      }
       next()
     })
   }
